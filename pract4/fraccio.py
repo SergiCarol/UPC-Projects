@@ -18,7 +18,9 @@ class Fraccio(object):
     
 
     def add (self,a):
-        pass
+        nd= self._den * a._den
+        nn= self._num * a._den + a._num * self._sen
+        return Fraccio(nn,nd)._simplifica()
 
     def sub (self,a):
         pass
