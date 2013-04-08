@@ -24,3 +24,13 @@ class Fraccio(object):
 
     def sub (self,a):
         pass
+
+	def simplifica(self):
+		a = self. num
+		b = self. den
+		while a != b:
+			if a > b:
+				a −= b
+			else:
+				b −= a
+		return Fraccio(self. num/a, self. den/a)
