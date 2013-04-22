@@ -44,3 +44,11 @@ class Node (object):
 
     def __repr__(self):
         return self._e+" "+'\n'+" " +self._n + " " + '\n' 
+
+
+class entrada (Node):
+    def up(self):
+        self.say(1)
+    def down(self):
+        self.say(0)
+    
