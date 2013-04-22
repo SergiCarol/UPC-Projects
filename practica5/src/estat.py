@@ -49,8 +49,7 @@ class Estat(object):
     def __and__(self, altre):
         if self.undef() or altre.undef():
             return Estat()
-        return Estat(self._e * altre._e)
-            
+        return Estat(self._e * altre._e)      
 
     def __nonzero__(self):
         return self._e == 1 or self._e == 0
@@ -58,10 +57,9 @@ class Estat(object):
     def __or__(self, altre):
         if self.undef() or altre.undef():
             return Estat()
-	if self._e + altre._e == 2:
+	if (self._e + altre._e) == 2:
 	    return Estat(1)
-	else:
-       	    return Estat(0)
+       	return Estat(self._e + altre._e)
 	
     def __repr__(self):
 	if self._e == -1:
