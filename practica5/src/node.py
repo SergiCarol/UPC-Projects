@@ -1,43 +1,46 @@
 # -*- encoding:utf-8 -*-
 
 from estat import Estat
-from supervisor import Supervisor
+
+
 
 class Node (object):
-    
+    """
+    >>> N = Node('node1')
+    >>> N.say(Estat(1))
+    >>> N.ask()
+    'node1'
+    >>> N.set_supervisor('super')
+    super
+    """
 
-    def _init_(self,e,n,s):
-      
-         est=Estat
-         sup=Supervisor
-         _e=est
-         _n=self.nom
-         _s=sup
+    def __init__(self, n):
+         self._e = Estat(0)
+         self._n = n
 
     def say(self,e):
-        """
-        >>> n=Node(1,node1,super)
-        >>> n.say(1)
-        1
-        >>> j=Node(3,node1,super)
-        >>> j.say(2)
-        2
-        """
-        estat=Estat
-        if estat == self._e:
+
+        
+        supervi= Supervisor()
+        if self._e == e:
             pass
         else:
-            estat=self._e
-            return Supervisor.notify_change()
-        return estat
+            self._e=e
+            
+            return supervi.notify_change()
+         
+
     def ask(self):
        
-        return self._e
+        return self._n
+
 
     def set_supervisor(self,s):
-        a=_s.add_node(self._n)
-        return a
+
+        s=Supervisor()
+        s.add_node(self._n)
+        return s
 
 
     def __repr__(self):
-        pass
+        return self._e+" "+'\n'+" " +self._n + " " + '\n' 
