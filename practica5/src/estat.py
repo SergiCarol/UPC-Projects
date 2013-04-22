@@ -61,7 +61,7 @@ class Estat(object):
 	    return Estat(1)
        	return Estat(self._e + altre._e)
 	
-    def __repr__(self):
+    def __repr__(sel):
 	if self._e == -1:
 		return (("Estat()"))	
         return (("Estat("+ str(self._e) + ")"))
