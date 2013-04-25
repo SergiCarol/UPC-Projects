@@ -52,3 +52,10 @@ class entrada (Node):
     def down(self):
         self.say(0)
     
+    def undef(self):
+        self.say(-1)
+    def __repr__(self):
+        return "la entrada d'aquet node esta en"+" "+str( Estat())
+class sortirda (Node):
+    def __repr__(self):
+        return "la sortida d'aquet node esta en"+" "+str( Estat())
