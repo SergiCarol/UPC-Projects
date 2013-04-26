@@ -1,7 +1,7 @@
 # -*- encoding:utf-8 -*-
 
 from estat import Estat
-
+from supervisor import Supervisor
 
 
 class Node (object):
@@ -10,14 +10,14 @@ class Node (object):
     >>> N.say(Estat(1))
     >>> N.ask()
     'node1'
-    >>> N.set_supervisor('super')
-    super
+    >>> N.set_supervisor(super)
+    
     """
 
     def __init__(self, n):
          self._e = Estat(0)
          self._n = n
-
+   
     def say(self,e):
 
         
@@ -26,8 +26,7 @@ class Node (object):
             pass
         else:
             self._e=e
-            
-            return supervi.notify_change()
+            supervi.notify_change()
          
 
     def ask(self):
@@ -37,9 +36,8 @@ class Node (object):
 
     def set_supervisor(self,s):
 
-        s=Supervisor()
-        s.add_node(self._n)
-        return s
+       self._s=s
+        
 
 
     def __repr__(self):
