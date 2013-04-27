@@ -17,11 +17,14 @@ class Node (object):
     >>> b.say(Estat(-1))
     >>> b.ask()
     Estat(-1)
+    >>> b.say(Estat(1))
+    >>> b.ask()
+    Estat(1)
     >>> N.set_supervisor(super)
     >>> repr(N)
     "El node node1 esta en l'estat Estat(1)"
     >>> repr(b)
-    "El node b esta en l'estat Estat(-1)"
+    "El node b esta en l'estat Estat(1)"
     """
 
     def __init__(self, n):
@@ -63,7 +66,7 @@ class Entrada (Node):
     def undef(self):
         self.say(-1)
     def __repr__(self):
-        return "la entrada d'aquet node esta en"+" "+str( Estat())
+        return "la entrada d'aquet node esta en"+" "+str(self._e)
 class Sortida (Node):
     def __repr__(self):
-        return "la sortida d'aquet node esta en"+" "+str( Estat())
+        return "la sortida d'aquet node esta en"+" "+str(self._e)
