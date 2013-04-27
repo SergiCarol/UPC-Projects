@@ -33,9 +33,9 @@ class Supervisor (object):
     def run (self,log=False):
         triports=self._triports
        
-        if log==True:
+        if log==False:
             for element in triports:
                 a=element.tick()
 		print element
                 if a==True:
-                    return "Tick ->"+" "+ element.__repr__()
+                    print "Tick ->"+" "+ element.__repr__()
