@@ -32,9 +32,7 @@ class Node (object):
 
         
         supervi= Supervisor()
-        if self._e == e:
-            pass
-        else:
+        if self._e != e:
             self._e=e
             supervi.notify_change()
          
@@ -56,7 +54,7 @@ class Node (object):
         return "El node" +" " + self._n+" " +"esta en l'estat" +" "+str(self._e)
 
 
-class entrada (Node):
+class Entrada (Node):
     def up(self):
         self.say(1)
     def down(self):
@@ -66,6 +64,6 @@ class entrada (Node):
         self.say(-1)
     def __repr__(self):
         return "la entrada d'aquet node esta en"+" "+str( Estat())
-class sortirda (Node):
+class Sortida (Node):
     def __repr__(self):
         return "la sortida d'aquet node esta en"+" "+str( Estat())
