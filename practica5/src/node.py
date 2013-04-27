@@ -28,9 +28,8 @@ class Node (object):
     """
 
     def __init__(self, n):
-         self._e = Estat()
+         self._e = Estat(n)
          self._n = str(n)
-   
     def say(self,e):
 
         
@@ -54,7 +53,7 @@ class Node (object):
 
 
     def __repr__(self):
-        return "El node" +" " + self._n+" " +"esta en l'estat" +" "+str(self._e)
+        return "El node" +" " + self._n+" " +"esta en l'estat" +" "+ str(self._e)
 
 
 class Entrada (Node):
@@ -65,8 +64,10 @@ class Entrada (Node):
     
     def undef(self):
         self.say(-1)
+
     def __repr__(self):
-        return "la entrada d'aquet node esta en"+" "+str(self._e)
+        return "la entrada d'aquest node esta en"+" "+str(self._e)
+
 class Sortida (Node):
     def __repr__(self):
-        return "la sortida d'aquet node esta en"+" "+str(self._e)
+        return "la sortida d'aquest node esta en"+" "+str(self._e)
