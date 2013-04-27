@@ -6,17 +6,27 @@ from supervisor import Supervisor
 
 class Node (object):
     """
-    >>> N = Node('node1')
+    Aquesta classe es la encarregada de crear i treballar amb els nodes.Com podrem observar, amb aquesta classe podrem canviar l'estat dels nodes, ficarlsi un supervisor i demanar en quin estat es troba el node.
+
+
+    >>> N=Node('node1')
+    >>> b=Node('b')
     >>> N.say(Estat(1))
     >>> N.ask()
-    'node1'
+    Estat(1)
+    >>> b.say(Estat(-1))
+    >>> b.ask()
+    Estat(-1)
     >>> N.set_supervisor(super)
-    
+    >>> repr(N)
+    "El node node1 esta en l'estat Estat(1)"
+    >>> repr(b)
+    "El node b esta en l'estat Estat(-1)"
     """
 
     def __init__(self, n):
          self._e = Estat(0)
-         self._n = n
+         self._n = str(n)
    
     def say(self,e):
 
@@ -30,8 +40,10 @@ class Node (object):
          
 
     def ask(self):
-       
-        return self._n
+        """
+        Retorna el nom del node
+        """
+        return self._e
 
 
     def set_supervisor(self,s):
@@ -41,7 +53,7 @@ class Node (object):
 
 
     def __repr__(self):
-        return self._e+" "+'\n'+" " +self._n + " " + '\n' 
+        return "El node" +" " + self._n+" " +"esta en l'estat" +" "+str(self._e)
 
 
 class entrada (Node):

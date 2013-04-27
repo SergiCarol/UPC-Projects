@@ -1,13 +1,13 @@
 # -*- encoding:utf-8 -*-
 import repr as reprlib
 
-"""
-Ahora se escribirá el modulo estado. Este modulo es muy util para
-comprobar en que estado se encuentra un nodo
-"""
+
 
 class Estat(object):
     """
+   
+    La classe estat es l'encarregada de fer operacions amb els estats del programa, existeixen 3 tipus d'estats: 1,0 i -1 . Aquets estats signifiquen estat alt, estat baix i estat indefinit respectivament.
+
     >>> e0 = Estat()
     >>> e0.undef()
     True
@@ -31,14 +31,17 @@ class Estat(object):
     >>> e4 | e1
     Estat(1)
     >>> e2 | e1
-    Estat()
+    Estat(-1)
     >>> e1 | e1
     Estat(1)
     >>> e2 & e1
-    Estat()
+    Estat(-1)
     """
     
     def __init__(self, e = -1):
+        """
+        Constructor de la classe estat, crea els diferents estat , en el cas de que no s'en defineixi cap l'estat sera -1
+        """
         if e not in (-1,0,1):
             e = -1
         self._e = e
@@ -63,7 +66,7 @@ class Estat(object):
 	
     def __repr__(self):
 	if self._e == -1:
-		return (("Estat()"))	
+		return (("Estat(-1)"))	
         return (("Estat("+ str(self._e) + ")"))
 
     def __eq__(self, altre):
