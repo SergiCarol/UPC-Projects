@@ -28,7 +28,7 @@ class Node (object):
     """
 
     def __init__(self, n):
-         self._e = Estat(0)
+         self._e = Estat()
          self._n = str(n)
    
     def say(self,e):
