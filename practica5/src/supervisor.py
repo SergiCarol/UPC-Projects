@@ -33,7 +33,7 @@ class Supervisor (object):
     def run (self,log=False):
         triports=self._triports
        
-        if log==False:
+        if self._changed==False:
             for element in triports:
                 a=element.tick()
 		print element
