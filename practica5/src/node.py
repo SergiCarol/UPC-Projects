@@ -66,8 +66,8 @@ class Entrada (Node):
         self.say(-1)
 
     def __repr__(self):
-        return "la entrada d'aquest node esta en"+" "+str(self._e)
+        return "La entrada d'aquest node esta en"+" "+str(self._e)
 
 class Sortida (Node):
     def __repr__(self):
-        return "la sortida d'aquest node esta en"+" "+str(self._e)
+        return "La sortida d'aquest node esta en"+" "+str(self._e)
