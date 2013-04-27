@@ -11,16 +11,21 @@ class triport(object):
 	def tick(self):
 		estat1=self._i1.ask()
 	        estat2=self._i2.ask()
+		"""
+		print "AIVALAOSTIA1" + estat1
+		print "AIVALAOSTIA2" + estat2
+		"""
 		resultat=self._do_function(estat1,estat2)
 		self._out.say(resultat)
 
 	def __repr__(self):
 		estat1=self._i1.ask()
 	        estat2=self._i2.ask()
-		return (("\nEstat 1: " + str(estat1) +"\nEstat 2: " +  str(estat2)+  "\nSortida: " +str(self._out) +  '\n'+" "+"Operació: " + str(self.get_name())))
+		return (("\nEstat 1: " + str(estat1) +"\nEstat 2: " +  str(estat2)+  "\nSortida: " +str(self._out) +  '\n'+"Operació: " + str(self.get_name())))
 
 class And(triport):
-
+		
+	
 	def _do_function(self,e1,e2):
 		return e1&e2
 

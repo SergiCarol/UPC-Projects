@@ -36,5 +36,6 @@ class Supervisor (object):
         if log==True:
             for element in triports:
                 a=element.tick()
+		print element
                 if a==True:
                     return "Tick ->"+" "+ element.__repr__()
