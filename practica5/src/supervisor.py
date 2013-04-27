@@ -2,11 +2,11 @@
 from node import *
 from triport import *
 class Supervisor (object):
-    def __int__(self):
+    def __init__(self):
         """
         Crea un supervisor buit 
         """
-        self._nodes=[]
+        self._nodes = []
         self._triports=[]
         self._changed=False
     def add_node(self,n):
@@ -14,9 +14,10 @@ class Supervisor (object):
         Afegeix un node a supervisor
         """
         
-        self._nodes+=[n]
+        g=self._nodes
+        g+=[n]
         n.set_supervisor(self)
-        n.self_supervisor(self)
+  
     def add_triport(self,t):
         """
         Afegeix un triport al supervisor
@@ -27,7 +28,7 @@ class Supervisor (object):
         """
         Avisa al supervisor si algun node canvia d'estat
         """
-        self.changed=True
+        self._changed=True
 
     def run (self,log=False):
         triports=self._triports
