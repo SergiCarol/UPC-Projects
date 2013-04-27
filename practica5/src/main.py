@@ -8,10 +8,6 @@ e1 = Entrada(1)
 e2 = Entrada(0)
 e3 = Entrada(1)
 e4 = Entrada(1)
-print e1
-print e2
-print e3
-print e4
 # definim 1 sortida
 s = Sortida(1)
 # definim el circuit
