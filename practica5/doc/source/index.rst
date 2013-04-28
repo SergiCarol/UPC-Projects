@@ -13,7 +13,6 @@ Contents:
    ModulTriport
    ModulSupervisor
    ModulMain
-   Hores
 
 
 
