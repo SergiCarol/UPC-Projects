@@ -51,7 +51,7 @@ class Estat(object):
 
     def __and__(self, altre):
         if self.undef() or altre.undef():
-	if self._e == 1 or altre._e == 1:
+	    if self._e == 1 or altre._e == 1:
 		return Estat(1)
             return Estat()
         return Estat(self._e * altre._e)      
