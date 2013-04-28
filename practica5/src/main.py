@@ -1,5 +1,11 @@
 # -*- encoding:utf-8 -*-
 
+"""
+El modul Main será l'encarregat de executar totes les ordres que tindria que fer l'usuari.
+
+S'ha realitzat d'aquesta manera per a fer mes facil el proces, ja que en el cas de no ser així, cada vegada que volguesim executar el programa hauriem de configurar tot una altre vegada.
+"""
+
 from node import Node, Entrada, Sortida
 from triport import *
 from supervisor import *
