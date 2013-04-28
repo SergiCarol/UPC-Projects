@@ -11,6 +11,14 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   Introduccio
+   Modul Producte
+   Modul Recepta
+   Modul Receptari
+   Modul Interpret
+   Modul Main
+   Hores
+
 
 
 Indices and tables
