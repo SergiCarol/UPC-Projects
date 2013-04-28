@@ -3,7 +3,7 @@ from node import *
 from triport import *
 class Supervisor (object):
     """
-    La classe supervisor será l'encarregada de vigilar cadascun dels nodes i les operacions del circuit. La seva funció será fer un "tick" inicial (que activará els triports d'una manera ordenada), i  en el ca de que hago cambiat algun estat d'una sortida, tornará a fer un altre "tick". Aixì continuará fins a que no tingui més canvis, cosa que indicará que ha finalitzat la simulació del circuit.
+    La classe supervisor será l'encarregada de vigilar cadascun dels nodes i les operacions del circuit. La seva funció será fer un "tick" inicial (que activará els triports d'una manera ordenada), i  en el cas de que s'hagi cambiat algun estat d'una sortida, tornará a fer un altre "tick". Aixì continuará fins a que no tingui més canvis, cosa que indicará que ha finalitzat la simulació del circuit.
     """
 
 	
@@ -16,7 +16,7 @@ class Supervisor (object):
         self._changed=False
     def add_node(self,n):
         """
-        Afegeix un node a supervisor, per fer-ho crida a la funcio set_supervisor del modul node
+        Afegeix un node al supervisor, per fer-ho crida a la funcio set_supervisor del modul node
         """
         
         g=self._nodes
@@ -37,7 +37,7 @@ class Supervisor (object):
 
     def run (self,log=False):
         """
-        Funcio principal del programa, recorre la llista de triports i mira si algun d'aquets a canviat d'estat , en el cas de que hagi canviat d'estat indica quin es el nou estat
+        Funció principal del programa, recorre la llista de triports i mira si algun d'aquets a canviat d'estat , en el cas de que hagi canviat d'estat indica quin es el nou estat
         """
         triports=self._triports
        

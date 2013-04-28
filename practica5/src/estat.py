@@ -6,7 +6,7 @@ import repr as reprlib
 class Estat(object):
     """
    
-    La classe estat es l'encarregada de fer operacions amb els estats del programa, existeixen 3 tipus d'estats: 1,0 i -1 . Aquets estats signifiquen estat alt, estat baix i estat indefinit respectivament.
+    La classe estat és l'encarregada de fer operacions amb els estats del programa, existeixen 3 tipus d'estats: 1,0 i -1 . Aquets estats signifiquen estat alt, estat baix i estat indefinit respectivament.
 
     >>> e0 = Estat()
     >>> e0.undef()
@@ -84,7 +84,7 @@ class Estat(object):
 	
     def __repr__(self):
         """
-        Aquesta funciona fa un return personalitzat
+        Aquesta funcion fa un return personalitzat
         """
 	if self._e == -1:
 		return (("Estat(-1)"))	
