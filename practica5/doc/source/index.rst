@@ -12,10 +12,11 @@ Contents:
    :maxdepth: 2
 
    Introduccio
-   Modul Producte
-   Modul Recepta
-   Modul Receptari
-   Modul Interpret
+   Classe Estat
+   Classes Entrada/Sortida 
+   Modul Triport
+   Classes And-Or
+   Modul Supervisor
    Modul Main
    Hores
 
