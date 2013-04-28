@@ -28,10 +28,15 @@ class Node (object):
     """
 
     def __init__(self, n):
-         self._e = Estat(n)
-         self._n = str(n)
+        """
+        Constructor. Crea un estat i el nom del node
+        """
+        self._e = Estat(n)
+        self._n = str(n)
     def say(self,e):
-
+        """
+        Canvia l'estat del node per un de nou, a més a més notifica al supervisor utilitzant la funcio notify_change()
+        """
         
         supervi= Supervisor()
         if self._e != e:
@@ -47,8 +52,10 @@ class Node (object):
 
 
     def set_supervisor(self,s):
-
-       self._s=s
+        """
+        Fica al supervisor s com a supervisor del node
+        """
+        self._s=s
         
 
 
@@ -57,17 +64,32 @@ class Node (object):
 
 
 class Entrada (Node):
+    """
+    La classe Entrada es l'encarregada de controlar l'entrada del Node
+    """
     def up(self):
+        """
+        Canvia l'estat del node i el fica a 1
+        """
         self.say(1)
     def down(self):
+        """
+        Canvia l'estat del node i el fica a 0
+        """
         self.say(0)
     
     def undef(self):
+        """
+        Canvia l'estat del node i el fica a undifined
+        """
         self.say(-1)
 
     def __repr__(self):
         return "La entrada d'aquest node esta en"+" "+str(self._e)
 
 class Sortida (Node):
+    """
+    Aquesta classe resepresenta la sortida del node
+    """
     def __repr__(self):
         return "La sortida d'aquest node esta en"+" "+str(self._e)
