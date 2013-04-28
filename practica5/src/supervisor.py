@@ -2,6 +2,11 @@
 from node import *
 from triport import *
 class Supervisor (object):
+    """
+    
+    El modul supervisor es l'ecarregat de controlar tot el process de creacio i utilitzacio de portes logiques
+    
+    """
     def __init__(self):
         """
         Crea un supervisor buit 
