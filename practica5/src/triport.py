@@ -11,10 +11,7 @@ class triport(object):
 	def tick(self):
 		estat1=self._i1.ask()
 	        estat2=self._i2.ask()
-		"""
-		print "AIVALAOSTIA1" + estat1
-		print "AIVALAOSTIA2" + estat2
-		"""
+
 		resultat=self._do_function(estat1,estat2)
 		self._out.say(resultat)
 
