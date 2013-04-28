@@ -12,12 +12,12 @@ Contents:
    :maxdepth: 2
 
    Introduccio
-   Classe Estat
-   Classes Entrada/Sortida 
-   Modul Triport
-   Classes And-Or
-   Modul Supervisor
-   Modul Main
+   ClasseEstat
+   ClassesEntrada-Sortida 
+   ModulTriport
+   ClassesAnd-Or
+   ModulSupervisor
+   ModulMain
    Hores
 
 
