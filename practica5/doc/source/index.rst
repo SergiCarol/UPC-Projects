@@ -13,9 +13,7 @@ Contents:
 
    Introduccio
    ClasseEstat
-   ClassesEntrada-Sortida 
    ModulTriport
-   ClassesAnd-Or
    ModulSupervisor
    ModulMain
    Hores
