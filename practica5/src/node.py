@@ -35,7 +35,7 @@ class Node (object):
         self._n = str(n)
     def say(self,e):
         """
-        Canvia l'estat del node per un de nou, a més a més notifica al supervisor utilitzant la funcio notify_change()
+        Canvia l'estat del node per un de nou, a més a més notifica al supervisor utilitzant la funcio notify_change(). Per canviar l'estat iguala la variable self._estat amb el estat nou.
         """
         
         supervi= Supervisor()
@@ -46,7 +46,7 @@ class Node (object):
 
     def ask(self):
         """
-        Retorna el nom del node
+        Aquesta funcio esta disenyada de forma que retorna el estat del node. Al retornarlo crida la funcio __repr__
         """
         return self._e
 
@@ -60,6 +60,9 @@ class Node (object):
 
 
     def __repr__(self):
+        """
+        Aquesta funcio mostra una liniea personalitzada que retornar, un exemple seria el seguent: "El node node1 esta en l'estat Estat(1)"
+        """
         return "El node" +" " + self._n+" " +"esta en l'estat" +" "+ str(self._e)
 
 
