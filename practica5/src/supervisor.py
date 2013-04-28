@@ -3,10 +3,10 @@ from node import *
 from triport import *
 class Supervisor (object):
     """
-    
-    El modul supervisor es l'ecarregat de controlar tot el process de creacio i utilitzacio de portes logiques
-    
+    La classe supervisor será l'encarregada de vigilar cadascun dels nodes i les operacions del circuit. La seva funció será fer un "tick" inicial (que activará els triports d'una manera ordenada), i  en el ca de que hago cambiat algun estat d'una sortida, tornará a fer un altre "tick". Aixì continuará fins a que no tingui més canvis, cosa que indicará que ha finalitzat la simulació del circuit.
     """
+
+	
     def __init__(self):
         """
         Crea un supervisor buit 

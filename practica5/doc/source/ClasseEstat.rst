@@ -2,4 +2,5 @@ Classe Estat
 ============
 
 .. automodule:: estat
-	:members:
+    :members:
+		
