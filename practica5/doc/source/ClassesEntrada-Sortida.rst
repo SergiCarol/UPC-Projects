@@ -1,2 +1,7 @@
-Classes And-Or
-==============
+Classes Entrada-Sortida
+=======================
+
+.. automodule:: Recepta
+	:members:
+
+
