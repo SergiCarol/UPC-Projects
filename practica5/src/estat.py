@@ -39,9 +39,9 @@ class Estat(object):
     """
     
     def __init__(self, e = -1):
-        """
-        Constructor de la classe estat, crea els diferents estat , en el cas de que no s'en defineixi cap l'estat sera -1
-        """
+    	"""
+    	Constructor de la classe estat, crea els diferents estat , en el cas de que no s'en defineixi cap l'estat sera -1
+    	"""
         if e not in (-1,0,1):
             e = -1
         self._e = e
