@@ -32,7 +32,7 @@ class Supervisor (object):
 
     def run (self,log=False):
         """
-        Funcio principal del programma, recorre la llista de triports i mira si algun d'aquets a canviat d'estat , en el cas de que hagi canviat d'estat indica quin es el nou estat
+        Funcio principal del programa, recorre la llista de triports i mira si algun d'aquets a canviat d'estat , en el cas de que hagi canviat d'estat indica quin es el nou estat
         """
         triports=self._triports
        
