@@ -9,16 +9,13 @@ class Dataset(object):
 		return len(self._ds)
 
 	def __str__(self):
-		pass
+		return str("Nom del sensor: ") + str(self._name) + str("\n\nInformació: ") + str(self._ds)
 
 	def add(self,t,v):
 		self._ds += [(t,v)]
 
 	def time_vector(self):
 		temp = []
-		
-		for x in self._ds:
-			temp.append(self._ds[x[0]].hour())
 
 	def value_vector(self):
 		pass
