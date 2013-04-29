@@ -1,6 +1,4 @@
 import datetime
-
-
 class Dataset(object):
 
 	def __init__(self,name=''):
@@ -18,8 +16,9 @@ class Dataset(object):
 
 	def time_vector(self):
 		temp = []
+		
 		for x in self._ds:
-			a = self._ds[0[0]].hour()
+			temp.append(self._ds[x[0]].hour())
 
 	def value_vector(self):
 		pass
