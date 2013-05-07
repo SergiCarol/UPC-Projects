@@ -8,12 +8,13 @@ class DataSetFetcher(object):
     
     def fetch(self,dia,sensor=0):
         Data=Dataset()
+	d= date(dia)
         dia_temps="dades_"+d.strftime("%y")+"_"+d.strftime("%m")+"_"+d.strftime('%d')
         
         pag=urllib2.urlopen(self.url/dia_temps)
         for element in pag.readlines():
             if element[9]==sensor:
-                Data.add(
+                Data.add("cosas")
 
 
 
