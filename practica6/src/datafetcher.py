@@ -7,17 +7,23 @@ class DataSetFetcher(object):
         self.url=url
     
     def fetch(self,dia,sensor=0):
-        Data=Dataset()
+        Data=Dataset("Sensor"+str(sensor))
 	d= date(dia)
         dia_temps="dades_"+d.strftime("%y")+"_"+d.strftime("%m")+"_"+d.strftime('%d')
         
         pag=urllib2.urlopen(self.url/dia_temps)
         for element in pag.readlines():
             if element[9]==sensor:
-                Data.add("cosas")
+                Data.add("""
+	         	 Afegir lo del cvs
+			 """ )	
+	    else:
+		raise UnkownDataSetException()
 
-
-
+	
+    def fetch_interval(self,from_day,to_day,sensor=0):
+        Data=Dataset("Sensor"+str(sensor))
+	d= date(dia)
 
 
 
