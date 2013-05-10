@@ -11,6 +11,13 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   introduccio
+   moduldataset
+   moduldatafetcher
+   moduldsplot
+   modulsensortransf
+   modulexplora
+
 
 
 Indices and tables

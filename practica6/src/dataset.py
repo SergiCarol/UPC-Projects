@@ -23,6 +23,8 @@ class Dataset(object):
 				Aqui falta poner el error.
 				"""
 				break
+			else:
+				raise Outofexception 
 		if encontrado == False:	
 			self._ds += [(t,v)]
 
@@ -70,3 +72,5 @@ class Dataset(object):
 			l +=(x[0],a*x[1]+b)
 		self._ds = l
 			
+class Outofexception (Exception):
+	pass
