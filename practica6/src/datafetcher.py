@@ -5,23 +5,32 @@ from datetime import *
 class DataSetFetcher(object):
     def __init__(self,url='http://localhost:8000'):
         self.url=url
-    
+    ±
     def fetch(self,dia,sensor=0):
         Data=Dataset("Sensor"+str(sensor))
 	d= date(dia)
         dia_temps="dades_"+d.strftime("%y")+"_"+d.strftime("%m")+"_"+d.strftime('%d')
-        
-        pag=urllib2.urlopen(self.url/dia_temps)
-        for element in pag.readlines():
-            if element[9]==sensor:
-                Data.add(d.year,d.month,d.day,int(i[:2]),int(i[3:5]),int(i[7:9]),int(i[11:21]))	
-	    else:
-		raise UnkownDataSetException()
+        try:
+            pag=urllib2.urlopen(self.url/dia_temps)
+            with open(pag, 'rb') as f:
+                reader = csv.reader(f)
+                for row in reader:
+                    if row[1]=sensor:
+                        Data.add(row[0],row[2])
+                        
+        except: 
+            raise UnkownDataSetException()
+
 
 	
     def fetch_interval(self,from_day,to_day,sensor=0):
         Data=Dataset("Sensor"+str(sensor))
-	d= date(dia)
+	d = date(from_day)
+        d2 = date(to_day)
+        while d < d2:
+            self.fetch(d,sensor)
+            d= d+ datedela(days=1)
+        
 
 
 
