@@ -33,5 +33,34 @@ La materia nova que es tinrá que utilitzar en aquesta practica será la següen
 
 - Modul **plot** i **dates** de la llibreria **matplotlib.pyplot**: Aquests moduls será l'encarregat de generar grafiques a partir d'una llista.
 
+Descripció del sistema
+----------------------
+
+El esquema general de l'aplicació será el següent:
+
+.. image:: Imagen_1
+   :align: center
+   :target: www.sex.com
+
+Els procesos que segueix una senyal fins a arribar al nostre ordinador, són les següents:
+
+ **1-** La dada es capturada per el sistema de detecció del sensor.
+
+ **2-** La dada ya capturada, es transfereix a l'electronica del sensor, que la converteix en un senyal electric.
+
+ **3-** A continuació arriba el recolector dde dades del servidor, que es l'encarregat d'enmagatzemar tota l'informació que li arriba. Si o tinguesim això, no podriem agafar facilment l'historic de dades, ja que no quedarien registrades enlloc.
+
+ **4-** Finalment a través d'internet les dades són accesibles desde el nostre ordinador, on podrem manipular les dades com ens convingui.
+
+
+Manipulació dades sensor
+------------------------
+
+Per finalitzar l'introducció, comentarem una cosa que es molt important: El format de les dades del sensor.
+
+Això es important perque hem de saber ma
+
+
+
 
 
