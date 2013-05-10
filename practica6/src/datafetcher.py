@@ -14,9 +14,7 @@ class DataSetFetcher(object):
         pag=urllib2.urlopen(self.url/dia_temps)
         for element in pag.readlines():
             if element[9]==sensor:
-                Data.add("""
-	         	 Afegir lo del cvs
-			 """ )	
+                Data.add(d.year,d.month,d.day,int(i[:2]),int(i[3:5]),int(i[7:9]),int(i[11:21]))	
 	    else:
 		raise UnkownDataSetException()
 
