@@ -48,11 +48,12 @@ class Dataset(object):
 		l += [(self._ds[len(self._ds)-1][0],media)]
 
 	def moving_average(self,k=50):
+		"""
 		l = []
 		aux = 0
 		for x in self._ds:
 			for
-			
+		"""	
 
 	def concat(self,ds2):
 		if(self._ds[len(self._ds)-1][0]) >= ds2._ds[0][0]:
