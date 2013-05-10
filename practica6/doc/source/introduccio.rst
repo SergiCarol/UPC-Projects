@@ -40,7 +40,6 @@ El esquema general de l'aplicació será el següent:
 
 .. image:: Imagen_1
    :align: center
-   :target: www.sex.com
 
 Els procesos que segueix una senyal fins a arribar al nostre ordinador, són les següents:
 
