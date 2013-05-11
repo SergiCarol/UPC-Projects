@@ -1,0 +1,65 @@
+#!/usr/bin/python
+
+# -*- encoding_utf-8 -*-
+
+import sys
+from dataset import Dataset
+from datafetcher import DataSetFetcher
+from sensortransf import *
+from dsplot import DataSetPlot
+import datetime
+d=Dataset()
+fet=DataSetFetcher()
+plt=DataSetPlot()
+web=' '
+numsenors=[]
+diafinal=False
+i=1
+numdia=0
+numdia2=0
+day=[]
+trobat=False
+
+for x in sys.argv[:]:
+    
+    if x=="-v":
+        web=sys.argv[i+1]
+        i+=3
+        print web
+    elif x=="-s":
+        numsenors.append([i+1])
+        i+=3
+        print numsenors
+    elif x=="-d":
+        numdia+=(i+1)
+        print numdia
+        i+=3
+    elif x=="-f":
+        numdia2+=(i+1)
+        diafinal=True
+        i+=3
+if diafinal==False:
+    a=sys.argv[numdia]
+    print a
+    b=a.split('/')  
+    datafinal=datetime.date(int(b[2]),int(b[1]),int(b[0]))
+
+    for element in numsenors:
+        d=Dataset()
+        fet.fetch(datafinal,element)
+        normalize(d,element)
+        d.decimate()
+        d.moving_average()
+        plt.show()
+
+else:
+    c=sys.argv[numdia]
+    g=c.split('/')  
+    datafinal=datetime.date(int(g[2]),int(g[1]),int(g[0]))
+
+    for ele in numsenors:
+        fet.fetch_interval(sys.argv[numdia],sys.argv[numdia2],ele)
+        normalize(d,element)
+        d.decimate()
+        d.moving_average()
+        plt.show()
