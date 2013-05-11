@@ -1,28 +1,26 @@
 # -*- encoding:utf-8 -*-
 
 import matplotlib.pyplot as plt
-import matplotlib.dates as dates
 from dataset import Dataset
 
 
 class DataSetPlot(object):
 
 	def __init__(self):	
-		self.fig=plt.figure()
+		self.fig = plt.figure()
 		self.p = plt.plot([], [])
-	
-		self.l = plt.legend([''])
-		
-	
+		plt.legend([''])
+	        plt.title("Grafica dades dels sensors")
+		plt.grid(True)
 
 	def plot(self,d):
-		d=DataSet()
-		self.p = ([d.time_vector()], [d.value_vector()])
-		self.l = ([d._name()])		
-
+		d=Dataset()
+		self.p=plt.plot([d.time_vector()], [d.value_vector()])
+		plt.legend([d._name])
+	
 	def show(self):
 
-	   
+		
             self.p.show()
 
 
