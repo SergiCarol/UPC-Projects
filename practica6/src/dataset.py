@@ -3,15 +3,27 @@
 from datetime import *
 
 class Dataset(object):
+	"""
+	La classe *dataset* será l'encarregada de contindré un llistat de totes les dades amb les seves corresponents dates. També contindrá els següents metodes:
+	"""
 
 	def __init__(self,name=''):
+		"""
+		**Initcialitzador**. Permet la creació de una nova classe de Dataset. Crea els atributs *self._name*, el cual conté el nom (que li podem donar o no quan creem la clase), i el atribut *self._ds*, que será una llista que contendrá l'informació del sensor.
+		"""
 		self._name = name
 		self._ds= []
 
 	def __len__(self):
+		"""
+		Retorna el nombre d’elements del dataset.
+		"""
 		return len(self._ds)
 
 	def __str__(self):
+		"""
+		Retorna una representació en forma de cadena de caràcters del dataset.
+		"""
 		return str("Nom del sensor: ") + str(self._name) + str("\n\nInformació: ") + str(self._ds)
 
 	def add(self,t,v):

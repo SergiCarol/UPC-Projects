@@ -57,7 +57,15 @@ Manipulació dades sensor
 
 Per finalitzar l'introducció, comentarem una cosa que es molt important: El format de les dades del sensor.
 
-Això es important perque hem de saber ma
+Això es important perque hem de saber de quina manera están escrites les dades del sensor.
+
+En primer lloc, s'ha de tenir en compte que el nom del fitxer té relació amb la data a la qual pertanyen les dades. Així el fitxer **dades_11_08_01**, per exemple, conté les dades del sis sensors corresponents al dia º d'agost del 2011.
+
+Un fitxer de daes s'organitza en linies. Cada linia correspon a una dada d'un sensor en un instant de temps. El format d'una linia es el que segueix:
+
+*00:00:04,5,526.000000*
+
+Noteu que hi ha tres camps separats per comes. El primer es l'instant de temps a que correspon la dada. Fixeu-vos que la sintaxi és la classica de HH:MM:SS. El segon es el numero de sensor. Finalment el tercer és el valor de la dada i es de tipus real. El fitxer conté molts centenars de dades i per tant no es convenient emmagatzemar-lo completament a la memoria del computador.
 
 
 
