@@ -8,8 +8,7 @@ class DataSetFetcher(object):
     ±
     def fetch(self,dia,sensor=0):
         Data=Dataset("Sensor"+str(sensor))
-	d= date(dia)
-        dia_temps="dades_"+d.strftime("%y")+"_"+d.strftime("%m")+"_"+d.strftime('%d')
+        dia_temps="dades_"+dia.strftime("%y")+"_"+dia.strftime("%m")+"_"+dia.strftime('%d')
         try:
             pag=urllib2.urlopen(self.url/dia_temps)
             with open(pag, 'rb') as f:
@@ -25,6 +24,7 @@ class DataSetFetcher(object):
 	
     def fetch_interval(self,from_day,to_day,sensor=0):
         Data=Dataset("Sensor"+str(sensor))
+        #Mirar aquet troç, segurament és te que canviar
 	d = date(from_day)
         d2 = date(to_day)
         while d < d2:
