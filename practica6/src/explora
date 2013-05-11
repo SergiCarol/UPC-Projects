@@ -24,26 +24,25 @@ for x in sys.argv[:]:
     
     if x=="-v":
         web=sys.argv[i+1]
-        i+=3
-        print web
+        i+=2
+        
     elif x=="-s":
-        numsenors.append([i+1])
-        i+=3
-        print numsenors
+        numsenors.append(sys.argv[i+1])
+        i+=2
+       
     elif x=="-d":
         numdia+=(i+1)
-        print numdia
-        i+=3
+        i+=2
     elif x=="-f":
         numdia2+=(i+1)
         diafinal=True
         i+=3
+
 if diafinal==False:
     a=sys.argv[numdia]
-    print a
     b=a.split('/')  
     datafinal=datetime.date(int(b[2]),int(b[1]),int(b[0]))
-
+    
     for element in numsenors:
         d=Dataset()
         fet.fetch(datafinal,element)
