@@ -19,9 +19,6 @@ class Dataset(object):
 		for x in self._ds:
 			if t <= x[0]:
 				encontrado = True
-				"""
-				Aqui falta poner el error.
-				"""
 				break
 			else:
 				raise Outofexception 
@@ -41,28 +38,46 @@ class Dataset(object):
 		return temp
 
 	def decimate(self,k=10):
-		l = []
-		for x in self._ds:
-			k += x[1]
-		if len(self._ds) == 0:
-			aux = 1
-		media = k/aux
-		l += [(self._ds[len(self._ds)-1][0],media)]
+		d = DataSet(self._name)
+		vegades = len(self._ds)/k
+		residu = len(self._ds)%k
+        	aux = k
+		for x in range(vegades):
+			sumador = 0
+			for y in range(k):
+				sumador += self._ds[k*x+y][1]
+			sumador = sumador/10
+			d.add(self._ds[k*x+9],sumador)
+		sumador = 0
+		for y in range(residu):
+				sumador += self._ds[k*vegades+y][1]
+			sumador = sumador/residu
+			d.add(self._ds[len(self._ds)-1][0],sumador)
+		return d
+				
+			
+
 
 	def moving_average(self,k=50):
-		"""
-		l = []
-		aux = 0
-		for x in self._ds:
-			for
-		"""	
+		d = DataSet(self._name)
+		for x in range(len(self._ds)):
+			if x != 0:
+				temp = x
+				aux2 = 0
+				aux = 0
+				while temp >= 0 and aux2 <= k:
+					aux += self._ds[x][0]
+				if aux2 == k:
+					aux = aux/k
+				else:
+					aux = aux/temp
+				d.add(self._ds[x][1],aux)
+		return d	
+		
 
 	def concat(self,ds2):
 		if(self._ds[len(self._ds)-1][0]) >= ds2._ds[0][0]:
-			"""
-			Aqui falta poner el error
-			"""
-			pass
+			raise Outofexception
 		else:
 			self._ds += ds2._ds
 
