@@ -50,7 +50,7 @@ class Dataset(object):
 			d.add(self._ds[k*x+9],sumador)
 		sumador = 0
 		for y in range(residu):
-				sumador += self._ds[k*vegades+y][1]
+			sumador += self._ds[k*vegades+y][1]
 			sumador = sumador/residu
 			d.add(self._ds[len(self._ds)-1][0],sumador)
 		return d

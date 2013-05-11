@@ -1,5 +1,5 @@
 # -*- encoding_utf-8 -*-
-import urllib2
+from urllib2 import *
 from dataset import Dataset
 from datetime import *
 import csv
@@ -10,16 +10,16 @@ class DataSetFetcher(object):
     def fetch(self,dia,sensor=0):
         Data=Dataset("Sensor"+str(sensor))
         dia_temps="dades_"+dia.strftime("%y")+"_"+dia.strftime("%m")+"_"+dia.strftime('%d')
-        try:
-            pag=urllib2.urlopen(self.url/dia_temps)
-            with open(pag, 'rb') as f:
-                reader = csv.reader(f)
-                for row in reader:
-                    if row[1]==sensor:
-                        Data.add(row[0],row[2])
+        pag=urlopen.(self.url+"/"+dia_temps)
+        
+        with open(dades_11_08_01, 'rb') as f:
+            reader = csv.reader(f)
+            for row in reader:
+                print row
+                if row[1]==sensor:
+                    Data.add(row[0],row[2])
                         
-        except: 
-            raise UnkownDataSetException()
+  
 
 
 	
