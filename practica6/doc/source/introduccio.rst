@@ -55,7 +55,7 @@ Els procesos que segueix una senyal fins a arribar al nostre ordinador, són les
 Manipulació dades sensor
 ------------------------
 
-Per finalitzar l'introducció, comentarem una cosa que es molt important: El format de les dades del sensor.
+També hem de comentar una cosa que es molt important: El format de les dades del sensor.
 
 Això es important perque hem de saber de quina manera están escrites les dades del sensor.
 
@@ -66,6 +66,15 @@ Un fitxer de daes s'organitza en linies. Cada linia correspon a una dada d'un se
 *00:00:04,5,526.000000*
 
 Noteu que hi ha tres camps separats per comes. El primer es l'instant de temps a que correspon la dada. Fixeu-vos que la sintaxi és la classica de HH:MM:SS. El segon es el numero de sensor. Finalment el tercer és el valor de la dada i es de tipus real. El fitxer conté molts centenars de dades i per tant no es convenient emmagatzemar-lo completament a la memoria del computador.
+
+Mostra de dades en grafica
+--------------------------
+
+Per terminar l'introducció parlarem sobre lo més important de tot el projecte: Les grafiques.
+
+Fins ara, cada vegada que teniem que mostrar alguna dada a l'usuari (fos de la forma que fosi), sempre li mostravem per consola. Això pot ser mol senzill, però a la vegada molt poc util.
+
+Si lo que volem fer es mostrar un seguit de dades (de moltes dades), i que l'usuari les pugui interpretar facilment, no podem donar-li una gran llista de dades escrita. Ho hem de fer de una manera més bona: Les grafiques.
 
 
 
