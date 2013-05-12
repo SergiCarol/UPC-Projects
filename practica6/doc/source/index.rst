@@ -6,7 +6,7 @@
 Practica 6: Tractament de dades de sensors
 ==========================================
 
-Contents:
+Continguts:
 
 .. toctree::
    :maxdepth: 2

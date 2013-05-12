@@ -20,7 +20,7 @@ class Dataset(object):
 
 	def __init__(self,name=''):
 		"""
-		**Initcialitzador**. Permet la creació de una nova classe de Dataset. Crea els atributs *self._name*, el cual conté el nom (que li podem donar o no quan creem la clase), i el atribut *self._ds*, que será una llista que contendrá l'informació del sensor.
+		Permet la creació de una nova classe de Dataset. Crea els atributs *self._name*, el cual conté el nom (que li podem donar o no quan creem la clase), i el atribut *self._ds*, que será una llista que contendrá l'informació del sensor.
 		"""
 		self._name = name
 		self._ds= []
@@ -38,6 +38,9 @@ class Dataset(object):
 		return str("Nom del sensor: ") + str(self._name) + str(" ;Informacio: ") + str(self._ds)
 
 	def add(self,t,v):
+		"""
+		Afegeix una nova observació al dataset. Cal que aquesta observació sigui feta en un temps posterior a la darrera observació que contenia el dataset. En cas contrari, el llenca l'excepció *OutOfOrderException*.
+		"""
 		t=str(t)
 		try:
 			if self._ds == []:
@@ -53,6 +56,9 @@ class Dataset(object):
 			raise Outofexception()
 				
 	def time_vector(self):
+		"""
+		Retorna una llista amb els temps corresponents a totes les observacions del dataset ordenats de menor a major.
+		"""
 
 		temp=[]
 		
@@ -64,6 +70,9 @@ class Dataset(object):
 		return temp
 
 	def value_vector(self):
+		"""
+		Retorna una llista amb els valors corresponents a totes les observacions del dataset ordenats per temps creixents.
+		"""
 		temp = []
 		for x in self._ds:
 			temp.append(x[1])
@@ -72,7 +81,9 @@ class Dataset(object):
 		return temp
 
 	def decimate(self,k=10):
-	
+		"""
+		Calcula un nou DataSet on cada element resulta d’agrupar els elements originals de self agafats de **k** en **k** i representar-los per un nou element que te per valor la mitjana dels originals i per temps el mes gran dels originals.
+		"""
 	
 		d = Dataset(self._name)
 		vegades = len(self._ds)/k
@@ -95,6 +106,9 @@ class Dataset(object):
 
 
 	def moving_average(self,k=50):
+		"""
+		Calcula un nou DataSet on cada element resulta de calcular la mitjana mòbil. Es substituïm cada element per la mitjana dels **k** elements anteriors.
+		"""
 	
 		d = Dataset(self._name)
 		for x in range(len(self._ds)):
@@ -113,6 +127,9 @@ class Dataset(object):
 	
 
 	def concat(self,ds2):
+		"""
+		Afegeix a self el DataSet ds2. La primera observació de ds2 ha de ser posterior a la darrera de self. Altrament s'aixeca l'excepció *OutOfOrderException*.
+		"""
 		if(self._ds[len(self._ds)-1][0]) >= ds2._ds[0][0]:
 			raise Outofexception
 		else:
@@ -125,4 +142,7 @@ class Dataset(object):
 		self._ds = l
 			
 class Outofexception (Exception):
+	"""
+	La classe *Outofexception* contindrà una excepció que s'aixecarà en certs casos de les funcions *concat* i *add* de la classe *dataset*.
+	"""
 	pass
