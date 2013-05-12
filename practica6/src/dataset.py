@@ -27,19 +27,22 @@ class Dataset(object):
 		return str("Nom del sensor: ") + str(self._name) + str("\n\nInformació: ") + str(self._ds)
 
 	def add(self,t,v):
+		
 		encontrado = False
 		for x in self._ds:
 			if t <= x[0]:
 				encontrado = True
 				break
-			else:
-				raise Outofexception 
-		if encontrado == False:	
+			
+		if encontrado == False:
+			
 			self._ds += [(t,v)]
-
+		
+			return self._ds
 	def time_vector(self):
 		temp = []
 		for x in self._ds:
+			print "hola"
 			temp += [x[0]]
 		return temp
 
@@ -50,7 +53,7 @@ class Dataset(object):
 		return temp
 
 	def decimate(self,k=10):
-		d = DataSet(self._name)
+		d = Dataset(self._name)
 		vegades = len(self._ds)/k
 		residu = len(self._ds)%k
         	aux = k
@@ -71,7 +74,7 @@ class Dataset(object):
 
 
 	def moving_average(self,k=50):
-		d = DataSet(self._name)
+		d = Dataset(self._name)
 		for x in range(len(self._ds)):
 			if x != 0:
 				temp = x
