@@ -4,17 +4,35 @@ from datetime import *
 
 class Dataset(object):
 	"""
-	La classe *dataset* será l'encarregada de contindré un llistat de totes les dades amb les seves corresponents dates. També contindrá els següents metodes:
+	La classe *dataset* será l'encarregada de contindré un llistat de totes les dades amb les seves corresponents dates.
 
-	>>> dset= Dataset('dataset1')
-	>>> dset2= Dataset('dataset2')
-	>>> dset.add('13/08/05',435.0000)
-	>>> dset.__str__()
+	Aqui tenim el seu corresponent *doctest*:
+
+	>>> d= Dataset('dataset1')
+	>>> d2= Dataset('dataset2')
+	>>> d.add('13/08/05',435.0000)
+	>>> d.__str__()
 	"Nom del sensor: dataset1 ;Informacio: [('13/08/05', 435.0)]"
-	>>> dset.add('13/08/09',500.0000)
-	>>> dset.__str__()
+	>>> d.add('13/08/09',500.0000)
+	>>> d.__str__()
 	"Nom del sensor: dataset1 ;Informacio: [('13/08/05', 435.0), ('13/08/09', 500.0)]"
-	>>> dset.add('12/07/02',300.0000)
+	>>> d.add('18/08/09',500.0000)
+	>>> d.__len__()
+	3
+	>>> d2.add('18/08/09',500.0000)
+	>>> d2.__len__()
+	1
+	>>> d3 = Dataset('dataset3')
+	>>> d.add('10/08/09',500.0000)
+	>>> d.time_vector()
+	['130805', '130809', '180809']
+	>>> d.value_vector()
+	[435.0, 500.0, 500.0]
+	>>> d2.value_vector()
+	[500.0]
+	>>> d3.value_vector()
+	[]
+	>>> d2.concat(d3)
 
 	"""
 
@@ -130,7 +148,7 @@ class Dataset(object):
 		"""
 		Afegeix a self el DataSet ds2. La primera observació de ds2 ha de ser posterior a la darrera de self. Altrament s'aixeca l'excepció *OutOfOrderException*.
 		"""
-		if(self._ds[len(self._ds)-1][0]) >= ds2._ds[0][0]:
+		if (self._ds[len(self._ds)-1][0]) >= ds2._ds[0][0]:
 			raise Outofexception
 		else:
 			self._ds += ds2._ds
