@@ -7,7 +7,8 @@ import csv
 
 class DataSetFetcher(object):
     """
-    La classe *datasetfetcher* serà l'encarregada de buscar en internet les dades del sensor que es vulgui trobar.
+    La classe *datasetfetcher* serà l'encarregada de buscar en internet les dades del sensor que es vulgui trobar. Degut a que en aquesta classe es necessita un servidor obert, no em ficat doctest
+   
     """
     def __init__(self,url='http://localhost:8000'):
 	"""
