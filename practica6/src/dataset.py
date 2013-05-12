@@ -39,16 +39,19 @@ class Dataset(object):
 
 	def add(self,t,v):
 		t=str(t)
-		print t
-		if self._ds == []:
-			self._ds.append((t,v))
-			
-		else:
-			if t > self._ds[-1][0]:
+		try:
+			if self._ds == []:
 				self._ds.append((t,v))
 			
 			else:
-				pass
+				if t > self._ds[-1][0]:
+					self._ds.append((t,v))
+			
+				else:
+					pass
+		except:
+			raise Outofexception()
+				
 	def time_vector(self):
 
 		temp=[]
@@ -69,8 +72,8 @@ class Dataset(object):
 		return temp
 
 	def decimate(self,k=10):
-		
-		
+	
+	
 		d = Dataset(self._name)
 		vegades = len(self._ds)/k
 		residu = len(self._ds)%k
@@ -88,10 +91,11 @@ class Dataset(object):
 			d.add(self._ds[len(self._ds)-1][0],sumador)
 		
 		return d
-			
+		
 
 
 	def moving_average(self,k=50):
+	
 		d = Dataset(self._name)
 		for x in range(len(self._ds)):
 			if x != 0:
@@ -106,7 +110,7 @@ class Dataset(object):
 					aux = aux/temp
 				d.add(self._ds[x][1],aux)
 		return d	
-		
+	
 
 	def concat(self,ds2):
 		if(self._ds[len(self._ds)-1][0]) >= ds2._ds[0][0]:
