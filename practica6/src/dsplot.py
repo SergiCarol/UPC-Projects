@@ -6,11 +6,11 @@ from dataset import Dataset
 
 class DataSetPlot(object):
 	"""
-	La classe *dsplot* será l'encarregat d'imprimir la grafica a pantalla, dese l'informació rebuda desde el *dataset*
+	La classe *dsplot* serà l'encarregat d'imprimir la gràfica a pantalla, desde l'informació rebuda desde el *dataset*
 	"""
 	def __init__(self):
 		"""
-		Inicialitza un objecte de la classe. En essencia la inicialitzacio s’encarrega de definir tota la grafica excepcio feta de les dades a visualitzar.
+		Inicialitza un objecte de la classe. En essència la inicialitzacio s’encarrega de definir tota la grafica excepcio feta de les dades a visualitzar.
 		"""
 		self.fig = plt.figure()
 		self.p = plt.plot([], [])
@@ -20,7 +20,7 @@ class DataSetPlot(object):
 
 	def plot(self,d):
 		"""
-		Afegeix a la grafica un conjunt de dades determinat per DataSet d. Si s’afegeix mes d’un DataSet es representa cadascun d’un color diferent. L’etiqueta de la llegenda corresponent a aquest *DataSet* es el nom del mateix.
+		Afegeix a la gràfica un conjunt de dades determinat per DataSet d. Si s’afegeix més d’un DataSet es representa cadascun d’un color diferent. L’etiqueta de la llegenda corresponent a aquest *DataSet* es el nom del mateix.
 		"""
 		self.p=plt.plot([d.time_vector()], [d.value_vector()])
 		plt.legend([d._name])
