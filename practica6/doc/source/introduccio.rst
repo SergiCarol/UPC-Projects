@@ -74,7 +74,18 @@ Per terminar l'introducció parlarem sobre lo més important de tot el projecte:
 
 Fins ara, cada vegada que teniem que mostrar alguna dada a l'usuari (fos de la forma que fosi), sempre li mostravem per consola. Això pot ser mol senzill, però a la vegada molt poc util.
 
-Si lo que volem fer es mostrar un seguit de dades (de moltes dades), i que l'usuari les pugui interpretar facilment, no podem donar-li una gran llista de dades escrita. Ho hem de fer de una manera més bona: Les grafiques.
+Si lo que volem fer es mostrar un seguit de dades (de moltes dades), i que l'usuari les pugui interpretar facilment, no podem donar-li una gran llista de dades escrita. Ho hem de fer de una manera més bona: Les grafiques. Aquestes grafiques es reaitzarán amb el matplotlib. Per a instalar aquest pack escribim en la consola:
+
+.. code-block:: terminal
+
+   $sudo apt-get install python-matplotlib
+
+Una vegada el tenim instalat podrem realitzar grafiques com aquesta:
+
+.. image:: Imagen_2
+   :align: center
+
+Llogicament, abans de fer les grafiques, hem tingut d'aprendre a utilitzar aquesta llibreria.
 
 
 
