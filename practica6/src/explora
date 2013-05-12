@@ -1,6 +1,5 @@
 #!/usr/bin/python
-
-# -*- encoding_utf-8 -*-
+# -*- encoding:utf-8 -*-
 
 import sys
 from dataset import Dataset
@@ -44,14 +43,13 @@ if diafinal==False:
     datafinal=datetime.date(int(b[2]),int(b[1]),int(b[0]))
     
     for element in numsenors:
-        d=Dataset()
-        fet.fetch(datafinal,element)
-        """
+        
+        dety=fet.fetch(datafinal,element)
         normalize(d,element)
         d.decimate()
         d.moving_average()
-        """
-        plt.plot(d)
+      
+        plt.plot(dety)
         plt.show()
 
 else:

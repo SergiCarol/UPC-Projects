@@ -45,3 +45,17 @@ else:
         d.decimate()
         d.moving_average()
         plt.show()
+
+
+encontrado = False
+		for x in self._ds:
+			if t <= x[0]:
+				encontrado = True
+				break
+			
+		if encontrado == False:
+			
+			self._ds.append((t,v))
+			print self._ds
+		
+			return self._ds

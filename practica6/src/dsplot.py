@@ -15,12 +15,10 @@ class DataSetPlot(object):
 
 	def plot(self,d):
 		
-		d=Dataset()
-		print d
 		self.p=plt.plot([d.time_vector()], [d.value_vector()])
 		plt.legend([d._name])
 		
-	
+		
 	def show(self):
 		plt.show()
 

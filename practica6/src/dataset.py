@@ -5,6 +5,17 @@ from datetime import *
 class Dataset(object):
 	"""
 	La classe *dataset* será l'encarregada de contindré un llistat de totes les dades amb les seves corresponents dates. També contindrá els següents metodes:
+
+	>>> dset= Dataset('dataset1')
+	>>> dset2= Dataset('dataset2')
+	>>> dset.add('13/08/05',435.0000)
+	>>> dset.__str__()
+	"Nom del sensor: dataset1 ;Informacio: [('13/08/05', 435.0)]"
+	>>> dset.add('13/08/09',500.0000)
+	>>> dset.__str__()
+	"Nom del sensor: dataset1 ;Informacio: [('13/08/05', 435.0), ('13/08/09', 500.0)]"
+	>>> dset.add('12/07/02',300.0000)
+
 	"""
 
 	def __init__(self,name=''):
@@ -13,7 +24,7 @@ class Dataset(object):
 		"""
 		self._name = name
 		self._ds= []
-
+		
 	def __len__(self):
 		"""
 		Retorna el nombre d’elements del dataset.
@@ -24,33 +35,33 @@ class Dataset(object):
 		"""
 		Retorna una representació en forma de cadena de caràcters del dataset.
 		"""
-		return str("Nom del sensor: ") + str(self._name) + str("\n\nInformació: ") + str(self._ds)
+		return str("Nom del sensor: ") + str(self._name) + str(" ;Informacio: ") + str(self._ds)
 
 	def add(self,t,v):
-		
-		encontrado = False
-		for x in self._ds:
-			if t <= x[0]:
-				encontrado = True
-				break
+		t=str(t)
+		if self._ds == []:
+			self._ds.append((t,v))
 			
-		if encontrado == False:
+		else:
+			if t > self._ds[-1][0]:
+				self._ds.append((t,v))
 			
-			self._ds += [(t,v)]
-		
-			return self._ds
+			else:
+				pass
 	def time_vector(self):
-		temp = []
+
+		
 		for x in self._ds:
-			print "hola"
-			temp += [x[0]]
+			
+			temp=x[0][0]+x[0][1]+x[0][0]+x[0][1]+x[0][3]+x[0][4]+x[0][6]+x[0][7]
+				
 		return temp
 
 	def value_vector(self):
 		temp = []
 		for x in self._ds:
 			temp += [x[1]]
-		return temp
+			return temp
 
 	def decimate(self,k=10):
 		d = Dataset(self._name)
