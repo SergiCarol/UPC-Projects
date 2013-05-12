@@ -49,13 +49,9 @@ if diafinal==False:
             else:
             
                 dety=fet.fetch(datafinal,x)
-                print dety
-                """
-                normalize(d,x)
-                
+                normalize(d,x)    
                 d.decimate()
                 d.moving_average()  
-                """
                 plt.plot(dety)
                 plt.show()
                 
