@@ -1,5 +1,5 @@
 def normalize(d,s=0):
-    print s
+   
     if s==0:
         
         a=100*((3.304/1024)/5,65)

@@ -22,7 +22,8 @@ class DataSetPlot(object):
 		"""
 		Afegeix a la gràfica un conjunt de dades determinat per DataSet d. Si s’afegeix més d’un DataSet es representa cadascun d’un color diferent. L’etiqueta de la llegenda corresponent a aquest *DataSet* es el nom del mateix.
 		"""
-		self.p=plt.plot([d.time_vector()], [d.value_vector()])
+	
+		self.p=plt.plot(d.time_vector(), d.value_vector())
 		plt.legend([d._name])
 		
 		

@@ -39,6 +39,7 @@ class Dataset(object):
 
 	def add(self,t,v):
 		t=str(t)
+		print t
 		if self._ds == []:
 			self._ds.append((t,v))
 			
@@ -50,20 +51,26 @@ class Dataset(object):
 				pass
 	def time_vector(self):
 
+		temp=[]
 		
 		for x in self._ds:
 			
-			temp=x[0][0]+x[0][1]+x[0][0]+x[0][1]+x[0][3]+x[0][4]+x[0][6]+x[0][7]
-				
+			a=(x[0][0]+x[0][1]+x[0][3]+x[0][4]+x[0][6]+x[0][7])
+			temp.append(a)
+			
 		return temp
 
 	def value_vector(self):
 		temp = []
 		for x in self._ds:
-			temp += [x[1]]
-			return temp
+			temp.append(x[1])
+			
+			
+		return temp
 
 	def decimate(self,k=10):
+		
+		
 		d = Dataset(self._name)
 		vegades = len(self._ds)/k
 		residu = len(self._ds)%k
@@ -79,8 +86,8 @@ class Dataset(object):
 			sumador += self._ds[k*vegades+y][1]
 			sumador = sumador/residu
 			d.add(self._ds[len(self._ds)-1][0],sumador)
+		
 		return d
-				
 			
 
 
