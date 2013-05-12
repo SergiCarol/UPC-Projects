@@ -1,17 +1,17 @@
 # -*- encoding:utf-8 -*-
 
 """
-Aquest modul solament exporta una funcio capaç d’aplicar la transformacio escaient a un DataSet per tal d’obtenir els valors de les temperatures.
+Aquest modul solament exporta una funció capaç d'aplicar la transformació escaient a un DataSet per tal d'obtenir els valors de les temperatures.
 
-S'ha de tenir en compte que les dades que es llegeixen dels sensors no son propiament temperatures. Cal aplicar les transformacions lineals que alli s’expliquen, diferents per a cada sensor, per tal d’obtenir-ne les temperatures.
+S'ha de tenir en compte que les dades que es llegeixen dels sensors no son pròpiament temperatures. Cal aplicar les transformacions lineals que allí s'expliquen, diferents per a cada sensor, per tal d'obtenir-ne les temperatures.
 """
 
 
 def normalize(d,s=0):
     """
-    La funcio normalize(d,s=0) aplica la transformacio escaient per al sensor s sobre el DataSet d.
+    La funció normalize(d,s=0) aplica la transformació escaient per al sensor s sobre el DataSet d.
 
-    Una vegada aplicada els valors de l’objecte son temperatures en graus Celsius.
+    Una vegada aplicada els valors de l'objecte son temperatures en graus Celsius.
     """
     if s==0:
         
