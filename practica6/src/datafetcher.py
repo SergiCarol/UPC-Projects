@@ -12,16 +12,17 @@ class DataSetFetcher(object):
         dia_temps="/dades_"+dia.strftime("%y")+"_"+dia.strftime("%m")+"_"+dia.strftime('%d')
         pag=urlopen(self.url+dia_temps)
         reader = csv.reader(pag)
-        a=[]
-        for row in reader:
+        try:
+
+            for row in reader:
             
-            if row[1]==sensor:
-                Dat.add(row[0],row[2])
-        return Dat
-        """                
+                if row[1]==sensor:
+                    Dat.add(row[0],row[2])
+            return Dat
+                                
         except:
             raise UnknownDataSetException()
-        """
+        
 
 	
     def fetch_interval(self,from_day,to_day,sensor=0):
