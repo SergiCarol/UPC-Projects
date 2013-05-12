@@ -1,3 +1,5 @@
+# -*- encoding:utf-8 -*-
+
 """
 Aquest modul solament exporta una funcio capaç d’aplicar la transformacio escaient a un DataSet per tal d’obtenir els valors de les temperatures.
 
