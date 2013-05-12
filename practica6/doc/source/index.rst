@@ -1,10 +1,10 @@
-.. Practica 6 documentation master file, created by
-   sphinx-quickstart on Mon Apr 29 08:30:24 2013.
+.. Documentació de la practica 6, creada amb
+   sphinx-quickstart el Dill Abr 29 08:30:24 2013.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Practica 6's documentation!
-======================================
+Practica 6: Tractament de dades de sensors
+==========================================
 
 Contents:
 
@@ -20,8 +20,8 @@ Contents:
 
 
 
-Indices and tables
-==================
+Index
+=====
 
 * :ref:`genindex`
 * :ref:`modindex`
