@@ -1,13 +1,13 @@
 def normalize(d,s=0):
-
+    print s
     if s==0:
+        
+        a=100*((3.304/1024)/5,65)
 
-            a=100*((3.304/1024)/5,65)
-
-            b=(3,1418/5,65)-50+0,24
-
-            d.transform(a,b)
-
+        b=(3,1418/5,65)-50+0,24
+        
+        d.transform(a,b)
+        
     elif s==1:
 
         for i in d._ds:
@@ -58,7 +58,5 @@ def normalize(d,s=0):
 
             d.transform(a,b)
 
-    else:
-
-        print "No existeix el sensor"
+    
 

@@ -8,20 +8,17 @@ class DataSetFetcher(object):
         self.url=url
     
     def fetch(self,dia,sensor=0):
-        Data=Dataset("Sensor"+str(sensor))
+        Dat=Dataset("Sensor"+str(sensor))
         dia_temps="/dades_"+dia.strftime("%y")+"_"+dia.strftime("%m")+"_"+dia.strftime('%d')
         pag=urlopen(self.url+dia_temps)
-        
-        try:
-            reader = csv.reader(pag)
-            for row in reader:
-            
-                if row[1]==sensor:
-                    Data.add(row[0],row[2])
-                        
+        reader = csv.reader(pag)
+        for row in reader:
+            if row[1]==sensor:
+                Dat.add(row[0],row[2])
+        """                
         except:
             raise UnknownDataSetException()
-
+        """
 
 	
     def fetch_interval(self,from_day,to_day,sensor=0):
