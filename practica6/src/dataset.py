@@ -154,11 +154,13 @@ class Dataset(object):
 			self._ds += ds2._ds
 
 	def transform(self,a=1.0,b=0.0):
+		
 		l = []
 		for x in self._ds:
 			l +=(x[0],a*x[1]+b)
 		self._ds = l
-			
+		
+
 class Outofexception (Exception):
 	"""
 	La classe *Outofexception* contindrà una excepció que s'aixecarà en certs casos de les funcions *concat* i *add* de la classe *dataset*.

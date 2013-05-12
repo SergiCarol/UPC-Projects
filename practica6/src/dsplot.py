@@ -15,7 +15,10 @@ class DataSetPlot(object):
 		"""
 		self.fig = plt.figure()
 		self.p = plt.plot([], [])
-		plt.legend([''])
+		self._a = []
+	
+		self.x=plt.xlabel('Temps')
+		self.y=plt.ylabel('Temperatura')
 	        plt.title("Grafica dades dels sensors")
 		plt.grid(True)
 
@@ -23,15 +26,17 @@ class DataSetPlot(object):
 		"""
 		Afegeix a la gràfica un conjunt de dades determinat per DataSet d. Si s’afegeix més d’un DataSet es representa cadascun d’un color diferent. L’etiqueta de la llegenda corresponent a aquest *DataSet* es el nom del mateix.
 		"""
-	
+		self._a.append(d._name)
+		print self._a
 		self.p=plt.plot(d.time_vector(), d.value_vector())
-		plt.legend([d._name])
+		self.l=plt.legend(self._a)
 		
 		
 	def show(self):
 		"""
 		Mostra la grafica per la pantalla. El metode no retorna fins que l’usuari tanca la finestra de la grafica.
 		"""
+
 		plt.show()
 
 

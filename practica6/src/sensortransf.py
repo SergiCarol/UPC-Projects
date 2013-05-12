@@ -1,18 +1,19 @@
 # -*- encoding:utf-8 -*-
-
+from dataset import *
 def normalize(d,s=0):
     """
     La funció normalize(d,s=0) aplica la transformació escaient per al sensor s sobre el DataSet d.
 
     Una vegada aplicada els valors de l'objecte son temperatures en graus Celsius.
     """
+   
     if s==0:
-        
-        a=100*((3.304/1024)/5,65)
-
-        b=(3,1418/5,65)-50+0,24
-        
-        d.transform(a,b)
+        for i in d._ds:
+            a=100*((3.304/1024)/5,65)
+            
+            b=(3,1418/5,65)-50+0,24
+            
+            d.transform(a,b)
         
     elif s==1:
 
@@ -64,5 +65,5 @@ def normalize(d,s=0):
 
             d.transform(a,b)
 
-    
-
+    else:
+        return "El sensor no existeix"
