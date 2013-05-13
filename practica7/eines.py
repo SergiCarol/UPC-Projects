@@ -1,4 +1,5 @@
 # -*- encoding:utf-8 -*-
+print "Adios"
 import random 
 def eines(n):
     i=0
