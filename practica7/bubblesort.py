@@ -1,3 +1,5 @@
+# -*- encoding:utf-8 -*-
+
 def ordenar(a):
 	for x in range(len(a)):
 		try:
@@ -9,9 +11,12 @@ def ordenar(a):
 			else:
 				pass
 		except:
+			
 			pass
 	return a
 			
 z = [7,6,8,3,90,1]
+print "La llista sense ordenar es la següent: " + str(z)
 ordenado = ordenar(z)
-print ordenado
+print "El programa ja ha acabat d'ordenar, la llista és al següent: " + str(ordenado)
+
