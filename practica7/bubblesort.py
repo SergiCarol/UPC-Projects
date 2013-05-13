@@ -2,7 +2,7 @@
 
 def ordenar(a):
 	"""
-	La funció ordenar será l'encarregada de rebre una llista de numeros, la cual retornará ordenada. S'ha de tenir en compte que aquesta funció té recursivitat.
+	La funció *ordenar* será l'encarregada de rebre una llista de numeros, la cual retornará ordenada. S'ha de tenir en compte que aquesta funció té recursivitat.
 
 	>>> a = [1,2,3,4,5,6]
 	>>> s = ordenar(a)
