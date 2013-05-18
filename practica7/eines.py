@@ -1,7 +1,7 @@
 # -*- encoding:utf-8 -*-
 import time
 import random 
-import time
+from bubblesort import *
 def eines(n):
     reset=clk_reset()
     i=0
