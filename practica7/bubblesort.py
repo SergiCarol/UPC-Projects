@@ -24,8 +24,7 @@ def ordenar(a):
 				a[x] = a[x+1]
 				a[x+1] = aux
 				ordenar(a)
-			else:
-				pass
+			
 		except:
 			
 			pass
