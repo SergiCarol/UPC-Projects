@@ -32,16 +32,23 @@ def ordenar(a):
 			pass
 	return a
 			
-
-k=0
-n=100
-while k!=1:
+k=100
+p = k
+n=1
+mitja0 = 0
+fitxer = open('dades.dat','w')
+while k!=0:
 	r=eines.clk_reset()
 	a=eines.llista(n)
 	for x in range(10):
 		b=ordenar(a)
-	k+=1
+	k-=1
 	c=eines.clk_counter(r)
 	print (c/10)
-	
+	mitja0 += c/10
+	fitxer.write("Ordenar una vegada una llista de " + str(n) + " numeros, " + str(p) + " vegada/es, triga " + str(c/10) + " segons\n")
+mitja0 = mitja0/100
+
+
+
 
