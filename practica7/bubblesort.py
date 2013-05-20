@@ -1,5 +1,7 @@
 # -*- encoding:utf-8 -*-
 
+import eines
+
 def ordenar(a):
 	"""
 	La funció *ordenar* será l'encarregada de rebre una llista de numeros, la cual retornará ordenada. S'ha de tenir en compte que aquesta funció té recursivitat.
@@ -30,8 +32,16 @@ def ordenar(a):
 			pass
 	return a
 			
-z = [7,6,8,3,90,1]
-print "La llista sense ordenar es la següent: " + str(z)
-ordenado = ordenar(z)
-print "El programa ja ha acabat d'ordenar, la llista és la següent: " + str(ordenado)
+
+k=0
+n=100
+while k!=1:
+	r=eines.clk_reset()
+	a=eines.llista(n)
+	for x in range(10):
+		b=ordenar(a)
+	k+=1
+	c=eines.clk_counter(r)
+	print (c/10)
+	
 

@@ -1,9 +1,8 @@
 # -*- encoding:utf-8 -*-
 import time
 import random 
-from bubblesort import *
-def eines(n):
-    reset=clk_reset()
+
+def llista(n):
     i=0
     a=[]
     while n>i:
@@ -11,7 +10,7 @@ def eines(n):
         a+=[ran]
             
         i+=1
-    clk_counter(reset)
+    
     return a
 
 def clk_reset():
@@ -19,7 +18,6 @@ def clk_reset():
     return start
 def clk_counter(r):
     temps_total=time.time()-r
-    print temps_total
     return temps_total
-n=20 
-print eines(n)
+
+
