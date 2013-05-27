@@ -1,0 +1,20 @@
+Ordenar deu vegades cent llistes de 100 elements, triga una mitjana de:  0.601616777706 segons
+Ordenar deu vegades cent llistes de 200 elements, triga una mitjana de:  0.608553827122 segons
+Ordenar deu vegades cent llistes de 300 elements, triga una mitjana de:  0.693734373766 segons
+Ordenar deu vegades cent llistes de 400 elements, triga una mitjana de:  0.84207377884 segons
+Ordenar deu vegades cent llistes de 500 elements, triga una mitjana de:  1.0401703447 segons
+Ordenar deu vegades cent llistes de 600 elements, triga una mitjana de:  1.27620303103 segons
+Ordenar deu vegades cent llistes de 700 elements, triga una mitjana de:  1.53983194188 segons
+Ordenar deu vegades cent llistes de 800 elements, triga una mitjana de:  1.82210158349 segons
+Ordenar deu vegades cent llistes de 900 elements, triga una mitjana de:  2.11534689299 segons
+La mitja de temps total és: 7.08316593435
+Ordenar deu vegades cent llistes de 1000 elements, triga una mitjana de:  2.4131020379 segons
+Ordenar deu vegades cent llistes de 2000 elements, triga una mitjana de:  4.90494562964 segons
+Ordenar deu vegades cent llistes de 3000 elements, triga una mitjana de:  6.59140162067 segons
+Ordenar deu vegades cent llistes de 4000 elements, triga una mitjana de:  9.56522388775 segons
+Ordenar deu vegades cent llistes de 5000 elements, triga una mitjana de:  15.3147480975 segons
+Ordenar deu vegades cent llistes de 6000 elements, triga una mitjana de:  23.2236244332 segons
+Ordenar deu vegades cent llistes de 7000 elements, triga una mitjana de:  31.8413801493 segons
+Ordenar deu vegades cent llistes de 8000 elements, triga una mitjana de:  42.9248119544 segons
+Ordenar deu vegades cent llistes de 9000 elements, triga una mitjana de:  68.2502082222 segons
+La mitja de temps total és: 7.08316593435

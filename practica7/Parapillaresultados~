@@ -1,0 +1,25 @@
+fitxer=open('Resultats.txt','r')
+
+fitxer=fitxer.readlines()
+
+
+i=0
+guardat1=[]
+guardat2=[]
+guardat3=[]
+guardat4=[]
+for x in fitxer:
+	i += 1
+	if i%10 != 0:
+		print i
+		a=x.strip().split()
+		guardat1.append(a[6])
+		guardat2.append(a[8])
+		guardat3.append(a[11])
+	else:
+		pass
+
+suma = 0
+for x in range(100):
+	suma += float(guardat3[x])
+print suma
