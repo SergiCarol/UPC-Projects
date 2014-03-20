@@ -1,0 +1,151 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>datafetcher &mdash; Practica 6 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Practica 6 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Practica 6 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for datafetcher</h1><div class="highlight"><pre>
+<span class="c"># -*- encoding:utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">urllib2</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">dataset</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+
+<div class="viewcode-block" id="DataSetFetcher"><a class="viewcode-back" href="../moduldatafetcher.html#datafetcher.DataSetFetcher">[docs]</a><span class="k">class</span> <span class="nc">DataSetFetcher</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    La classe *datasetfetcher* serà l&#39;encarregada de buscar en internet les dades del sensor que es vulgui trobar. Degut a que en aquesta classe es necessita un servidor obert, no em ficat doctest</span>
+<span class="sd">   </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">url</span><span class="o">=</span><span class="s">&#39;http://localhost:8000&#39;</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	Inicialitza els objectes de la classe. Cal indicar el servidor d’on cal obtenir els fitxers de dades.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">=</span><span class="n">url</span>
+    
+<div class="viewcode-block" id="DataSetFetcher.fetch"><a class="viewcode-back" href="../moduldatafetcher.html#datafetcher.DataSetFetcher.fetch">[docs]</a>    <span class="k">def</span> <span class="nf">fetch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">dia</span><span class="p">,</span><span class="n">sensor</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	El mètode retorna un DataSet de nom *SensorX*, essent X el numero de sensor, que conte les observacions del sensor sensor corresponents al dia dia. dia es un objecte de classe date. Si no es poden obtenir les dades aixeca l&#39;excepció *UnknownDataSetException*.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+        <span class="n">Dat</span><span class="o">=</span><span class="n">Dataset</span><span class="p">(</span><span class="s">&quot;Sensor &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">sensor</span><span class="p">))</span>
+        <span class="n">dia_temps</span><span class="o">=</span><span class="s">&quot;/dades_&quot;</span><span class="o">+</span><span class="n">dia</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%y&quot;</span><span class="p">)</span><span class="o">+</span><span class="s">&quot;_&quot;</span><span class="o">+</span><span class="n">dia</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%m&quot;</span><span class="p">)</span><span class="o">+</span><span class="s">&quot;_&quot;</span><span class="o">+</span><span class="n">dia</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%d</span><span class="s">&#39;</span><span class="p">)</span>
+        <span class="n">pag</span><span class="o">=</span><span class="n">urlopen</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">+</span><span class="n">dia_temps</span><span class="p">)</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">pag</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+
+            <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+            
+                <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">==</span><span class="n">sensor</span><span class="p">:</span>
+                    <span class="n">Dat</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="k">return</span> <span class="n">Dat</span>
+                                
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">UnknownDataSetException</span><span class="p">()</span>
+        
+
+	</div>
+<div class="viewcode-block" id="DataSetFetcher.fetch_interval"><a class="viewcode-back" href="../moduldatafetcher.html#datafetcher.DataSetFetcher.fetch_interval">[docs]</a>    <span class="k">def</span> <span class="nf">fetch_interval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">from_day</span><span class="p">,</span><span class="n">to_day</span><span class="p">,</span><span class="n">sensor</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	El mètode retorna un DataSet de nom *SensorX*, essent X el numero de sensor, que conte les observacions del sensor sensor corresponents als dies que van de from day a to day incloent el primer i excloent el darrer. from day i to day son objectes de la classe date. Si no es poden obtenir les dades aixeca l&#39;excepció *UnknownDataSetException*.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+        <span class="n">Data</span><span class="o">=</span><span class="n">Dataset</span><span class="p">(</span><span class="s">&quot;Sensor&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">sensor</span><span class="p">))</span>
+        <span class="k">while</span> <span class="n">from_day</span> <span class="o">&lt;=</span> <span class="n">to_day</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">sensor</span><span class="p">)</span>
+            <span class="n">from_day</span><span class="o">=</span> <span class="n">from_day</span><span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+
+
+
+</div></div>
+<div class="viewcode-block" id="UnknownDataSetException"><a class="viewcode-back" href="../moduldatafetcher.html#datafetcher.UnknownDataSetException">[docs]</a><span class="k">class</span> <span class="nc">UnknownDataSetException</span> <span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Aquest error s&#39;aixecarà en alguns casos de les funcions *fetch_interval* i *fetch*.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Practica 6 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Sergi Carol i David Martin.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

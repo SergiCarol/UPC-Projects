@@ -1,0 +1,154 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Modul dsplot &mdash; Practica 6 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Practica 6 1.0 documentation" href="index.html" />
+    <link rel="next" title="Modul sensortransf" href="modulsensortransf.html" />
+    <link rel="prev" title="Modul datafetcher" href="moduldatafetcher.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modulsensortransf.html" title="Modul sensortransf"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="moduldatafetcher.html" title="Modul datafetcher"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Practica 6 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="modul-dsplot">
+<h1>Modul dsplot<a class="headerlink" href="#modul-dsplot" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="contingut">
+<h2>Contingut<a class="headerlink" href="#contingut" title="Permalink to this headline">¶</a></h2>
+<p>El modul <em>dsplot</em> serà l&#8217;encarregat de imprimir l&#8217;informació del sensor a pantalla. Concretament, farà una gràfica.</p>
+<p>Aquest modul es molt curt, però s&#8217;ha de tenir en compte que es molt important, ja que sense aquesta part l&#8217;usuari no podria veure l&#8217;informació de manera clara a pantalla (Hi ha moltíssimes dades a la vegada).</p>
+</div>
+<div class="section" id="module-dsplot">
+<span id="classes-i-funcions-associades"></span><h2>Classes i funcions associades<a class="headerlink" href="#module-dsplot" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="dsplot.DataSetPlot">
+<em class="property">class </em><tt class="descclassname">dsplot.</tt><tt class="descname">DataSetPlot</tt><a class="reference internal" href="_modules/dsplot.html#DataSetPlot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dsplot.DataSetPlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>La classe <em>dsplot</em> serà l&#8217;encarregat d&#8217;imprimir la gràfica a pantalla, desde l&#8217;informació rebuda desde el <em>dataset</em>
+Degut a que aquesta classe representa la gràfica no em sapigut fer doctest</p>
+<dl class="method">
+<dt id="dsplot.DataSetPlot.plot">
+<tt class="descname">plot</tt><big>(</big><em>d</em><big>)</big><a class="reference internal" href="_modules/dsplot.html#DataSetPlot.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dsplot.DataSetPlot.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Afegeix a la gràfica un conjunt de dades determinat per DataSet d. Si s’afegeix més d’un DataSet es representa cadascun d’un color diferent. L’etiqueta de la llegenda corresponent a aquest <em>DataSet</em> es el nom del mateix.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dsplot.DataSetPlot.show">
+<tt class="descname">show</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/dsplot.html#DataSetPlot.show"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dsplot.DataSetPlot.show" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mostra la grafica per la pantalla. El metode no retorna fins que l’usuari tanca la finestra de la grafica.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Modul dsplot</a><ul>
+<li><a class="reference internal" href="#contingut">Contingut</a></li>
+<li><a class="reference internal" href="#module-dsplot">Classes i funcions associades</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="moduldatafetcher.html"
+                        title="previous chapter">Modul datafetcher</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="modulsensortransf.html"
+                        title="next chapter">Modul sensortransf</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/moduldsplot.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modulsensortransf.html" title="Modul sensortransf"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="moduldatafetcher.html" title="Modul datafetcher"
+             >previous</a> |</li>
+        <li><a href="index.html">Practica 6 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Sergi Carol i David Martin.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

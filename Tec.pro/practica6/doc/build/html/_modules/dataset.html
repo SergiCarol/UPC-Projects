@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>dataset &mdash; Practica 6 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Practica 6 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Practica 6 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for dataset</h1><div class="highlight"><pre>
+<span class="c"># -*- encoding: utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="o">*</span>
+
+<div class="viewcode-block" id="Dataset"><a class="viewcode-back" href="../moduldataset.html#dataset.Dataset">[docs]</a><span class="k">class</span> <span class="nc">Dataset</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	La classe *dataset* será l&#39;encarregada de contindré un llistat de totes les dades amb les seves corresponents dates.</span>
+
+<span class="sd">	Aqui tenim el seu corresponent *doctest*:</span>
+
+<span class="sd">	&gt;&gt;&gt; d= Dataset(&#39;dataset1&#39;)</span>
+<span class="sd">	&gt;&gt;&gt; d2= Dataset(&#39;dataset2&#39;)</span>
+<span class="sd">	&gt;&gt;&gt; d.add(&#39;13/08/05&#39;,435.0000)</span>
+<span class="sd">	&gt;&gt;&gt; d.__str__()</span>
+<span class="sd">	&quot;Nom del sensor: dataset1 ;Informacio: [(&#39;13/08/05&#39;, 435.0)]&quot;</span>
+<span class="sd">	&gt;&gt;&gt; d.add(&#39;13/08/09&#39;,500.0000)</span>
+<span class="sd">	&gt;&gt;&gt; d.__str__()</span>
+<span class="sd">	&quot;Nom del sensor: dataset1 ;Informacio: [(&#39;13/08/05&#39;, 435.0), (&#39;13/08/09&#39;, 500.0)]&quot;</span>
+<span class="sd">	&gt;&gt;&gt; d.add(&#39;18/08/09&#39;,500.0000)</span>
+<span class="sd">	&gt;&gt;&gt; d.__len__()</span>
+<span class="sd">	3</span>
+<span class="sd">	&gt;&gt;&gt; d2.add(&#39;18/08/09&#39;,500.0000)</span>
+<span class="sd">	&gt;&gt;&gt; d2.__len__()</span>
+<span class="sd">	1</span>
+<span class="sd">	&gt;&gt;&gt; d3 = Dataset(&#39;dataset3&#39;)</span>
+<span class="sd">	&gt;&gt;&gt; d.add(&#39;10/08/09&#39;,500.0000)</span>
+<span class="sd">	&gt;&gt;&gt; d.time_vector()</span>
+<span class="sd">	[&#39;130805&#39;, &#39;130809&#39;, &#39;180809&#39;]</span>
+<span class="sd">	&gt;&gt;&gt; d.value_vector()</span>
+<span class="sd">	[435.0, 500.0, 500.0]</span>
+<span class="sd">	&gt;&gt;&gt; d2.value_vector()</span>
+<span class="sd">	[500.0]</span>
+<span class="sd">	&gt;&gt;&gt; d3.value_vector()</span>
+<span class="sd">	[]</span>
+<span class="sd">	&gt;&gt;&gt; d2.concat(d3)</span>
+
+<span class="sd">	&quot;&quot;&quot;</span>
+
+	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Permet la creació de una nova classe de Dataset. Crea els atributs *self._name*, el cual conté el nom (que li podem donar o no quan creem la clase), i el atribut *self._ds*, que será una llista que contendrá l&#39;informació del sensor.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="o">=</span> <span class="p">[]</span>
+		
+	<span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Retorna el nombre d’elements del dataset.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Retorna una representació en forma de cadena de caràcters del dataset.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="s">&quot;Nom del sensor: &quot;</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="s">&quot; ;Informacio: &quot;</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Dataset.add"><a class="viewcode-back" href="../moduldataset.html#dataset.Dataset.add">[docs]</a>	<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Afegeix una nova observació al dataset. Cal que aquesta observació sigui feta en un temps posterior a la darrera observació que contenia el dataset. En cas contrari, el llenca l&#39;excepció *OutOfOrderException*.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">t</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+		<span class="k">try</span><span class="p">:</span>
+			<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ds</span> <span class="o">==</span> <span class="p">[]:</span>
+				<span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">t</span><span class="p">,</span><span class="n">v</span><span class="p">))</span>
+			
+			<span class="k">else</span><span class="p">:</span>
+				<span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
+					<span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">t</span><span class="p">,</span><span class="n">v</span><span class="p">))</span>
+			
+				<span class="k">else</span><span class="p">:</span>
+					<span class="k">pass</span>
+		<span class="k">except</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="n">Outofexception</span><span class="p">()</span>
+				</div>
+<div class="viewcode-block" id="Dataset.time_vector"><a class="viewcode-back" href="../moduldataset.html#dataset.Dataset.time_vector">[docs]</a>	<span class="k">def</span> <span class="nf">time_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Retorna una llista amb els temps corresponents a totes les observacions del dataset ordenats de menor a major.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+
+		<span class="n">temp</span><span class="o">=</span><span class="p">[]</span>
+		
+		<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">:</span>
+			
+			<span class="n">a</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">6</span><span class="p">]</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">7</span><span class="p">])</span>
+			<span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+			
+		<span class="k">return</span> <span class="n">temp</span>
+</div>
+<div class="viewcode-block" id="Dataset.value_vector"><a class="viewcode-back" href="../moduldataset.html#dataset.Dataset.value_vector">[docs]</a>	<span class="k">def</span> <span class="nf">value_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Retorna una llista amb els valors corresponents a totes les observacions del dataset ordenats per temps creixents.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">:</span>
+			<span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+			
+			
+		<span class="k">return</span> <span class="n">temp</span>
+</div>
+<div class="viewcode-block" id="Dataset.decimate"><a class="viewcode-back" href="../moduldataset.html#dataset.Dataset.decimate">[docs]</a>	<span class="k">def</span> <span class="nf">decimate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Calcula un nou DataSet on cada element resulta d’agrupar els elements originals de self agafats de **k** en **k** i representar-los per un nou element que te per valor la mitjana dels originals i per temps el mes gran dels originals.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+	
+		<span class="n">d</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">)</span>
+		<span class="n">vegades</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">)</span><span class="o">/</span><span class="n">k</span>
+		<span class="n">residu</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">)</span><span class="o">%</span><span class="n">k</span>
+        	<span class="n">aux</span> <span class="o">=</span> <span class="n">k</span>
+		<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">vegades</span><span class="p">):</span>
+			<span class="n">sumador</span> <span class="o">=</span> <span class="mi">0</span>
+			<span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+				<span class="n">sumador</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">[</span><span class="n">k</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+			<span class="n">sumador</span> <span class="o">=</span> <span class="n">sumador</span><span class="o">/</span><span class="mi">10</span>
+			<span class="n">d</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">[</span><span class="n">k</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="mi">9</span><span class="p">],</span><span class="n">sumador</span><span class="p">)</span>
+		<span class="n">sumador</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">residu</span><span class="p">):</span>
+			<span class="n">sumador</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">[</span><span class="n">k</span><span class="o">*</span><span class="n">vegades</span><span class="o">+</span><span class="n">y</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+			<span class="n">sumador</span> <span class="o">=</span> <span class="n">sumador</span><span class="o">/</span><span class="n">residu</span>
+			<span class="n">d</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">sumador</span><span class="p">)</span>
+		
+		<span class="k">return</span> <span class="n">d</span>
+		
+
+</div>
+<div class="viewcode-block" id="Dataset.moving_average"><a class="viewcode-back" href="../moduldataset.html#dataset.Dataset.moving_average">[docs]</a>	<span class="k">def</span> <span class="nf">moving_average</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Calcula un nou DataSet on cada element resulta de calcular la mitjana mòbil. Es substituïm cada element per la mitjana dels **k** elements anteriors.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+	
+		<span class="n">d</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">)</span>
+		<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">)):</span>
+			<span class="k">if</span> <span class="n">x</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+				<span class="n">temp</span> <span class="o">=</span> <span class="n">x</span>
+				<span class="n">aux2</span> <span class="o">=</span> <span class="mi">0</span>
+				<span class="n">aux</span> <span class="o">=</span> <span class="mi">0</span>
+				<span class="k">while</span> <span class="n">temp</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">aux2</span> <span class="o">&lt;=</span> <span class="n">k</span><span class="p">:</span>
+					<span class="n">aux</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+				<span class="k">if</span> <span class="n">aux2</span> <span class="o">==</span> <span class="n">k</span><span class="p">:</span>
+					<span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">/</span><span class="n">k</span>
+				<span class="k">else</span><span class="p">:</span>
+					<span class="n">aux</span> <span class="o">=</span> <span class="n">aux</span><span class="o">/</span><span class="n">temp</span>
+				<span class="n">d</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span><span class="n">aux</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">d</span>	
+	
+</div>
+<div class="viewcode-block" id="Dataset.concat"><a class="viewcode-back" href="../moduldataset.html#dataset.Dataset.concat">[docs]</a>	<span class="k">def</span> <span class="nf">concat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ds2</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Afegeix a self el DataSet ds2. La primera observació de ds2 ha de ser posterior a la darrera de self. Altrament s&#39;aixeca l&#39;excepció *OutOfOrderException*.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="n">ds2</span><span class="o">.</span><span class="n">_ds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
+			<span class="k">raise</span> <span class="n">Outofexception</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_ds</span> <span class="o">+=</span> <span class="n">ds2</span><span class="o">.</span><span class="n">_ds</span>
+</div>
+	<span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+		
+		<span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ds</span><span class="p">:</span>
+			<span class="n">l</span> <span class="o">+=</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">a</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">b</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_ds</span> <span class="o">=</span> <span class="n">l</span>
+		
+</div>
+<div class="viewcode-block" id="Outofexception"><a class="viewcode-back" href="../moduldataset.html#dataset.Outofexception">[docs]</a><span class="k">class</span> <span class="nc">Outofexception</span> <span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">	La classe *Outofexception* contindrà una excepció que s&#39;aixecarà en certs casos de les funcions *concat* i *add* de la classe *dataset*.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">pass</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Practica 6 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Sergi Carol i David Martin.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

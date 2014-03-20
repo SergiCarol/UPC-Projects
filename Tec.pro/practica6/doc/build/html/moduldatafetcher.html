@@ -1,0 +1,158 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Modul datafetcher &mdash; Practica 6 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Practica 6 1.0 documentation" href="index.html" />
+    <link rel="next" title="Modul dsplot" href="moduldsplot.html" />
+    <link rel="prev" title="Modul dataset" href="moduldataset.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="moduldsplot.html" title="Modul dsplot"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="moduldataset.html" title="Modul dataset"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Practica 6 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="modul-datafetcher">
+<h1>Modul datafetcher<a class="headerlink" href="#modul-datafetcher" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="contingut">
+<h2>Contingut<a class="headerlink" href="#contingut" title="Permalink to this headline">¶</a></h2>
+<p>El modul datafetcher será l&#8217;encarregat de contenir la classe <em>dataset</em> i la classe <em>Outofexception</em></p>
+</div>
+<div class="section" id="module-datafetcher">
+<span id="classes-i-funcions-associades"></span><h2>Classes i funcions associades<a class="headerlink" href="#module-datafetcher" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="datafetcher.DataSetFetcher">
+<em class="property">class </em><tt class="descclassname">datafetcher.</tt><tt class="descname">DataSetFetcher</tt><big>(</big><em>url='http://localhost:8000'</em><big>)</big><a class="reference internal" href="_modules/datafetcher.html#DataSetFetcher"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#datafetcher.DataSetFetcher" title="Permalink to this definition">¶</a></dt>
+<dd><p>La classe <em>datasetfetcher</em> serà l&#8217;encarregada de buscar en internet les dades del sensor que es vulgui trobar. Degut a que en aquesta classe es necessita un servidor obert, no em ficat doctest</p>
+<dl class="method">
+<dt id="datafetcher.DataSetFetcher.fetch">
+<tt class="descname">fetch</tt><big>(</big><em>dia</em>, <em>sensor=0</em><big>)</big><a class="reference internal" href="_modules/datafetcher.html#DataSetFetcher.fetch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#datafetcher.DataSetFetcher.fetch" title="Permalink to this definition">¶</a></dt>
+<dd><p>El mètode retorna un DataSet de nom <em>SensorX</em>, essent X el numero de sensor, que conte les observacions del sensor sensor corresponents al dia dia. dia es un objecte de classe date. Si no es poden obtenir les dades aixeca l&#8217;excepció <em>UnknownDataSetException</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="datafetcher.DataSetFetcher.fetch_interval">
+<tt class="descname">fetch_interval</tt><big>(</big><em>from_day</em>, <em>to_day</em>, <em>sensor=0</em><big>)</big><a class="reference internal" href="_modules/datafetcher.html#DataSetFetcher.fetch_interval"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#datafetcher.DataSetFetcher.fetch_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>El mètode retorna un DataSet de nom <em>SensorX</em>, essent X el numero de sensor, que conte les observacions del sensor sensor corresponents als dies que van de from day a to day incloent el primer i excloent el darrer. from day i to day son objectes de la classe date. Si no es poden obtenir les dades aixeca l&#8217;excepció <em>UnknownDataSetException</em>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="datafetcher.UnknownDataSetException">
+<em class="property">exception </em><tt class="descclassname">datafetcher.</tt><tt class="descname">UnknownDataSetException</tt><a class="reference internal" href="_modules/datafetcher.html#UnknownDataSetException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#datafetcher.UnknownDataSetException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aquest error s&#8217;aixecarà en alguns casos de les funcions <em>fetch_interval</em> i <em>fetch</em>.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Modul datafetcher</a><ul>
+<li><a class="reference internal" href="#contingut">Contingut</a></li>
+<li><a class="reference internal" href="#module-datafetcher">Classes i funcions associades</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="moduldataset.html"
+                        title="previous chapter">Modul dataset</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="moduldsplot.html"
+                        title="next chapter">Modul dsplot</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/moduldatafetcher.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="moduldsplot.html" title="Modul dsplot"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="moduldataset.html" title="Modul dataset"
+             >previous</a> |</li>
+        <li><a href="index.html">Practica 6 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Sergi Carol i David Martin.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
