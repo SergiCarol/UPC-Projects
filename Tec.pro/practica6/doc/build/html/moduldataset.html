@@ -1,0 +1,210 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Modul dataset &mdash; Practica 6 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Practica 6 1.0 documentation" href="index.html" />
+    <link rel="next" title="Modul datafetcher" href="moduldatafetcher.html" />
+    <link rel="prev" title="Introducció" href="introduccio.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="moduldatafetcher.html" title="Modul datafetcher"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="introduccio.html" title="Introducció"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Practica 6 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="modul-dataset">
+<h1>Modul dataset<a class="headerlink" href="#modul-dataset" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="contingut">
+<h2>Contingut<a class="headerlink" href="#contingut" title="Permalink to this headline">¶</a></h2>
+<p>El modul dataset será l&#8217;encarregat de contenir la classe <em>dataset</em> i la classe <em>Outofexception</em></p>
+</div>
+<div class="section" id="module-dataset">
+<span id="classes-i-funcions-associades"></span><h2>Classes i funcions associades<a class="headerlink" href="#module-dataset" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="dataset.Dataset">
+<em class="property">class </em><tt class="descclassname">dataset.</tt><tt class="descname">Dataset</tt><big>(</big><em>name=''</em><big>)</big><a class="reference internal" href="_modules/dataset.html#Dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dataset.Dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>La classe <em>dataset</em> será l&#8217;encarregada de contindré un llistat de totes les dades amb les seves corresponents dates.</p>
+<p>Aqui tenim el seu corresponent <em>doctest</em>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="s">&#39;dataset1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d2</span><span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="s">&#39;dataset2&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;13/08/05&#39;</span><span class="p">,</span><span class="mf">435.0000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">__str__</span><span class="p">()</span>
+<span class="go">&quot;Nom del sensor: dataset1 ;Informacio: [(&#39;13/08/05&#39;, 435.0)]&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;13/08/09&#39;</span><span class="p">,</span><span class="mf">500.0000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">__str__</span><span class="p">()</span>
+<span class="go">&quot;Nom del sensor: dataset1 ;Informacio: [(&#39;13/08/05&#39;, 435.0), (&#39;13/08/09&#39;, 500.0)]&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;18/08/09&#39;</span><span class="p">,</span><span class="mf">500.0000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">__len__</span><span class="p">()</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d2</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;18/08/09&#39;</span><span class="p">,</span><span class="mf">500.0000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d2</span><span class="o">.</span><span class="n">__len__</span><span class="p">()</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d3</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="s">&#39;dataset3&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&#39;10/08/09&#39;</span><span class="p">,</span><span class="mf">500.0000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">time_vector</span><span class="p">()</span>
+<span class="go">[&#39;130805&#39;, &#39;130809&#39;, &#39;180809&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">value_vector</span><span class="p">()</span>
+<span class="go">[435.0, 500.0, 500.0]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d2</span><span class="o">.</span><span class="n">value_vector</span><span class="p">()</span>
+<span class="go">[500.0]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d3</span><span class="o">.</span><span class="n">value_vector</span><span class="p">()</span>
+<span class="go">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d2</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">d3</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="dataset.Dataset.add">
+<tt class="descname">add</tt><big>(</big><em>t</em>, <em>v</em><big>)</big><a class="reference internal" href="_modules/dataset.html#Dataset.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dataset.Dataset.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Afegeix una nova observació al dataset. Cal que aquesta observació sigui feta en un temps posterior a la darrera observació que contenia el dataset. En cas contrari, el llenca l&#8217;excepció <em>OutOfOrderException</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dataset.Dataset.concat">
+<tt class="descname">concat</tt><big>(</big><em>ds2</em><big>)</big><a class="reference internal" href="_modules/dataset.html#Dataset.concat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dataset.Dataset.concat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Afegeix a self el DataSet ds2. La primera observació de ds2 ha de ser posterior a la darrera de self. Altrament s&#8217;aixeca l&#8217;excepció <em>OutOfOrderException</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dataset.Dataset.decimate">
+<tt class="descname">decimate</tt><big>(</big><em>k=10</em><big>)</big><a class="reference internal" href="_modules/dataset.html#Dataset.decimate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dataset.Dataset.decimate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calcula un nou DataSet on cada element resulta d’agrupar els elements originals de self agafats de <strong>k</strong> en <strong>k</strong> i representar-los per un nou element que te per valor la mitjana dels originals i per temps el mes gran dels originals.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dataset.Dataset.moving_average">
+<tt class="descname">moving_average</tt><big>(</big><em>k=50</em><big>)</big><a class="reference internal" href="_modules/dataset.html#Dataset.moving_average"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dataset.Dataset.moving_average" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calcula un nou DataSet on cada element resulta de calcular la mitjana mòbil. Es substituïm cada element per la mitjana dels <strong>k</strong> elements anteriors.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dataset.Dataset.time_vector">
+<tt class="descname">time_vector</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/dataset.html#Dataset.time_vector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dataset.Dataset.time_vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retorna una llista amb els temps corresponents a totes les observacions del dataset ordenats de menor a major.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dataset.Dataset.value_vector">
+<tt class="descname">value_vector</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/dataset.html#Dataset.value_vector"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dataset.Dataset.value_vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retorna una llista amb els valors corresponents a totes les observacions del dataset ordenats per temps creixents.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="dataset.Outofexception">
+<em class="property">exception </em><tt class="descclassname">dataset.</tt><tt class="descname">Outofexception</tt><a class="reference internal" href="_modules/dataset.html#Outofexception"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dataset.Outofexception" title="Permalink to this definition">¶</a></dt>
+<dd><p>La classe <em>Outofexception</em> contindrà una excepció que s&#8217;aixecarà en certs casos de les funcions <em>concat</em> i <em>add</em> de la classe <em>dataset</em>.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Modul dataset</a><ul>
+<li><a class="reference internal" href="#contingut">Contingut</a></li>
+<li><a class="reference internal" href="#module-dataset">Classes i funcions associades</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="introduccio.html"
+                        title="previous chapter">Introducció</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="moduldatafetcher.html"
+                        title="next chapter">Modul datafetcher</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/moduldataset.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="moduldatafetcher.html" title="Modul datafetcher"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="introduccio.html" title="Introducció"
+             >previous</a> |</li>
+        <li><a href="index.html">Practica 6 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Sergi Carol i David Martin.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

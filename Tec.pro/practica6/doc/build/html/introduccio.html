@@ -1,0 +1,184 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Introducció &mdash; Practica 6 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Practica 6 1.0 documentation" href="index.html" />
+    <link rel="next" title="Modul dataset" href="moduldataset.html" />
+    <link rel="prev" title="Practica 6: Tractament de dades de sensors" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="moduldataset.html" title="Modul dataset"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Practica 6: Tractament de dades de sensors"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Practica 6 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="introduccio">
+<h1>Introducció<a class="headerlink" href="#introduccio" title="Permalink to this headline">¶</a></h1>
+<p>Aquest és el treball destinat a explicar la sisena pràctica de <em>Tecnologies de la programació</em>.</p>
+<p>En aquesta pràctica realitzarem un programa que captura, enmagatzema i visuslitza dades provinents d&#8217;un sistema de sensors. S&#8217;ha de tenir en compte  que s&#8217;accedirà a aquestes dades a traves de la xarxa.</p>
+<p>El temps total de la practicà serà de 2 setmanes.</p>
+<div class="section" id="objectius">
+<h2>Objectius<a class="headerlink" href="#objectius" title="Permalink to this headline">¶</a></h2>
+<p>El programa que es realitzarà, tindrá el següents objectius:</p>
+<ul class="simple">
+<li>Tenir un primer contacte amb alguns serveis de l&#8217;extensa llibreria de <em>Python</em>.</li>
+<li>Consolidar el treball amb classes d&#8217;objectes.</li>
+<li>Conslidar l&#8217;us de les eines de test i el disseny basat en tests.</li>
+<li>Consolidar l&#8217;us de les eines de documentació de programari i de les eines de gestió de versions.</li>
+</ul>
+</div>
+<div class="section" id="materia-nova">
+<h2>Materia nova<a class="headerlink" href="#materia-nova" title="Permalink to this headline">¶</a></h2>
+<p>La materia nova que es tindrà que utilitzar en aquesta pràctica serà la següent:</p>
+<ul class="simple">
+<li>Modul <strong>urllib2</strong>: Aquest modul serà el destinat de llegir la url en la qual està penjada l&#8217;informació sobre els sensors.</li>
+<li>Llibreria <strong>datetime</strong>: Aquesta llibreria serà l&#8217;encarregada de facilitar l&#8217;acces a les dades que contenen les dades de les mostres dels sensors.</li>
+<li>Modul <strong>plot</strong> i <strong>dates</strong> de la llibreria <strong>matplotlib.pyplot</strong>: Aquests moduls será l&#8217;encarregat de generar grafiques a partir d&#8217;una llista.</li>
+</ul>
+</div>
+<div class="section" id="descripcio-del-sistema">
+<h2>Descripció del sistema<a class="headerlink" href="#descripcio-del-sistema" title="Permalink to this headline">¶</a></h2>
+<p>El esquema general de l&#8217;aplicació serà el següent:</p>
+<img alt="_images/Imagen_1" class="align-center" src="_images/Imagen_1" />
+<p>Els procesos que segueix una senyal fins a arribar al nostre ordinador, són les següents:</p>
+<blockquote>
+<div><p><strong>1-</strong> La dada es capturada per el sistema de detecció del sensor.</p>
+<p><strong>2-</strong> La dada ya capturada, es transfereix a l&#8217;electronica del sensor, que la converteix en un senyal elèctric.</p>
+<p><strong>3-</strong> A continuació arriba el recolector dde dades del servidor, que es l&#8217;encarregat d&#8217;enmagatzemar tota l&#8217;informació que li arriba. Si o tinguesim això, no podriem agafar facilment l&#8217;historic de dades, ja que no quedarien registrades enlloc.</p>
+<p><strong>4-</strong> Finalment a través d&#8217;internet les dades són accesibles desde el nostre ordinador, on podrem manipular les dades com ens convingui.</p>
+</div></blockquote>
+</div>
+<div class="section" id="manipulacio-dades-sensor">
+<h2>Manipulació dades sensor<a class="headerlink" href="#manipulacio-dades-sensor" title="Permalink to this headline">¶</a></h2>
+<p>També hem de comentar una cosa que és molt important: El format de les dades del sensor.</p>
+<p>Això és important perque hem de saber de quina manera estàn escrites les dades del sensor.</p>
+<p>En primer lloc, s&#8217;ha de tenir en compte que el nom del fitxer té relació amb la data a la qual pertanyen les dades. Així el fitxer <strong>dades_11_08_01</strong>, per exemple, conté les dades dels cinc sensors corresponents al dia 1 d&#8217;agost del 2011.</p>
+<p>Un fitxer de dades s&#8217;organitza en linies. Cada linia correspon a una dada d&#8217;un sensor en un instant de temps. El format d&#8217;una linia és el que següent:</p>
+<p><em>00:00:04,5,526.000000</em></p>
+<p>Noteu que hi ha tres camps separats per comes. El primer és l&#8217;instant de temps a que correspon la dada. Fixeu-vos que la sintaxi és la classica de HH:MM:SS. El segon és el número de sensor. Finalment el tercer és el valor de la dada i és de tipus real. El fitxer conté molts centenars de dades i per tant no és convenient enmagatzemar-lo completament a la memòria del computador.</p>
+</div>
+<div class="section" id="mostra-de-dades-en-la-grafica">
+<h2>Mostra de dades en la gràfica<a class="headerlink" href="#mostra-de-dades-en-la-grafica" title="Permalink to this headline">¶</a></h2>
+<p>Per acabar l&#8217;introducció parlarem sobre lo més important de tot el projecte: Les gràfiques.</p>
+<p>Fins ara, cada vegada que teniem que mostrar alguna dada a l&#8217;usuari (fos de la forma que fosi), sempre li mostravem per consola. Això pot ser molt senzill, però a la vegada molt poc util.</p>
+<p>Si lo que volem fer és mostrar un seguit de dades (de moltes dades), i que l&#8217;usuari les pugui interpretar facilment, no podem donar-li una gran llista de dades escrita. Ho hem de fer de una manera més bona: Les gràfiques. Aquestes gràfiques es reaitzaràn amb el matplotlib. Per a instalar aquest pack escribim en la consola:</p>
+<div class="highlight-python"><pre>$ sudo apt-get install python-matplotlib</pre>
+</div>
+<p>Una vegada el tenim instalat podrem realitzar gràfiques com aquesta:</p>
+<img alt="_images/Imagen_2" class="align-center" src="_images/Imagen_2" />
+<p>Lògicament, abans de fer les gràfiques, hem tingut d&#8217;apendre a utilitzar aquesta llibreria.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Introducció</a><ul>
+<li><a class="reference internal" href="#objectius">Objectius</a></li>
+<li><a class="reference internal" href="#materia-nova">Materia nova</a></li>
+<li><a class="reference internal" href="#descripcio-del-sistema">Descripció del sistema</a></li>
+<li><a class="reference internal" href="#manipulacio-dades-sensor">Manipulació dades sensor</a></li>
+<li><a class="reference internal" href="#mostra-de-dades-en-la-grafica">Mostra de dades en la gràfica</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Practica 6: Tractament de dades de sensors</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="moduldataset.html"
+                        title="next chapter">Modul dataset</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/introduccio.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="moduldataset.html" title="Modul dataset"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Practica 6: Tractament de dades de sensors"
+             >previous</a> |</li>
+        <li><a href="index.html">Practica 6 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Sergi Carol i David Martin.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
