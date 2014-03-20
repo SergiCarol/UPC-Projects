@@ -16,6 +16,5 @@ void semaphore_next(void){
     }
 }
 void semaphore_set(sempahore_state_t s){
-  //dfghjklñlkjuytfdcvbnm
   state=s;
 }
