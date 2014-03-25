@@ -25,6 +25,9 @@ void serial_put(uint8_t c){
 		UDR0 = c;
 }
 
-
+bool serial_can_read(void){
+	if ((UCSR0A & (1<<7))== TRUE) return TRUE;
+	else return False;
+}
 
 
