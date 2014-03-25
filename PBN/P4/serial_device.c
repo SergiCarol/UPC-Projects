@@ -3,14 +3,6 @@
 #include <stdint.h>
 
 void serial_init(void){
-	/*
-	UDR0 = 0xc6
-	UBRR0H = 0xc5
-	UBRR0L = 0xc4
-	UCSR0C = 0xc2
-	UCSR0B = 0xC1
-	UCSR0A = 0xC0
-	*/
 	UBBR0H = 0x00;
 	UBRR0L = 0x67;
 	UCSR0A = 0x20;
@@ -27,6 +19,12 @@ uint8_t serial_get(void){
 
 }
 
+void serial_put(uint8_t c){
+
+	while (UCSR0A & (1<<5))
+		UDR0 = c;
+}
 
 
-	     
+
+
