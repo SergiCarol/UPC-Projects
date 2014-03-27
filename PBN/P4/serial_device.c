@@ -14,7 +14,7 @@ uint8_t serial_get(void){
 
 	char a;
 
-	while (UCSR0A & (1<<7)){
+	while ((UCSR0A & (1<<7))!=1){
 		a=UDR0;
 	}	
 
@@ -22,7 +22,7 @@ uint8_t serial_get(void){
 
 void serial_put(uint8_t c){
 
-	while (UCSR0A & (1<<5))
+	while ((UCSR0A & (1<<5))!=1)
 		UDR0 = c;
 }
 
