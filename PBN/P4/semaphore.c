@@ -1,17 +1,24 @@
 #include<stdio.h>
+#include"semaphore.h"
 #include<avr/scr_defs.h>
 #include<avr/io.h>
-
-DDRB=0xFF;
+#include"gpio_divice.h"
 
 void semaphore_init(void){
   semaphore_state_t state;
   state = SempahoreOff;
-  PD2=0;
-  PD3=0;
-  PD4=0;
+  pin_direction_t d;
+  d=Output;
+  pin_t verd;
+  verd=pin_create(&PORTD, 5, d);
+  pin_t groc;
+  groc=pin_create(&PORTD, 6, d);
+  pin_t vermell;
+  vermell=pin_create(&PORTD, 7, d);
+
 }
 void semaphore_next(void){
+  semaphore_init();
   semaphore_state_t state;
   if state!=0{
       if (state>1){
@@ -23,24 +30,24 @@ void semaphore_next(void){
     }
   swich(state){
   case 2:
-    PD2=1;
-    PD3=0;
-    PD4=0;
+    pin_toggle(verd);
+    pin_w(groc, false);
+    pin_w(vermell, false);
     break;
   case 3:
-    PD2=0;
-    PD3=1;
-    PD4=0;
+    pin_w(verd, false);    
+    pin_toggle(groc);
+    pin_w(vermell, false);
     break;
   case 4:
-    PD2=0;
-    PD3=0;
-    PD4=1;
+    pin_w(verd, false);
+    pin_w(groc, false);
+    pin_toggle(vermell);
     break;
   default:
-    PD2=0;
-    PD3=0;
-    PD4=0;
+    pin_w(verd, false);
+    pin_w(groc, false);
+    pin_w(vermell, false);
   }
 }
 
