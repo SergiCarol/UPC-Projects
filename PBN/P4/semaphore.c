@@ -55,24 +55,23 @@ void semaphore_set(sempahore_state_t s){
   state=s;
   swich(state){
   case 2:
-    PD2=1;
-    PD3=0;
-    PD4=0;
+    pin_toggle(verd);
+    pin_w(groc, false);
+    pin_w(vermell, false);
     break;
   case 3:
-    PD2=0;
-    PD3=1;
-    PD4=0;
+    pin_w(verd, false);    
+    pin_toggle(groc);
+    pin_w(vermell, false);
     break;
   case 4:
-    PD2=0;
-    PD3=0;
-    PD4=1;
+    pin_w(verd, false);
+    pin_w(groc, false);
+    pin_toggle(vermell);
     break;
   default:
-    PD2=0;
-    PD3=0;
-    PD4=0;
+    pin_w(verd, false);
+    pin_w(groc, false);
+    pin_w(vermell, false);
   }
 }
-
