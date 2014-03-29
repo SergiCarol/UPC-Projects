@@ -1,6 +1,9 @@
 #ifndef __GPIO_DEVICE_H
 #define __GPIO_DEVICE_H
 
+#include <avr/io.h>
+#include <stdbool.h>
+#include <util/delay.h>
 
 typedef enum {Input, Output} pin_direction_t;
 
