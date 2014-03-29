@@ -52,6 +52,7 @@ void semaphore_next(void){
 }
 
 void semaphore_set(sempahore_state_t s){
+  semaphore_init();
   state=s;
   swich(state){
   case 2:
