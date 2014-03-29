@@ -1,12 +1,14 @@
 #include<stdio.h>
 #include"semaphore.h"
-#include<avr/scr_defs.h>
 #include<avr/io.h>
-#include"gpio_divice.h"
+#include"gpio_device.h"
+#include<stdbool.h>
+
 
 void semaphore_init(void){
   semaphore_state_t state;
-  state = SempahoreOff;
+  state = SemaphoreOff;
+  
   pin_direction_t d;
   d=Output;
   pin_t verd;
@@ -15,12 +17,20 @@ void semaphore_init(void){
   groc=pin_create(&PORTD, 6, d);
   pin_t vermell;
   vermell=pin_create(&PORTD, 7, d);
-
 }
 void semaphore_next(void){
   semaphore_init();
+ 
+  pin_direction_t d;
+  d=Output;
+  pin_t verd;
+  verd=pin_create(&PORTD, 5, d);
+  pin_t groc;
+  groc=pin_create(&PORTD, 6, d);
+  pin_t vermell;
+  vermell=pin_create(&PORTD, 7, d);
   semaphore_state_t state;
-  if state!=0{
+  if (state!=0){
       if (state>1){
 	state++;
 	}
@@ -28,7 +38,7 @@ void semaphore_next(void){
 	  state=2;
 	}
     }
-  swich(state){
+  switch(state){
   case 2:
     pin_toggle(verd);
     pin_w(groc, false);
@@ -51,10 +61,18 @@ void semaphore_next(void){
   }
 }
 
-void semaphore_set(sempahore_state_t s){
+void semaphore_set(semaphore_state_t s){
   semaphore_init();
-  state=s;
-  swich(state){
+
+  pin_direction_t d;
+  d=Output;
+  pin_t verd;
+  verd=pin_create(&PORTD, 5, d);
+  pin_t groc;
+  groc=pin_create(&PORTD, 6, d);
+  pin_t vermell;
+  vermell=pin_create(&PORTD, 7, d);
+  switch(s){
   case 2:
     pin_toggle(verd);
     pin_w(groc, false);

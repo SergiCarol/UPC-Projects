@@ -51,7 +51,7 @@ void pin_toggle(pin_t p){
 }
 
 
-
+/*
 void main(void){											// Main de proba
 	bool i;
 	pin_t a;												// Creem un type de pin_t
@@ -68,3 +68,4 @@ void main(void){											// Main de proba
 	
 	}
 }
+*/

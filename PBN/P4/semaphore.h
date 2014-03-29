@@ -4,12 +4,12 @@
 	typedef enum {
 		SemaphoreOff=0,
 		SemaphoreClear=2,
-		SempahoreApproach=3,
-		SempahoreStop=4,
-	}	sempahore_state_t;
+		SemaphoreApproach=3,
+		SemaphoreStop=4,
+	}	semaphore_state_t;
 
-	void sempahore_init(void);
-	void semamphore_next(void);
-	void sempaphore_set(sempahore_state_t s);
+	void semaphore_init(void);
+	void semaphore_next(void);
+	void semaphore_set(semaphore_state_t s);
 
 #endif
