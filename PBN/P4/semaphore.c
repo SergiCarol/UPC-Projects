@@ -21,6 +21,7 @@ void semaphore_init(void){
 }
 void semaphore_next(void){
   semaphore_init();
+
   pin_direction_t d;
   d=Output;
   pin_t verd;
@@ -30,15 +31,11 @@ void semaphore_next(void){
   pin_t vermell;
   vermell=pin_create(&PORTD, 7, d);
   
-  if (state!=0){
-      if (state>1){
-	state++;
-	}
-      else if (state=4){
-	  state=2;
-	}
-    }
-  if (state==0) state=2;
+  if (state==0 || state==4)
+    state=2;
+  else
+    state++;
+ 
   switch(state){
   case 2:
     pin_w(verd,true);
@@ -64,6 +61,7 @@ void semaphore_next(void){
 
 void semaphore_set(semaphore_state_t s){
   semaphore_init();
+
   pin_direction_t d;
   d=Output;
   pin_t verd;
@@ -72,6 +70,7 @@ void semaphore_set(semaphore_state_t s){
   groc=pin_create(&PORTD, 6, d);
   pin_t vermell;
   vermell=pin_create(&PORTD, 7, d);
+
   switch(s){
   case 2:
     pin_toggle(verd);
