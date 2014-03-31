@@ -4,7 +4,7 @@
 #include "gpio_device.h"
 #include <stdbool.h>
 
-static semaphore_state_t state=0;
+static semaphore_state_t state;
 static pin_direction_t d;
 static pin_t verd, groc, vermell;
 
@@ -13,7 +13,6 @@ void semaphore_init(void){
   
 }
 void semaphore_next(void){
-  semaphore_init();
   
   d=Output;
   verd=pin_create(&PORTD, 5, d);
@@ -47,7 +46,6 @@ void semaphore_next(void){
 }
 
 void semaphore_set(semaphore_state_t s){
-  semaphore_init();
 
   d=Output;
   verd=pin_create(&PORTD, 5, d);
