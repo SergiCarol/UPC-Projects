@@ -4,7 +4,7 @@
 #include "gpio_device.h"
 #include <stdbool.h>
 
-static semaphore_state_t state;
+static semaphore_state_t state=0;
 static pin_direction_t d;
 static pin_t verd, groc, vermell;
 
