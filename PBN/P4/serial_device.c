@@ -1,12 +1,10 @@
-#include <avr/sfr_defs.h>
+#include "serial_device.h"
 #include <avr/io.h>
-#include <stdint.h>
-#include <stdbool.h>
 void serial_init(void){
 	/*Inicialitza el modul i deixa la UART a punt per enviar/rebre
 	caracters de 8 bit a 9600 s-1, amb un bit d'stop, sense paritat
 	i en el mode asíncron.*/
-	UBBR0H = 0x00;
+	UBRR0H = 0x00;
 	UBRR0L = 0x67;
 	UCSR0A = 0x20;
 	UCSR0B = 0x98;
@@ -36,8 +34,10 @@ bool serial_can_read(void){
 	aquesta funció retorna true es garanteix que una posterior crida a 
 	serial_get() no es bloquejará.*/
 
-	if ((UCSR0A & (1<<7))== TRUE) return TRUE;
-	else return FALSE;
+	if ((UCSR0A & (1<<7))== true) return true;
+	else return false;
 }
+void main(){
 
+}
 

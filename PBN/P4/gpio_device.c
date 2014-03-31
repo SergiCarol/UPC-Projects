@@ -1,5 +1,5 @@
 #include "gpio_device.h"
-
+#include <stddef.h>
 // FUNCIONAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA TT que ilu
 
 #define DDR(p) ((p-1))  									// Allo que ha ficat el sbs per no tenir que fer port-1v(pero sense apunt)
@@ -49,8 +49,11 @@ void pin_toggle(pin_t p){
 	else pin_w(p,true);										// Si retorna FALSE , encenem el led
 
 }
+/*
+void pin_destroy(pin_t *const p){
+	(*p).pin=NULL;											// Està ficat aixi ja que sino surt un warning.
 
-
+}*/
 /*
 void main(void){											// Main de proba
 	bool i;
@@ -68,4 +71,5 @@ void main(void){											// Main de proba
 	
 	}
 }
+
 */
