@@ -11,5 +11,6 @@
 	void semaphore_init(void);
 	void semaphore_next(void);
 	void semaphore_set(semaphore_state_t s);
+	
 
 #endif
