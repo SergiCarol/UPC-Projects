@@ -4,23 +4,20 @@
 #include "gpio_device.h"
 #include <stdbool.h>
 
-semaphore_state_t state=0;
+static semaphore_state_t state;
+static pin_direction_t d;
+static pin_t verd, groc, vermell;
 
 void semaphore_init(void){
-  semaphore_state_t state;
   state = 0;
   
 }
 void semaphore_next(void){
   semaphore_init();
-
-  pin_direction_t d;
+  
   d=Output;
-  pin_t verd;
   verd=pin_create(&PORTD, 5, d);
-  pin_t groc;
   groc=pin_create(&PORTD, 6, d);
-  pin_t vermell;
   vermell=pin_create(&PORTD, 7, d);
   
   if (state==0 || state==4)
@@ -52,14 +49,11 @@ void semaphore_next(void){
 void semaphore_set(semaphore_state_t s){
   semaphore_init();
 
-  pin_direction_t d;
   d=Output;
-  pin_t verd;
   verd=pin_create(&PORTD, 5, d);
-  pin_t groc;
   groc=pin_create(&PORTD, 6, d);
-  pin_t vermell;
   vermell=pin_create(&PORTD, 7, d);
+
   state=s;
   switch(s){
   case 2:
