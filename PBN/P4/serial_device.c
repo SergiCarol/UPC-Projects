@@ -1,5 +1,6 @@
 #include "serial_device.h"
 #include <avr/io.h>
+#include <stdbool.h>
 void serial_init(void){
 	/*Inicialitza el modul i deixa la UART a punt per enviar/rebre
 	caracters de 8 bit a 9600 s-1, amb un bit d'stop, sense paritat
@@ -8,6 +9,7 @@ void serial_init(void){
 	UBRR0L = 0x67;
 	UCSR0A = 0x20;
 	UCSR0B = 0x98;
+	UCSR0C = 0x06;
 	
 }
 
@@ -16,11 +18,14 @@ uint8_t serial_get(void){
 	fins que hi ha un caràcter disponible per a ser llegit. En cas que
 	no es llegeixi prou sovint es poden perdre caràcters.*/
 
-	uint8_t a,b;
-
-	while (b!=1) b=(UCSR0A & (1<<7));
-
-	a=UDR0;	
+	uint8_t a;
+	bool b;
+	loop_until_bit_is_set(UCSR0A,7);
+	DDRD=0xFF;
+	PORTD=0xFF;	
+	a=UDR0;
+	
+	
 	return a;
 
 }
@@ -28,9 +33,9 @@ uint8_t serial_get(void){
 void serial_put(uint8_t c){
 	/*Envia un byte pel port sèrie. En cas que estigui ocupat enviant
 	una altra dada, es bloqueja fins que l'enviament en curs acaba.*/
-	uint8_t b;
-	while (b!=1) (b=(UCSR0A & (1<<5)));
+	loop_until_bit_is_set(UCSR0A,5);
 	UDR0 = c;
+	
 }
 
 bool serial_can_read(void){
