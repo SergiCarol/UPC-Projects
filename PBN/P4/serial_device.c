@@ -16,17 +16,21 @@ uint8_t serial_get(void){
 	fins que hi ha un caràcter disponible per a ser llegit. En cas que
 	no es llegeixi prou sovint es poden perdre caràcters.*/
 
-	char a;
+	uint8_t a,b;
 
-	while ((UCSR0A & (1<<7))!=1) a=UDR0;	
+	while (b!=1) b=(UCSR0A & (1<<7));
+
+	a=UDR0;	
+	return a;
 
 }
 
 void serial_put(uint8_t c){
 	/*Envia un byte pel port sèrie. En cas que estigui ocupat enviant
 	una altra dada, es bloqueja fins que l'enviament en curs acaba.*/
-
-	while ((UCSR0A & (1<<5))!=1) UDR0 = c;
+	uint8_t b;
+	while (b!=1) (b=(UCSR0A & (1<<5)));
+	UDR0 = c;
 }
 
 bool serial_can_read(void){
@@ -37,7 +41,5 @@ bool serial_can_read(void){
 	if ((UCSR0A & (1<<7))== true) return true;
 	else return false;
 }
-void main(){
 
-}
 
