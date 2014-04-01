@@ -1,15 +1,29 @@
 #include "serial_device.h"
 #include <avr/io.h>
 #include <stdbool.h>
+#include "serial_device.h"
+
+#define BAUD_RATE 9600
+
+#define CLK_BY100 F_CPU/100
+
+#define BDR 16*BAUD_RATE/100
+
+#define MYUBRR ((CLK_BY100/BDR)-1)
+
+
+
+// la salvacio http://www.appelsiini.net/2011/simple-usart-with-avr-libc
+
 void serial_init(void){
 	/*Inicialitza el modul i deixa la UART a punt per enviar/rebre
 	caracters de 8 bit a 9600 s-1, amb un bit d'stop, sense paritat
 	i en el mode asíncron.*/
 	UBRR0H = 0x00;
 	UBRR0L = 0x67;
-	UCSR0A = 0x20;
-	UCSR0B = 0x98;
-	UCSR0C = 0x06;
+	UCSR0A &= ~_BV(U2X0);
+	UCSR0B = _BV(RXEN0) | _BV(TXEN0) ;
+	UCSR0C = _BV(UCSZ01) | _BV(UCSZ00);
 	
 }
 
@@ -19,21 +33,17 @@ uint8_t serial_get(void){
 	no es llegeixi prou sovint es poden perdre caràcters.*/
 
 	uint8_t a;
-	bool b;
-	loop_until_bit_is_set(UCSR0A,7);
-	DDRD=0xFF;
-	PORTD=0xFF;	
-	a=UDR0;
+	loop_until_bit_is_set(UCSR0A,RXC0);
+
 	
-	
-	return a;
+	return UDR0;
 
 }
 
 void serial_put(uint8_t c){
 	/*Envia un byte pel port sèrie. En cas que estigui ocupat enviant
 	una altra dada, es bloqueja fins que l'enviament en curs acaba.*/
-	loop_until_bit_is_set(UCSR0A,5);
+	loop_until_bit_is_set(UCSR0A,UDRE0);
 	UDR0 = c;
 	
 }
@@ -43,8 +53,7 @@ bool serial_can_read(void){
 	aquesta funció retorna true es garanteix que una posterior crida a 
 	serial_get() no es bloquejará.*/
 
-	if ((UCSR0A & (1<<7))== true) return true;
-	else return false;
+	return bit_is_set(UCSR0A ,RXC0);
 }
 
 
