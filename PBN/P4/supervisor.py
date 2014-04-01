@@ -3,19 +3,28 @@ import serial
 
 def start():
     ser.write('R')
-
+    a=ser.readlines()
+    if a== "RESTART":
+        print "RESTART"
+    else:
+        print "error"
 
 def stop():
     ser.write('S')
+    a=ser.readlines()
+    if a== "SHUTDOWN":
+        print "SHUTDOWN"
+    else:
+        print "error"
 
 def emergency():
     ser.write('E')
- 
-def A():
-    ser.write('A')
-def B():
-    ser.write('B')
 
+    if a == "EMERGENCY":
+        print "EMERGENCY"
+    else:
+        print "error"
+        
 if __name__=="__main__":
     ser=serial.Serial('/dev/ttyACM0',9600)
     ser
