@@ -71,11 +71,6 @@ class Interpret(object):
                     print "Aquest metode no existeix"
             elif a[0]== "ajuda":
                 print "Les comandes disponibles són :" + str(["exit","start","stop","emergency"])
-            elif a[0]=="emergency":
-                print "EMERGENCY"
-                
-            elif a[0]=="stop":
-                print "S'ha aturat el semafor"
             else:
                 b = self._dcom[a[0]]
                
@@ -96,7 +91,7 @@ class Interpret(object):
             a = a.split()
             if a == []:
                 a = ["No command"]
-      
+        
         if self._omega!=None:
             self._omega()
     def set_begin(self,f):
