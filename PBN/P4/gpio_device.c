@@ -54,22 +54,4 @@ void pin_destroy(pin_t *const p){
 	(*p).pin=NULL;											// Està ficat aixi ja que sino surt un warning.
 
 }*/
-/*
-void main(void){											// Main de proba
-	bool i;
-	pin_t a;												// Creem un type de pin_t
-	pin_direction_t d;										// Creem una direcció
-	d=Output;
-	a=pin_create(&PORTD,6,d);								// Creem el pin (suposu que el port el ficarme sempre com a punter)
-	while(1){
-		i=pin_r(a);											// Llegim el valor del pin
-		pin_toggle(a);										// L'anirem canviat de on a off
-		_delay_loop_2(30000);								// Delay, ni idea de quant de temps és
-		_delay_loop_2(30000);
-		_delay_loop_2(30000);
-		_delay_loop_2(30000);
-	
-	}
-}
 
-*/

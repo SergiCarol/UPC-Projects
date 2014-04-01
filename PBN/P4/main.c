@@ -9,3 +9,4 @@ int main(void){
     tick_monitor();
     tick_semaphore();
   }
+ }
