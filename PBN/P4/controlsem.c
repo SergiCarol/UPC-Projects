@@ -1,9 +1,14 @@
-#include <stdint.h>
-#include <stdbool.h>
-/*Hacer un include de los modulos necesarios*/
-#define tick 100 /*¿Definir así el tiempo de tick?*/
+#include <stdio.h>
+#include "semaphore.h"
+#include "serial_device.h"
+#include "controlsem.h"
+#include <avr/io.h>
+#include <inttypes.h>
 
-
+#define Off 0
+#define Clear 2
+#define Approach 3
+#define Stop 4
 
 /*Definimos la variable state en global. Si no lo hacemos así tendremos problemas a la hora
 de acceder a esta variable.*/
@@ -20,7 +25,8 @@ uint8_t i;
 void controlsem_init(void){
 	/*Inicialitza el mòdul i el deixa a punt per a ser utilitzat. L'estat
 	inicial del semàfor és Off.*/
-	semaphore_control sempahore; 
+	semaphore_init();
+  	serial_init();
 }
 
 void tick_monitor(void){
@@ -87,12 +93,12 @@ void tick_semaphore(void){
 			else if(state == Approach){
 				semaphore_next();
 				state = Stop;
-				ticks = 60;
+				ticks_remaining = 60;
 			}
 			else if(state == Stop){
 				semaphore_next();
 				state = Clear;
-				ticks = 40;
+				ticks_remaining = 40;
 			}
 		}
 		else ticks_remaining--;
