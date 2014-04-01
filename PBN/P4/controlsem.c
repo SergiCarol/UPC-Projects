@@ -16,11 +16,11 @@ static semaphore_state_t state;
 /* Definimos la variable ticks remaining en global*/
 static uint8_t ticks_remaining;
 /*Definimos los mensajes que enviaremos*/
-char emergency[]="EMERGENCY";
-char shutdown[]="SHUTDOWN";
-char restart[]="RESTART";
+char emergency[]="EMERGENCY\n";
+char shutdown[]="SHUTDOWN\n";
+char restart[]="RESTART\n";
 
-uint8_t i;
+uint8_t i,block=0;
 
 void controlsem_init(void){
 	/*Inicialitza el mòdul i el deixa a punt per a ser utilitzat. L'estat
@@ -37,44 +37,69 @@ void tick_monitor(void){
 	if(serial_can_read()){	//Si hay algun tipo de información para leer, haz el proceso
 		char_order = serial_get();
 		if(char_order == 'E'){			//Si hemos recibido una 'E' (Emergency)
-				state = Clear;
-				semaphore_set(state);
-				ticks_remaining = 40;
-				/*Enviar el mensaje de "Emergency"*/
-				for(i=0;emergency[i]!=0;i++){
-					serial_put((uint8_t)emergency[i]);
+				if (block!=1 && state!=Off){
+					block=0;
+					state = Clear;
+					semaphore_set(state);
+					ticks_remaining = 40;
+								/*Enviar el mensaje de "Emergency"*/
+					for(i=0;emergency[i]<9;i++){
+						serial_put('E');
+						serial_put('M');
+						serial_put('E');
+						serial_put('R');
+						serial_put('G');
+						serial_put('E');
+						serial_put('N');
+						serial_put('C');
+						serial_put('Y');
+						serial_put(10);
+					}
+				}	
+				
+		}
+	
+		else if(char_order == 'S'){
+			if(state != Off){
+				state=state;
+				block=1;
+				for(i=0;i<=8;i++){
+					serial_put('S');
+					serial_put('H');
+					serial_put('U');
+					serial_put('T');
+					serial_put('D');
+					serial_put('O');
+					serial_put('W');
+					serial_put('N');
+					serial_put(10);
 				}
-				serial_put((uint8_t)'\r');	//Esta linea no sé para que sirve
-				serial_put((uint8_t)'\n');	//Esta linea no sé para que sirve
-		}
-	}
-	else if(char_order == 'S'){
-		if(state != Off){
-			state = Off;
-			semaphore_set(state);
-			/*Enviar el mensaje de "Emergency"*/
-			for(i=0;shutdown[i]!=0;i++){
-				serial_put((uint8_t)shutdown[i]);
 			}
-			serial_put((uint8_t)'\r');	//Esta linea no sé para que sirve
-			serial_put((uint8_t)'\n');	//Esta linea no sé para que sirve
-		}
 
 	}
-	else if(char_order == 'R'){
-		if(state == Off){
-			state = Clear;
-			semaphore_set(state);
-			ticks_remaining = 40;
-			/*Enviar el mensaje de "Emergency"*/
-			for(i=0;restart[i]!=0;i++){
-				serial_put((uint8_t)restart[i]);
+		else if(char_order == 'R'){
+			if(state == Off || block==1){
+				if (state==Off) {
+					state = Clear;
+					semaphore_set(state);
+					ticks_remaining = 40;
+				}
+				block=0;
+				/*Enviar el mensaje de "restart"*/
+				for(i=0;i<7;i++){
+					serial_put('R');
+					serial_put('E');
+					serial_put('S');
+					serial_put('T');
+					serial_put('A');
+					serial_put('R');
+					serial_put('T');
+					serial_put(10);
+				}
+				
 			}
-			serial_put((uint8_t)'\r');	//Esta linea no sé para que sirve
-			serial_put((uint8_t)'\n');	//Esta linea no sé para que sirve
 		}
 	}
-	
 }
 
 
@@ -83,8 +108,8 @@ void tick_semaphore(void){
 	semàfor i, si escau, canvia l'estat del semafor. Cal que tingui en
 	compte que el semafor pot estar apagat i, en aquest cas, no es
 	produeixen rotacions ni es comptabilitzen ticks.*/
-	if (state != SemaphoreOff){
-		if(ticks_remaining != 0){
+	if (state != Off){
+		if(ticks_remaining == 0){
 			if(state == Clear){
 				semaphore_next();
 				state = Approach;
@@ -101,6 +126,7 @@ void tick_semaphore(void){
 				ticks_remaining = 40;
 			}
 		}
-		else ticks_remaining--;
+		else{
+				if (block!=1) ticks_remaining--;}
 	}
 }
