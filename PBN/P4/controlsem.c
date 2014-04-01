@@ -43,7 +43,7 @@ void tick_monitor(void){
 					semaphore_set(state);
 					ticks_remaining = 40;
 								/*Enviar el mensaje de "Emergency"*/
-					for(i=0;emergency[i]<9;i++){
+					
 						serial_put('E');
 						serial_put('M');
 						serial_put('E');
@@ -53,17 +53,21 @@ void tick_monitor(void){
 						serial_put('N');
 						serial_put('C');
 						serial_put('Y');
-						serial_put(10);
-					}
-				}	
-				
+						serial_put('\n');
+						
+					
+				}
+				else {
+					serial_put('N');	
+					serial_put('\n');
+				}
 		}
 	
 		else if(char_order == 'S'){
 			if(state != Off){
 				state=state;
 				block=1;
-				for(i=0;i<=8;i++){
+				//for(i=0;i<=8;i++){
 					serial_put('S');
 					serial_put('H');
 					serial_put('U');
@@ -72,8 +76,8 @@ void tick_monitor(void){
 					serial_put('O');
 					serial_put('W');
 					serial_put('N');
-					serial_put(10);
-				}
+					serial_put('\n');
+				//}
 			}
 
 	}
@@ -86,7 +90,7 @@ void tick_monitor(void){
 				}
 				block=0;
 				/*Enviar el mensaje de "restart"*/
-				for(i=0;i<7;i++){
+				//for(i=0;i<7;i++){
 					serial_put('R');
 					serial_put('E');
 					serial_put('S');
@@ -94,8 +98,8 @@ void tick_monitor(void){
 					serial_put('A');
 					serial_put('R');
 					serial_put('T');
-					serial_put(10);
-				}
+					serial_put('\n');
+				//}
 				
 			}
 		}

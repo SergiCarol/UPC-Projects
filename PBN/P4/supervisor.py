@@ -7,16 +7,15 @@ def start():
     
     ser.write('R')
     a=ser.readline()
-    print a
-    if a == "RESTART":
+    if a == "RESTART\n":
         print "RESTART"
     else:
         print "error"
 def stop():
+    
     ser.write('S')
     b=ser.readline()
-    print b
-    if b == "SHUTDOWN":
+    if b == "SHUTDOWN\n":
         print "SHUTDOWN"
     else:
         print "error"
@@ -24,13 +23,13 @@ def stop():
 def ajuda():
     print " Les comanandes són : start , stop , emergency"
 def emergency():
+    
     ser.write('E')
     a=ser.readline()
-    print a
-    if a== "EMERGENCY":
+    if a== "EMERGENCY\n":
         print "EMERGENCY"
     else:
-        print "error"
+        print "Error : La comanda emergency no es pot utilitzar com inicialitzador ni com a restart després d'un stop "
 if __name__=="__main__":
     ser=serial.Serial('/dev/ttyACM0',9600)
     I= Interpret()
@@ -40,4 +39,4 @@ if __name__=="__main__":
     I.afegeix_ordre("emergency",emergency)
     I._prompt="***"
     I.run()
-    
+    ser.close()
