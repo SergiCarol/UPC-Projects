@@ -6,9 +6,8 @@
 #define Approach 3
 #define Stop 4
 
-static typedef struct {											// pin_t.port agafa el port
-	uint8_t  estat = 0;						
-	uint8_t ticks_remaining;
-} semaphore_control;
+void controlsem_init();
+void tick_monitor(void);
+void tick_semaphore(void);
 
 #endif
