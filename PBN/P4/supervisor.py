@@ -31,7 +31,7 @@ def emergency():
     else:
         print "Error : La comanda emergency no es pot utilitzar com inicialitzador ni com a restart després d'un stop "
 if __name__=="__main__":
-    ser=serial.Serial('/dev/ttyACM0',9600)                        # Incialitzem el port serie
+    ser=serial.Serial('/dev/ttyACM0',9600)   # Incialitzem el port serie
     I= Interpret()                                                # Cridem la classe interpet
     I.afegeix_ordre("ajuda",ajuda)                                # Afegim les ordres 
     I.afegeix_ordre("start",start)
