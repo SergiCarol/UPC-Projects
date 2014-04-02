@@ -3,11 +3,10 @@
 #include<util/delay.h>
 
 int main(void){
-  controlsem_init();
-  while(1){
-  	_delay_ms(100);
+  controlsem_init(); //Inicialitzem controlsem.
+  while(1){ //Creem bucle indefinidament.
+    _delay_ms(100); //Espera 100ms.
     tick_monitor();
-//    _delay_ms(2000);
     tick_semaphore();
   }
  }
