@@ -21,7 +21,7 @@ void semaphore_next(void){
   groc=pin_create(&PORTD, 6, d);
   vermell=pin_create(&PORTD, 7, d);
   
-  if (state==0 || state==4)
+  if (state==0 || state==4) 	// Comprovem si el estat es 0 o 4.
     state=2;
   else
     state++; //Incrementem valor de l'estat per passar al seguent.
@@ -54,7 +54,7 @@ void semaphore_set(semaphore_state_t s){
   groc=pin_create(&PORTD, 6, d);
   vermell=pin_create(&PORTD, 7, d);
 
-  state=s;
+  state=s; // Fiquem el estat global del semafor al estat s.
   switch(s){
   case 2: //SemaphoreClear
     pin_toggle(verd); //Comuta el valor del pin. 

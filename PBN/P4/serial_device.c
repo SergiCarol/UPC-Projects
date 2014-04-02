@@ -13,7 +13,7 @@
 
 
 
-/*					Bibliografia
+/*		  Bibliografia
  http://www.appelsiini.net/2011/simple-usart-with-avr-libc
 */
  
