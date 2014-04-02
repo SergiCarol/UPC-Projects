@@ -10,7 +10,7 @@ def start():
     if a == "RESTART\n":
         print "RESTART"
     else:
-        print "error"
+        print "Error :  El semafor ja està inicilitzat"
 def stop():
     
     ser.write('S')
@@ -18,7 +18,7 @@ def stop():
     if b == "SHUTDOWN\n":
         print "SHUTDOWN"
     else:
-        print "error"
+        print "Error : La comanda stop només es pot utilitzar si el semafor està ences"
 
 def ajuda():
     print " Les comanandes són : start , stop , emergency"

@@ -16,11 +16,9 @@ static semaphore_state_t state;
 /* Definimos la variable ticks remaining en global*/
 static uint8_t ticks_remaining;
 /*Definimos los mensajes que enviaremos*/
-char emergency[]="EMERGENCY\n";
-char shutdown[]="SHUTDOWN\n";
-char restart[]="RESTART\n";
 
-uint8_t i,block=0;
+
+uint8_t i;
 
 void controlsem_init(void){
 	/*Inicialitza el mòdul i el deixa a punt per a ser utilitzat. L'estat
@@ -37,23 +35,22 @@ void tick_monitor(void){
 	if(serial_can_read()){	//Si hay algun tipo de información para leer, haz el proceso
 		char_order = serial_get();
 		if(char_order == 'E'){			//Si hemos recibido una 'E' (Emergency)
-				if (block!=1 && state!=Off){
-					block=0;
+				if (state!=Off){
 					state = Clear;
 					semaphore_set(state);
 					ticks_remaining = 40;
 								/*Enviar el mensaje de "Emergency"*/
 					
-						serial_put('E');
-						serial_put('M');
-						serial_put('E');
-						serial_put('R');
-						serial_put('G');
-						serial_put('E');
-						serial_put('N');
-						serial_put('C');
-						serial_put('Y');
-						serial_put('\n');
+					serial_put('E');
+					serial_put('M');
+					serial_put('E');
+					serial_put('R');
+					serial_put('G');
+					serial_put('E');
+					serial_put('N');
+					serial_put('C');
+					serial_put('Y');
+					serial_put('\n');
 						
 					
 				}
@@ -65,42 +62,47 @@ void tick_monitor(void){
 	
 		else if(char_order == 'S'){
 			if(state != Off){
-				state=state;
-				block=1;
+				state=Off;
+				semaphore_set(state);
 				//for(i=0;i<=8;i++){
-					serial_put('S');
-					serial_put('H');
-					serial_put('U');
-					serial_put('T');
-					serial_put('D');
-					serial_put('O');
-					serial_put('W');
-					serial_put('N');
-					serial_put('\n');
+				serial_put('S');
+				serial_put('H');
+				serial_put('U');
+				serial_put('T');
+				serial_put('D');
+				serial_put('O');
+				serial_put('W');
+				serial_put('N');
+				serial_put('\n');
 				//}
 			}
-
+			else{
+				serial_put('J');
+				serial_put('\n');
+			}
 	}
 		else if(char_order == 'R'){
-			if(state == Off || block==1){
-				if (state==Off) {
-					state = Clear;
-					semaphore_set(state);
-					ticks_remaining = 40;
-				}
-				block=0;
+			if(state == Off){
+				state = Clear;
+				semaphore_set(state);
+				ticks_remaining = 40;
+				
 				/*Enviar el mensaje de "restart"*/
 				//for(i=0;i<7;i++){
-					serial_put('R');
-					serial_put('E');
-					serial_put('S');
-					serial_put('T');
-					serial_put('A');
-					serial_put('R');
-					serial_put('T');
-					serial_put('\n');
+				serial_put('R');
+				serial_put('E');
+				serial_put('S');
+				serial_put('T');
+				serial_put('A');
+				serial_put('R');
+				serial_put('T');
+				serial_put('\n');
 				//}
 				
+			}
+			else{
+				serial_put('J');
+				serial_put('\n');
 			}
 		}
 	}
@@ -131,6 +133,7 @@ void tick_semaphore(void){
 			}
 		}
 		else{
-				if (block!=1) ticks_remaining--;}
-	}
+			ticks_remaining--;}
+		
+}
 }
