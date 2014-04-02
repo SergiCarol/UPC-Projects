@@ -57,7 +57,7 @@ void semaphore_set(semaphore_state_t s){
   state=s; // Fiquem el estat global del semafor al estat s.
   switch(s){
   case 2: //SemaphoreClear
-    pin_toggle(verd); //Comuta el valor del pin. 
+    pin_w(verd,true); //Comuta el valor del pin. 
     pin_w(groc, false);
     pin_w(vermell, false);
     break;
