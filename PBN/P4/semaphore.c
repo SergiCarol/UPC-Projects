@@ -41,6 +41,8 @@ void semaphore_next(void){
     pin_w(vermell,true);
     state=1;
     break;
+  
+
   }
   
 }
