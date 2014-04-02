@@ -1,6 +1,6 @@
 #include "gpio_device.h"
-#include <stdio.h>
-// FUNCIONAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA TT que ilu
+#include <stdlib.h>
+
 
 #define DDR(p) ((p-1))  									// Allo que ha ficat el sbs per no tenir que fer port-1v(pero sense apunt)
 															// a el (*(p-1))
