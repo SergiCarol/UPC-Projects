@@ -1,9 +1,9 @@
 #include <stdio.h>
+#include <avr/io.h>
+#include <inttypes.h>
 #include "semaphore.h"
 #include "serial_device.h"
 #include "controlsem.h"
-#include <avr/io.h>
-#include <inttypes.h>
 
 #define Off 0
 #define Clear 2

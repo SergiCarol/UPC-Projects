@@ -1,7 +1,7 @@
 #ifndef __CONTROLSEM_H
 #define __CONTROLSEM_H
 
-#include <avr/sfr_defs.h>
+
 #include <stdint.h>
 #include <stdbool.h>
 
