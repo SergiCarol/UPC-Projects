@@ -13,8 +13,10 @@
 
 
 
-// la salvacio http://www.appelsiini.net/2011/simple-usart-with-avr-libc
-
+/*					Bibliografia
+ http://www.appelsiini.net/2011/simple-usart-with-avr-libc
+*/
+ 
 void serial_init(void){
 	/*Inicialitza el modul i deixa la UART a punt per enviar/rebre
 	caracters de 8 bit a 9600 s-1, amb un bit d'stop, sense paritat
