@@ -16,8 +16,8 @@ void semaphore_init(void){
 //Força le semafor a l'estat seguent.
 void semaphore_next(void){
   //Creem i associem els leds.
-  d=Output;
-  verd=pin_create(&PORTD, 5, d);
+  d=Output; //Especifiquem variable pin_direction_t com a sortida.
+  verd=pin_create(&PORTD, 5, d); //Associem el port, el pin i el mode.
   groc=pin_create(&PORTD, 6, d);
   vermell=pin_create(&PORTD, 7, d);
   
@@ -28,7 +28,7 @@ void semaphore_next(void){
  
   switch(state){
   case 2: //SemaphoreClear
-    pin_w(verd,true);
+    pin_w(verd,true); //Activa o desactiva el pin segons el boolea.
     pin_w(groc, false);
     pin_w(vermell, false);
     break;
@@ -57,7 +57,7 @@ void semaphore_set(semaphore_state_t s){
   state=s;
   switch(s){
   case 2: //SemaphoreClear
-    pin_toggle(verd);
+    pin_toggle(verd); //Comuta el valor del pin. 
     pin_w(groc, false);
     pin_w(vermell, false);
     break;
