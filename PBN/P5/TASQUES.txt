@@ -1,14 +1,12 @@
 Enric Lenard:
 	
 	Semaph
-	Queue
 	Crossing
 
 Sergi Carol
 
 	Lamp
 	Serial
-	Control
 
 David Martin
 
