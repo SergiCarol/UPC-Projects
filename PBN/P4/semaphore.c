@@ -15,29 +15,35 @@ void semaphore_init(void){
 
 //Força le semafor a l'estat seguent.
 void semaphore_next(void){
-  //Creem i associem els leds.
-  d=Output; //Especifiquem variable pin_direction_t com a sortida.
-  verd=pin_create(&PORTD, 5, d); //Associem el port, el pin i el mode.
+  //Especifiquem variable pin_direction_t com a sortida.
+  d=Output; 
+  //Associem el port, el pin i el mode.
+  verd=pin_create(&PORTD, 5, d); 
   groc=pin_create(&PORTD, 6, d);
   vermell=pin_create(&PORTD, 7, d);
-  
-  if (state==0 || state==4) 	// Comprovem si el estat es 0 o 4.
+  // Comprovem si el estat es 0 o 4.
+  if (state==0 || state==4) 	
     state=2;
   else
-    state++; //Incrementem valor de l'estat per passar al seguent.
+    //Incrementem valor de l'estat per passar al seguent.
+    state++; 
  
   switch(state){
-  case 2: //SemaphoreClear
-    pin_w(verd,true); //Activa o desactiva el pin segons el boolea.
+    //SemaphoreClear
+  case 2:
+    //Activa o desactiva el pin segons el boolea.
+    pin_w(verd,true); 
     pin_w(groc, false);
     pin_w(vermell, false);
     break;
-  case 3: //SemaphoreApproach
+    //SemaphoreApproach
+  case 3: 
     pin_w(verd, false);    
     pin_w(groc,true);
     pin_w(vermell, false);
     break;
-  case 4: //SemaphoreStop
+    //SemaphoreStop
+  case 4: 
     pin_w(verd, false);
     pin_w(groc, false);
     pin_w(vermell,true);
@@ -53,25 +59,30 @@ void semaphore_set(semaphore_state_t s){
   verd=pin_create(&PORTD, 5, d);
   groc=pin_create(&PORTD, 6, d);
   vermell=pin_create(&PORTD, 7, d);
-
-  state=s; // Fiquem el estat global del semafor al estat s.
+  //Fiquem el estat global del semafor al estat s.
+  state=s; 
   switch(s){
-  case 2: //SemaphoreClear
-    pin_w(verd,true); //Comuta el valor del pin. 
+    //SemaphoreClear
+  case 2: 
+    //Comuta el valor del pin.
+    pin_w(verd,true);  
     pin_w(groc, false);
     pin_w(vermell, false);
     break;
-  case 3: //SemaphoreApproach
+    //SemaphoreApproach
+  case 3: 
     pin_w(verd, false);    
     pin_toggle(groc);
     pin_w(vermell, false);
     break;
-  case 4: //SemaphoreStop
+    //SemaphoreStop
+  case 4: 
     pin_w(verd, false);
     pin_w(groc, false);
     pin_toggle(vermell);
     break;
-  default: //SemaphoreOff
+    //SemaphoreOff
+  default: 
     pin_w(verd, false);
     pin_w(groc, false);
     pin_w(vermell, false);
