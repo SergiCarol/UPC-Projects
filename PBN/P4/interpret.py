@@ -1,14 +1,14 @@
+
 # -*- encoding:utf-8 -*-
 
 class Interpret(object):
     """
-    El modul interpret serà l'encarregat de interpretar totes les ordres que li arribin de l'usuari, i traspassar aquestes ordres en
-    processos que podrà fer el programa.
+    El modul interpret serà l'encarregat de interpretar totes les ordres que li arribin de l'usuari, i traspassar aquestes ordres en processos que podrà fer el programa.
     """
     def __init__(self):
         """
         Aquí definirem la nova classe de interpret.
-
+        
         >>> p = Interpret()
         """
         self._prompt = ""
@@ -16,17 +16,13 @@ class Interpret(object):
         self._alpha=None
         self._omega=None
     def set_prompt(self,p):
-  
         self._prompt = p
 
     def afegeix_ordre(self,nomc,ordre):
         """
-        Modificador. Afegeix a l'interpret una ordre de nom nomc associada a la
-        funció ordre. Si ja existia una ordre amb aquest nom, es queixa.
-        Noteu que el tercer paràmetre del mètode es una funció!.
+        Modificador. Afegeix a l'interpret una ordre de nom nomc associada a la funció ordre. Si ja existia una ordre amb aquest nom, es queixa. Noteu que el tercer paràmetre del mètode es una funció!.
 
-        La funció de nom ordre es una funció que té com a únic paràmetre una
-        llista de strings.
+        La funció de nom ordre es una funció que té com a únic paràmetre una llista de strings.
 
         >>> p = Interpret()
         >>> p.prompt = "**"
@@ -47,15 +43,11 @@ class Interpret(object):
 
     def run(self):
 	"""
-	Arrenca l'execució d'aquest intèrpret d'ordres. L'intèrpret
-	s'executa indefinidament fins que l'usuari escriu l'ordre surt.
+	Arrenca l'execució d'aquest intèrpret d'ordres. L'intèrpret s'executa indefinidament fins que l'usuari escriu l'ordre surt.
 	
-	A cada cicle d'interpretació, l'interpret escriu el prompt,
-	llegeix un string del teclat, l'analitza separant els mots que
-	el formen.
+	A cada cicle d'interpretació, l'interpret escriu el prompt, llegeix un string del teclat, l'analitza separant els mots que el formen.
 
-	Finalment, executa l'acció corresponent amb els modificadors
-	que li haguem enviat.
+	Finalment, executa l'acció corresponent amb els modificadors que li haguem enviat.
 	"""
         print "\t\t\t Benvingut al interpret"
         if self._alpha !=None:
