@@ -14,7 +14,7 @@ void semaph_init(semaph_t *const s, volatile unit8_t *port, unit8_t pin){
   state = SemOff;  
 }
 
-void semaph_set(semaph_t *const sem, semaph_state_t s){
+void semaph_set(semaph_t *const sem, semaph_state_t s){//Fer amb LAMP
   d=Output;
   verd=pin_create(&PORTD, 5, d);
   groc=pin_create(&PORTD, 6, d);
