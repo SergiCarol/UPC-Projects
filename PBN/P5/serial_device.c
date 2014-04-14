@@ -36,15 +36,15 @@ uint8_t serial_get(void){
 	
   	uint8_t a;
   	loop_until_bit_is_set(UCSR0A,RXC0);
-  	a=queue_front(&tx);
-  	queue_dequeue(&tx);
+  	a=queue_front(&rx);
+  	queue_dequeue(&rx);
   	return a;
 }
 
 void serial_put(uint8_t c){
   	
   	loop_until_bit_is_set(UCSR0A,UDRE0);
-  	queue_enqueue(&rx,c);
+  	queue_enqueue(&tx,c);
 }
 
 bool serial_can_read(void){
