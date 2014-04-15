@@ -15,14 +15,15 @@ int main(void){
     semaph_set(&s,a);
     _delay_ms(1000);
     semaph_set(&s,b);
-    _delay_ms(1000);
-    d=semaph_get(s);
+   
     _delay_ms(1000);
     semaph_set(&s,c);
     _delay_ms(1000);
     semaph_set(&s,h);
     _delay_ms(1000);
     semaph_set(&s,d);
+    _delay_ms(1000);
+    d=semaph_get(s);
   }
   return 0;
 }
