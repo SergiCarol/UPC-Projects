@@ -5,9 +5,6 @@
 #include "semaph.h"
 
 
-//Creem variables unicament per aquest modul.
-static semaph_t state;  
-/*static lamp_t green, yellow, red;*/
 
 //Inicialitzem el modul i posem l'estat a SemaphoreOff.
 void semaph_init(semaph_t *const s, volatile uint8_t *port_green, uint8_t pin_green, volatile uint8_t *port_yell, uint8_t pin_yell,volatile uint8_t *port_red, uint8_t pin_red){
@@ -17,8 +14,8 @@ void semaph_init(semaph_t *const s, volatile uint8_t *port_green, uint8_t pin_gr
 
 void semaph_set(semaph_t *const sem, semaph_state_t s){
   //Fiquem el estat global del semafor al estat s.
-  state.s=s; 
-  switch(state.s){
+  (*sem).s=s; 
+  switch(s){
     //SemaphoreClear
   case SemClear: 
     //Comuta el valor del pin.
