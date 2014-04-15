@@ -17,8 +17,8 @@ static queue_t tx , rx;
 
 void serial_open(void){
 
-	queue_empty(tx);
-	queue_empty(rx);
+	queue_empty(&tx);
+	queue_empty(&rx);
   	UBRR0H = 0x00;
   	UBRR0L = 0x67;
   	UCSR0A &= ~_BV(U2X0);
@@ -28,7 +28,7 @@ void serial_open(void){
 }
 
 void serial_close(void){
-	UCSR0B &= ~(_BV(RXCIE0) | _BV(RXEN0) | _BV(TXEN0))
+	UCSR0B &= ~(_BV(RXCIE0) | _BV(RXEN0) | _BV(TXEN0));
 	cli();
 }
 
@@ -51,7 +51,7 @@ bool serial_can_read(void){
 	if (bit_is_set(UCSR0A ,RXC0)==true) return true;
 	else return false;
 }
-ISR(USART_RXC_vect){
+ISR(USART_RX_vect){
 	uint8_t c;
 	
 	UCSR0B |= (_BV(UDRIE0));
