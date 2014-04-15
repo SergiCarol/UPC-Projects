@@ -4,16 +4,26 @@
 int main(void){
   
   semaph_t s;
-  semaph_state_t a;
+  semaph_state_t a,b,c,h;
   a=SemClear;
-  (*s).s=SemOff;
+  b=SemApproach;
+  c=SemStop;
+  s.s=SemOff;
   semaph_init(&s, &PORTD, 5, &PORTD, 6, &PORTD, 7);
-  semaph_set(s, a);
-
+  
   while(1){
-    _delay_loop_ms(100);
-    a=semaph_get(s);
-    semaph_set(s,a);
+    _delay_ms(1000);
+    semaph_set(&s,a);
+    _delay_ms(1000);
+    semaph_set(&s,b);
+    _delay_ms(1000);
+    semaph_set(&s,c);
+    _delay_ms(1000);
+    semaph_set(&s,h);
+    _delay_ms(1000);
+    h=semaph_get(&s);
+    _delay_ms(1000);
+    semaph_set(&s,h);
   }
   return 0;
 }
