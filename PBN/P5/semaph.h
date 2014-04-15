@@ -1,5 +1,6 @@
 #ifndef __SEMAPH_H
 #define __SEMAPH_H
+#include "lamp.h"
 
 typedef enum{
   SemOff,
