@@ -2,7 +2,7 @@
 #include <avr/io.h>
 #include <stdbool.h>
 #include <stdint.h>
-#include "serial_device.h"
+#include "serial.h"
 #include "queue.h"
 
 #define BAUD_RATE 9600
@@ -22,7 +22,7 @@ void serial_open(void){
 	queue_empty(&rx);
   	UBRR0H = 0x00;
   	UBRR0L = 0x67;
-  	UCSR0A &= ~_BV(U2X0);
+  	UCSR0A = _BV(UDRE0);
   	UCSR0B = _BV(RXCIE0) | _BV(RXEN0) | _BV(TXEN0);
   	UCSR0C = _BV(UCSZ01) | _BV(UCSZ00);
   	sei();
@@ -44,9 +44,9 @@ uint8_t serial_get(void){
 }
 
 void serial_put(uint8_t c){
-  	
-  	loop_until_bit_is_set(UCSR0A,UDRE0);
+ 	while (queue_is_full(&tx));
   	queue_enqueue(&tx,c);
+  	UCSR0B |= (_BV(UDRIE0));
 }
 
 bool serial_can_read(void){
@@ -55,18 +55,20 @@ bool serial_can_read(void){
 }
 ISR(USART_RX_vect){
 	uint8_t c;
-	
+	/*
 	UCSR0B |= (_BV(UDRIE0));
-	c = UDR0;
-	serial_put(c);
+	serial_put(UDR0);
+	c=UDR0;*/
+	queue_enqueue(&rx, UDR0);
 }
 
 ISR(USART_UDRE_vect){
+	
 	uint8_t a;
-
 	if (queue_is_empty(&tx)==false){
-		a = serial_get();
-		UDR0 = a;
+		UDR0 = queue_front(&tx);
+		queue_dequeue(&tx);
+		  
 	}
 	else UCSR0B &= ~(_BV(UDRIE0));
 }
