@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include "serial_device.h"
 #include "queue.h"
+
 #define BAUD_RATE 9600
 #define CLK_BY100 F_CPU/100
 #define BDR 16*BAUD_RATE/100
@@ -28,6 +29,7 @@ void serial_open(void){
 }
 
 void serial_close(void){
+	loop_until_bit_is_set(UCSR0A,UDRE0);
 	UCSR0B &= ~(_BV(RXCIE0) | _BV(RXEN0) | _BV(TXEN0));
 	cli();
 }
