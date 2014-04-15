@@ -16,6 +16,6 @@ typedef struct{
 
 void semaph_init(semaph_t *const s, volatile uint8_t *port_green, uint8_t pin_green, volatile uint8_t *port_yell, uint8_t pin_yell,volatile uint8_t *port_red, uint8_t pin_red);
 void semaph_set(semaph_t *const sem, semaph_state_t s);
-semaph_state_t sempah_get(const semaph_t sem);
+semaph_state_t semaph_get(const semaph_t sem);
 
 #endif
