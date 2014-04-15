@@ -2,7 +2,6 @@ Enric Lenard:
 	
 	Semaph
 	Crossing
-	Blck_serial
 
 Sergi Carol
 
