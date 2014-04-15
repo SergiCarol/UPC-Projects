@@ -37,7 +37,7 @@ void serial_close(void){
 uint8_t serial_get(void){
 	
   	uint8_t a;
-  	loop_until_bit_is_set(UCSR0A,RXC0);
+  	while (queue_is_empty(&rx));
   	a=queue_front(&rx);
   	queue_dequeue(&rx);
   	return a;
@@ -50,8 +50,8 @@ void serial_put(uint8_t c){
 }
 
 bool serial_can_read(void){
-	if (bit_is_set(UCSR0A ,RXC0)==true) return true;
-	else return false;
+	if (queue_is_empty(&rx)==true) return false;
+	else return true;
 }
 ISR(USART_RX_vect){
 	uint8_t c;

@@ -6,17 +6,7 @@
 int main(void){
   uint8_t a;
   serial_open();
-    
-    /*a=serial_get();
-    if (a=='A') {
-      DDRD=0xFF;
-      PORTD=0xFF;
-    }
-    else if (a=='B'){
-      DDRD=0x00;
-      PORTD=0x00;
-    }*/
-  _delay_ms(2000);
+
  	serial_put('m');
   serial_put('a');
   serial_put('r');
@@ -25,6 +15,14 @@ int main(void){
  	serial_put('t');
  	serial_put('a');
  	serial_put('\0');
+  /*
+    while (1){
+    a=serial_get();
+    _delay_ms(1000);
+    serial_put(a);
+    _delay_ms(1000);
+  }*/
+  serial_close();
   return 0;
 }
 	
