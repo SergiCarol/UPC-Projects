@@ -13,7 +13,6 @@ int readline(char s[],uint8_t m){
 	uint8_t i=0,a;
 	while (m!=i || ispunct(s[i])){
 		a=serial_get();
-		serial_put(a);
 		s[i] = a;
 		i++;
 	}
