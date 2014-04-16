@@ -16,9 +16,7 @@ bool queue_is_empty(const queue_t *const q){
 }
 
 bool queue_is_full(const queue_t *const q){
-  if (q->cont==MIDA_BUFF-1){
-    DDRB=0xff;
-    PORTB=0xff;}
+  if (q->cont==MIDA_BUFF-1){}
   return (q->cont==MIDA_BUFF-1);
 }
 
