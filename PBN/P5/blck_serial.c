@@ -24,17 +24,6 @@ int main(void){
   	uint8_t i=0,c;
   	serial_open();
   	char j[]="aasdfghasdfgbh";
-  	while(j[i]!='\0'){
-    	serial_put(j[i]);
-    	i+=1;
-	}
- 	//print(s);
- 	/*serial_put(s[0]);
-	serial_put(s[1]);
-	serial_put(s[2]);
-	serial_put(s[3]);
-	serial_put(s[4]);
-	serial_put(s[5]);
-	serial_put('\0');*/
+  	print(j);
 	serial_close();
 } 
