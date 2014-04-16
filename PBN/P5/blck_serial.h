@@ -4,6 +4,7 @@
 #include <avr/io.h>
 #include <stdbool.h>
 #include <stdint.h>
+#include <ctype.h>
 #include "serial.h"
 
 void print(char s[]);

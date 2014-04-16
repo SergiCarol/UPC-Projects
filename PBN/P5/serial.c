@@ -55,16 +55,11 @@ bool serial_can_read(void){
 }
 ISR(USART_RX_vect){
 	uint8_t c;
-	/*
-	UCSR0B |= (_BV(UDRIE0));
-	serial_put(UDR0);
-	c=UDR0;*/
 	queue_enqueue(&rx, UDR0);
 }
 
 ISR(USART_UDRE_vect){
 	
-	uint8_t a;
 	if (queue_is_empty(&tx)==false){
 		UDR0 = queue_front(&tx);
 		queue_dequeue(&tx);

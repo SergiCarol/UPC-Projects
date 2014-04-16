@@ -19,7 +19,8 @@ void queue_empty(queue_t *const q){
 
 bool queue_is_empty(const queue_t *const q){
   //Retorna true ssi q es buida.
-  return (q->inici==q->final);
+    return (q->inici==q->final);
+  
 }
 
 bool queue_is_full(const queue_t *const q){
