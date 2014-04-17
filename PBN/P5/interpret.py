@@ -50,6 +50,7 @@ class Interpret(object):
 	Finalment, executa l'acció corresponent amb els modificadors que li haguem enviat.
 	"""
         print "\t\t\t Benvingut al interpret"
+        print "Les comanandes són : start , stop , estat_A, estat_B, force_A i force_B"
         if self._alpha !=None:
             self._alpha()
         a = raw_input(self._prompt)
