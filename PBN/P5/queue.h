@@ -1,16 +1,16 @@
-#ifndef __QUEUE_H
-#define __QUEUE_H
+#ifndef QUEUE_H
+#define QUEUE_H
 
+#define MIDA_BUFF 20
 #include <stdbool.h>
 #include <inttypes.h>
-#define ELEMENTS 20
 
 typedef struct
 {
-  uint8_t memoria[ELEMENTS];
-  uint8_t comptador;
-  uint8_t punter_lectura;
-  uint8_t punter_escritura;     
+  uint8_t queue[MIDA_BUFF];
+  uint8_t writePointer;
+  uint8_t readPointer;
+  uint8_t cont;       
 } queue_t;
 
 void queue_empty(queue_t *const q);

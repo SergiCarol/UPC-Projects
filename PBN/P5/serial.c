@@ -35,7 +35,6 @@ void serial_close(void){
 }
 
 uint8_t serial_get(void){
-	
   	uint8_t a;
   	while (queue_is_empty(&rx));
   	a=queue_front(&rx);
@@ -59,12 +58,12 @@ ISR(USART_RX_vect){
 }
 
 ISR(USART_UDRE_vect){
-	
 	if (queue_is_empty(&tx)==false){
 		UDR0 = queue_front(&tx);
 		queue_dequeue(&tx);
 		  
 	}
-	else UCSR0B &= ~(_BV(UDRIE0));
+	else {
+		UCSR0B &= ~(_BV(UDRIE0));
+	}
 }
-
