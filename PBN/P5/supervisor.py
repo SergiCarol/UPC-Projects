@@ -4,25 +4,25 @@ from interpret import Interpret
 import serial
 
 def forceA():
-    ser.write("forceA")
+    ser.write("forcA")
     a=ser.readline()
-    if a == "encesA\n":
+    if a == "encesA\r\n":
         print "El semafor A està en verd"
     else:
         print "Error: el semafor no s'ha pogut ficar en verd"
 
 def forceB():
-    ser.write("forceB")
+    ser.write("forB")
     a=ser.readline()
-    if a == "encesB\n":
+    if a == "encesB\r\n":
         print "El semafor B està en verd"
     else:
         print "Error: el semafor no s'ha pogut ficar en verd"
 
 def stop():
-    ser.write("control_off")
+    ser.write("C_of")
     b=ser.readline()
-    if b == "apagat\n":                                                   
+    if b == "apagat\r\n":                                                   
         print "Shutdown"
     else:
         print "Error : La comanda stop només es pot utilitzar si el semafor està ences"
@@ -31,28 +31,22 @@ def ajuda():
     print " Les comanandes són : start , stop , estat_A, estat_B, force_A i force_B"
 
 def start():
-    ser.write("control_on")
+    ser.write("C_on")
     a=ser.readline()
-    if a== "ences\n":
+    if a== "control_on\r\n":
         print "Els semafors s'han engegat correctament"
     else:
         print "Error 404: Semafors not found "
 
 def stateA():
-	ser.write("estatA")
+    ser.write("estatA")
     a=ser.readline()
-   	if a!="semoff\n":
-   		print a
-   	else:
-   		print "Error"
+    print a
 
 def stateB():
-	ser.write("estatB")
+    ser.write("estatB")
     a=ser.readline()
-   	if a!="semoff\n":
-   		print a
-   	else:
-   		print "Error"
+    print a
 
 
 if __name__=="__main__":
