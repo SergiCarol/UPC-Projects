@@ -1,10 +1,11 @@
+#!/usr/bin/python
 # -*- encoding:utf-8 -*-
 
 from interpret import Interpret
 import serial
 
 def forceA():
-    ser.write("forcA")
+    ser.write("Fora")
     a=ser.readline()
     if a == "encesA\r\n":
         print "El semafor A està en verd"
@@ -12,7 +13,7 @@ def forceA():
         print "Error: el semafor no s'ha pogut ficar en verd"
 
 def forceB():
-    ser.write("forB")
+    ser.write("Forb")
     a=ser.readline()
     if a == "encesB\r\n":
         print "El semafor B està en verd"
@@ -33,6 +34,7 @@ def ajuda():
 def start():
     ser.write("C_on")
     a=ser.readline()
+
     if a== "control_on\r\n":
         print "Els semafors s'han engegat correctament"
     else:
