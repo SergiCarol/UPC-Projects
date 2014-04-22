@@ -13,6 +13,7 @@ int main(void){
   serial_open();
   while (1){
     a=readline(s,4);
+ 
     
     if ((s[0]=='A') && (s[1]=='_') && (s[2]=='o') && (s[3]=='n')){
       estat=control_get_state(StreetB);
@@ -54,23 +55,23 @@ int main(void){
     else if ((s[0]=='A') && (s[1]=='v') && (s[2]=='a') && (s[3]=='l')){
       estat=control_get_state(StreetA);
       if (estat==SemOff){
-	char j[]="El semafor A esta APAGAT\r\n";
+	char j[]="El semafor A esta APAGAT";
 	print(j);				
       }
       else if (estat==SemClear){
-	char j[]="El semafor A esta VERD\r\n";
+	char j[]="El semafor A esta VERD";
 	print(j);				
       }
       else if (estat==SemApproach){
-	char j[]="El semafor A esta AMBAR\r\n";
+	char j[]="El semafor A esta AMBAR";
 	print(j);				
       }
       else if (estat==SemStop){
-	char j[]="El semafor A esta VERMELL\r\n";
+	char j[]="El semafor A esta VERMELL";
 	print(j);				
       }
       else {
-	char j[]="Error:No s'ha trobat l'estat\r\n";
+	char j[]="Error:No s'ha trobat l'estat";
 	print(j);
       }
     }
@@ -78,23 +79,23 @@ int main(void){
     else if ((s[0]=='B') && (s[1]=='v') && (s[2]=='a') && (s[3]=='l')){
       estat=control_get_state(StreetB);
       if (estat==SemOff){
-	char j[]="El semafor B esta APAGAT\r\n";
+	char j[]="El semafor B esta APAGAT";
 	print(j);				
       }
       else if (estat==SemClear){
-	char j[]="El semafor B esta VERD\r\n";
+	char j[]="El semafor B esta VERD";
 	print(j);				
       }
       else if (estat==SemApproach){
-	char j[]="El semafor B esta AMBAR\r\n";
+	char j[]="El semafor B esta AMBAR";
 	print(j);				
       }
       else if (estat==SemStop){
-	char j[]="El semafor B esta VERMELL\r\n";
+	char j[]="El semafor B esta VERMELL";
 	print(j);				
       }
       else {
-	char j[]="Error:No s'ha trobat l'estat\r\n";
+	char j[]="Error:No s'ha trobat l'estat";
 	print(j);
       }
     }
