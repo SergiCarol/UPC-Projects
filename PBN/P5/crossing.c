@@ -77,7 +77,7 @@ int main(void){
 	print(j);
 	
       }
-    }
+    }fgh
     else if (a=="estatB"){
       
       estat=control_get_state(StreetB);
