@@ -5,6 +5,8 @@ carrer SemB;
 
 control_carrer control;
 
+/* http://www.avrfreaks.net/index.php?name=PNphpBB2&file=viewtopic&t=50106 */
+
 #define Input_Frequency 16000000
 #define Target_Frequency 100
 #define Prescale 64
