@@ -3,22 +3,28 @@
 #include <avr/interrupt.h>
 
 void print(char s[]){
-	uint8_t i=0, c;
-    while(s[i]!='\0'){
-      	serial_put(s[i]);
-      	i++;
-	}
-	serial_put('\r');
-	serial_put('\n');
+  /* Envia pel port serie tots el elements de la taula s
+     fins que troba un simbol de final de paraula */
+  uint8_t i=0, c;
+  while(s[i]!='\0'){
+    serial_put(s[i]);
+    i++;
+  }
+  serial_put('\r');
+  serial_put('\n');
 }
 
 int readline(char s[],uint8_t m){
-	uint8_t i=0,a;
-	while (m!=i || isprint(s[i])){
-		a=serial_get();
-		s[i] = a;
-		i++;
-	}
-	s[i]='\0';
-	return i;
+  /* Llegeix un numero de caracters m pel port serie
+     i els fica en la taula s, en el cas de que es llegeixi
+     un caracter no printable deixa de llegir */
+
+  uint8_t i=0,a;
+  while (m!=i || isprint(s[i])){
+    a=serial_get();
+    s[i] = a;
+    i++;
+  }
+  s[i]='\0';
+  return i;
 }
