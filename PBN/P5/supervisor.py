@@ -27,7 +27,6 @@ def forceB():
 def stop():
     ser.write("H\r\n")
     a=ser.readline()
-    print a
     if a == "apagat\r\n":                                                   
         print "Shutdown\r\n"
     else:
@@ -69,7 +68,7 @@ if __name__=="__main__":
     I.afegeix_ordre("force_A",forceA)
     I.afegeix_ordre("force_B",forceB)
     I._prompt="***"
-    I.run()
     print "Inicializant el Interpret... \n"
     time.sleep(1.5)
+    I.run()
     ser.close()
