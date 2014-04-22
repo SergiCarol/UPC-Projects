@@ -20,10 +20,12 @@ int readline(char s[],uint8_t m){
      un caracter no printable deixa de llegir */
 
   uint8_t i=0,a;
-  while (m!=i || isprint(s[i])){
-    a=serial_get();
-    s[i] = a;
-    i++;
+  a=serial_get();
+  while (m!=i && isgraph(a)){
+      s[i] = a;
+      i++;
+      a=serial_get();
+    
   }
   s[i]='\0';
   return i;
