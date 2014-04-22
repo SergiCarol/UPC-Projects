@@ -1,5 +1,12 @@
 #ifndef CONTROL
 #define CONTROL
+#include <stdio.h>
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <inttypes.h>
+#include "lamp.h"
+#include "semaph.h"
+
 
 typedef enum {StreetA, StreetB} street_t;
 

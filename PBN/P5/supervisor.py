@@ -14,6 +14,7 @@ def forceA():
 
 def forceB():
     ser.write("Forb")
+    print "passo per aqui"
     a=ser.readline()
     if a == "encesB\r\n":
         print "El semafor B està en verd"
@@ -63,7 +64,7 @@ if __name__=="__main__":
     I.afegeix_ordre("estat_A",stateA)
     I.afegeix_ordre("estat_B",stateB)
     I.afegeix_ordre("force_A",forceA)
-    I.afegeix_ordre("force_B",forceA)
+    I.afegeix_ordre("force_B",forceB)
     I._prompt="***"
     I.run()
     ser.close()

@@ -1,13 +1,9 @@
-#include <stdio.h>
-#include <avr/io.h>
-#include <avr/interrupt.h>
-#include <inttypes.h>
-#include "lamp.h"
-#include "semaph.h"
 #include "control.h"
 
 carrer SemA;
 carrer SemB;
+
+control_carrer control;
 
 #define Input_Frequency 16000000
 #define Target_Frequency 100
@@ -26,13 +22,13 @@ void control_init(void){
   OCR1AL = (uint8_t)(Target);
   	//-----------------------
   semaph_init(&(SemA.state), &PORTD, 5, &PORTD, 6, &PORTD, 7);
-  semaph_init(&(SemB.state), &PORTD, 4, &PORTC, 2, &PORTC, 3);
+  semaph_init(&(SemB.state), &PORTD, 4, &PORTC, 3, &PORTC, 2);
   	//Pongo los dos semaforos apagados
-  /*(semaphore_set(&(SemA.state),SemOff);
-  semaphore_set(&(SemB.state),SemOff);*/
+  semaph_set(&(SemA.state),SemOff);
+  semaph_set(&(SemB.state),SemOff);
 
   	/*Esta es la parte "propia"*/
-  	control_carrer.estat = Off;
+  (control).estat = Off;
 
   	//Activar interrupciones
   sei();
@@ -43,35 +39,35 @@ void control_force(street_t s){
 	establerts (vegeu descripció posterior).*/
 
 	//AQUI DEBERIA QUITAR LAS INTERRUPCIONES
-	if(control_carrer.estat == Off){
+	if(control.estat != Off){
 		if(s == StreetA){
-			if(control_carrer.estat == Aclear) control_carrer.ticks = 80;
-			else if(control_carrer.estat == AtoB){
-				control_carrer.ticks = 80;
-				control_carrer.estat = Aclear;
-				semaphore_set(&(SemA.state),SemClear);
-  				semaphore_set(&(SemB.state),SemStop);
+			if(control.estat == Aclear) control.ticks = 80;
+			else if(control.estat == AtoB){
+				control.ticks = 80;
+				control.estat = Aclear;
+				semaph_set(&(SemA.state),SemClear);
+  			semaph_set(&(SemB.state),SemStop);
 			}
-			else if(control_carrer.estat == Bclear){
-				control_carrer.ticks = 20;
-				control_carrer.estat = BtoA;
-				semaphore_set(&(SemA.state),SemStop);
-  				semaphore_set(&(SemB.state),SemApproach);
+			else if(control.estat == Bclear){
+				control.ticks = 20;
+				control.estat = BtoA;
+				semaph_set(&(SemA.state),SemStop);
+  				semaph_set(&(SemB.state),SemApproach);
 			}
 		}
 		if(s == StreetB){
-			if(control_carrer.estat == Bclear) control_carrer.ticks = 100;
-			else if(control_carrer.estat == BtoA){
-				control_carrer.ticks = 100;
-				control_carrer.estat = Bclear;
-				semaphore_set(&(SemA.state),SemStop);
-  				semaphore_set(&(SemB.state),SemClear);
+			if(control.estat == Bclear) control.ticks = 100;
+			else if(control.estat == BtoA){
+				control.ticks = 100;
+				control.estat = Bclear;
+				semaph_set(&(SemA.state),SemStop);
+  				emaph_set(&(SemB.state),SemClear);
 			}
-			else if(control_carrer.estat == Aclear){
-				control_carrer.ticks = 20;
-				control_carrer.estat = AtoB;
-				semaphore_set(&(SemA.state),SemApproach);
-  				semaphore_set(&(SemB.state),SemStop);
+			else if(control.estat == Aclear){
+				control.ticks = 20;
+				control.estat = AtoB;
+				semaph_set(&(SemA.state),SemApproach);
+  				semaph_set(&(SemB.state),SemStop);
 			}
 		}
 	}
@@ -81,21 +77,21 @@ void control_force(street_t s){
 void control_off(void){
 	/*Apaga els semàfors de la cruïlla.*/
 	TIMSK1 &= ~_BV(OCIE1A);//COSA QUE NO SE PARA QUE SIRVE
-	semaphore_set(&(SemA.state),SemOff);
-  	semaphore_set(&(SemB.state),SemOff);
-  	control_carrer.estat = Off;
+	semaph_set(&(SemA.state),SemOff);
+  	semaph_set(&(SemB.state),SemOff);
+  	control.estat = Off;
 }
 
 void control_on(void){
 	/*Engega els semàfors de la cruïlla.*/
-	tCNT1H = 0;//COSA QUE NO SE PARA QUE SIRVE
+	  TCNT1H = 0;//COSA QUE NO SE PARA QUE SIRVE
   	TCNT1L = 0;//COSA QUE NO SE PARA QUE SIRVE
     TIMSK1 |= _BV(OCIE1A);//COSA QUE NO SE PARA QUE SIRVE
     /*Pongo la calle A en clear y se empieza el ciclo.*/
-    semaphore_set(&(SemA.state),SemClear);
-  	semaphore_set(&(SemB.state),SemOff);
-  	control_carrer.estat = Aclear;
-  	control_carrer.ticks = 80;
+    semaph_set(&(SemA.state),SemClear);
+  	semaph_set(&(SemB.state),SemStop);
+  	control.estat = Aclear;
+  	control.ticks = 80;
 
 }
 semaph_state_t control_get_state(street_t s){
@@ -111,31 +107,31 @@ ISR(TIMER1_COMPA_vect){
   	DDRB = 0xff;//COSA QUE NO SE PARA QUE SIRVE
   	PORTB ^= 0xff;//COSA QUE NO SE PARA QUE SIRVE
   
-  	if (control_carrer.ticks == 0){
-    	if(control_carrer.estat == Aclear){
-    		control_carrer.estat = AtoB;
-    		control_carrer.ticks = 20;
-    		semaphore_set(&(SemA.state),SemApproach);
-  			semaphore_set(&(SemB.state),SemStop);
+  	if (control.ticks == 0){
+    	if(control.estat == Aclear){
+    		control.estat = AtoB;
+    		control.ticks = 20;
+    		semaph_set(&(SemA.state),SemApproach);
+  			semaph_set(&(SemB.state),SemStop);
     	}
-    	else if(control_carrer.estat == AtoB){
-    		control_carrer.estat = Bclear;
-    		control_carrer.ticks = 100;
-    		semaphore_set(&(SemA.state),SemStop);
-  			semaphore_set(&(SemB.state),SemClear);
+    	else if(control.estat == AtoB){
+    		control.estat = Bclear;
+    		control.ticks = 100;
+    		semaph_set(&(SemA.state),SemStop);
+  			semaph_set(&(SemB.state),SemClear);
     	}
-    	else if(control_carrer.estat == Bclear){
-    		control_carrer.estat = BtoA;
-    		control_carrer.ticks = 20;
-    		semaphore_set(&(SemA.state),SemStop);
-  			semaphore_set(&(SemB.state),SemApproach);
+    	else if(control.estat == Bclear){
+    		control.estat = BtoA;
+    		control.ticks = 20;
+    		semaph_set(&(SemA.state),SemStop);
+  			semaph_set(&(SemB.state),SemApproach);
     	}
-    	else if(control_carrer.estat == BtoA){
-    		control_carrer.estat = Aclear;
-    		control_carrer.ticks = 80;
-    		semaphore_set(&(SemA.state),SemClear);
-  			semaphore_set(&(SemB.state),SemStop);
+    	else if(control.estat == BtoA){
+    		control.estat = Aclear;
+    		control.ticks = 80;
+    		semaph_set(&(SemA.state),SemClear);
+  			semaph_set(&(SemB.state),SemStop);
     	}  
   	}
-  	else control_carrer.ticks--;
+  	else control.ticks--;
 }
