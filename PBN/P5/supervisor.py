@@ -9,7 +9,7 @@ def forceA():
     a=ser.readline()
     if a == "encesA\r\n":
         print "El semafor A està en verd"
-    elif a== "nothing":
+    elif a== "nothing\r\n":
         print "El semafor A està en verd sense actuar"
     else:
         print "Error: el semafor no s'ha pogut ficar en verd"
@@ -20,7 +20,7 @@ def forceB():
     a=ser.readline()
     if a == "encesB\r\n":
         print "El semafor B està en verd"
-    elif a== "nothing":
+    elif a== "nothing\r\n":
         print "El semafor B està en verd sense actuar"
     else:
         print "Error: el semafor no s'ha pogut ficar en verd"

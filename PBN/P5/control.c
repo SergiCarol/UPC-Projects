@@ -63,7 +63,7 @@ void control_force(street_t s){
 				control.ticks = 100;
 				control.estat = Bclear;
 				semaph_set(&(SemA.state),SemStop);
-  				emaph_set(&(SemB.state),SemClear);
+  			semaph_set(&(SemB.state),SemClear);
 			}
 			else if(control.estat == Aclear){
 				control.ticks = 20;
