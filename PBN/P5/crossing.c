@@ -75,7 +75,7 @@ int main(void){
       }
     }
     
-    else if (a=="estatB"){
+    else if ((s[0]=='B') && (s[1]=='v') && (s[2]=='a') && (s[3]=='l')){
       estat=control_get_state(StreetB);
       if (estat==SemOff){
 	char j[]="El semafor B esta APAGAT\r\n";
