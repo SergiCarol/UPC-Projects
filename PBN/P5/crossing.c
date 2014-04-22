@@ -1,7 +1,7 @@
 #include "control.h"
 #include "blck_serial.h"
 #include "semaph.h"
-
+//Creem variables unicament per aquest modul.
 static semaph_t sem;
 static semaph_state_t estat;
 
@@ -13,28 +13,32 @@ int main(void){
   serial_open();
   while (1){
     a=readline(s,4);
- 
-    
+    //Comprovem l'ordre de forceA. 
     if ((s[0]=='A') && (s[1]=='_') && (s[2]=='o') && (s[3]=='n')){
       estat=control_get_state(StreetB);
+      //Si el semafor B esta en ambar l'A ja es posa verd sol.
       if (estat == SemApproach){
 	char j[]="nothing";
 	print(j);
       }
       else{
+	//Forcem semafor A a CLEAR.
 	control_force(StreetA);
 	char j[]="encesA";
 	print(j);
       }
     }
+    //Comprovem l'ordre de forceB.
     else if ((s[0]=='B') && (s[1]=='_') && (s[2]=='o') && (s[3]=='n')){
       estat=control_get_state(StreetA);
+      //Si el semafor B esta en ambar l'A ja es posa verd sol.
       if (estat == SemApproach){
 	char j[]="nothing";
 	print(j);
       }
       else{
-	control_force(StreetA);
+	//Forcem semafor B a CLEAR.
+	control_force(StreetB);
 	char j[]="encesB";
 	print(j);
       }
