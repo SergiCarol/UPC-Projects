@@ -5,51 +5,52 @@ from interpret import Interpret
 import serial
 
 def forceA():
-    ser.write("A_on")
+    ser.write("FA\r\n")
     a=ser.readline()
-    if a == "encesA\r\n":
-        print "El semafor A està en verd"
-    elif a== "nothing\r\n":
-        print "El semafor A està en verd sense actuar"
+    if a == "OK\r\n":
+        print "El semafor A està en verd\r\n"
+    elif a== "COMERR\r\n":
+        print "El semafor A està en verd sense actuar\r\n"
     else:
-        print "Error: el semafor no s'ha pogut ficar en verd"
+        print "Error: el semafor no s'ha pogut ficar en verd\r\n"
 
 def forceB():
-    ser.write("B_on")
+    ser.write("FB\r\n")
     a=ser.readline()
-    if a == "encesB\r\n":
-        print "El semafor B està en verd"
-    elif a== "nothing\r\n":
-        print "El semafor B està en verd sense actuar"
+    if a == "OK\r\n":
+        print "El semafor B està en verd\r\n"
+    elif a== "COMERR\r\n":
+        print "El semafor B està en verd sense actuar\r\n"
     else:
-        print "Error: el semafor no s'ha pogut ficar en verd"
+        print "Error: el semafor no s'ha pogut ficar en verd\r\n"
 
 def stop():
-    ser.write("Soff")
+    ser.write("H\r\n")
     a=ser.readline()
+    print a
     if a == "apagat\r\n":                                                   
-        print "Shutdown"
+        print "Shutdown\r\n"
     else:
-        print "Error : La comanda stop només es pot utilitzar si el semafor està ences"
+        print "Error : La comanda stop només es pot utilitzar si el semafor està ences\r\n"
 
 def ajuda():
-    print " Les comanandes són : start , stop , estat_A, estat_B, force_A i force_B"
+    print " Les comanandes són : start , stop , estat_A, estat_B, force_A i force_B\r\n"
 
 def start():
-    ser.write("S_on")
+    ser.write("R\r\n")
     a=ser.readline()
     if a== "control_on\r\n":
-        print "Els semafors s'han engegat correctament"
+        print "Els semafors s'han engegat correctament\r\n"
     else:
-        print "Error 404: Semafors not found "
+        print "Error 404: Semafors not found\r\n "
 
 def stateA():
-    ser.write("Aval")
+    ser.write("?A\r\n")
     a=ser.readline()
     print a
 
 def stateB():
-    ser.write("Bval")
+    ser.write("?B\r\n")
     a=ser.readline()
     print a
 

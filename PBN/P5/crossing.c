@@ -12,51 +12,51 @@ int main(void){
   control_init();
   serial_open();
   while (1){
-    a=readline(s,4);
+    a=readline(s,2);
     //Comprovem l'ordre de forceA. 
-    if ((s[0]=='A') && (s[1]=='_') && (s[2]=='o') && (s[3]=='n')){
+    if ((s[0]=='F') && (s[1]=='A')){
       estat=control_get_state(StreetB);
       //Si el semafor B esta en ambar l'A ja es posa verd sol.
       if (estat == SemApproach){
-	char j[]="nothing";
+	char j[]="COMERR";
 	print(j);
       }
       else{
 	//Forcem semafor A a CLEAR.
 	control_force(StreetA);
-	char j[]="encesA";
+	char j[]="OK";
 	print(j);
       }
     }
     //Comprovem l'ordre de forceB.
-    else if ((s[0]=='B') && (s[1]=='_') && (s[2]=='o') && (s[3]=='n')){
+    else if ((s[0]=='F') && (s[1]=='B')){
       estat=control_get_state(StreetA);
       //Si el semafor B esta en ambar l'A ja es posa verd sol.
       if (estat == SemApproach){
-	char j[]="nothing";
+	char j[]="COMERR";
 	print(j);
       }
       else{
 	//Forcem semafor B a CLEAR.
 	control_force(StreetB);
-	char j[]="encesB";
+	char j[]="OK";
 	print(j);
       }
     }
     
-    else if ((s[0]=='S') && (s[1]=='o') && (s[2]=='f') && (s[3]=='f')){
+    else if (s[0]=='H'){
       control_off();
       char j[]="apagat";
       print(j);
     }
     
-    else if ((s[0]=='S') && (s[1]=='_') && (s[2]=='o') && (s[3]=='n')){
+    else if (s[0]=='R'){
       control_on();
       char j[]="control_on";
       print(j);
     }
     
-    else if ((s[0]=='A') && (s[1]=='v') && (s[2]=='a') && (s[3]=='l')){
+    else if ((s[0]=='?') && (s[1]=='A')){
       estat=control_get_state(StreetA);
       if (estat==SemOff){
 	char j[]="El semafor A esta APAGAT";
@@ -80,7 +80,7 @@ int main(void){
       }
     }
     
-    else if ((s[0]=='B') && (s[1]=='v') && (s[2]=='a') && (s[3]=='l')){
+    else if ((s[0]=='?') && (s[1]=='B')){
       estat=control_get_state(StreetB);
       if (estat==SemOff){
 	char j[]="El semafor B esta APAGAT";
@@ -102,11 +102,6 @@ int main(void){
 	char j[]="Error:No s'ha trobat l'estat";
 	print(j);
       }
-    }
-    
-    else{
-      char j[]="fail";
-      print (j);
     }
   }
   serial_close();
