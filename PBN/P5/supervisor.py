@@ -3,7 +3,7 @@
 
 from interpret import Interpret
 import serial
-
+import time
 def forceA():
     ser.write("FA\r\n")
     a=ser.readline()
@@ -70,4 +70,6 @@ if __name__=="__main__":
     I.afegeix_ordre("force_B",forceB)
     I._prompt="***"
     I.run()
+    print "Inicializant el Interpret... \n"
+    time.sleep(1.5)
     ser.close()
