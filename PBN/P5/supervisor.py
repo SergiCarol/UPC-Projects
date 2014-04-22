@@ -16,7 +16,6 @@ def forceA():
 
 def forceB():
     ser.write("B_on")
-    print "passo per aqui"
     a=ser.readline()
     if a == "encesB\r\n":
         print "El semafor B està en verd"
