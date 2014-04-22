@@ -13,7 +13,7 @@ int main(void){
   serial_open();
   while (1){
     a=readline(s,2);
-    //Comprovem l'ordre de forceA. 
+    //Comprovem l'ordre forceA. 
     if ((s[0]=='F') && (s[1]=='A')){
       estat=control_get_state(StreetB);
       //Si el semafor B esta en ambar l'A ja es posa verd sol.
@@ -28,7 +28,7 @@ int main(void){
 	print(j);
       }
     }
-    //Comprovem l'ordre de forceB.
+    //Comprovem l'ordre forceB.
     else if ((s[0]=='F') && (s[1]=='B')){
       estat=control_get_state(StreetA);
       //Si el semafor B esta en ambar l'A ja es posa verd sol.
@@ -43,21 +43,24 @@ int main(void){
 	print(j);
       }
     }
-    
+    //Comprovem l'ordre stop.
     else if (s[0]=='H'){
+      //Apagem el semafor.
       control_off();
       char j[]="apagat";
       print(j);
     }
-    
+    //Comprovem l'ordre start.
     else if (s[0]=='R'){
+      //Engegem semafor.
       control_on();
       char j[]="control_on";
       print(j);
     }
-    
+    //Comprovem l'ordre stateA.
     else if ((s[0]=='?') && (s[1]=='A')){
       estat=control_get_state(StreetA);
+      //Resposta per a cada estat.
       if (estat==SemOff){
 	char j[]="El semafor A esta APAGAT";
 	print(j);				
@@ -79,9 +82,10 @@ int main(void){
 	print(j);
       }
     }
-    
+    //Comprovem l'ordre stateB
     else if ((s[0]=='?') && (s[1]=='B')){
       estat=control_get_state(StreetB);
+      //Resposta per a cada estat.
       if (estat==SemOff){
 	char j[]="El semafor B esta APAGAT";
 	print(j);				
