@@ -39,13 +39,13 @@ int main(void){
       }
     }
     
-    else if ((s[0]=='o') && (s[1]=='f') && (s[2]=='f')){
+    else if ((s[0]=='S') && (s[1]=='o') && (s[2]=='f') && (s[3]=='f')){
       control_off();
       char j[]="apagat";
       print(j);
     }
     
-    else if ((s[0]=='o') && (s[1]=='n')){
+    else if ((s[0]=='S') && (s[1]=='_') && (s[2]=='o') && (s[3]=='n')){
       control_on();
       char j[]="control_on";
       print(j);
