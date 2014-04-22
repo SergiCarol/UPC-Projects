@@ -21,6 +21,10 @@ int main(void){
 	char j[]="COMERR";
 	print(j);
       }
+      else if (estat == SemOff){
+        char j[]="Off";
+        print (j);
+      }
       else{
 	//Forcem semafor A a CLEAR.
 	control_force(StreetA);
@@ -35,6 +39,10 @@ int main(void){
       if (estat == SemApproach){
 	char j[]="COMERR";
 	print(j);
+      }
+      else if (estat == SemOff){
+        char j[]="Off";
+        print (j);
       }
       else{
 	//Forcem semafor B a CLEAR.
