@@ -26,7 +26,7 @@ def forceB():
         print "Error: el semafor no s'ha pogut ficar en verd"
 
 def stop():
-    ser.write("off")
+    ser.write("Soff")
     a=ser.readline()
     if a == "apagat\r\n":                                                   
         print "Shutdown"
@@ -37,7 +37,7 @@ def ajuda():
     print " Les comanandes són : start , stop , estat_A, estat_B, force_A i force_B"
 
 def start():
-    ser.write("on")
+    ser.write("S_on")
     a=ser.readline()
     if a== "control_on\r\n":
         print "Els semafors s'han engegat correctament"
