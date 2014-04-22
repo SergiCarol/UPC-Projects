@@ -14,7 +14,7 @@ void print(char s[]){
 
 int readline(char s[],uint8_t m){
 	uint8_t i=0,a;
-	while (m!=i || isgraph(s[i])){
+	while (m!=i || isprint(s[i])){
 		a=serial_get();
 		s[i] = a;
 		i++;
