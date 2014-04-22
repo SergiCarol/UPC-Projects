@@ -14,7 +14,6 @@ int main(void){
   while (1){
     a=readline(s,4);
     
-    
     if ((s[0]=='A') && (s[1]=='_') && (s[2]=='o') && (s[3]=='n')){
       estat=control_get_state(StreetB);
       if (estat == SemApproach){
@@ -28,7 +27,7 @@ int main(void){
       }
     }
     else if ((s[0]=='B') && (s[1]=='_') && (s[2]=='o') && (s[3]=='n')){
-     estat=control_get_state(StreetA);
+      estat=control_get_state(StreetA);
       if (estat == SemApproach){
 	char j[]="nothing";
 	print(j);
@@ -37,15 +36,15 @@ int main(void){
 	control_force(StreetA);
 	char j[]="encesB";
 	print(j);
+      }
     }
-
+    
     else if ((s[0]=='o') && (s[1]=='f') && (s[2]=='f')){
-      
       control_off();
       char j[]="apagat";
       print(j);
-      
     }
+    
     else if ((s[0]=='o') && (s[1]=='n')){
       control_on();
       char j[]="control_on";
@@ -53,38 +52,53 @@ int main(void){
     }
     
     else if ((s[0]=='A') && (s[1]=='v') && (s[2]=='a') && (s[3]=='l')){
-      
       estat=control_get_state(StreetA);
-      
       if (estat==SemOff){
-	char j[]="\r\n";
+	char j[]="El semafor A esta APAGAT\r\n";
 	print(j);				
       }
       else if (estat==SemClear){
-	char j[]="verd-SemoClear\r\n";
+	char j[]="El semafor A esta VERD\r\n";
 	print(j);				
       }
       else if (estat==SemApproach){
-	char j[]="ambar-SemoApproach\r\n";
+	char j[]="El semafor A esta AMBAR\r\n";
 	print(j);				
       }
       else if (estat==SemStop){
-	char j[]="vermell-SemoStop\r\n";
+	char j[]="El semafor A esta VERMELL\r\n";
 	print(j);				
       }
       else {
-	char j[]="Error:_no_s'ha_trobat_el_estat\r\n";
+	char j[]="Error:No s'ha trobat l'estat\r\n";
 	print(j);
-	
-      }
-    }fgh
-    else if (a=="estatB"){
-      
-      estat=control_get_state(StreetB);
-      
-      
       }
     }
+    
+    else if (a=="estatB"){
+      estat=control_get_state(StreetB);
+      if (estat==SemOff){
+	char j[]="El semafor B esta APAGAT\r\n";
+	print(j);				
+      }
+      else if (estat==SemClear){
+	char j[]="El semafor B esta VERD\r\n";
+	print(j);				
+      }
+      else if (estat==SemApproach){
+	char j[]="El semafor B esta AMBAR\r\n";
+	print(j);				
+      }
+      else if (estat==SemStop){
+	char j[]="El semafor B esta VERMELL\r\n";
+	print(j);				
+      }
+      else {
+	char j[]="Error:No s'ha trobat l'estat\r\n";
+	print(j);
+      }
+    }
+    
     else{
       char j[]="fail";
       print (j);
