@@ -8,9 +8,9 @@ control_carrer control;
 /* http://www.avrfreaks.net/index.php?name=PNphpBB2&file=viewtopic&t=50106 */
 
 #define Input_Frequency 16000000
-#define Target_Frequency 100
+#define Target_time 100
 #define Prescale 64
-#define Target ((Input_Frequency/Prescale)/Target_Frequency - 1)
+#define Target ((Input_Frequency/Prescale*Target_time) - 1)
 
 void control_init(void){
   /*Inicialitza el mòdul de control. ës imprescindible cridar la funció
