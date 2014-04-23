@@ -18,7 +18,7 @@ int readline(char s[],uint8_t m){
   /* Llegeix un numero de caracters m pel port serie
      i els fica en la taula s, en el cas de que es llegeixi
      un caracter no printable deixa de llegir */
-
+  
   uint8_t i=0,a;
   a=serial_get();
   while (m!=i && isgraph(a)){
