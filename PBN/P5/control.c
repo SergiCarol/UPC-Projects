@@ -19,21 +19,21 @@ void control_init(void){
 
 	/*Inicialitza el timer y activa les interrupcions.*//*SERGIIII AYUDA CON ESTA PARTE*/
 	TCCR1A = 0;
-  TCCR1B = (_BV(WGM12) | _BV(CS11) | _BV(CS10));  
+  	TCCR1B = (_BV(WGM12) | _BV(CS11) | _BV(CS10));  
  	OCR1AH = (uint8_t)(Target >> 8);    
-  OCR1AL = (uint8_t)(Target);
+  	OCR1AL = (uint8_t)(Target);
   	//-----------------------
-  semaph_init(&(SemA.state), &PORTD, 5, &PORTD, 6, &PORTD, 7);
-  semaph_init(&(SemB.state), &PORTD, 4, &PORTC, 3, &PORTC, 2);
+  	semaph_init(&(SemA.state), &PORTD, 5, &PORTD, 6, &PORTD, 7);
+  	semaph_init(&(SemB.state), &PORTD, 4, &PORTC, 3, &PORTC, 2);
   	//Pongo los dos semaforos apagados
-  semaph_set(&(SemA.state),SemOff);
-  semaph_set(&(SemB.state),SemOff);
+  	semaph_set(&(SemA.state),SemOff);
+  	semaph_set(&(SemB.state),SemOff);
 
   	/*Esta es la parte "propia"*/
-  (control).estat = Off;
+  	(control).estat = Off;
 
   	//Activar interrupciones
-  sei();
+  	sei();
 }
 
 void control_force(street_t s){
@@ -106,8 +106,7 @@ semaph_state_t control_get_state(street_t s){
 
 ISR(TIMER1_COMPA_vect){
 
-  	DDRB = 0xff;//COSA QUE NO SE PARA QUE SIRVE
-  	PORTB ^= 0xff;//COSA QUE NO SE PARA QUE SIRVE
+
   
   	if (control.ticks == 0){
     	if(control.estat == Aclear){
