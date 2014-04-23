@@ -10,7 +10,7 @@ control_carrer control;
 #define Input_Frequency 16000000
 #define Target_time 100
 #define Prescale 64
-#define Target ((Input_Frequency/Prescale*Target_time) - 1)
+#define Target ((Input_Frequency/(Prescale*Target_time) - 1))
 
 void control_init(void){
   /*Inicialitza el mòdul de control. ës imprescindible cridar la funció
@@ -28,7 +28,7 @@ void control_init(void){
   //Posa a l'estat d'apagat els semafors.
   semaph_set(&(SemA.state),SemOff);                             
   semaph_set(&(SemB.state),SemOff);
-  //Indiquem a la variable global que estem a l'estat d'off.
+  //Indiquem a la variable global que estemx a l'estat d'off.
   (control).estat = Off;
   //Activem interrupcions
   sei();
