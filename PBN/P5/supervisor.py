@@ -8,29 +8,29 @@ def forceA():
     ser.write("FA\r\n")
     a=ser.readline()
     if a == "OK\r\n":
-        print "El semafor A està en verd\r\n"
+        print "El semafor A està en verd"
     elif a== "COMERR\r\n":
-        print "El semafor A està en verd sense actuar\r\n"
+        print "El semafor A està en verd sense actuar"
     else:
-        print "Error: el semafor no s'ha pogut ficar en verd\r\n"
+        print "Error: el semafor no s'ha pogut ficar en verd, utilitzeu la comanda start primer"
 
 def forceB():
     ser.write("FB\r\n")
     a=ser.readline()
     if a == "OK\r\n":
-        print "El semafor B està en verd\r\n"
+        print "El semafor B està en verd"
     elif a== "COMERR\r\n":
-        print "El semafor B està en verd sense actuar\r\n"
+        print "El semafor B està en verd sense actuar"
     else:
-        print "Error: el semafor no s'ha pogut ficar en verd\r\n"
+        print "Error: el semafor no s'ha pogut ficar en verd, utilitzeu la comanda start primer"
 
 def stop():
     ser.write("H\r\n")
     a=ser.readline()
     if a == "apagat\r\n":                                                   
-        print "Shutdown\r\n"
+        print "Shutdown"
     else:
-        print "Error : La comanda stop només es pot utilitzar si el semafor està ences\r\n"
+        print "Error : La comanda stop només es pot utilitzar si el semafor està ences"
 
 def ajuda():
     print " Les comanandes són : start , stop , estat_A, estat_B, force_A i force_B\r\n"
@@ -39,9 +39,9 @@ def start():
     ser.write("R\r\n")
     a=ser.readline()
     if a== "control_on\r\n":
-        print "Els semafors s'han engegat correctament\r\n"
+        print "Els semafors s'han engegat correctament"
     else:
-        print "Error 404: Semafors not found\r\n "
+        print "Error 404: Semafors not found "
 
 def stateA():
     ser.write("?A\r\n")
