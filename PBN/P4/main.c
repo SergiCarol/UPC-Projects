@@ -1,6 +1,6 @@
 #include"controlsem.h"
-#include<stdio.h>
-#include<util/delay.h>
+#include <stdio.h>
+#include <util/delay.h>
 
 int main(void){
   //Inicialitzem controlsem.
