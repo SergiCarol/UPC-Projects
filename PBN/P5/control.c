@@ -8,7 +8,7 @@ control_carrer control;
 /* http://www.avrfreaks.net/index.php?name=PNphpBB2&file=viewtopic&t=50106 */
 
 #define Input_Frequency 16000000
-#define Target_time 100
+#define Target_time 10
 #define Prescale 64
 #define Target ((Input_Frequency/(Prescale*Target_time) - 1))
 
