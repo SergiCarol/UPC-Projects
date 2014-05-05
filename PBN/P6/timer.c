@@ -47,14 +47,14 @@ timer_handler_t timer_ntimes(uint8_t n, uint8_t ticks, timer_callback_t f){
 	uint8_t i;
 	// Recorrem tota la "taula" per buscar algun lloc en que no hi haguem ficat res
 	for (i=0;i!=N;i++){
-		if (i>N) return TIMER_ERR;
+		if (i>N) return TIMER_ERR(i);
 		// Aixó nose si esta bé, jo entenc que el every es per dir si esta ocupat o no
 		if (tt.t[i].every==0){
-			tt.t[i].remaning = ticks;
+			tt.t[i].remaining = ticks;
 			// PREGUNTAR AL SBS
 			tt.t[i].every = ticks;
 			tt.t[i].ntimes = n;
-			tt.t[i].entry.callback = f; 
+			tt.t[i].callback = f; 
 		
 		// Si no hem planificat abans activem el timer 
 			if (tt.n > 0){
@@ -65,7 +65,7 @@ timer_handler_t timer_ntimes(uint8_t n, uint8_t ticks, timer_callback_t f){
 		}
 	}
 	// Si no troba cap espai but que retorni el error aquet
-	return TIMER_ERR;
+	return TIMER_ERR(i);
 }
 
 void timer_cancel (timer_handler_t h){
@@ -85,18 +85,19 @@ void timer_cancel_all (void){
 ISR(TIMER1_COMPA_vect){
 
 	uint8_t i;
-	for (i=0;i!=N,i++){
+	for (i=0;i!=N;i++){
 		if (tt.t[i].every != 0){
-			tt.t[i].remaning--
+			tt.t[i].remaining--;
 		}
-		if ((tt.t[i].remaning == 0) && (tt.t[i].ntimes = 1)){
-			tt.every = 0;
-			tt.t[i].callback;
-		else if ((tt.t[i].remaning == 0) && (tt.t[i].ntimes = 0)){ 
-			tt.t[i].remaning = tt.t[i].every ;
+		if ((tt.t[i].remaining == 0) && (tt.t[i].ntimes = 1)){
+			tt.t[i].every = 0;
 			tt.t[i].callback;
 		}
-		else tt.[i].ntimes--;
+		else if ((tt.t[i].remaining == 0) && (tt.t[i].ntimes = 0)){ 
+			tt.t[i].remaining = tt.t[i].every ;
+			tt.t[i].callback;
+		}
+		else tt.t[i].ntimes--;
 
 	}
 }	
