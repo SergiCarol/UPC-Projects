@@ -21,7 +21,7 @@ void modulator_init(void){
 
 void modulator_set(bool l){
   //Genera l'accio de portadora.
-  if l==True{
+  if (l==true){
     DDRB |= _BV(PB6);
     }	
   else{
