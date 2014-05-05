@@ -4,7 +4,7 @@
 #define N 20
 
 #define Input_Frequency 16000000
-#define Target_time 10
+#define Target_time 100
 #define Prescale 64
 #define Target ((Input_Frequency/(Prescale*Target_time) - 1))
 
@@ -28,7 +28,9 @@ void timer_init(void){
 	TCCR1A = 0;
   	TCCR1B = (_BV(WGM12) | _BV(CS11) | _BV(CS10));  
   	OCR1AH = (uint8_t)(Target >> 8);    
-  	OCR1AL = (uint8_t)(Target);	
+  	OCR1AL = (uint8_t)(Target);
+
+  	timer_cancel_all();
 }
 
 timer_handler_t timer_after(uint8_t ticks, timer_callback_t f){
@@ -69,8 +71,7 @@ timer_handler_t timer_ntimes(uint8_t n, uint8_t ticks, timer_callback_t f){
 }
 
 void timer_cancel (timer_handler_t h){
-
-	tt.t[h].every = 0;
+	if (h<N) tt.t[h].every = 0;
 }
 
 void timer_cancel_all (void){
