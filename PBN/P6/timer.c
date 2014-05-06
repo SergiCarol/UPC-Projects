@@ -52,6 +52,7 @@ timer_handler_t timer_ntimes(uint8_t n, uint8_t ticks, timer_callback_t f){
 		if (i>N) return TIMER_ERR(i);
 		// Aixó nose si esta bé, jo entenc que el every es per dir si esta ocupat o no
 		if (tt.t[i].every==0){
+			tt.n++;
 			tt.t[i].remaining = ticks;
 			// PREGUNTAR AL SBS
 			tt.t[i].every = ticks;
@@ -84,20 +85,25 @@ void timer_cancel_all (void){
 
 
 ISR(TIMER1_COMPA_vect){
-
 	uint8_t i;
 	for (i=0;i!=N;i++){
+		
 		if (tt.t[i].every != 0){
+			
 			tt.t[i].remaining--;
+			
 			if (tt.t[i].remaining == 0){
-				 tt.t[i].callback;
-				if (tt.t[i].ntimes = 1)){
-					tt.t[i].every = 0;
+				
+				 (*(tt.t[i].callback))();
+
+				if (tt.t[i].ntimes == 1) tt.t[i].every = 0;
+				
+				else if (tt.t[i].ntimes == 0) tt.t[i].remaining = tt.t[i].every ;
+				
+				else{
+					 tt.t[i].ntimes--;
+					 tt.t[i].remaining = tt.t[i].every;
 				}
-				else if (tt.t[i].ntimes = 0){ 
-					tt.t[i].remaining = tt.t[i].every ;
-				}
-				else tt.t[i].ntimes--;
 			}
 		}	
 	}
