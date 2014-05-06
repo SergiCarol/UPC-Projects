@@ -49,7 +49,7 @@ timer_handler_t timer_ntimes(uint8_t n, uint8_t ticks, timer_callback_t f){
 	uint8_t i;
 	// Recorrem tota la "taula" per buscar algun lloc en que no hi haguem ficat res
 	for (i=0;i!=N;i++){
-		if (i>N) return TIMER_ERR(i);
+		if (i>N) return TIMER_ERR;
 		// Aixó nose si esta bé, jo entenc que el every es per dir si esta ocupat o no
 		if (tt.t[i].every==0){
 			tt.n++;
@@ -68,7 +68,7 @@ timer_handler_t timer_ntimes(uint8_t n, uint8_t ticks, timer_callback_t f){
 		}
 	}
 	// Si no troba cap espai but que retorni el error aquet
-	return TIMER_ERR(i);
+	return TIMER_ERR;
 }
 
 void timer_cancel (timer_handler_t h){
