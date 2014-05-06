@@ -89,16 +89,16 @@ ISR(TIMER1_COMPA_vect){
 	for (i=0;i!=N;i++){
 		if (tt.t[i].every != 0){
 			tt.t[i].remaining--;
-		}
-		if ((tt.t[i].remaining == 0) && (tt.t[i].ntimes = 1)){
-			tt.t[i].every = 0;
-			tt.t[i].callback;
-		}
-		else if ((tt.t[i].remaining == 0) && (tt.t[i].ntimes = 0)){ 
-			tt.t[i].remaining = tt.t[i].every ;
-			tt.t[i].callback;
-		}
-		else tt.t[i].ntimes--;
-
+			if (tt.t[i].remaining == 0){
+				 tt.t[i].callback;
+				if (tt.t[i].ntimes = 1)){
+					tt.t[i].every = 0;
+				}
+				else if (tt.t[i].ntimes = 0){ 
+					tt.t[i].remaining = tt.t[i].every ;
+				}
+				else tt.t[i].ntimes--;
+			}
+		}	
 	}
 }	
