@@ -4,6 +4,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <inttypes.h>
+#include "timer.h"
 #include "lamp.h"
 #include "semaph.h"
 
@@ -33,6 +34,7 @@ void control_init(void);
 void control_force(street_t t);
 void control_off(void);
 void control_on(void);
+void control_change(void);
 semaph_state_t control_get_state(street_t s);
 
 #endif
