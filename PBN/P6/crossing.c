@@ -31,6 +31,7 @@ int main(void){
 	control_force(StreetA);
 	ether_put('F');
 	ether_put('A');
+	ether_put(' ');
 	char j[]="OK";
 	print(j);
       }
@@ -52,6 +53,7 @@ int main(void){
 	control_force(StreetB);
 	ether_put('F');
 	ether_put('B');
+	ether_put(' ');
 	char j[]="OK";
 	print(j);
       }
@@ -61,6 +63,7 @@ int main(void){
       //Apagem el semafor.
       control_off();
       ether_put('H');
+      ether_put(' ');
       char j[]="apagat";
       print(j);
     }
@@ -69,6 +72,7 @@ int main(void){
       //Engegem semafor.
       control_on();
       ether_put('R');
+      ether_put(' ');
       char j[]="control_on";
       print(j);
     }
