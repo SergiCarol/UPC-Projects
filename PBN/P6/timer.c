@@ -94,7 +94,7 @@ ISR(TIMER1_COMPA_vect){
 			
 			if (tt.t[i].remaining == 0){
 				
-				 (*(tt.t[i].callback))();
+				 (tt.t[i].callback)();
 
 				if (tt.t[i].ntimes == 1) tt.t[i].every = 0;
 				
