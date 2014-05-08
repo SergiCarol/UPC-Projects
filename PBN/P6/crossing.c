@@ -1,6 +1,7 @@
 #include "control.h"
 #include "blck_serial.h"
 #include "semaph.h"
+#include "ether"
 //Creem variables unicament per aquest modul.
 static semaph_t sem;
 static semaph_state_t estat;
@@ -28,6 +29,8 @@ int main(void){
       else{
 	//Forcem semafor A a CLEAR.
 	control_force(StreetA);
+	ether_put('F');
+	ether_put('A');
 	char j[]="OK";
 	print(j);
       }
@@ -47,6 +50,8 @@ int main(void){
       else{
 	//Forcem semafor B a CLEAR.
 	control_force(StreetB);
+	ether_put('F');
+	ether_put('B');
 	char j[]="OK";
 	print(j);
       }
@@ -55,6 +60,7 @@ int main(void){
     else if (s[0]=='H'){
       //Apagem el semafor.
       control_off();
+      ether_put('H');
       char j[]="apagat";
       print(j);
     }
@@ -62,6 +68,7 @@ int main(void){
     else if (s[0]=='R'){
       //Engegem semafor.
       control_on();
+      ether_put('R');
       char j[]="control_on";
       print(j);
     }
