@@ -35,4 +35,5 @@ void control_off(void);
 void control_on(void);
 semaph_state_t control_get_state(street_t s);
 
+
 #endif
