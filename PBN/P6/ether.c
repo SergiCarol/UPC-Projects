@@ -38,18 +38,21 @@ void ether_put(uint8_t c){
 
 static void automat (void){
 	uint8_t a;
-	while (queue_is_empty(&m)==true);
+	if (queue_is_empty(&m)==true){
+		// Aqui hi va algu??? no,no????
+	}
 	// Crec que aixo es podria fer més façil, pero quedaria una linia tope llarga 
-	a=queue_front(&m);
-	t=mtbl_a2m(a);
-	mchar=mchar_iter(t);
-	queue_dequeue(&m);
-	// Si el caracter es un punt, pues fem un punt
-	// Recordar que el mchar_next dona el valor del que estem ara i l'avança
-	if (mchar_next(&mchar)==MDot) dot();
-	// Si no, fem una ratlla
-	else dash();
-	
+	else{
+		a=queue_front(&m);
+		t=mtbl_a2m(a);
+		mchar=mchar_iter(t);
+		queue_dequeue(&m);
+		// Si el caracter es un punt, pues fem un punt
+		// Recordar que el mchar_next dona el valor del que estem ara i l'avança
+		if (mchar_next(&mchar)==MDot) dot();
+		// Si no, fem una ratlla
+		else dash();
+		}
 }
 
 

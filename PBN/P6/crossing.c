@@ -1,7 +1,7 @@
 #include "control.h"
 #include "blck_serial.h"
 #include "semaph.h"
-#include "ether"
+#include "ether.h"
 //Creem variables unicament per aquest modul.
 static semaph_t sem;
 static semaph_state_t estat;

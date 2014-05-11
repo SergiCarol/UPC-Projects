@@ -21,14 +21,11 @@ int main(void){
   sei();
 
   uint8_t i=0;
+  ether_put('S');
+  ether_put('O');
+  ether_put('S');
+  ether_put(' ');
 
-  while(msg[i]){
-
-    ether_put(msg[i]);
-
-    i++;
-
-  }
 
   for(;;);
 
