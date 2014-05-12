@@ -43,29 +43,21 @@ static mchar_t taula_m[] = {
   mchar(11110)
 };
 
-/* Taula ASCII, amb els caracters codificats a la taula_m*/
-static uint8_t taula_c[] = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-char mtbl_m2a(mchar_t c){
-  /*Assignem un valor de caracter inicial -buit- */
-  char v= 0;
-  int i=0;
-  /* Fem recerca a la taula per obtenir l'index
-     i retornar el caracter corresponent o be enviar 
-     el predefinit inicialment */
-  while(c!=taula_m[i])i++;
+char mtbl_m2a(mchar_t m){
+  char v;
+  uint8_t i;
+  for(i=0;m!=taula_m[i]&&i<37;i++);
   if(i<37) v=taula_c[i];
+  else v=0;
   return v;
 }
 
 mchar_t mtbl_a2m(char c){
-  /*Assignem un valor de m_char inicial -buit- */
-  mchar_t mv=mchar_empty;
-  int i=0;
-  /* Fem recerca a la taula per obtenir l'index
-   i retornar el mchar_t corresponent o be enviar 
-   el predefinit inicialment */
-  while(c!=taula_c[i])i++;
-  if(i<37) mv=taula_m[i];
-  return mv;
+  mchar_t m=mchar_empty;
+  uint8_t i=0;
+  for(i=0;c!=taula_c[i]&&i<37;i++);
+  if(i<37)m=taula_m[i];
+  else m=0;
+  return m;
 }

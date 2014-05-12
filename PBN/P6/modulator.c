@@ -15,7 +15,6 @@ void modulator_set(bool l){
     PORTB |= _BV(PB0);
     }	
   else{
-    /*DDRB &= ~_BV(PB6);*/
     PORTB &= ~_BV(PB0);	
   }	
 }
