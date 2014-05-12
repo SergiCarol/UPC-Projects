@@ -3,7 +3,7 @@
 #include <avr/io.h>
 mchar_t mchar_add(mchar_t m, msign_t s){
   
-    //posicio = 7 - mchar_len(m);
+  //posicio = 7 - mchar_len(m);
   uint8_t comptador;
   comptador = mchar_len(m);
   if(comptador < 5){ //Si no has acabado, devuelve error
@@ -25,21 +25,21 @@ mchar_t mchar_add(mchar_t m, msign_t s){
 //------------------------------------------------------
 
 mchar_iter_t mchar_iter(mchar_t m){
-
+  
   mchar_iter_t iter;
   iter.m = m;
   iter.mask = _BV(7);
   iter.sentinel = _BV(7-mchar_len(m));
   return iter;
-
+  
 }
 
 msign_t mchar_next(mchar_iter_t *const i){
-
+  
   msign_t a;
   mchar_t b = i->m;
   b &= i->mask;
-
+  
   if (b == (*i).mask) a = MDash;
   else a = MDot;
   i->mask = (i->mask >> 1);

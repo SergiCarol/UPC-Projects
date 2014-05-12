@@ -85,7 +85,7 @@ void control_off(void){
   /*Apaga els semàfors de la cruïlla y posem l'estat global a Off*/
   semaph_set(&(SemA.state),SemOff);
   semaph_set(&(SemB.state),SemOff);
-  timer_cancel(i);
+  //timer_cancel(i);
   control.estat = Off;
 }
 

@@ -51,15 +51,15 @@ char mtbl_m2a(mchar_t c){
   char v= 0;
   int i=0;
   /* Fem recerca a la taula per obtenir l'index
-   i retornar el caracter corresponent o be enviar 
-   el predefinit inicialment */
+     i retornar el caracter corresponent o be enviar 
+     el predefinit inicialment */
   while(c!=taula_m[i])i++;
   if(i<37) v=taula_c[i];
   return v;
 }
 
 mchar_t mtbl_a2m(char c){
-    /*Assignem un valor de m_char inicial -buit- */
+  /*Assignem un valor de m_char inicial -buit- */
   mchar_t mv=mchar_empty;
   int i=0;
   /* Fem recerca a la taula per obtenir l'index
