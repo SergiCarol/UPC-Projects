@@ -47,7 +47,9 @@ static mchar_t taula_m[] = {
 char mtbl_m2a(mchar_t m){
   char v;
   uint8_t i;
+  // Recorrem la taula fins que trobem el codi que volem
   for(i=0;m!=taula_m[i]&&i<37;i++);
+  // Agafem el valor que hi ha la mateixa posicio
   if(i<37) v=taula_c[i];
   else v=0;
   return v;
@@ -56,6 +58,7 @@ char mtbl_m2a(mchar_t m){
 mchar_t mtbl_a2m(char c){
   mchar_t m=mchar_empty;
   uint8_t i=0;
+  // Fem el mateix que abans per ara amb un cacracter
   for(i=0;c!=taula_c[i]&&i<37;i++);
   if(i<37)m=taula_m[i];
   else m=0;

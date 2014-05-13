@@ -38,11 +38,11 @@ void ether_put(uint8_t c){
 
 static void automat (void){
   uint8_t a;
+  // Mirem si hi ha alguna cosa mes per enviar
   if (queue_is_empty(&m)==true){
-		// Aqui hi va algu??? no,no????
   }
-  // Crec que aixo es podria fer més façil, pero quedaria una linia tope llarga 
   else{
+    // Traduim a morse
     a=queue_front(&m);
     t=mtbl_a2m(a);
     mchar=mchar_iter(t);
