@@ -4,7 +4,7 @@
 #define N 20
 
 #define Input_Frequency 16000000
-#define Target_time 100
+#define Target_time 50 //per obtenir 5ms, abans 100
 #define Prescale 64
 #define Target ((Input_Frequency/(Prescale*Target_time) - 1))
 
