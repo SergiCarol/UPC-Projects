@@ -1,7 +1,5 @@
 #include "ether.h"
 
-
-
 #define DOT 50
 #define GAP DOT
 #define DASH 3*DOT
@@ -31,8 +29,7 @@ void ether_put(uint8_t c){
   while (queue_is_full(&m));
   // Un cop ho deixa de estar afegim el caracter C a la cua
   queue_enqueue(&m,c);
-  /* Basicament si no hem acabat de transmetre ens esperarem, ja que la mc_i encara 
-     estaria sobre un caracter que podem transmetre (. o -) */
+  /* Basicament si no hem acabat de transmetre ens esperarem, ja que la mc_i encara estaria sobre un caracter que podem transmetre (. o -) */
   if (a && !mchar_valid(mchar)) automat();
 }
 
@@ -85,5 +82,3 @@ static void down(void){
   // En cas contrari fem pausa de lletra
   else timer_after(TIMER_MS(LETTERGAP),automat);
 }
-
-

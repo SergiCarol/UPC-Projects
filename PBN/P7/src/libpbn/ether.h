@@ -14,4 +14,7 @@
 void ether_init(void);
 void ether_put(uint8_t c);
 
+bool ether_can_read(void);
+uint8_t ether_get(void);
+
 #endif
