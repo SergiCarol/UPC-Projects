@@ -18,8 +18,8 @@ typedef struct {
 static struct {
   entry t[N];
   //Numero de entrades valides
-	uint8_t n;
-}tt;
+  uint8_t n;
+} tt;
 
 
 void timer_init(void){
@@ -64,7 +64,7 @@ timer_handler_t timer_ntimes(uint8_t n, uint8_t ticks, timer_callback_t f){
       return i;
     }
   }
-	// Si no troba cap espai but que retorni el error aquet
+	// Si no troba cap espai buit que retorni el error aquet
   return TIMER_ERR;
 }
 
@@ -80,6 +80,14 @@ void timer_cancel_all (void){
   }
 }
 
+timer_chrono_t chrono(void){
+  
+  return TIMER_ERR
+
+void chrono_start(timer_chrono_t c);
+uint8_t chrono_get(timer_chrono_t c);
+void chrono_stop(timer_chrono_t c);
+void chrono_cancel(timer_chrono_t c);
 
 ISR(TIMER1_COMPA_vect){
   uint8_t i;
