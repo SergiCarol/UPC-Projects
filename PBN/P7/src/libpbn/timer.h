@@ -5,7 +5,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-#define TIMER_MS(ms) (ms/10)
+#define TIMER_MS(ms) (ms/5)
 #define TIMER_ERR (timer_handler_t)-1
 
 typedef void (*timer_callback_t)(void);
