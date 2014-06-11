@@ -1,6 +1,6 @@
 #include "ether.h"
 
-#define DOT 50
+#define DOT 90
 #define GAP DOT
 #define DASH 3*DOT
 #define LETTERGAP 3*DOT

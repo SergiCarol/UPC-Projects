@@ -15,8 +15,25 @@ typedef struct {
   timer_callback_t callback;
 } entry;
 
+typedef struct {
+	// Per mirar l'estat que esta el cronometre ( ences (true)  o parat(false) segon la practica)
+	// El on aquet esta de mes per mirar si ja hem creat el cronometre o no que si ho feia tot amb el estat després es liava a la hora de fer el cronometre i al entrar a la interrupcio
+	bool estat,on ;
+	// Comprador del cronometre en si.
+	uint8_t cronometre;
+} cron;
+
+
+typedef union {
+	// El union pel que he llegit siginfica que tot esta a la mateixa adreça per tan quant fem el union[20] de sota el crono i em timer compartiran cel·les
+	cron crono;
+	entry timer;
+} unio;
+
+
 static struct {
-  entry t[N];
+  // Diria que ara va aixi
+  unio t[N];
   //Numero de entrades valides
   uint8_t n;
 } tt;
@@ -47,14 +64,13 @@ timer_handler_t timer_ntimes(uint8_t n, uint8_t ticks, timer_callback_t f){
   uint8_t i;
   // Recorrem tota la "taula" per buscar algun lloc en que no hi haguem ficat res
   for (i=0;i!=N;i++){
-    if (i>N) return TIMER_ERR;
     // Si la posicio no esta ocupada hi escribim
-    if (tt.t[i].every==0){
+    if (tt.unio[i].timer.every==0 && tt.unio[i].crono.on==false){
       tt.n++;
-      tt.t[i].remaining = ticks;
-      tt.t[i].every = ticks;
-      tt.t[i].ntimes = n;
-      tt.t[i].callback = f; 
+      tt.unio[i].timer.remaining = ticks;
+      tt.unio[i].timer.every = ticks;
+      tt.unio[i].timer.ntimes = n;
+      tt.unio[i].timer.callback = f; 
       
       // Si no hem planificat abans activem el timer 
       if (tt.n > 0){
@@ -69,48 +85,99 @@ timer_handler_t timer_ntimes(uint8_t n, uint8_t ticks, timer_callback_t f){
 }
 
 void timer_cancel (timer_handler_t h){
-  if (h<N) tt.t[h].every = 0;
+  if (h<N) tt.unio[h].timer.every = 0;
 }
 
 void timer_cancel_all (void){
   
   uint8_t i;	
   for (i=0;i!=N;i++){
-    tt.t[i].every=0;
+    tt.unio[i].timer.every=0;
   }
 }
 
 timer_chrono_t chrono(void){
   
-  return TIMER_ERR
+	for (i=0;i!=N;i++){
+	    // Si la posicio no esta ocupada hi escribim
+	    if (tt.unio[i].crono.on==false && tt.unio[i].timer.every==0){
+	      tt.n++;
+	      tt.unio[i].timer.on = true;
+	      // la pregunta és, aqui s'activa el cronometre ja???
+	     
+	      if (tt.n > 0){
+		TCNT1 = 0;
+		TIMSK1 |= _BV(OCIE1A);
+	      }
+	      return i;
+	    }
+	  }
+ return CHRONO_ERR;
 
-void chrono_start(timer_chrono_t c);
-uint8_t chrono_get(timer_chrono_t c);
-void chrono_stop(timer_chrono_t c);
-void chrono_cancel(timer_chrono_t c);
+}
+
+void chrono_start(timer_chrono_t c){
+
+	tt.unio[c].crono.estat = true;
+	tt.unio[c].crono.cronometre = 0;
+}
+uint8_t chrono_get(timer_chrono_t c){
+
+	return tt.unio[c].crono.cronometre;
+}
+
+
+
+void chrono_stop(timer_chrono_t c){
+
+	tt.unio[c].crono.estat = false;
+}
+
+
+
+void chrono_cancel(timer_chrono_t c){
+
+	tt.unio[c].crono.on = false;
+}
+
+
+
+
 
 ISR(TIMER1_COMPA_vect){
   uint8_t i;
   // Recorrem la taula
   for (i=0;i!=N;i++){
-    // Entrem dintre els valors que hem escrit
-    if (tt.t[i].every != 0){
-      // Hi restem un tick
-      tt.t[i].remaining--;
-      // Si hem acabat de restar...
-      if (tt.t[i].remaining == 0){
-	// Cridem al funcio
-	(tt.t[i].callback)();
-	// En el cas de que aquet fos l'ultim cop que la teniem que cridar fiquem el every a 0
-	if (tt.t[i].ntimes == 1) tt.t[i].every = 0;
-	// Si es te que fer indefinidament tornem a guardar el valor de ticks al remaining
-	else if (tt.t[i].ntimes == 0) tt.t[i].remaining = tt.t[i].every ;
-	// En cas de que no fos cap dels de abans restem un ntimes i tornem a ficar el valor de remaning a every
-	else{
-	  tt.t[i].ntimes--;
-	  tt.t[i].remaining = tt.t[i].every;
-	}
-      }
-    }	
+  	 // Mirem si en la posicio N tenim un cronometre o un timer (comrpovem si el crono esta ences o apagat)
+  	if (tt.unio[i].crono.estat != true){
+  	    // Entrem dintre els valors que hem escrit
+  	    if (tt.unio[i].timer.every != 0){
+  	      // Hi restem un tick
+  	      tt.unio[i].timer.remaining--;
+  	      // Si hem acabat de restar...
+  	      if (tt.unio[i].timer.remaining == 0){
+	  		// Cridem al funcio
+	  		(tt.unio[i].timer.callback)();
+	  		// En el cas de que aquet fos l'ultim cop que la teniem que cridar fiquem el every a 0
+	  		if (tt.unio[i].timer.ntimes == 1) tt.unio[i].timer.every = 0;
+	  		// Si es te que fer indefinidament tornem a guardar el valor de ticks al remaining
+	  		else if (tt.unio[i].timer.ntimes == 0) tt.unio[i].timer.remaining = tt.unio[i].timer.every ;
+	  		// En cas de que no fos cap dels de abans restem un ntimes i tornem a ficar el valor de remaning a every
+	  		else{
+	  		  tt.unio[i].timer.ntimes--;
+	  		  tt.unio[i].timer.remaining = tt.unio[i].timer.every;
+	  			}
+  	     	}
+  	   	}	
+  	}
+  	else{ 
+  		if (tt.unio[i].crono.cronometre == 255){
+  			// aqui poder es tindria que ficar algu en plan, quant arribi a 255 sumu a un altre lloc 1 per portar el compte no?
+
+  			tt.unio[i].crono.cronometre=0;
+  		} 
+  		else tt.unio[i].crono.cronometre++;
+
+  	}
   }
 }	
