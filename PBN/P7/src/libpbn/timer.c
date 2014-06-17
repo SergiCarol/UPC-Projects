@@ -1,5 +1,4 @@
 #include "timer.h"
-
 // Maxim number of entries
 #define N 20
 
@@ -28,15 +27,16 @@ typedef union {
 	// El union pel que he llegit siginfica que tot esta a la mateixa adreça per tan quant fem el union[20] de sota el crono i em timer compartiran cel·les
 	cron crono;
 	entry timer;
-} unio;
+} t;
 
 
 static struct {
   // Diria que ara va aixi
-  unio t[N];
+  t unio[N];
   //Numero de entrades valides
   uint8_t n;
 } tt;
+
 
 
 void timer_init(void){
@@ -98,11 +98,11 @@ void timer_cancel_all (void){
 
 timer_chrono_t chrono(void){
   
-	for (i=0;i!=N;i++){
+	for (uint8_t i=0;i!=N;i++){
 	    // Si la posicio no esta ocupada hi escribim
 	    if (tt.unio[i].crono.on==false && tt.unio[i].timer.every==0){
 	      tt.n++;
-	      tt.unio[i].timer.on = true;
+	      tt.unio[i].crono.on = true;
 	      // la pregunta és, aqui s'activa el cronometre ja???
 	     
 	      if (tt.n > 0){
@@ -117,9 +117,11 @@ timer_chrono_t chrono(void){
 }
 
 void chrono_start(timer_chrono_t c){
-
-	tt.unio[c].crono.estat = true;
-	tt.unio[c].crono.cronometre = 0;
+	if (tt.unio[c].crono.on = true){ 
+		tt.unio[c].crono.estat = true;
+		tt.unio[c].crono.cronometre = 0;
+	}
+	else{}
 }
 uint8_t chrono_get(timer_chrono_t c){
 
