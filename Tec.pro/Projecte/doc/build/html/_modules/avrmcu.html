@@ -1,0 +1,172 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>avrmcu &mdash; Simulador AVR 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Simulador AVR 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Simulador AVR 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for avrmcu</h1><div class="highlight"><pre>
+<span class="c"># -*- encoding:utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">state</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">repertoir</span> <span class="kn">import</span> <span class="o">*</span>
+
+<div class="viewcode-block" id="AvrMcu"><a class="viewcode-back" href="../avrmcu.html#avrmcu.AvrMcu">[docs]</a><span class="k">class</span> <span class="nc">AvrMcu</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    AvrMcu és una classe les instàcies de la qual són simuladors de l&#39;MCU AVR. La seva important és executar un programa escrit en assemblador de l&#39;AVR.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">         Inicialitza el simulador. Particularment, fa un reset de l&#39;estat: esborra les memòries, inicialitza el PC i les FLAGS a 0. Inicilitza el repertori d&#39;instruccions amb les instàncies d&#39;InstRunner corresponents.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_s</span> <span class="o">=</span> <span class="n">State</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rep</span> <span class="o">=</span> <span class="n">Repertoir</span><span class="p">([</span><span class="n">Add</span><span class="p">(),</span><span class="n">Adc</span><span class="p">(),</span><span class="n">Sub</span><span class="p">(),</span><span class="n">Subi</span><span class="p">(),</span><span class="n">And</span><span class="p">(),</span><span class="n">Or</span><span class="p">(),</span><span class="n">Eor</span><span class="p">(),</span><span class="n">Lsr</span><span class="p">(),</span><span class="n">Mov</span><span class="p">(),</span><span class="n">Ldi</span><span class="p">(),</span><span class="n">Sts</span><span class="p">(),</span><span class="n">Lds</span><span class="p">(),</span><span class="n">Rjmp</span><span class="p">(),</span><span class="n">Brbs</span><span class="p">(),</span><span class="n">Brbc</span><span class="p">(),</span><span class="n">Nop</span><span class="p">(),</span><span class="n">Break</span><span class="p">(),</span><span class="n">In</span><span class="p">(),</span><span class="n">Out</span><span class="p">()])</span>
+        
+<div class="viewcode-block" id="AvrMcu.reset"><a class="viewcode-back" href="../avrmcu.html#avrmcu.AvrMcu.reset">[docs]</a>    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fa un reset d l&#39;estat deixant-lo de la mateixa forma que el mètode __init__</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_s</span> <span class="o">=</span> <span class="n">State</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="AvrMcu.set_prog"><a class="viewcode-back" href="../avrmcu.html#avrmcu.AvrMcu.set_prog">[docs]</a>    <span class="k">def</span> <span class="nf">set_prog</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        p és una llista d&#39;enters que representen un programa en llenguatge màquina de l&#39;AVR. El mètode instal·la el programa p en la memoria de programa del simulador a partir de l&#39;adreça 0000.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_s</span><span class="o">.</span><span class="n">prog</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">=</span><span class="n">value</span>
+</div>
+<div class="viewcode-block" id="AvrMcu.dump_dat"><a class="viewcode-back" href="../avrmcu.html#avrmcu.AvrMcu.dump_dat">[docs]</a>    <span class="k">def</span> <span class="nf">dump_dat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retorna un str que representa un bolcat de la memòria de dades del simulador</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_s</span><span class="o">.</span><span class="n">dump_dat</span><span class="p">()</span>
+
+            </div>
+<div class="viewcode-block" id="AvrMcu.dump_reg"><a class="viewcode-back" href="../avrmcu.html#avrmcu.AvrMcu.dump_reg">[docs]</a>    <span class="k">def</span> <span class="nf">dump_reg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retorna un string que correspon amb un bolcat dels registres del simulador</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_s</span><span class="o">.</span><span class="n">dump_reg</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="AvrMcu.dump_prog"><a class="viewcode-back" href="../avrmcu.html#avrmcu.AvrMcu.dump_prog">[docs]</a>    <span class="k">def</span> <span class="nf">dump_prog</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retorna un str que representa un bolcat de la memoria de programa del simulador</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_s</span><span class="o">.</span><span class="n">dump_prog</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="AvrMcu.run"><a class="viewcode-back" href="../avrmcu.html#avrmcu.AvrMcu.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        És el mètode principal del simulador. Quan s&#39;invoca inicia una iteració infinita que:</span>
+<span class="sd">        a) Obtè la instrucció indicada del PC.</span>
+<span class="sd">        b) Busca un InstRunner que pugui executar aquesta instrucció.</span>
+<span class="sd">        c) Executa la instrucció.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+    
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>                
+                <span class="n">instruc</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_s</span><span class="o">.</span><span class="n">prog</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_s</span><span class="o">.</span><span class="n">pc</span><span class="p">]</span>
+                <span class="n">i</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_rep</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">instruc</span><span class="p">)</span> <span class="c">#Busquem la instrucció</span>
+                <span class="n">i</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">instruc</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">_s</span><span class="p">)</span> <span class="c">#Executem la instrucció</span>
+            
+        <span class="k">except</span> <span class="n">UnknownCodeError</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;No existeix instrucció&quot;</span>
+        <span class="k">except</span> <span class="n">BreakException</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;Simulació acabada&quot;</span>
+            <span class="k">return</span> <span class="bp">True</span>
+            
+                </div>
+<div class="viewcode-block" id="AvrMcu.set_trace"><a class="viewcode-back" href="../avrmcu.html#avrmcu.AvrMcu.set_trace">[docs]</a>    <span class="k">def</span> <span class="nf">set_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">t</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Quan s&#39;invoca amb t=True activa el mode trace de la memòria de dades. Si s&#39;activa amb t=False es desactica el mode.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+            
+            <span class="bp">self</span><span class="o">.</span><span class="n">_s</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">trace_on</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_s</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">trace_off</span><span class="p">()</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Simulador AVR 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Héctor M. Vidal, Sergi Carol, Enric Caballe, David Martin i Pavel Macutela..
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

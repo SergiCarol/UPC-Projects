@@ -1,0 +1,374 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Memory &mdash; Simulador AVR 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Simulador AVR 1.0 documentation" href="index.html" />
+    <link rel="next" title="Avrexcept" href="avrexcept.html" />
+    <link rel="prev" title="Bitvector" href="bitvec.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="avrexcept.html" title="Avrexcept"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="bitvec.html" title="Bitvector"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Simulador AVR 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-memory">
+<span id="memory"></span><h1>Memory<a class="headerlink" href="#module-memory" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="memory.DataMemory">
+<em class="property">class </em><tt class="descclassname">memory.</tt><tt class="descname">DataMemory</tt><big>(</big><em>ncells=1024</em><big>)</big><a class="reference internal" href="_modules/memory.html#DataMemory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memory.DataMemory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aquesta classe representa un banc de memòria per enmagatzemar. Per tant les dades enmagatzemades són de mida <strong>Byte</strong>.</p>
+<blockquote>
+<div><ul>
+<li><dl class="function">
+<dt id="memory.DataMemory.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>self</em>, <em>ncells=1024</em><big>)</big><a class="reference internal" href="_modules/memory.html#DataMemory.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memory.DataMemory.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</li>
+<li><dl class="function">
+<dt id="memory.DataMemory.dump_reg">
+<tt class="descname">dump_reg</tt><big>(</big><em>self</em><big>)</big><a class="reference internal" href="_modules/memory.html#DataMemory.dump_reg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memory.DataMemory.dump_reg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</li>
+</ul>
+</div></blockquote>
+<dl class="method">
+<dt>
+<tt class="descname">dump_reg</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/memory.html#DataMemory.dump_reg"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Mostra per la terminal el contingut de la memoria en el següent format:
+R00: 00
+R01: 00
+...
+R31: 00
+X(R27:R26): 0000
+Y(R29:R28): 0000
+Z(R31:R30): 0000</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="memory.Memory">
+<em class="property">class </em><tt class="descclassname">memory.</tt><tt class="descname">Memory</tt><a class="reference internal" href="_modules/memory.html#Memory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memory.Memory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aquesta classe és la encarregada de organitzar i crear la memoria del MiniAVR. Aquesta classe és abstracta i per tant no poden haver-hi objectes instenciats de la classe, sino que sempre ho són de les seves subclasses <strong>DataMemory</strong> i <strong>ProgramMemory</strong></p>
+<blockquote>
+<div><ul>
+<li><dl class="function">
+<dt id="memory.Memory.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>self</em><big>)</big><a class="reference internal" href="_modules/memory.html#Memory.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memory.Memory.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</li>
+<li><dl class="function">
+<dt id="memory.Memory.trace_on">
+<tt class="descname">trace_on</tt><big>(</big><em>self</em><big>)</big><a class="reference internal" href="_modules/memory.html#Memory.trace_on"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memory.Memory.trace_on" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</li>
+<li><dl class="function">
+<dt id="memory.Memory.__len__">
+<tt class="descname">__len__</tt><big>(</big><em>self</em><big>)</big><a class="reference internal" href="_modules/memory.html#Memory.__len__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memory.Memory.__len__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</li>
+<li><dl class="function">
+<dt id="memory.Memory.__repr__">
+<tt class="descname">__repr__</tt><big>(</big><em>self</em><big>)</big><a class="reference internal" href="_modules/memory.html#Memory.__repr__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memory.Memory.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</li>
+<li><dl class="function">
+<dt id="memory.Memory.dump">
+<tt class="descname">dump</tt><big>(</big><em>self</em><big>)</big><a class="reference internal" href="_modules/memory.html#Memory.dump"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memory.Memory.dump" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</li>
+<li><dl class="function">
+<dt id="memory.Memory.__getitem__">
+<tt class="descname">__getitem__</tt><big>(</big><em>self</em>, <em>addr</em><big>)</big><a class="reference internal" href="_modules/memory.html#Memory.__getitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memory.Memory.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</li>
+<li><dl class="function">
+<dt id="memory.Memory.__setitem__">
+<tt class="descname">__setitem__</tt><big>(</big><em>self</em>, <em>addr</em>, <em>val</em><big>)</big><a class="reference internal" href="_modules/memory.html#Memory.__setitem__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memory.Memory.__setitem__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</li>
+</ul>
+</div></blockquote>
+<dl class="method">
+<dt>
+<tt class="descname">dump</tt><big>(</big><em>f=0</em>, <em>t=5</em><big>)</big><a class="reference internal" href="_modules/memory.html#Memory.dump"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Realitza la mateixa funció que la funció <em>__repr__</em> , pero no fa un bolcat de tota la memoria sino que nomes l&#8217;efectua entre f i t</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="memory.Memory.trace_off">
+<tt class="descname">trace_off</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/memory.html#Memory.trace_off"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memory.Memory.trace_off" title="Permalink to this definition">¶</a></dt>
+<dd><p>Canvia l&#8217;estat de la variable privada _trace a FALSE</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<tt class="descname">trace_on</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/memory.html#Memory.trace_on"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>Canvia l&#8217;estat de la variable _trace a TRUE permeten traçar els accessos al banc de memoria</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="memory.ProgramMemory">
+<em class="property">class </em><tt class="descclassname">memory.</tt><tt class="descname">ProgramMemory</tt><big>(</big><em>ncells=1024</em><big>)</big><a class="reference internal" href="_modules/memory.html#ProgramMemory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memory.ProgramMemory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aquesta classe representa  un banc de memòria per enmagatzemar programes. Per tant les dades enmagatzemades són de mida word</p>
+<blockquote>
+<div><ul>
+<li><dl class="function">
+<dt id="memory.ProgramMemory.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>self</em>, <em>ncells=1024</em><big>)</big><a class="reference internal" href="_modules/memory.html#ProgramMemory.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#memory.ProgramMemory.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<div class="section" id="doctest-memory">
+<h2>Doctest Memory<a class="headerlink" href="#doctest-memory" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">memory</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<div class="section" id="provem-la-classe-programmemory">
+<h3>Provem la classe ProgramMemory<a class="headerlink" href="#provem-la-classe-programmemory" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">ProgramMemory</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">__len__</span><span class="p">()</span>
+<span class="go">8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">m</span><span class="o">.</span><span class="n">__repr__</span><span class="p">()</span>
+<span class="go">0000 : 0000</span>
+<span class="go">0001 : 0000</span>
+<span class="go">0002 : 0000</span>
+<span class="go">0003 : 0000</span>
+<span class="go">0004 : 0000</span>
+<span class="go">0005 : 0000</span>
+<span class="go">0006 : 0000</span>
+<span class="go">0007 : 0000</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">m</span><span class="o">.</span><span class="n">dump</span><span class="p">()</span>
+<span class="go">0000 : 0000</span>
+<span class="go">0001 : 0000</span>
+<span class="go">0002 : 0000</span>
+<span class="go">0003 : 0000</span>
+<span class="go">0004 : 0000</span>
+
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">trace_off</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">_trace</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">trace_on</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">_trace</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="go">Read from 0000 to 0004</span>
+<span class="go">0000</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="p">[</span><span class="mo">0000</span><span class="p">]</span>
+<span class="go">Read from 0000 to 0000</span>
+<span class="go">0000</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="go">Write 0005 to 0003</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="provem-la-classe-datamemory-i-les-seves-funcions">
+<h3>Provem la classe DataMemory i les seves funcións<a class="headerlink" href="#provem-la-classe-datamemory-i-les-seves-funcions" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-Python"><pre>&gt;&gt;&gt; dm = DataMemory(15)
+&gt;&gt;&gt; dm
+0000 : 00
+0001 : 00
+0002 : 00
+0003 : 00
+0004 : 00
+0005 : 00
+0006 : 00
+0007 : 00
+0008 : 00
+0009 : 00
+000A : 00
+000B : 00
+000C : 00
+000D : 00
+000E : 00
+000F : 00
+0010 : 00
+0011 : 00
+0012 : 00
+0013 : 00
+0014 : 00
+0015 : 00
+0016 : 00
+0017 : 00
+0018 : 00
+0019 : 00
+001A : 00
+001B : 00
+001C : 00
+001D : 00
+001E : 00
+001F : 00
+&lt;BLANKLINE&gt;
+&gt;&gt;&gt; print dm.dump_reg()
+R00 : 00
+R01 : 00
+R02 : 00
+R03 : 00
+R04 : 00
+R05 : 00
+R06 : 00
+R07 : 00
+R08 : 00
+R09 : 00
+R10 : 00
+R11 : 00
+R12 : 00
+R13 : 00
+R14 : 00
+R15 : 00
+R16 : 00
+R17 : 00
+R18 : 00
+R19 : 00
+R20 : 00
+R21 : 00
+R22 : 00
+R23 : 00
+R24 : 00
+R25 : 00
+R26 : 00
+R27 : 00
+R28 : 00
+R29 : 00
+R30 : 00
+R31 : 00
+X (R27 : R26): 0000
+Y (R29 : R28): 0000
+Z (R31 : R30): 0000
+&lt;BLANKLINE&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Memory</a><ul>
+<li><a class="reference internal" href="#doctest-memory">Doctest Memory</a><ul>
+<li><a class="reference internal" href="#provem-la-classe-programmemory">Provem la classe ProgramMemory</a></li>
+<li><a class="reference internal" href="#provem-la-classe-datamemory-i-les-seves-funcions">Provem la classe DataMemory i les seves funcións</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="bitvec.html"
+                        title="previous chapter">Bitvector</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="avrexcept.html"
+                        title="next chapter">Avrexcept</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/memory.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="avrexcept.html" title="Avrexcept"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="bitvec.html" title="Bitvector"
+             >previous</a> |</li>
+        <li><a href="index.html">Simulador AVR 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Héctor M. Vidal, Sergi Carol, Enric Caballe, David Martin i Pavel Macutela..
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

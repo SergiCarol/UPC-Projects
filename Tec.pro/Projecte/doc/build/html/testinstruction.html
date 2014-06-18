@@ -1,0 +1,758 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Doctest instruction &mdash; Simulador AVR 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Simulador AVR 1.0 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">Simulador AVR 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="doctest-instruction">
+<h1>Doctest instruction<a class="headerlink" href="#doctest-instruction" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">instruction</span> <span class="kn">import</span> <span class="n">InstRunner</span><span class="p">,</span> <span class="n">Adc</span><span class="p">,</span> <span class="n">Add</span><span class="p">,</span> <span class="n">Sub</span><span class="p">,</span> <span class="n">Subi</span><span class="p">,</span> <span class="n">And</span><span class="p">,</span> <span class="n">Or</span><span class="p">,</span> <span class="n">Eor</span><span class="p">,</span> <span class="n">Lsr</span><span class="p">,</span> <span class="n">Mov</span><span class="p">,</span> <span class="n">Ldi</span><span class="p">,</span> <span class="n">Sts</span><span class="p">,</span> <span class="n">Lds</span><span class="p">,</span> <span class="n">Rjmp</span><span class="p">,</span> <span class="n">Brbs</span><span class="p">,</span> <span class="n">Brbc</span><span class="p">,</span> <span class="n">Nop</span><span class="p">,</span> <span class="n">Break</span><span class="p">,</span> <span class="n">In</span><span class="p">,</span> <span class="n">Out</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">state</span> <span class="kn">import</span> <span class="n">State</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bitvec</span> <span class="kn">import</span> <span class="n">BitVector</span><span class="p">,</span> <span class="n">Byte</span><span class="p">,</span> <span class="n">Word</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">Adc</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">State</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">=</span><span class="n">Word</span><span class="p">(</span><span class="mi">7186</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="mi">254</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">ADC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">b</span><span class="o">.</span><span class="n">dump_reg</span><span class="p">()</span>
+<span class="go">R00 : 00</span>
+<span class="go">R01 : 00</span>
+<span class="go">R02 : FE</span>
+<span class="go">R03 : 00</span>
+<span class="go">R04 : 00</span>
+<span class="go">R05 : 00</span>
+<span class="go">R06 : 00</span>
+<span class="go">R07 : 00</span>
+<span class="go">R08 : 00</span>
+<span class="go">R09 : 00</span>
+<span class="go">R10 : 00</span>
+<span class="go">R11 : 00</span>
+<span class="go">R12 : 00</span>
+<span class="go">R13 : 00</span>
+<span class="go">R14 : 00</span>
+<span class="go">R15 : 00</span>
+<span class="go">R16 : 00</span>
+<span class="go">R17 : 00</span>
+<span class="go">R18 : 00</span>
+<span class="go">R19 : 00</span>
+<span class="go">R20 : 00</span>
+<span class="go">R21 : 00</span>
+<span class="go">R22 : 00</span>
+<span class="go">R23 : 00</span>
+<span class="go">R24 : 00</span>
+<span class="go">R25 : 00</span>
+<span class="go">R26 : 00</span>
+<span class="go">R27 : 00</span>
+<span class="go">R28 : 00</span>
+<span class="go">R29 : 00</span>
+<span class="go">R30 : 00</span>
+<span class="go">R31 : 00</span>
+<span class="go">X (R27 : R26): 0000</span>
+<span class="go">Y (R29 : R28): 0000</span>
+<span class="go">Z (R31 : R30): 0000</span>
+<span class="go">PC: 0001</span>
+<span class="go">CARRY: 1 ZERO: 1 NEG: 1</span>
+</pre></div>
+</div>
+<div class="section" id="and">
+<h2>AND<a class="headerlink" href="#and" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">And</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">State</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">=</span><span class="n">Word</span><span class="p">(</span><span class="mi">8210</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="mi">254</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">AND</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">b</span><span class="o">.</span><span class="n">dump_reg</span><span class="p">()</span>
+<span class="go">R00 : 00</span>
+<span class="go">R01 : 02</span>
+<span class="go">R02 : FE</span>
+<span class="go">R03 : 00</span>
+<span class="go">R04 : 00</span>
+<span class="go">R05 : 00</span>
+<span class="go">R06 : 00</span>
+<span class="go">R07 : 00</span>
+<span class="go">R08 : 00</span>
+<span class="go">R09 : 00</span>
+<span class="go">R10 : 00</span>
+<span class="go">R11 : 00</span>
+<span class="go">R12 : 00</span>
+<span class="go">R13 : 00</span>
+<span class="go">R14 : 00</span>
+<span class="go">R15 : 00</span>
+<span class="go">R16 : 00</span>
+<span class="go">R17 : 00</span>
+<span class="go">R18 : 00</span>
+<span class="go">R19 : 00</span>
+<span class="go">R20 : 00</span>
+<span class="go">R21 : 00</span>
+<span class="go">R22 : 00</span>
+<span class="go">R23 : 00</span>
+<span class="go">R24 : 00</span>
+<span class="go">R25 : 00</span>
+<span class="go">R26 : 00</span>
+<span class="go">R27 : 00</span>
+<span class="go">R28 : 00</span>
+<span class="go">R29 : 00</span>
+<span class="go">R30 : 00</span>
+<span class="go">R31 : 00</span>
+<span class="go">X (R27 : R26): 0000</span>
+<span class="go">Y (R29 : R28): 0000</span>
+<span class="go">Z (R31 : R30): 0000</span>
+<span class="go">PC: 0001</span>
+<span class="go">CARRY: 0 ZERO: 0 NEG: 0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="or">
+<h2>OR<a class="headerlink" href="#or" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">Or</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">State</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">=</span><span class="n">Word</span><span class="p">(</span><span class="mi">10258</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="mi">254</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">OR</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">b</span><span class="o">.</span><span class="n">dump_reg</span><span class="p">()</span>
+<span class="go">R00 : 00</span>
+<span class="go">R01 : FE</span>
+<span class="go">R02 : FE</span>
+<span class="go">R03 : 00</span>
+<span class="go">R04 : 00</span>
+<span class="go">R05 : 00</span>
+<span class="go">R06 : 00</span>
+<span class="go">R07 : 00</span>
+<span class="go">R08 : 00</span>
+<span class="go">R09 : 00</span>
+<span class="go">R10 : 00</span>
+<span class="go">R11 : 00</span>
+<span class="go">R12 : 00</span>
+<span class="go">R13 : 00</span>
+<span class="go">R14 : 00</span>
+<span class="go">R15 : 00</span>
+<span class="go">R16 : 00</span>
+<span class="go">R17 : 00</span>
+<span class="go">R18 : 00</span>
+<span class="go">R19 : 00</span>
+<span class="go">R20 : 00</span>
+<span class="go">R21 : 00</span>
+<span class="go">R22 : 00</span>
+<span class="go">R23 : 00</span>
+<span class="go">R24 : 00</span>
+<span class="go">R25 : 00</span>
+<span class="go">R26 : 00</span>
+<span class="go">R27 : 00</span>
+<span class="go">R28 : 00</span>
+<span class="go">R29 : 00</span>
+<span class="go">R30 : 00</span>
+<span class="go">R31 : 00</span>
+<span class="go">X (R27 : R26): 0000</span>
+<span class="go">Y (R29 : R28): 0000</span>
+<span class="go">Z (R31 : R30): 0000</span>
+<span class="go">PC: 0001</span>
+<span class="go">CARRY: 0 ZERO: 0 NEG: 0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="eor">
+<h2>EOR<a class="headerlink" href="#eor" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">Eor</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">State</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">=</span><span class="n">Word</span><span class="p">(</span><span class="mi">9234</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="mi">254</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">EOR</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">b</span><span class="o">.</span><span class="n">dump_reg</span><span class="p">()</span>
+<span class="go">R00 : 00</span>
+<span class="go">R01 : FC</span>
+<span class="go">R02 : FE</span>
+<span class="go">R03 : 00</span>
+<span class="go">R04 : 00</span>
+<span class="go">R05 : 00</span>
+<span class="go">R06 : 00</span>
+<span class="go">R07 : 00</span>
+<span class="go">R08 : 00</span>
+<span class="go">R09 : 00</span>
+<span class="go">R10 : 00</span>
+<span class="go">R11 : 00</span>
+<span class="go">R12 : 00</span>
+<span class="go">R13 : 00</span>
+<span class="go">R14 : 00</span>
+<span class="go">R15 : 00</span>
+<span class="go">R16 : 00</span>
+<span class="go">R17 : 00</span>
+<span class="go">R18 : 00</span>
+<span class="go">R19 : 00</span>
+<span class="go">R20 : 00</span>
+<span class="go">R21 : 00</span>
+<span class="go">R22 : 00</span>
+<span class="go">R23 : 00</span>
+<span class="go">R24 : 00</span>
+<span class="go">R25 : 00</span>
+<span class="go">R26 : 00</span>
+<span class="go">R27 : 00</span>
+<span class="go">R28 : 00</span>
+<span class="go">R29 : 00</span>
+<span class="go">R30 : 00</span>
+<span class="go">R31 : 00</span>
+<span class="go">X (R27 : R26): 0000</span>
+<span class="go">Y (R29 : R28): 0000</span>
+<span class="go">Z (R31 : R30): 0000</span>
+<span class="go">PC: 0001</span>
+<span class="go">CARRY: 0 ZERO: 0 NEG: 0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="lsr">
+<h2>LSR<a class="headerlink" href="#lsr" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">Lsr</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">State</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">=</span><span class="n">Word</span><span class="p">(</span><span class="mi">37910</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">254</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">LSR</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">b</span><span class="o">.</span><span class="n">dump_reg</span><span class="p">()</span>
+<span class="go">R00 : 00</span>
+<span class="go">R01 : 7F</span>
+<span class="go">R02 : 00</span>
+<span class="go">R03 : 00</span>
+<span class="go">R04 : 00</span>
+<span class="go">R05 : 00</span>
+<span class="go">R06 : 00</span>
+<span class="go">R07 : 00</span>
+<span class="go">R08 : 00</span>
+<span class="go">R09 : 00</span>
+<span class="go">R10 : 00</span>
+<span class="go">R11 : 00</span>
+<span class="go">R12 : 00</span>
+<span class="go">R13 : 00</span>
+<span class="go">R14 : 00</span>
+<span class="go">R15 : 00</span>
+<span class="go">R16 : 00</span>
+<span class="go">R17 : 00</span>
+<span class="go">R18 : 00</span>
+<span class="go">R19 : 00</span>
+<span class="go">R20 : 00</span>
+<span class="go">R21 : 00</span>
+<span class="go">R22 : 00</span>
+<span class="go">R23 : 00</span>
+<span class="go">R24 : 00</span>
+<span class="go">R25 : 00</span>
+<span class="go">R26 : 00</span>
+<span class="go">R27 : 00</span>
+<span class="go">R28 : 00</span>
+<span class="go">R29 : 00</span>
+<span class="go">R30 : 00</span>
+<span class="go">R31 : 00</span>
+<span class="go">X (R27 : R26): 0000</span>
+<span class="go">Y (R29 : R28): 0000</span>
+<span class="go">Z (R31 : R30): 0000</span>
+<span class="go">PC: 0001</span>
+<span class="go">CARRY: 0 ZERO: 0 NEG: 0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mov">
+<h2>MOV<a class="headerlink" href="#mov" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">Mov</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">State</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">=</span><span class="n">Word</span><span class="p">(</span><span class="mi">11282</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="mi">254</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">MOV</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">b</span><span class="o">.</span><span class="n">dump_reg</span><span class="p">()</span>
+<span class="go">R00 : 00</span>
+<span class="go">R01 : FE</span>
+<span class="go">R02 : FE</span>
+<span class="go">R03 : 00</span>
+<span class="go">R04 : 00</span>
+<span class="go">R05 : 00</span>
+<span class="go">R06 : 00</span>
+<span class="go">R07 : 00</span>
+<span class="go">R08 : 00</span>
+<span class="go">R09 : 00</span>
+<span class="go">R10 : 00</span>
+<span class="go">R11 : 00</span>
+<span class="go">R12 : 00</span>
+<span class="go">R13 : 00</span>
+<span class="go">R14 : 00</span>
+<span class="go">R15 : 00</span>
+<span class="go">R16 : 00</span>
+<span class="go">R17 : 00</span>
+<span class="go">R18 : 00</span>
+<span class="go">R19 : 00</span>
+<span class="go">R20 : 00</span>
+<span class="go">R21 : 00</span>
+<span class="go">R22 : 00</span>
+<span class="go">R23 : 00</span>
+<span class="go">R24 : 00</span>
+<span class="go">R25 : 00</span>
+<span class="go">R26 : 00</span>
+<span class="go">R27 : 00</span>
+<span class="go">R28 : 00</span>
+<span class="go">R29 : 00</span>
+<span class="go">R30 : 00</span>
+<span class="go">R31 : 00</span>
+<span class="go">X (R27 : R26): 0000</span>
+<span class="go">Y (R29 : R28): 0000</span>
+<span class="go">Z (R31 : R30): 0000</span>
+<span class="go">PC: 0001</span>
+<span class="go">CARRY: 0 ZERO: 0 NEG: 0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ldi">
+<h2>LDI<a class="headerlink" href="#ldi" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">Ldi</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">State</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">=</span><span class="n">Word</span><span class="p">(</span><span class="mi">61214</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">LDI</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">b</span><span class="o">.</span><span class="n">dump_reg</span><span class="p">()</span>
+<span class="go">R00 : 00</span>
+<span class="go">R01 : 00</span>
+<span class="go">R02 : 00</span>
+<span class="go">R03 : 00</span>
+<span class="go">R04 : 00</span>
+<span class="go">R05 : 00</span>
+<span class="go">R06 : 00</span>
+<span class="go">R07 : 00</span>
+<span class="go">R08 : 00</span>
+<span class="go">R09 : 00</span>
+<span class="go">R10 : 00</span>
+<span class="go">R11 : 00</span>
+<span class="go">R12 : 00</span>
+<span class="go">R13 : 00</span>
+<span class="go">R14 : 00</span>
+<span class="go">R15 : 00</span>
+<span class="go">R16 : 00</span>
+<span class="go">R17 : FE</span>
+<span class="go">R18 : 00</span>
+<span class="go">R19 : 00</span>
+<span class="go">R20 : 00</span>
+<span class="go">R21 : 00</span>
+<span class="go">R22 : 00</span>
+<span class="go">R23 : 00</span>
+<span class="go">R24 : 00</span>
+<span class="go">R25 : 00</span>
+<span class="go">R26 : 00</span>
+<span class="go">R27 : 00</span>
+<span class="go">R28 : 00</span>
+<span class="go">R29 : 00</span>
+<span class="go">R30 : 00</span>
+<span class="go">R31 : 00</span>
+<span class="go">X (R27 : R26): 0000</span>
+<span class="go">Y (R29 : R28): 0000</span>
+<span class="go">Z (R31 : R30): 0000</span>
+<span class="go">PC: 0001</span>
+<span class="go">CARRY: 0 ZERO: 0 NEG: 0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="lds">
+<h2>LDS<a class="headerlink" href="#lds" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">Lds</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">State</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">=</span><span class="n">Word</span><span class="p">(</span><span class="mi">40968</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">LDS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">b</span><span class="o">.</span><span class="n">dump_reg</span><span class="p">()</span>
+<span class="go">R00 : 08</span>
+<span class="go">R01 : 00</span>
+<span class="go">R02 : 00</span>
+<span class="go">R03 : 00</span>
+<span class="go">R04 : 00</span>
+<span class="go">R05 : 00</span>
+<span class="go">R06 : 00</span>
+<span class="go">R07 : 00</span>
+<span class="go">R08 : 00</span>
+<span class="go">R09 : 00</span>
+<span class="go">R10 : 00</span>
+<span class="go">R11 : 00</span>
+<span class="go">R12 : 00</span>
+<span class="go">R13 : 00</span>
+<span class="go">R14 : 00</span>
+<span class="go">R15 : 00</span>
+<span class="go">R16 : 00</span>
+<span class="go">R17 : 00</span>
+<span class="go">R18 : 00</span>
+<span class="go">R19 : 00</span>
+<span class="go">R20 : 00</span>
+<span class="go">R21 : 00</span>
+<span class="go">R22 : 00</span>
+<span class="go">R23 : 00</span>
+<span class="go">R24 : 00</span>
+<span class="go">R25 : 00</span>
+<span class="go">R26 : 00</span>
+<span class="go">R27 : 00</span>
+<span class="go">R28 : 00</span>
+<span class="go">R29 : 00</span>
+<span class="go">R30 : 00</span>
+<span class="go">R31 : 00</span>
+<span class="go">X (R27 : R26): 0000</span>
+<span class="go">Y (R29 : R28): 0000</span>
+<span class="go">Z (R31 : R30): 0000</span>
+<span class="go">PC: 0001</span>
+<span class="go">CARRY: 0 ZERO: 0 NEG: 0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sts">
+<h2>STS<a class="headerlink" href="#sts" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">Sts</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">State</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">=</span><span class="n">Word</span><span class="p">(</span><span class="mi">43026</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="mi">254</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">STS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">b</span><span class="o">.</span><span class="n">dump_reg</span><span class="p">()</span>
+<span class="go">R00 : 00</span>
+<span class="go">R01 : 00</span>
+<span class="go">R02 : 01</span>
+<span class="go">R03 : 00</span>
+<span class="go">R04 : 00</span>
+<span class="go">R05 : 00</span>
+<span class="go">R06 : 00</span>
+<span class="go">R07 : 00</span>
+<span class="go">R08 : 00</span>
+<span class="go">R09 : 00</span>
+<span class="go">R10 : 00</span>
+<span class="go">R11 : 00</span>
+<span class="go">R12 : 00</span>
+<span class="go">R13 : 00</span>
+<span class="go">R14 : 00</span>
+<span class="go">R15 : 00</span>
+<span class="go">R16 : 00</span>
+<span class="go">R17 : 00</span>
+<span class="go">R18 : 00</span>
+<span class="go">R19 : 00</span>
+<span class="go">R20 : 00</span>
+<span class="go">R21 : 00</span>
+<span class="go">R22 : 00</span>
+<span class="go">R23 : 00</span>
+<span class="go">R24 : 00</span>
+<span class="go">R25 : 00</span>
+<span class="go">R26 : 00</span>
+<span class="go">R27 : 00</span>
+<span class="go">R28 : 00</span>
+<span class="go">R29 : 00</span>
+<span class="go">R30 : 00</span>
+<span class="go">R31 : 00</span>
+<span class="go">X (R27 : R26): 0000</span>
+<span class="go">Y (R29 : R28): 0000</span>
+<span class="go">Z (R31 : R30): 0000</span>
+<span class="go">PC: 0001</span>
+<span class="go">CARRY: 0 ZERO: 0 NEG: 0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rjmp">
+<h2>RJMP<a class="headerlink" href="#rjmp" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">Rjmp</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">State</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">=</span><span class="n">Word</span><span class="p">(</span><span class="mi">49157</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">RJMP</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">b</span><span class="o">.</span><span class="n">dump_reg</span><span class="p">()</span>
+<span class="go">R00 : 00</span>
+<span class="go">R01 : 00</span>
+<span class="go">R02 : 00</span>
+<span class="go">R03 : 00</span>
+<span class="go">R04 : 00</span>
+<span class="go">R05 : 00</span>
+<span class="go">R06 : 00</span>
+<span class="go">R07 : 00</span>
+<span class="go">R08 : 00</span>
+<span class="go">R09 : 00</span>
+<span class="go">R10 : 00</span>
+<span class="go">R11 : 00</span>
+<span class="go">R12 : 00</span>
+<span class="go">R13 : 00</span>
+<span class="go">R14 : 00</span>
+<span class="go">R15 : 00</span>
+<span class="go">R16 : 00</span>
+<span class="go">R17 : 00</span>
+<span class="go">R18 : 00</span>
+<span class="go">R19 : 00</span>
+<span class="go">R20 : 00</span>
+<span class="go">R21 : 00</span>
+<span class="go">R22 : 00</span>
+<span class="go">R23 : 00</span>
+<span class="go">R24 : 00</span>
+<span class="go">R25 : 00</span>
+<span class="go">R26 : 00</span>
+<span class="go">R27 : 00</span>
+<span class="go">R28 : 00</span>
+<span class="go">R29 : 00</span>
+<span class="go">R30 : 00</span>
+<span class="go">R31 : 00</span>
+<span class="go">X (R27 : R26): 0000</span>
+<span class="go">Y (R29 : R28): 0000</span>
+<span class="go">Z (R31 : R30): 0000</span>
+<span class="go">PC: 0006</span>
+<span class="go">CARRY: 0 ZERO: 0 NEG: 0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="brbs">
+<h2>BRBS<a class="headerlink" href="#brbs" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">Brbs</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">State</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">=</span><span class="n">Word</span><span class="p">(</span><span class="mi">61473</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">BRBS</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">b</span><span class="o">.</span><span class="n">dump_reg</span><span class="p">()</span>
+<span class="go">R00 : 00</span>
+<span class="go">R01 : 00</span>
+<span class="go">R02 : 00</span>
+<span class="go">R03 : 00</span>
+<span class="go">R04 : 00</span>
+<span class="go">R05 : 00</span>
+<span class="go">R06 : 00</span>
+<span class="go">R07 : 00</span>
+<span class="go">R08 : 00</span>
+<span class="go">R09 : 00</span>
+<span class="go">R10 : 00</span>
+<span class="go">R11 : 00</span>
+<span class="go">R12 : 00</span>
+<span class="go">R13 : 00</span>
+<span class="go">R14 : 00</span>
+<span class="go">R15 : 00</span>
+<span class="go">R16 : 00</span>
+<span class="go">R17 : 00</span>
+<span class="go">R18 : 00</span>
+<span class="go">R19 : 00</span>
+<span class="go">R20 : 00</span>
+<span class="go">R21 : 00</span>
+<span class="go">R22 : 00</span>
+<span class="go">R23 : 00</span>
+<span class="go">R24 : 00</span>
+<span class="go">R25 : 00</span>
+<span class="go">R26 : 00</span>
+<span class="go">R27 : 00</span>
+<span class="go">R28 : 00</span>
+<span class="go">R29 : 00</span>
+<span class="go">R30 : 00</span>
+<span class="go">R31 : 00</span>
+<span class="go">X (R27 : R26): 0000</span>
+<span class="go">Y (R29 : R28): 0000</span>
+<span class="go">Z (R31 : R30): 0000</span>
+<span class="go">PC: 0001</span>
+<span class="go">CARRY: 0 ZERO: 0 NEG: 0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="brbc">
+<h2>BRBC<a class="headerlink" href="#brbc" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">Brbc</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">State</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">=</span><span class="n">Word</span><span class="p">(</span><span class="mi">62497</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">BRBC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">b</span><span class="o">.</span><span class="n">dump_reg</span><span class="p">()</span>
+<span class="go">R00 : 00</span>
+<span class="go">R01 : 00</span>
+<span class="go">R02 : 00</span>
+<span class="go">R03 : 00</span>
+<span class="go">R04 : 00</span>
+<span class="go">R05 : 00</span>
+<span class="go">R06 : 00</span>
+<span class="go">R07 : 00</span>
+<span class="go">R08 : 00</span>
+<span class="go">R09 : 00</span>
+<span class="go">R10 : 00</span>
+<span class="go">R11 : 00</span>
+<span class="go">R12 : 00</span>
+<span class="go">R13 : 00</span>
+<span class="go">R14 : 00</span>
+<span class="go">R15 : 00</span>
+<span class="go">R16 : 00</span>
+<span class="go">R17 : 00</span>
+<span class="go">R18 : 00</span>
+<span class="go">R19 : 00</span>
+<span class="go">R20 : 00</span>
+<span class="go">R21 : 00</span>
+<span class="go">R22 : 00</span>
+<span class="go">R23 : 00</span>
+<span class="go">R24 : 00</span>
+<span class="go">R25 : 00</span>
+<span class="go">R26 : 00</span>
+<span class="go">R27 : 00</span>
+<span class="go">R28 : 00</span>
+<span class="go">R29 : 00</span>
+<span class="go">R30 : 00</span>
+<span class="go">R31 : 00</span>
+<span class="go">X (R27 : R26): 0000</span>
+<span class="go">Y (R29 : R28): 0000</span>
+<span class="go">Z (R31 : R30): 0000</span>
+<span class="go">PC: 0005</span>
+<span class="go">CARRY: 0 ZERO: 0 NEG: 0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="out">
+<h2>Out<a class="headerlink" href="#out" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span><span class="n">Out</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">=</span><span class="n">State</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">99</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">=</span><span class="n">Word</span><span class="p">(</span><span class="mi">47120</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">=</span><span class="n">Word</span><span class="p">(</span><span class="mi">47121</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e</span><span class="o">=</span><span class="n">Word</span><span class="p">(</span><span class="mi">47122</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">OUT</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Doctest instruction</a><ul>
+<li><a class="reference internal" href="#and">AND</a></li>
+<li><a class="reference internal" href="#or">OR</a></li>
+<li><a class="reference internal" href="#eor">EOR</a></li>
+<li><a class="reference internal" href="#lsr">LSR</a></li>
+<li><a class="reference internal" href="#mov">MOV</a></li>
+<li><a class="reference internal" href="#ldi">LDI</a></li>
+<li><a class="reference internal" href="#lds">LDS</a></li>
+<li><a class="reference internal" href="#sts">STS</a></li>
+<li><a class="reference internal" href="#rjmp">RJMP</a></li>
+<li><a class="reference internal" href="#brbs">BRBS</a></li>
+<li><a class="reference internal" href="#brbc">BRBC</a></li>
+<li><a class="reference internal" href="#out">Out</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/testinstruction.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">Simulador AVR 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Héctor M. Vidal, Sergi Carol, Enric Caballe, David Martin i Pavel Macutela..
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

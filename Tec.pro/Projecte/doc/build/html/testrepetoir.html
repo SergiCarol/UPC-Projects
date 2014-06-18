@@ -1,0 +1,118 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Doctest Repertoir &mdash; Simulador AVR 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Simulador AVR 1.0 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">Simulador AVR 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="doctest-repertoir">
+<h1>Doctest Repertoir<a class="headerlink" href="#doctest-repertoir" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">repertoir</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">=</span> <span class="n">Repertoir</span><span class="p">([</span><span class="n">Add</span><span class="p">(),</span><span class="n">Adc</span><span class="p">(),</span><span class="n">Sub</span><span class="p">(),</span><span class="n">Subi</span><span class="p">(),</span><span class="n">And</span><span class="p">(),</span><span class="n">Or</span><span class="p">(),</span><span class="n">Eor</span><span class="p">(),</span><span class="n">Lsr</span><span class="p">(),</span><span class="n">Mov</span><span class="p">(),</span><span class="n">Ldi</span><span class="p">(),</span><span class="n">Sts</span><span class="p">(),</span><span class="n">Lds</span><span class="p">(),</span><span class="n">Rjmp</span><span class="p">(),</span><span class="n">Brbs</span><span class="p">(),</span><span class="n">Brbc</span><span class="p">(),</span><span class="n">Nop</span><span class="p">(),</span><span class="n">Break</span><span class="p">(),</span><span class="n">In</span><span class="p">(),</span><span class="n">Out</span><span class="p">()])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">61199</span><span class="p">)</span>
+<span class="go">LDI</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">57361</span><span class="p">)</span>
+<span class="go">LDI</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">3857</span><span class="p">)</span>
+<span class="go">ADD</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">11777</span><span class="p">)</span>
+<span class="go">MOV</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">8704</span><span class="p">)</span>
+<span class="go">AND</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mo">0000</span><span class="p">)</span>
+<span class="go">NOP</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">38296</span><span class="p">)</span>
+<span class="go">BREAK</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/testrepetoir.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">Simulador AVR 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Héctor M. Vidal, Sergi Carol, Enric Caballe, David Martin i Pavel Macutela..
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

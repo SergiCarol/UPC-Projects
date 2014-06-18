@@ -1,0 +1,418 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>bitvec &mdash; Simulador AVR 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Simulador AVR 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Simulador AVR 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for bitvec</h1><div class="highlight"><pre>
+<span class="c"># -*- encoding:utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Aquesta classe es l&#39;encarregada de utilitzar el bits d&#39;informació basica que utilitza l&#39;AVR. Consisteix en tres classes:</span>
+
+<span class="sd"> - Classe BitVector: La classe Bitvector es la superclasse de les dues altres classes del modul. Es l&#39;encarregada de mantenir tots el metodes per a operar amb Bytes y Words.</span>
+
+<span class="sd"> - Classe Byte: La classe Byte es una subclase de la classe Bitvector. Serveix per a indicar que fem referencia a un rang de dades de 8 bits.</span>
+
+<span class="sd"> - Classe Word: La classe Word es una subclase de la classe Bitvector. Serveix per a indicar que fem referencia a un rang de dades de 16 bits.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="k">class</span> <span class="nc">BitVector</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">w</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Inicialitza l&#39;objecte amb un valor inicial de w. Cal</span>
+<span class="sd">		assegurar-se que només s&#39;usen els k bits de menys de</span>
+<span class="sd">		w, on k és la longitud en bits de self. Aixó</span>
+<span class="sd">		s&#39;aconsegueix aplicant la màscara corresponent. Noteu</span>
+<span class="sd">		que el valor de k dependrà de la subclasse concreta</span>
+<span class="sd">		que s&#39;estigui instanciant.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_w</span> <span class="o">=</span> <span class="n">w</span>
+
+	<span class="k">def</span> <span class="nf">extract_field_u</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">mask</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Mask és un enter que s&#39;interpreta co m una màscara</span>
+<span class="sd">		bianria. Retorna sempre un enter positiu. L&#39;objectiu</span>
+<span class="sd">		d&#39;aquest mètode és facilitar l&#39;extracció de camps</span>
+<span class="sd">		d&#39;una paraula com ara el número de registre en el de</span>
+<span class="sd">		la instrucció ADD. Que donada una màscara mask que</span>
+<span class="sd">		indica un subconjunt de bits de la paraula self,</span>
+<span class="sd">		aquest mètode torna l&#39;enter sense signe representat</span>
+<span class="sd">		per aquest subconjunt de bits.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">aux</span> <span class="o">=</span> <span class="mi">1</span>
+		<span class="n">aux2</span> <span class="o">=</span> <span class="mi">1</span>
+		<span class="n">sortida</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="k">while</span> <span class="n">aux</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="o">**</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		    <span class="k">if</span> <span class="p">(</span><span class="n">aux</span> <span class="o">&amp;</span> <span class="n">mask</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+		        <span class="k">if</span> <span class="p">(</span><span class="n">aux</span> <span class="o">&amp;</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_w</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+		            <span class="n">sortida</span> <span class="o">=</span> <span class="n">sortida</span> <span class="o">|</span> <span class="n">aux2</span>
+		        <span class="n">aux2</span> <span class="o">*=</span> <span class="mi">2</span>
+		    <span class="n">aux</span> <span class="o">*=</span> <span class="mi">2</span>
+		<span class="k">return</span> <span class="n">sortida</span>
+
+	<span class="k">def</span> <span class="nf">extract_field_s</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">mask</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Fa exactament el mateix que el mètode</span>
+<span class="sd">		anterior però interpreta el resultat</span>
+<span class="sd">		com un enter amb signe. Pot retorna</span>
+<span class="sd">		doncs en un enter positiu o</span>
+<span class="sd">		negatiu. S&#39;assumeix que la codificació</span>
+<span class="sd">		és complement a dos.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">sortida</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">elevado</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">aux</span> <span class="o">=</span> <span class="mi">1</span>
+		<span class="n">aux2</span> <span class="o">=</span> <span class="mi">1</span>
+		<span class="k">while</span> <span class="n">aux</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="o">**</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		    <span class="k">if</span> <span class="p">(</span><span class="n">aux</span> <span class="o">&amp;</span> <span class="n">mask</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+		        <span class="n">elevado</span> <span class="o">+=</span> <span class="mi">1</span>
+		        <span class="k">if</span> <span class="p">(</span><span class="n">aux</span> <span class="o">&amp;</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_w</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+		            <span class="n">sortida</span> <span class="o">=</span> <span class="n">sortida</span> <span class="o">|</span> <span class="n">aux2</span>
+		        <span class="n">aux2</span> <span class="o">*=</span> <span class="mi">2</span>
+		    <span class="n">aux</span> <span class="o">*=</span> <span class="mi">2</span>
+		<span class="k">if</span> <span class="n">sortida</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="n">elevado</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+		    <span class="n">sortida</span> <span class="o">-=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">elevado</span>
+		<span class="k">return</span> <span class="n">sortida</span>
+
+	<span class="k">def</span> <span class="nf">__int__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Torna el valor corresponent a self interpretat sempre</span>
+<span class="sd">		com a un valor sense signe</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span> 
+			<span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_w</span> <span class="o">&amp;</span> <span class="mi">255</span><span class="p">)</span> 
+		<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="mi">16</span><span class="p">:</span> 
+			<span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_w</span> <span class="o">&amp;</span> <span class="mi">65535</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">__index__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Torna el mateix que en el mètode anterior. Consulteu</span>
+<span class="sd">		el manual de Python per entendre quin paper juga aques</span>
+<span class="sd">		mètode.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_w</span>
+
+	<span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Torna la representació en hexadecimal el valor de</span>
+<span class="sd">		BitVector. Cal tenir en compte la llargada de la</span>
+<span class="sd">		paraula i escriure sempre el nombre de dígits</span>
+<span class="sd">		corresponents. Per exemple, si la llargada de la</span>
+<span class="sd">		paraula és d&#39;un byte i és 10, __repr__ hauria</span>
+<span class="sd">		d&#39;escriure 0A i no pas A</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">==</span><span class="mi">8</span><span class="p">:</span>
+           		<span class="k">return</span> <span class="s">&#39;{0:02X}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_w</span> <span class="o">&amp;</span> <span class="mi">255</span><span class="p">))</span>
+			
+        	<span class="k">else</span><span class="p">:</span>
+			<span class="k">return</span> <span class="s">&#39;{0:04X}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_w</span> <span class="o">&amp;</span> <span class="mi">65535</span><span class="p">))</span>
+
+	<span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">o</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Suma paraules. Retorna sempre un objecte de la mateixa</span>
+<span class="sd">		classe que self. També admeten que el segon operand ,</span>
+<span class="sd">		o, sigui un int o un BitVector indistintament.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+		<span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+		<span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">o</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Resten paraules. Retorna sempre un objecte de la</span>
+<span class="sd">		mateixa classe que self. També admeten que el segon</span>
+<span class="sd">		operand , o, sigui un int o un BitVector</span>
+<span class="sd">		indistintament.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+		<span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+		<span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">__and__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">o</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Implmenta les corresponents operacions booleanes bit a</span>
+<span class="sd">		bit. Els mètodes retornen un objecte de la mateixa</span>
+<span class="sd">		classe self.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+		<span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+		<span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="n">a</span><span class="o">&amp;</span><span class="n">b</span><span class="p">)</span>
+	
+	<span class="k">def</span> <span class="nf">__or__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">o</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Implmenta les corresponents operacions booleanes bit a</span>
+<span class="sd">		bit. Els mètodes retornen un objecte de la mateixa</span>
+<span class="sd">		classe self.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+		<span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+		<span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="n">a</span><span class="o">|</span><span class="n">b</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">__xor__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">o</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Implmenta les corresponents operacions booleanes bit</span>
+<span class="sd">		a bit. Els mètodes retornen un objecte de la mateixa</span>
+<span class="sd">		classe self.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+		<span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+		<span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="n">a</span><span class="o">^</span><span class="n">b</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">__invert__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Implmenta les corresponents operacions booleanes bit a</span>
+<span class="sd">		bit. Els mètodes retornen un objecte de la mateixa</span>
+<span class="sd">		classe self.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+		<span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="o">~</span><span class="n">a</span><span class="p">)</span>
+
+   	<span class="k">def</span> <span class="nf">__rshift__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">i</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Implementen les operacions de rotació dreta. Retornen</span>
+<span class="sd">		un objecte de la mateixa classe que self. En cas que i</span>
+<span class="sd">		estigui fora de rang, el mètode aixeca l&#39;excepció</span>
+<span class="sd">		IndexError.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">i</span><span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+		<span class="k">if</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+			<span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">_w</span> <span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">)</span>
+		<span class="k">else</span><span class="p">:</span>
+		    <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s">&quot;S&#39;ha intentat rotar molt&quot;</span><span class="p">)</span>
+
+	<span class="k">def</span> <span class="nf">__lshift__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">i</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Implementen les operacions de rotació</span>
+<span class="sd">		esquerrra. Retornen un objecte de la mateixa classe</span>
+<span class="sd">		que self. En cas que i estigui fora de rang, el mètode</span>
+<span class="sd">		aixeca l&#39;excepció IndexError.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+		<span class="k">if</span> <span class="n">i</span><span class="o">&lt;=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		    <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">_w</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">)</span>
+		<span class="k">else</span><span class="p">:</span>
+		    <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s">&quot;S&#39;ha intentat rotar molt&quot;</span><span class="p">)</span>
+	<span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">o</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Implmenten la igualtat. Cal tenir en compte que per</span>
+<span class="sd">		decidir si dos BitVector són iguals només s&#39;han de</span>
+<span class="sd">		considerar els bits inclosos dins de la mida de la</span>
+<span class="sd">		paraula.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+		<span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+		<span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">:</span>
+			<span class="k">return</span> <span class="bp">True</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="k">return</span> <span class="bp">False</span>
+
+	<span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">o</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Implmenten la diferencia. Cal tenir en compte que per</span>
+<span class="sd">		decidir si dos BitVector són iguals només s&#39;han de</span>
+<span class="sd">		considerar els bits inclosos dins de la mida de la</span>
+<span class="sd">		paraula.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+		<span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+		<span class="k">if</span> <span class="n">a</span> <span class="o">!=</span> <span class="n">b</span><span class="p">:</span>
+			<span class="k">return</span> <span class="bp">True</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="k">return</span> <span class="bp">False</span>
+
+	<span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">i</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Permet implementar l&#39;accés  als bits d&#39;una paraula individualment. Si w és un BitVector, llavors es pot escriure w[3] per accedir al quart bit de la paraula. w[3] retorna un bool ja que els bits individuals els representen com a valors booleans. En cas que l&#39;index emprat superi la mida de la paraula, el llença l&#39;exepció KeyError.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">a</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;=</span><span class="n">i</span><span class="p">:</span>
+		    	<span class="n">aux</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">a</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="p">))</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">)</span>
+		    	<span class="k">return</span> <span class="n">aux</span>
+		<span class="k">else</span><span class="p">:</span>
+		    	<span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s">&quot;No existeix aquest bit&quot;</span><span class="p">)</span>
+		    
+
+	<span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Permet impl xementar l&#39;accés als bits d&#39;una paraula</span>
+<span class="sd">		individualment. Si w és un BitVector, llavors es pot</span>
+<span class="sd">		escriure w[3] per accedir al quart bit de la</span>
+<span class="sd">		paraula. w[3] retorna un bool ja que els bits</span>
+<span class="sd">		individuals els representen com a valors booleans. En</span>
+<span class="sd">		cas que l&#39;index emprat superi la mida de la paraula,</span>
+<span class="sd">		el llença l&#39;exepció KeyError.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+           	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;=</span><span class="n">i</span><span class="p">:</span>
+		    <span class="k">if</span> <span class="n">v</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+		        <span class="bp">self</span><span class="o">.</span><span class="n">_w</span>  <span class="o">&amp;=</span> <span class="o">~</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">i</span><span class="p">)</span>
+		    <span class="k">elif</span> <span class="n">v</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span>
+		        <span class="bp">self</span><span class="o">.</span><span class="n">_w</span> <span class="o">|=</span> <span class="mi">1</span><span class="o">&lt;&lt;</span><span class="n">i</span>
+		<span class="k">else</span><span class="p">:</span>
+		    <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s">&quot;No existeis aquest bit&quot;</span><span class="p">)</span>
+
+
+
+
+<div class="viewcode-block" id="Byte"><a class="viewcode-back" href="../bitvec.html#bitvec.Byte">[docs]</a><span class="k">class</span> <span class="nc">Byte</span><span class="p">(</span><span class="n">BitVector</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Representa una paraula de 8 bits, és a dir un byte</span>
+
+<span class="sd">        Mètodes:</span>
+
+<span class="sd">        -------</span>
+
+<span class="sd">            * .. function:: __len__(self)</span>
+
+<span class="sd">            * .. function:: concat(self,b)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Byte.__len__"><a class="viewcode-back" href="../bitvec.html#bitvec.Byte.__len__">[docs]</a>	<span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">                Sempre torna l&#39;enter 8 atès que un byte son 8 bits.</span>
+<span class="sd">                &quot;&quot;&quot;</span>
+
+		<span class="k">return</span> <span class="mi">8</span>
+	</div>
+<div class="viewcode-block" id="Byte.concat"><a class="viewcode-back" href="../bitvec.html#bitvec.Byte.concat">[docs]</a>	<span class="k">def</span> <span class="nf">concat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+		    
+
+                <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">                Concatena self amb el Byte b i retorna un objecte de classe Word. Noteu que self és el MSB i b el LSB.</span>
+
+<span class="sd">                &quot;&quot;&quot;</span>
+
+		<span class="k">return</span> <span class="n">Word</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_w</span><span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+</div></div>
+<div class="viewcode-block" id="Word"><a class="viewcode-back" href="../bitvec.html#bitvec.Word">[docs]</a><span class="k">class</span> <span class="nc">Word</span><span class="p">(</span><span class="n">BitVector</span><span class="p">):</span>
+	        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Representa una paraula de 16 bits.</span>
+
+<span class="sd">        Mètodes:</span>
+
+<span class="sd">        -------</span>
+
+<span class="sd">            * .. function:: __len__(self)</span>
+
+<span class="sd">            * .. function:: lsb(self)</span>
+
+<span class="sd">            * .. function:: msb(self)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="Word.__len__"><a class="viewcode-back" href="../bitvec.html#bitvec.Word.__len__">[docs]</a>		<span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">                Sempre torna l&#39;enter 16 atès que un word són 16 bits</span>
+
+<span class="sd">                return 16</span>
+
+<span class="sd">                &quot;&quot;&quot;</span>
+
+		    <span class="k">return</span> <span class="mi">16</span>
+</div>
+<div class="viewcode-block" id="Word.lsb"><a class="viewcode-back" href="../bitvec.html#bitvec.Word.lsb">[docs]</a>		<span class="k">def</span> <span class="nf">lsb</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">                Retorna el Byte de menys i més pes repectivament </span>
+
+<span class="sd">                &quot;&quot;&quot;</span>
+
+		    <span class="k">return</span> <span class="n">Byte</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_w</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="Word.msb"><a class="viewcode-back" href="../bitvec.html#bitvec.Word.msb">[docs]</a>		<span class="k">def</span> <span class="nf">msb</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">                Retorna el Byte de menys i més pes repectivament </span>
+
+<span class="sd">                &quot;&quot;&quot;</span>
+
+		    <span class="k">return</span> <span class="n">Byte</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_w</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="p">)</span>
+</pre></div></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Simulador AVR 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Héctor M. Vidal, Sergi Carol, Enric Caballe, David Martin i Pavel Macutela..
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

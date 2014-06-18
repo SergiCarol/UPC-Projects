@@ -1,0 +1,192 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Introduccció &mdash; Simulador AVR 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Simulador AVR 1.0 documentation" href="index.html" />
+    <link rel="next" title="Bitvector" href="bitvec.html" />
+    <link rel="prev" title="Welcome to Simulador AVR’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="bitvec.html" title="Bitvector"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Simulador AVR’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Simulador AVR 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="introducccio">
+<h1>Introduccció<a class="headerlink" href="#introducccio" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">autors:</th><td class="field-body">Sergi Carol, Enric Caballé, David Martín, Héctor Vidal i Pavel Macutela</td>
+</tr>
+<tr class="field-even field"><th class="field-name">data:</th><td class="field-body">24/06/2013</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<div class="section" id="objectiu-del-projecte">
+<h2>Objectiu del Projecte<a class="headerlink" href="#objectiu-del-projecte" title="Permalink to this headline">¶</a></h2>
+<p>L&#8217;objectiu d&#8217;aquest treball és bàsicament implementar un simulador d&#8217;un microcontrolador(Micro Controler Unit) real.
+Un microcontrolador és un computador molt simple integrat en un sol xip s&#8217;utilitza essencialment en aplicacions de control.</p>
+<p>Aquest AVR simula un microcontrolador es de la família AVR d&#8217;Atmel. Peró nomes podem fer algunes simulacions i no és completa ni exacta.</p>
+<p>El treball comporta tenir una comanda que permet simular un programa escrit en assemblador de l&#8217;AVR.</p>
+</div>
+<div class="section" id="repertori-d-instruccions">
+<h2>Repertori d&#8217;instruccions<a class="headerlink" href="#repertori-d-instruccions" title="Permalink to this headline">¶</a></h2>
+<p>Els computadors es dediquen a executar instruccions del <em>llenguatge màquina</em> enmagatzemades en la memòria. Una instrucció té una longitud en bits, formada per diversos camps que indica el que ha de fer la instrucció(<em>opcode</em>). A part hi han altres dades que indiquen sobre quines dades cal fer l&#8217;operació indicada per l&#8217;opcode. Per exemple, es pot donar el valor de la dada directament o bé indicar en quina adreça de memòria s&#8217;ha d&#8217;anar a buscar la dada.</p>
+<p>En aquest projecte treballarem amb un repertori d&#8217;instruccions reduït però exactament compatible amb els del microcontrolador AVR.</p>
+<p>Les instruccions de llenguatge màquina de l&#8217;AVR són de 2 bits d&#8217;amplada i el seu format varia segons el mode d&#8217;adreçament.</p>
+<div class="section" id="instruccions">
+<h3>instruccions:<a class="headerlink" href="#instruccions" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>ADC &#8212;&gt; Suma registre-registre amb carry.</p>
+<p>SUB &#8212;&gt; Resta registre-registre sense carry.</p>
+<p>SUBI &#8212;&gt; Resta registre-constant sense carry.</p>
+<p>AND &#8212;&gt; And registre-registre.</p>
+<p>OR &#8212;&gt; Or registre-registre.</p>
+<p>EOR &#8212;&gt; Or exclusiva registre-registre.</p>
+<p>LSR &#8212;&gt; Desplaçament dreta registre.</p>
+<p>MOV &#8212;&gt; Còpia registre-registre.</p>
+<p>LDI &#8212;&gt; Assigna valor a registre.</p>
+<p>STS &#8212;&gt; Còpia registre a memòria.</p>
+<p>LDS &#8212;&gt; Còpia memòria a registre.</p>
+<p>RJMP &#8212;&gt; Salt relatiu a una nova instrucció.</p>
+<p>BRBS &#8212;&gt; Salta l&#8217; adreça de programa si cert bit de FLAGS és 1.</p>
+<p>BRBC &#8212;&gt; Salta l&#8217; adreça de programa si cert bit de FLAGS és 0.</p>
+<p>NOP &#8212;&gt; No fa res. És la instrucció nul·la.</p>
+<p>BREAK &#8212;&gt; Atura la simulació i acaba l&#8217;execució del programa simulador.</p>
+<p>IN &#8211;&gt; Quan s&#8217;aplica al port 0x0, llegeix un caràcter del teclat</p>
+<p>OUT&#8212;&gt; S&#8217;usa per escriure per la pantalla.</p>
+</div></blockquote>
+</div>
+<div class="section" id="estructura-del-projecte">
+<h3>Estructura del Projecte<a class="headerlink" href="#estructura-del-projecte" title="Permalink to this headline">¶</a></h3>
+<p>El projecte s&#8217;estrucutra al voltant d&#8217;una sèrie de mòduls ,cadascun conté unes classes que representen parts de l&#8217;arquitectura o conceptes relacionats. Els mòduls son els següents.</p>
+<p><strong>bitvec</strong>: Conté diverses classes que tenen com a objectiiu representar les paraules de diferent longitud que intervenen en la simulació.</p>
+<p><strong>memory</strong>: Conté unes classes que representen les diverses tipòlogies de memòria de l&#8217;arquitectura de l&#8217;AVR.</p>
+<p><strong>state</strong>: Contè una classe que representa l&#8217;estat (inclosa la memòria) del microcontrolador.</p>
+<p><strong>instruction</strong>: Contè les classes que implementen el significat de totes i cadascuna de les operacions de llenguatge màquina que admet el simulador.</p>
+<p><strong>repertoir</strong>: Contè una classe que agrupa el receptori d&#8217;instrucions del simulador.</p>
+<p><strong>avrmcu</strong>: Contè una classe que implementa el control general del microcontrolador. És en certa manera de classe que aglutina la resta de components.</p>
+<p><strong>intelhex</strong>: És un  mòdul que incorporem al nostre projecte. L&#8217;utilitzarem per poder llegir amb facilitat programes en llenguatge màquina continguts en fitxers de format <em>Intel HEX</em>.</p>
+<p><strong>avrexcep</strong>: És un mòdul que defineix diverses classes d&#8217;exepcions usades en el simulador.</p>
+<p><strong>simavr</strong>: És un modul principal del simulador. Els ususaris finals del simulador invoquen aquest mòdul per simular programes.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Introduccció</a><ul>
+<li><a class="reference internal" href="#objectiu-del-projecte">Objectiu del Projecte</a></li>
+<li><a class="reference internal" href="#repertori-d-instruccions">Repertori d&#8217;instruccions</a><ul>
+<li><a class="reference internal" href="#instruccions">instruccions:</a></li>
+<li><a class="reference internal" href="#estructura-del-projecte">Estructura del Projecte</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to Simulador AVR&#8217;s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="bitvec.html"
+                        title="next chapter">Bitvector</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/introduccio.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="bitvec.html" title="Bitvector"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Simulador AVR’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">Simulador AVR 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Héctor M. Vidal, Sergi Carol, Enric Caballe, David Martin i Pavel Macutela..
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

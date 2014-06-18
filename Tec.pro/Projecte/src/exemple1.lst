@@ -1,0 +1,19 @@
+
+AVRA   Ver. 1.2.3 exemple1.asm Sun Jun 23 14:56:12 2013
+
+
+C:000000 0000      NOP
+C:000001 ef0f      LDI R16, 0xff
+C:000002 e011      LDI R17, 1
+C:000003 0f11      ADD R17, R17
+C:000004 2e01      MOV R0, R17
+C:000005 2200      AND R0, R16
+C:000006 9598      BREAK
+
+
+Segment usage:
+   Code      :         7 words (14 bytes)
+   Data      :         0 bytes
+   EEPROM    :         0 bytes
+
+Assembly completed with no errors.
