@@ -1,0 +1,427 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Doctest state &mdash; Simulador AVR 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Simulador AVR 1.0 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">Simulador AVR 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="doctest-state">
+<h1>Doctest state<a class="headerlink" href="#doctest-state" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">state</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">memory</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bitvec</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<div class="section" id="fem-el-test-a-la-funcio-dump-dat">
+<h2>Fem el test a la funció <strong>dump_dat</strong>:<a class="headerlink" href="#fem-el-test-a-la-funcio-dump-dat" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">State</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">dump_dat</span><span class="p">()</span>
+<span class="go">0000 : 00</span>
+<span class="go">0001 : 00</span>
+<span class="go">0002 : 00</span>
+<span class="go">0003 : 00</span>
+<span class="go">0004 : 00</span>
+<span class="go">0005 : 00</span>
+<span class="go">0006 : 00</span>
+<span class="go">0007 : 00</span>
+<span class="go">0008 : 00</span>
+<span class="go">0009 : 00</span>
+<span class="go">000A : 00</span>
+<span class="go">000B : 00</span>
+<span class="go">000C : 00</span>
+<span class="go">000D : 00</span>
+<span class="go">000E : 00</span>
+<span class="go">000F : 00</span>
+<span class="go">0010 : 00</span>
+<span class="go">0011 : 00</span>
+<span class="go">0012 : 00</span>
+<span class="go">0013 : 00</span>
+<span class="go">0014 : 00</span>
+<span class="go">0015 : 00</span>
+<span class="go">0016 : 00</span>
+<span class="go">0017 : 00</span>
+<span class="go">0018 : 00</span>
+<span class="go">0019 : 00</span>
+<span class="go">001A : 00</span>
+<span class="go">001B : 00</span>
+<span class="go">001C : 00</span>
+<span class="go">001D : 00</span>
+<span class="go">001E : 00</span>
+<span class="go">001F : 00</span>
+<span class="go">0020 : 00</span>
+<span class="go">0021 : 00</span>
+<span class="go">0022 : 00</span>
+<span class="go">0023 : 00</span>
+<span class="go">0024 : 00</span>
+<span class="go">0025 : 00</span>
+<span class="go">0026 : 00</span>
+<span class="go">0027 : 00</span>
+<span class="go">0028 : 00</span>
+<span class="go">0029 : 00</span>
+<span class="go">002A : 00</span>
+<span class="go">002B : 00</span>
+<span class="go">002C : 00</span>
+<span class="go">002D : 00</span>
+<span class="go">002E : 00</span>
+<span class="go">002F : 00</span>
+<span class="go">0030 : 00</span>
+<span class="go">0031 : 00</span>
+<span class="go">0032 : 00</span>
+<span class="go">0033 : 00</span>
+<span class="go">0034 : 00</span>
+<span class="go">0035 : 00</span>
+<span class="go">0036 : 00</span>
+<span class="go">0037 : 00</span>
+<span class="go">0038 : 00</span>
+<span class="go">0039 : 00</span>
+<span class="go">003A : 00</span>
+<span class="go">003B : 00</span>
+<span class="go">003C : 00</span>
+<span class="go">003D : 00</span>
+<span class="go">003E : 00</span>
+<span class="go">003F : 00</span>
+<span class="go">0040 : 00</span>
+<span class="go">0041 : 00</span>
+<span class="go">0042 : 00</span>
+<span class="go">0043 : 00</span>
+<span class="go">0044 : 00</span>
+<span class="go">0045 : 00</span>
+<span class="go">0046 : 00</span>
+<span class="go">0047 : 00</span>
+<span class="go">0048 : 00</span>
+<span class="go">0049 : 00</span>
+<span class="go">004A : 00</span>
+<span class="go">004B : 00</span>
+<span class="go">004C : 00</span>
+<span class="go">004D : 00</span>
+<span class="go">004E : 00</span>
+<span class="go">004F : 00</span>
+<span class="go">0050 : 00</span>
+<span class="go">0051 : 00</span>
+<span class="go">0052 : 00</span>
+<span class="go">0053 : 00</span>
+<span class="go">0054 : 00</span>
+<span class="go">0055 : 00</span>
+<span class="go">0056 : 00</span>
+<span class="go">0057 : 00</span>
+<span class="go">0058 : 00</span>
+<span class="go">0059 : 00</span>
+<span class="go">005A : 00</span>
+<span class="go">005B : 00</span>
+<span class="go">005C : 00</span>
+<span class="go">005D : 00</span>
+<span class="go">005E : 00</span>
+<span class="go">005F : 00</span>
+<span class="go">0060 : 00</span>
+<span class="go">0061 : 00</span>
+<span class="go">0062 : 00</span>
+<span class="go">0063 : 00</span>
+<span class="go">0064 : 00</span>
+<span class="go">0065 : 00</span>
+<span class="go">0066 : 00</span>
+<span class="go">0067 : 00</span>
+<span class="go">0068 : 00</span>
+<span class="go">0069 : 00</span>
+<span class="go">006A : 00</span>
+<span class="go">006B : 00</span>
+<span class="go">006C : 00</span>
+<span class="go">006D : 00</span>
+<span class="go">006E : 00</span>
+<span class="go">006F : 00</span>
+<span class="go">0070 : 00</span>
+<span class="go">0071 : 00</span>
+<span class="go">0072 : 00</span>
+<span class="go">0073 : 00</span>
+<span class="go">0074 : 00</span>
+<span class="go">0075 : 00</span>
+<span class="go">0076 : 00</span>
+<span class="go">0077 : 00</span>
+<span class="go">0078 : 00</span>
+<span class="go">0079 : 00</span>
+<span class="go">007A : 00</span>
+<span class="go">007B : 00</span>
+<span class="go">007C : 00</span>
+<span class="go">007D : 00</span>
+<span class="go">007E : 00</span>
+<span class="go">007F : 00</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fem-el-test-a-la-funcio-dump-prog">
+<h2>Fem el test a la funció <strong>dump_prog</strong>:<a class="headerlink" href="#fem-el-test-a-la-funcio-dump-prog" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">State</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">dump_prog</span><span class="p">()</span>
+<span class="go">0000 : 0000</span>
+<span class="go">0001 : 0000</span>
+<span class="go">0002 : 0000</span>
+<span class="go">0003 : 0000</span>
+<span class="go">0004 : 0000</span>
+<span class="go">0005 : 0000</span>
+<span class="go">0006 : 0000</span>
+<span class="go">0007 : 0000</span>
+<span class="go">0008 : 0000</span>
+<span class="go">0009 : 0000</span>
+<span class="go">000A : 0000</span>
+<span class="go">000B : 0000</span>
+<span class="go">000C : 0000</span>
+<span class="go">000D : 0000</span>
+<span class="go">000E : 0000</span>
+<span class="go">000F : 0000</span>
+<span class="go">0010 : 0000</span>
+<span class="go">0011 : 0000</span>
+<span class="go">0012 : 0000</span>
+<span class="go">0013 : 0000</span>
+<span class="go">0014 : 0000</span>
+<span class="go">0015 : 0000</span>
+<span class="go">0016 : 0000</span>
+<span class="go">0017 : 0000</span>
+<span class="go">0018 : 0000</span>
+<span class="go">0019 : 0000</span>
+<span class="go">001A : 0000</span>
+<span class="go">001B : 0000</span>
+<span class="go">001C : 0000</span>
+<span class="go">001D : 0000</span>
+<span class="go">001E : 0000</span>
+<span class="go">001F : 0000</span>
+<span class="go">0020 : 0000</span>
+<span class="go">0021 : 0000</span>
+<span class="go">0022 : 0000</span>
+<span class="go">0023 : 0000</span>
+<span class="go">0024 : 0000</span>
+<span class="go">0025 : 0000</span>
+<span class="go">0026 : 0000</span>
+<span class="go">0027 : 0000</span>
+<span class="go">0028 : 0000</span>
+<span class="go">0029 : 0000</span>
+<span class="go">002A : 0000</span>
+<span class="go">002B : 0000</span>
+<span class="go">002C : 0000</span>
+<span class="go">002D : 0000</span>
+<span class="go">002E : 0000</span>
+<span class="go">002F : 0000</span>
+<span class="go">0030 : 0000</span>
+<span class="go">0031 : 0000</span>
+<span class="go">0032 : 0000</span>
+<span class="go">0033 : 0000</span>
+<span class="go">0034 : 0000</span>
+<span class="go">0035 : 0000</span>
+<span class="go">0036 : 0000</span>
+<span class="go">0037 : 0000</span>
+<span class="go">0038 : 0000</span>
+<span class="go">0039 : 0000</span>
+<span class="go">003A : 0000</span>
+<span class="go">003B : 0000</span>
+<span class="go">003C : 0000</span>
+<span class="go">003D : 0000</span>
+<span class="go">003E : 0000</span>
+<span class="go">003F : 0000</span>
+<span class="go">0040 : 0000</span>
+<span class="go">0041 : 0000</span>
+<span class="go">0042 : 0000</span>
+<span class="go">0043 : 0000</span>
+<span class="go">0044 : 0000</span>
+<span class="go">0045 : 0000</span>
+<span class="go">0046 : 0000</span>
+<span class="go">0047 : 0000</span>
+<span class="go">0048 : 0000</span>
+<span class="go">0049 : 0000</span>
+<span class="go">004A : 0000</span>
+<span class="go">004B : 0000</span>
+<span class="go">004C : 0000</span>
+<span class="go">004D : 0000</span>
+<span class="go">004E : 0000</span>
+<span class="go">004F : 0000</span>
+<span class="go">0050 : 0000</span>
+<span class="go">0051 : 0000</span>
+<span class="go">0052 : 0000</span>
+<span class="go">0053 : 0000</span>
+<span class="go">0054 : 0000</span>
+<span class="go">0055 : 0000</span>
+<span class="go">0056 : 0000</span>
+<span class="go">0057 : 0000</span>
+<span class="go">0058 : 0000</span>
+<span class="go">0059 : 0000</span>
+<span class="go">005A : 0000</span>
+<span class="go">005B : 0000</span>
+<span class="go">005C : 0000</span>
+<span class="go">005D : 0000</span>
+<span class="go">005E : 0000</span>
+<span class="go">005F : 0000</span>
+<span class="go">0060 : 0000</span>
+<span class="go">0061 : 0000</span>
+<span class="go">0062 : 0000</span>
+<span class="go">0063 : 0000</span>
+<span class="go">0064 : 0000</span>
+<span class="go">0065 : 0000</span>
+<span class="go">0066 : 0000</span>
+<span class="go">0067 : 0000</span>
+<span class="go">0068 : 0000</span>
+<span class="go">0069 : 0000</span>
+<span class="go">006A : 0000</span>
+<span class="go">006B : 0000</span>
+<span class="go">006C : 0000</span>
+<span class="go">006D : 0000</span>
+<span class="go">006E : 0000</span>
+<span class="go">006F : 0000</span>
+<span class="go">0070 : 0000</span>
+<span class="go">0071 : 0000</span>
+<span class="go">0072 : 0000</span>
+<span class="go">0073 : 0000</span>
+<span class="go">0074 : 0000</span>
+<span class="go">0075 : 0000</span>
+<span class="go">0076 : 0000</span>
+<span class="go">0077 : 0000</span>
+<span class="go">0078 : 0000</span>
+<span class="go">0079 : 0000</span>
+<span class="go">007A : 0000</span>
+<span class="go">007B : 0000</span>
+<span class="go">007C : 0000</span>
+<span class="go">007D : 0000</span>
+<span class="go">007E : 0000</span>
+<span class="go">007F : 0000</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="finalment-testejem-la-funcio-dump-reg">
+<h2>Finalment testejem la funció <strong>dump_reg</strong>:<a class="headerlink" href="#finalment-testejem-la-funcio-dump-reg" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">State</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span><span class="mi">128</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">dump_reg</span><span class="p">()</span>
+<span class="go">R00 : 00</span>
+<span class="go">R01 : 00</span>
+<span class="go">R02 : 00</span>
+<span class="go">R03 : 00</span>
+<span class="go">R04 : 00</span>
+<span class="go">R05 : 00</span>
+<span class="go">R06 : 00</span>
+<span class="go">R07 : 00</span>
+<span class="go">R08 : 00</span>
+<span class="go">R09 : 00</span>
+<span class="go">R10 : 00</span>
+<span class="go">R11 : 00</span>
+<span class="go">R12 : 00</span>
+<span class="go">R13 : 00</span>
+<span class="go">R14 : 00</span>
+<span class="go">R15 : 00</span>
+<span class="go">R16 : 00</span>
+<span class="go">R17 : 00</span>
+<span class="go">R18 : 00</span>
+<span class="go">R19 : 00</span>
+<span class="go">R20 : 00</span>
+<span class="go">R21 : 00</span>
+<span class="go">R22 : 00</span>
+<span class="go">R23 : 00</span>
+<span class="go">R24 : 00</span>
+<span class="go">R25 : 00</span>
+<span class="go">R26 : 00</span>
+<span class="go">R27 : 00</span>
+<span class="go">R28 : 00</span>
+<span class="go">R29 : 00</span>
+<span class="go">R30 : 00</span>
+<span class="go">R31 : 00</span>
+<span class="go">X (R27 : R26): 0000</span>
+<span class="go">Y (R29 : R28): 0000</span>
+<span class="go">Z (R31 : R30): 0000</span>
+<span class="go">PC: 0000</span>
+<span class="go">CARRY: 0 ZERO: 0 NEG: 0</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Doctest state</a><ul>
+<li><a class="reference internal" href="#fem-el-test-a-la-funcio-dump-dat">Fem el test a la funció <strong>dump_dat</strong>:</a></li>
+<li><a class="reference internal" href="#fem-el-test-a-la-funcio-dump-prog">Fem el test a la funció <strong>dump_prog</strong>:</a></li>
+<li><a class="reference internal" href="#finalment-testejem-la-funcio-dump-reg">Finalment testejem la funció <strong>dump_reg</strong>:</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/teststate.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">Simulador AVR 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Héctor M. Vidal, Sergi Carol, Enric Caballe, David Martin i Pavel Macutela..
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

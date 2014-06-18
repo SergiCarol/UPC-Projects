@@ -1,0 +1,146 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Avrexcept &mdash; Simulador AVR 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Simulador AVR 1.0 documentation" href="index.html" />
+    <link rel="next" title="State" href="state.html" />
+    <link rel="prev" title="Memory" href="memory.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="state.html" title="State"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="memory.html" title="Memory"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Simulador AVR 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-avrexcept">
+<span id="avrexcept"></span><h1>Avrexcept<a class="headerlink" href="#module-avrexcept" title="Permalink to this headline">¶</a></h1>
+<p>Es un mòdul que defineix diverses classes d&#8217;excepcions usades en el simulador.</p>
+<dl class="exception">
+<dt id="avrexcept.AVRException">
+<em class="property">exception </em><tt class="descclassname">avrexcept.</tt><tt class="descname">AVRException</tt><a class="reference internal" href="_modules/avrexcept.html#AVRException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#avrexcept.AVRException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Es una excepció que denota un problema en el simulador d&#8217;AVR. En general s&#8217;usa a traves de subclasses.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="avrexcept.BreakException">
+<em class="property">exception </em><tt class="descclassname">avrexcept.</tt><tt class="descname">BreakException</tt><a class="reference internal" href="_modules/avrexcept.html#BreakException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#avrexcept.BreakException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Es una excepció que es llença sistemàticament cada vegada que s&#8217;executa la instrucció BRK. S&#8217;usa per aturar la simulació.</p>
+<p>Aquesta classe cal implementar-la en el mòdul instruction.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="avrexcept.OutOfMemException">
+<em class="property">exception </em><tt class="descclassname">avrexcept.</tt><tt class="descname">OutOfMemException</tt><a class="reference internal" href="_modules/avrexcept.html#OutOfMemException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#avrexcept.OutOfMemException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Es una excepció que denota un accés a un banc de memòria amb una adreça inexistent.</p>
+<p>Aquesta classe cal implementar-la en el mòdul memory.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="avrexcept.UnknownOpcodeException">
+<em class="property">exception </em><tt class="descclassname">avrexcept.</tt><tt class="descname">UnknownOpcodeException</tt><a class="reference internal" href="_modules/avrexcept.html#UnknownOpcodeException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#avrexcept.UnknownOpcodeException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Es una excepció que s&#8217;aixeca quan cal executar una instrucció de llenguatge màquina i aquesta no és coneguda.</p>
+<p>Aquesta classe cal implementar-la en el mòdul repertoire.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="memory.html"
+                        title="previous chapter">Memory</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="state.html"
+                        title="next chapter">State</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/avrexcept.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="state.html" title="State"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="memory.html" title="Memory"
+             >previous</a> |</li>
+        <li><a href="index.html">Simulador AVR 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Héctor M. Vidal, Sergi Carol, Enric Caballe, David Martin i Pavel Macutela..
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

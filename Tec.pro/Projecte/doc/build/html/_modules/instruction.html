@@ -1,0 +1,610 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>instruction &mdash; Simulador AVR 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Simulador AVR 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Simulador AVR 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for instruction</h1><div class="highlight"><pre>
+<span class="c"># -*- encoding:utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">bitvec</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">memory</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">state</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">avrexcept</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">===========</span>
+<span class="sd">Instruction</span>
+<span class="sd">===========</span>
+
+<span class="sd">En el simulador, cada instrucció del microcontrolador té associada una classe. Per exemple, </span>
+<span class="sd">la instrucció ADD té associada la classe Add. Una instància de la classe Add és capaç de </span>
+<span class="sd">reconèixer i simular qualsevol instrucció ADD. La classe InstRunner és la super-classe (abstracta)</span>
+<span class="sd">de totes les classes lligades a instruccions. Concentra els (pocs) serveis comuns que aquestes </span>
+<span class="sd">classes lligades a instrucció tenen.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="InstRunner"><a class="viewcode-back" href="../instruction.html#instruction.InstRunner">[docs]</a><span class="k">class</span> <span class="nc">InstRunner</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classe InstRunner</span>
+<span class="sd">    =================</span>
+<span class="sd">    En el simulador, cada instrucció del microcontrolador té associada una classe per exemple, la instrucció ADD té associada la classe Add. Una instància de la classe Add és capaç de reconeixer i simular qualsevol instrucció ADD</span>
+
+<span class="sd">    Mètodes:</span>
+<span class="sd">    -------</span>
+<span class="sd">        * .. function:: __repr__(self)</span>
+<span class="sd">        * .. function:: match(self,instr)</span>
+<span class="sd">        * .. function:: execute(self,instr,state)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+<div class="viewcode-block" id="InstRunner.__repr__"><a class="viewcode-back" href="../instruction.html#instruction.InstRunner.__repr__">[docs]</a>    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retorna una cadena que representa la instrucció.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span>
+
+</div>
+<div class="viewcode-block" id="InstRunner.match"><a class="viewcode-back" href="../instruction.html#instruction.InstRunner.match">[docs]</a>    <span class="k">def</span> <span class="nf">match</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *instr* és un *Word* i denota una instrucció. Retorna **True** si aquesta instància pot executar la instrucció *instr*.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+      
+        <span class="k">return</span> <span class="n">instr</span> <span class="o">&amp;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_opcode</span>
+    
+    </div>
+<div class="viewcode-block" id="InstRunner.execute"><a class="viewcode-back" href="../instruction.html#instruction.InstRunner.execute">[docs]</a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *instr* és un *Word* que denota una instrucció. *state* és una</span>
+<span class="sd">         instància de la classe **State**.El mètode executa la</span>
+<span class="sd">         instrucció i, com a resultat, modifica l’estat del</span>
+<span class="sd">         microcontrolador al qual accedeix a través del paràmetre</span>
+<span class="sd">         corresponent. Per poder executar la instrucció l’ha de</span>
+<span class="sd">         descodificar, obtenir els operands (fetch), calcular el</span>
+<span class="sd">         resultat, modificar cnvenientment el registre d’estat i</span>
+<span class="sd">         emmagatzemar el resultat.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+</div></div>
+<div class="viewcode-block" id="Add"><a class="viewcode-back" href="../instruction.html#instruction.Add">[docs]</a><span class="k">class</span> <span class="nc">Add</span><span class="p">(</span><span class="n">InstRunner</span><span class="p">):</span> <span class="c">#Acabat</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classe ADD</span>
+<span class="sd">    ==========</span>
+<span class="sd">    Una instància de la classe **Add** és un executador específic per a la instrucció *ADD*.Si invoquem el seu mètode *execute()* executa una instrucció *ADD* del microcontrolador.</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        16-bit Opcode --&gt; 0000 11rd dddd rrrr</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="s">&#39;ADD&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111110000000000</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opcode</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b0000110000000000</span>
+        
+  
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+        <span class="n">op_d</span> <span class="o">=</span> <span class="n">Word</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b111110000</span><span class="p">)</span> <span class="c">#d</span>
+        <span class="n">op_r</span> <span class="o">=</span> <span class="n">Word</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b1000001111</span><span class="p">)</span> <span class="c">#r</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span> <span class="o">+=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_r</span><span class="p">]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_r</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c"># Set if the result is $00</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c"># Set if MSB of the result is set; cleared otherwise.</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&amp;</span><span class="n">y</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">|</span><span class="n">y</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">|~</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&amp;</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c"># Program Counter     </span>
+        
+</div>
+<div class="viewcode-block" id="Adc"><a class="viewcode-back" href="../instruction.html#instruction.Adc">[docs]</a><span class="k">class</span> <span class="nc">Adc</span><span class="p">(</span><span class="n">InstRunner</span><span class="p">):</span> <span class="c">#Acabat</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Suma registre-registre amb carry.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        16-bit Opcode --&gt; 0001 11rd dddd rrrr</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="s">&#39;ADC&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111110000000000</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opcode</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b0001110000000000</span>
+
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+        <span class="n">op_d</span> <span class="o">=</span> <span class="n">Word</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b111110000</span><span class="p">)</span> <span class="c">#d</span>
+        <span class="n">op_r</span> <span class="o">=</span> <span class="n">Word</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b1000001111</span><span class="p">)</span> <span class="c">#r</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span> <span class="o">+=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_r</span><span class="p">]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_r</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c"># Set if the result is $00</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c"># Set if MSB of the result is set; cleared otherwise.</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">z</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&amp;</span><span class="n">y</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">|</span><span class="n">y</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">|~</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&amp;</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c"># Program Counter </span>
+</div>
+<div class="viewcode-block" id="And"><a class="viewcode-back" href="../instruction.html#instruction.And">[docs]</a><span class="k">class</span> <span class="nc">And</span><span class="p">(</span><span class="n">InstRunner</span><span class="p">):</span> <span class="c">#Acabat</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    And registre-registre.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="s">&#39;AND&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111110000000000</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opcode</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b0010000000000000</span>
+    
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+        <span class="n">op_d</span> <span class="o">=</span> <span class="n">Word</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b111110000</span><span class="p">)</span> <span class="c"># d</span>
+        <span class="n">op_r</span> <span class="o">=</span> <span class="n">Word</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b1000001111</span><span class="p">)</span> <span class="c"># r</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span> <span class="o">&amp;=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_r</span><span class="p">]</span> <span class="c"># &amp;</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c"># Set if the result is $00</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c"># Set if MSB of the result is set; cleared otherwise.</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c"># Program Counter</span>
+
+</div>
+<div class="viewcode-block" id="Brbc"><a class="viewcode-back" href="../instruction.html#instruction.Brbc">[docs]</a><span class="k">class</span> <span class="nc">Brbc</span><span class="p">(</span><span class="n">InstRunner</span><span class="p">):</span> <span class="c">#Acabat</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Salta a adreça de programa si cert bit de FLAGS és 0.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="s">&#39;BRBC&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111110000000000</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opcode</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111010000000000</span>
+
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">instr</span><span class="o">.</span><span class="n">extract_field_s</span><span class="p">(</span><span class="mi">0</span><span class="n">b1111111000</span><span class="p">)</span> <span class="c">#k</span>
+        <span class="n">op_s</span> <span class="o">=</span> <span class="n">instr</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b111</span><span class="p">)</span> <span class="c">#s</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="n">op_s</span><span class="p">]:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">+</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">+=</span> <span class="mi">1</span>
+</div>
+<div class="viewcode-block" id="Brbs"><a class="viewcode-back" href="../instruction.html#instruction.Brbs">[docs]</a><span class="k">class</span> <span class="nc">Brbs</span><span class="p">(</span><span class="n">InstRunner</span><span class="p">):</span> <span class="c">#Acabat</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Salta a adreça de programa si cert bit de FLAGS és 1.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="s">&#39;BRBS&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111110000000000</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opcode</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111000000000000</span>
+
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">Word</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">extract_field_s</span><span class="p">(</span><span class="mi">0</span><span class="n">b1111111000</span><span class="p">)</span> <span class="c">#k</span>
+        <span class="n">op_s</span> <span class="o">=</span> <span class="n">Word</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b111</span><span class="p">)</span> <span class="c">#s</span>
+        <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">op_s</span><span class="p">)]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">+</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+</div>
+<div class="viewcode-block" id="Break"><a class="viewcode-back" href="../instruction.html#instruction.Break">[docs]</a><span class="k">class</span> <span class="nc">Break</span><span class="p">(</span><span class="n">InstRunner</span><span class="p">):</span> <span class="c">#Acabat</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Acaba l&#39;execució</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        16-bit Opcode --&gt; 1001 0101 1001 1000</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="s">&#39;BREAK&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111111111111111</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opcode</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1001010110011000</span>
+
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+        
+        <span class="k">raise</span> <span class="n">BreakException</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="Eor"><a class="viewcode-back" href="../instruction.html#instruction.Eor">[docs]</a><span class="k">class</span> <span class="nc">Eor</span><span class="p">(</span><span class="n">InstRunner</span><span class="p">):</span> <span class="c">#Acabat</span>
+    
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Or exclusiva registre-registre.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        16-bit Opcode --&gt; 0010 01rd dddd rrrr</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="s">&#39;EOR&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111110000000000</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opcode</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b10010000000000</span>
+
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+        <span class="n">op_d</span> <span class="o">=</span> <span class="n">Word</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b111110000</span><span class="p">)</span> <span class="c"># d</span>
+        <span class="n">op_r</span> <span class="o">=</span> <span class="n">Word</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b1000001111</span><span class="p">)</span> <span class="c"># r</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span> <span class="o">^</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_r</span><span class="p">]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c"># Set if the result is $00</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c"># Set if MSB of the result is set; cleared otherwise.</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c"># Program Counter</span>
+
+</div>
+<div class="viewcode-block" id="Ldi"><a class="viewcode-back" href="../instruction.html#instruction.Ldi">[docs]</a><span class="k">class</span> <span class="nc">Ldi</span><span class="p">(</span><span class="n">InstRunner</span><span class="p">):</span> <span class="c">#Acabat</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Assigna valor a registre.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        16-bit Opcode --&gt; 1110 KKKK dddd KKKK</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="s">&#39;LDI&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111000000000000</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opcode</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1110000000000000</span>
+
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">Word</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b111100001111</span><span class="p">)</span> <span class="c"># K</span>
+        <span class="n">op_d</span> <span class="o">=</span> <span class="n">Word</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b000011110000</span><span class="p">)</span> <span class="o">+</span> <span class="mi">16</span> <span class="c"># d</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span> <span class="c"># Rd&lt;--K </span>
+        <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c"># Program Counter</span>
+</div>
+<div class="viewcode-block" id="Lds"><a class="viewcode-back" href="../instruction.html#instruction.Lds">[docs]</a><span class="k">class</span> <span class="nc">Lds</span><span class="p">(</span><span class="n">InstRunner</span><span class="p">):</span> <span class="c">#Acabat</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Còpia memòria a registre.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111100000000000</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opcode</span><span class="o">=</span><span class="mi">0</span><span class="n">b1010000000000000</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span><span class="o">=</span><span class="s">&quot;LDS&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+        <span class="n">op_d</span> <span class="o">=</span> <span class="n">instr</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mo">011110000</span><span class="p">)</span> <span class="o">+</span><span class="mi">16</span>
+        <span class="n">K</span> <span class="o">=</span> <span class="n">instr</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b011100001111</span><span class="p">)</span> <span class="o">+</span><span class="mi">32</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span><span class="o">=</span><span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">K</span><span class="p">]</span><span class="c">#Rd=K</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">pc</span><span class="o">+=</span><span class="mi">1</span>
+        
+</div>
+<div class="viewcode-block" id="Lsr"><a class="viewcode-back" href="../instruction.html#instruction.Lsr">[docs]</a><span class="k">class</span> <span class="nc">Lsr</span><span class="p">(</span><span class="n">InstRunner</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Desplaçament dreta registre.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        16-bit Opcode --&gt; 1001 010d dddd 0110</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="s">&#39;LSR&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111111000001111</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opcode</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1001010000000110</span>
+        
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+        
+        <span class="n">op_d</span> <span class="o">=</span> <span class="n">instr</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b111110000</span><span class="p">)</span> <span class="c"># d</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span> 
+        <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c"># Set if the result is $00</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c">#Program Counter</span>
+        
+</div>
+<div class="viewcode-block" id="Mov"><a class="viewcode-back" href="../instruction.html#instruction.Mov">[docs]</a><span class="k">class</span> <span class="nc">Mov</span><span class="p">(</span><span class="n">InstRunner</span><span class="p">):</span> <span class="c">#Acabat</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Còpia registre-registre.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        16-bit Opcode --&gt; 0010 11rd dddd rrrr</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="s">&#39;MOV&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111110000000000</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opcode</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b0010110000000000</span>
+
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+        <span class="n">op_d</span> <span class="o">=</span> <span class="n">Word</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b111110000</span><span class="p">)</span> <span class="c"># d</span>
+        <span class="n">op_r</span> <span class="o">=</span> <span class="n">Word</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b1000001111</span><span class="p">)</span> <span class="c"># r</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_r</span><span class="p">]</span> <span class="c"># Rd&lt;--Rr</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">+=</span> <span class="mi">1</span>
+</div>
+<div class="viewcode-block" id="Nop"><a class="viewcode-back" href="../instruction.html#instruction.Nop">[docs]</a><span class="k">class</span> <span class="nc">Nop</span><span class="p">(</span><span class="n">InstRunner</span><span class="p">):</span> <span class="c">#Acabat</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    No fa res. Es la instrucció nul.la.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        16-bit Opcode --&gt; 0000 0000 0000 0000</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="s">&#39;NOP&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111111111111111</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opcode</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b0000000000000000</span>
+
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">+=</span> <span class="mi">1</span>
+</div>
+<div class="viewcode-block" id="Or"><a class="viewcode-back" href="../instruction.html#instruction.Or">[docs]</a><span class="k">class</span> <span class="nc">Or</span><span class="p">(</span><span class="n">InstRunner</span><span class="p">):</span> <span class="c">#Acabat</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Or registre-registre.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        16-bit Opcode --&gt; 0010 10rd dddd rrrr</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="s">&#39;OR&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111110000000000</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opcode</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b0010100000000000</span>
+
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+        <span class="n">op_d</span> <span class="o">=</span> <span class="n">Word</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b111110000</span><span class="p">)</span> <span class="c"># d</span>
+        <span class="n">op_r</span> <span class="o">=</span> <span class="n">Word</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b1000001111</span><span class="p">)</span> <span class="c"># r</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span><span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span> <span class="o">|</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_r</span><span class="p">]</span> <span class="c"># Rd&lt;--Rd v Rr</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c"># Set if the result is $00</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c"># Set if MSB of the result is set; cleared otherwise.</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c"># Program Counter</span>
+        
+</div>
+<div class="viewcode-block" id="Rjmp"><a class="viewcode-back" href="../instruction.html#instruction.Rjmp">[docs]</a><span class="k">class</span> <span class="nc">Rjmp</span><span class="p">(</span><span class="n">InstRunner</span><span class="p">):</span> <span class="c">#Acabat</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Salt relatiu a una nova instrucció.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        16-bit Opcode --&gt; 1100 kkkk kkkk kkkk</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="s">&#39;RJMP&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111000000000000</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opcode</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1100000000000000</span>
+
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">instr</span><span class="o">.</span><span class="n">extract_field_s</span><span class="p">(</span><span class="mi">0</span><span class="n">b111111111111</span><span class="p">)</span> <span class="c"># k</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">+</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+</div>
+<div class="viewcode-block" id="Sts"><a class="viewcode-back" href="../instruction.html#instruction.Sts">[docs]</a><span class="k">class</span> <span class="nc">Sts</span><span class="p">(</span><span class="n">InstRunner</span><span class="p">):</span> <span class="c">#Acabat</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Còpia registre a memòria.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        16-bit Opcode --&gt; 1010 1kkk dddd kkkk</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="s">&#39;STS&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111100000000000</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opcode</span><span class="o">=</span><span class="mi">0</span><span class="n">b1010100000000000</span>
+
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">instr</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b11100001111</span><span class="p">)</span><span class="o">+</span><span class="mi">32</span> <span class="c"># k</span>
+        <span class="n">op_r</span> <span class="o">=</span> <span class="n">instr</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b11110000</span><span class="p">)</span><span class="o">+</span> <span class="mi">16</span>  <span class="c"># r</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_r</span><span class="p">]</span> <span class="c"># (k)&lt;--Rr</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c"># Program Counter</span>
+    </div>
+<div class="viewcode-block" id="Sub"><a class="viewcode-back" href="../instruction.html#instruction.Sub">[docs]</a><span class="k">class</span> <span class="nc">Sub</span><span class="p">(</span><span class="n">InstRunner</span><span class="p">):</span> <span class="c">#Acabat </span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Resta registre-registre sense carry.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        16-bit Opcode --&gt; 0001 10rd dddd rrrr</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="s">&#39;SUB&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111110000000000</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opcode</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b0001100000000000</span>
+
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+        <span class="n">op_d</span> <span class="o">=</span> <span class="n">Word</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b111110000</span><span class="p">)</span> <span class="c"># d</span>
+        <span class="n">op_r</span> <span class="o">=</span> <span class="n">Word</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b1000001111</span><span class="p">)</span> <span class="c"># r</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span> <span class="o">-=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_r</span><span class="p">]</span> <span class="c"># Rd&lt;--Rd-Rr</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_r</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c"># Set if the result is $00</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c"># Set if MSB of the result is set; cleared otherwise.</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="n">z</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&amp;</span><span class="n">y</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">|</span><span class="n">y</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&amp;</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">|</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c"># Program Counter</span>
+        
+</div>
+<div class="viewcode-block" id="Subi"><a class="viewcode-back" href="../instruction.html#instruction.Subi">[docs]</a><span class="k">class</span> <span class="nc">Subi</span><span class="p">(</span><span class="n">InstRunner</span><span class="p">):</span> <span class="c">#Acabat</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Resta registre-constant sense carry.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        16-bit Opcode --&gt; 0101 kkkk dddd kkkk</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="s">&#39;SUBI&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111000000000000</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opcode</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b0101000000000000</span>
+        
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+
+        <span class="n">op_d</span> <span class="o">=</span> <span class="n">Word</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b11110000</span><span class="p">)</span> <span class="o">+</span> <span class="mi">16</span> <span class="c">#d </span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">Byte</span><span class="p">(</span><span class="n">instr</span><span class="p">)</span><span class="o">.</span><span class="n">extract_field_s</span><span class="p">(</span><span class="mi">0</span><span class="n">b111100001111</span><span class="p">)</span> <span class="c"># k</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span> <span class="o">-=</span> <span class="n">k</span> <span class="c"># Rd&lt;--Rd-K</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">Byte</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c"># Set if the result is $00</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c"># Set if MSB of the result is set; cleared otherwise.</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">~</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&amp;</span><span class="n">z</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">|</span><span class="n">z</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&amp;</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">|</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&amp;~</span><span class="n">x</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c"># Program Counter</span>
+
+</div>
+<div class="viewcode-block" id="In"><a class="viewcode-back" href="../instruction.html#instruction.In">[docs]</a><span class="k">class</span> <span class="nc">In</span><span class="p">(</span><span class="n">InstRunner</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Quan s’aplica al port 0x0, llegeix un caràcter del teclat.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="s">&quot;IN&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111100000000000</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opcode</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1011000000000000</span>
+
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+        <span class="n">op_d</span> <span class="o">=</span> <span class="n">instr</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b00111110000</span><span class="p">)</span> <span class="c">#d</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">instr</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b11000001111</span><span class="p">)</span> <span class="c">#A</span>
+        <span class="k">if</span> <span class="n">A</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">afegir</span><span class="o">=</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;Prem una tecla: &quot;</span><span class="p">)</span>
+            <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_d</span><span class="p">]</span><span class="o">=</span><span class="nb">ord</span><span class="p">(</span><span class="n">afegir</span><span class="p">)</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">pc</span> <span class="o">+=</span> <span class="mi">1</span>
+</div>
+<div class="viewcode-block" id="Out"><a class="viewcode-back" href="../instruction.html#instruction.Out">[docs]</a><span class="k">class</span> <span class="nc">Out</span><span class="p">(</span><span class="n">InstRunner</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    S’usa per escriure per la pantalla. Quan el port és:</span>
+<span class="sd">    0x0 Escriu el valor del registre corresponent pel terminal en base 10.</span>
+<span class="sd">    0x1 Escriu el valor del registre corresponent pel terminal en base 16.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">=</span> <span class="s">&quot;OUT&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1111110000000000</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opcode</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b1011100000000000</span>
+
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">instr</span><span class="p">,</span><span class="n">state</span><span class="p">):</span>
+        <span class="n">op_r</span> <span class="o">=</span> <span class="n">instr</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b00111110000</span><span class="p">)</span> <span class="c">#r</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">instr</span><span class="o">.</span><span class="n">extract_field_u</span><span class="p">(</span><span class="mi">0</span><span class="n">b11000001111</span><span class="p">)</span> <span class="c">#A</span>
+        <span class="k">if</span> <span class="n">A</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">print</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_r</span><span class="p">]))</span>
+        <span class="k">elif</span> <span class="n">A</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">print</span> <span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_r</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="nb">chr</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">op_r</span><span class="p">])</span>
+        <span class="n">state</span><span class="o">.</span><span class="n">pc</span><span class="o">+=</span><span class="mi">1</span>
+        </div>
+<span class="k">class</span> <span class="nc">BreakException</span><span class="p">(</span><span class="n">AVRException</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Simulador AVR 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Héctor M. Vidal, Sergi Carol, Enric Caballe, David Martin i Pavel Macutela..
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

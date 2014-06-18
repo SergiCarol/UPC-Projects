@@ -1,0 +1,166 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>state &mdash; Simulador AVR 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Simulador AVR 1.0 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Simulador AVR 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for state</h1><div class="highlight"><pre>
+<span class="c"># -*- encoding:utf-8 -*-</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">Aquest mòdul implementa la classe **State**. La qual representa l’estat de la MCU. L’estat d’un computador està format pel conjunt de tots els registres i memòries. Cada vegada que s’executa una instrucció, l’estat canvia.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">bitvec</span> <span class="kn">import</span> <span class="n">Byte</span><span class="p">,</span> <span class="n">Word</span>
+<span class="kn">from</span> <span class="nn">memory</span> <span class="kn">import</span> <span class="n">DataMemory</span><span class="p">,</span> <span class="n">ProgramMemory</span>
+
+<div class="viewcode-block" id="State"><a class="viewcode-back" href="../state.html#state.State">[docs]</a><span class="k">class</span> <span class="nc">State</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classe State</span>
+<span class="sd">    ============</span>
+<span class="sd">    </span>
+<span class="sd">    Aquesta classe representa l&#39;estat de la MCU. L&#39;estat d&#39;un computador està format pel conjunt de tots els registres i memòries. Cada vegada que s&#39;executa una instrucció, l&#39;estat acostuma a canviar.</span>
+
+<span class="sd">    Mètodes:</span>
+<span class="sd">    --------</span>
+
+<span class="sd">      * .. function:: __init__(self)</span>
+<span class="sd">      * .. function:: dump_dat(self)</span>
+<span class="sd">      * .. function:: dump_prog(self)</span>
+<span class="sd">      * .. function:: dump_reg(self)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="State.__init__"><a class="viewcode-back" href="../state.html#state.State.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">prog</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inicialitza l’estat de la MCU. data és el nombre de cel·les de la memòria de dades i prog el nombre de cel·les de la memòia de programa. pc és un Word que implementa el registre del Program Counter i flags és un Byte que implementa el registre d&#39;estat(status). On cada bit és un flag d&#39;estat.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">=</span><span class="n">DataMemory</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prog</span><span class="o">=</span><span class="n">ProgramMemory</span><span class="p">(</span><span class="n">prog</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pc</span><span class="o">=</span><span class="n">Word</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flags</span><span class="o">=</span><span class="n">Byte</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+  </div>
+<div class="viewcode-block" id="State.dump_dat"><a class="viewcode-back" href="../state.html#state.State.dump_dat">[docs]</a>    <span class="k">def</span> <span class="nf">dump_dat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retorna un **str** que representa el bolcat de la memòria de dades.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">))</span> <span class="c">#dump(0,len(self.data))--&gt;interval de bolcat de la memòria de dades.</span>
+        </div>
+<div class="viewcode-block" id="State.dump_prog"><a class="viewcode-back" href="../state.html#state.State.dump_prog">[docs]</a>    <span class="k">def</span> <span class="nf">dump_prog</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retorna un **str** que representa el bolcat de la memòria de programa.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">prog</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prog</span><span class="p">))</span> <span class="c">#dump(0,len(self.prog))--&gt;interval de bolcat de la memòria del programa.</span>
+</div>
+<div class="viewcode-block" id="State.dump_reg"><a class="viewcode-back" href="../state.html#state.State.dump_reg">[docs]</a>    <span class="k">def</span> <span class="nf">dump_reg</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retorna un **str** que representa els registres que hi ha a l’estat. Aixì inclou també PC i flags. El format ha de ser similar a:</span>
+<span class="sd">        R00: 00</span>
+<span class="sd">        R01: 00</span>
+<span class="sd">        ...</span>
+<span class="sd">        R31: 00</span>
+<span class="sd">        X(R27:R26): 0000</span>
+<span class="sd">        Y(R29:R28): 0000</span>
+<span class="sd">        Z(R31:R30): 0000</span>
+<span class="sd">        PC: 0000</span>
+<span class="sd">        CARRY: 0 ZERO: 0 NEG: 0</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">carry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">zero</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">neg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flags</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">dump_reg</span><span class="p">()</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="s">&#39;PC: {0}</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pc</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="s">&#39;CARRY: {0} ZERO: {0} NEG: {0}</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">carry</span><span class="p">,</span> <span class="n">zero</span><span class="p">,</span> <span class="n">neg</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">x</span>
+</pre></div></div></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Simulador AVR 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Héctor M. Vidal, Sergi Carol, Enric Caballe, David Martin i Pavel Macutela..
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

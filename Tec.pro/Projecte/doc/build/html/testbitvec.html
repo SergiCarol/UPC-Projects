@@ -1,0 +1,171 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Doctest BitVector &mdash; Simulador AVR 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Simulador AVR 1.0 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">Simulador AVR 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="doctest-bitvector">
+<h1>Doctest BitVector<a class="headerlink" href="#doctest-bitvector" title="Permalink to this headline">¶</a></h1>
+<p>La classe BitVector és la classe més bàsica de tot el disseny. Representa un paraula binària de mida “petita”, és a dir, menor o igual a 16 bits i s&#8217;interpreta sempre sense signe.Es una classe abstracta i per tant no s’usa directament sinó que s’usa unicament com a super-classe. La representació d’aquesta paraula es fa sobre un <strong>int</strong> de Python, que sempre té pel cap baix  32 bits.</p>
+<p>D’aquí se’n deriven les subclasses <strong>Byte</strong> que representen paraules de 8 bits i <strong>Word</strong> que representen paraules de 16 bits. Aquestes classes són usades àmpliament pel simulador.</p>
+<p>Entre aquestes la implementació del mètode especial __len__ que indica la mida de la paraula. Cal anar amb compte amb alguns dels mètodes ja que tornen sempre com a resultat un objecte de la mateixa classe que <strong>self</strong> i aquesta classe no és mai <strong>BitVector</strong> sinó <strong>Byte</strong> o <strong>Word</strong> segons convingui.</p>
+<div class="section" id="tests-sobre-les-clases-derivades-de-bitvector-byte-i-word">
+<h2>Tests sobre les clases derivades de BitVector:Byte i Word<a class="headerlink" href="#tests-sobre-les-clases-derivades-de-bitvector-byte-i-word" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="importem-les-eines">
+<h2>Importem les eines:<a class="headerlink" href="#importem-les-eines" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bitvec</span> <span class="kn">import</span> <span class="n">Byte</span><span class="p">,</span> <span class="n">Word</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="comprovem-els-constructors">
+<h2>Comprovem els constructors:<a class="headerlink" href="#comprovem-els-constructors" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">Byte</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">01</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">Byte</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">-1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">Word</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>
+<span class="go">0017</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="comprovem-operacion-aritmetiques">
+<h2>Comprovem operacion aritmètiques:<a class="headerlink" href="#comprovem-operacion-aritmetiques" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">Byte</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">Byte</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">03</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">Byte</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span>
+<span class="go">03</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">Byte</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">Byte</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">01</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">Byte</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="go">01</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="comprovem-operacions-logiques">
+<h2>Comprovem operacions lògiques:<a class="headerlink" href="#comprovem-operacions-logiques" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Byte</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">|</span> <span class="n">Byte</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">07</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Byte</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="o">|</span> <span class="n">Byte</span><span class="p">(</span><span class="mi">0</span><span class="n">b0010</span><span class="p">)</span>
+<span class="go">07</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Byte</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">Byte</span><span class="p">(</span><span class="mi">0</span><span class="n">b0010</span><span class="p">)</span>
+<span class="go">02</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Byte</span><span class="p">(</span><span class="mh">0xff</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">Byte</span><span class="p">(</span><span class="mi">0</span><span class="n">b1011</span><span class="p">)</span>
+<span class="go">0B</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Byte</span><span class="p">(</span><span class="mh">0xff</span><span class="p">)</span> <span class="o">^</span> <span class="n">Byte</span><span class="p">(</span><span class="mi">0</span><span class="n">b1011</span><span class="p">)</span>
+<span class="go">F4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">~</span><span class="n">Byte</span><span class="p">(</span><span class="mh">0xF0</span><span class="p">)</span>
+<span class="go">-F1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">~</span><span class="n">Byte</span><span class="p">(</span><span class="mi">0</span><span class="n">b101010</span><span class="p">)</span>
+<span class="go">-2B</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Byte</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span>
+<span class="go">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Byte</span><span class="p">(</span><span class="mh">0xfe</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span>
+<span class="go">f0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Byte</span><span class="p">(</span><span class="mh">0xff</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span>
+<span class="go">0F</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Doctest BitVector</a><ul>
+<li><a class="reference internal" href="#tests-sobre-les-clases-derivades-de-bitvector-byte-i-word">Tests sobre les clases derivades de BitVector:Byte i Word</a></li>
+<li><a class="reference internal" href="#importem-les-eines">Importem les eines:</a></li>
+<li><a class="reference internal" href="#comprovem-els-constructors">Comprovem els constructors:</a></li>
+<li><a class="reference internal" href="#comprovem-operacion-aritmetiques">Comprovem operacion aritmètiques:</a></li>
+<li><a class="reference internal" href="#comprovem-operacions-logiques">Comprovem operacions lògiques:</a></li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/testbitvec.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">Simulador AVR 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Héctor M. Vidal, Sergi Carol, Enric Caballe, David Martin i Pavel Macutela..
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

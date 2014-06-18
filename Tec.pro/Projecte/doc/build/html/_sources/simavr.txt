@@ -1,0 +1,6 @@
+======
+SimAvr
+======
+
+.. automodule:: simavr
+   :members:

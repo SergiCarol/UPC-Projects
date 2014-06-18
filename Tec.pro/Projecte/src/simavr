@@ -1,0 +1,41 @@
+#!/usr/bin/python
+#-*- coding: utf-8 -*-
+
+"""
+És el programa principal d'aquesta aplicació. Els usuaris invoquen aquest modul per simular programes.
+"""
+
+import sys
+from avrmcu import *
+from intelhex import *
+from memory import *
+if __name__=='__main__':
+    
+    i=IntelHex16bit(sys.argv[-1])
+    l=[]
+    for e in range(i.maxaddr()+1):
+        l.append(i[e])
+
+    avr = AvrMcu()
+    avr.set_prog(l)
+
+    if "t" in sys.argv[1] and len(sys.argv) != 2:
+        
+        avr.set_trace(True)
+
+    s = avr.run()
+
+            
+    if s and len(sys.argv) != 2:
+        if "p" in sys.argv[1]:
+            print avr.dump_prog()
+        if "r" in sys.argv[1]:
+            print avr.dump_reg()
+        if "d" in sys.argv[1]:
+            print avr.dump_dat()
+    
+    
+
+
+
+
