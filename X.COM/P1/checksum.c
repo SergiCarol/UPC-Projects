@@ -110,7 +110,7 @@ uint8_t main (void) {
   state = check_checksum(j);
   if (state == true)
     {
-      print(char s[]="Correcte");	
+     print(char s[]="Correcte");	
     }
   else print(char s[]="Fals");
   return 1; 
