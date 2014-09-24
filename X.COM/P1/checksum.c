@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <inttypes.h>
 #include <stdbool.h>
-#include <blck_serial.h>
+#include "blck_serial.h"
 
 typedef struct num{
   uint8_t a,b;
@@ -97,6 +97,7 @@ uint8_t main (void) {
   bool state;
   char j[64];
   char s[]="Escriu alguna cosa";
+  serial_open();
   print(s);
   readline(j,64);
   num = checksum(j);
@@ -110,10 +111,14 @@ uint8_t main (void) {
   state = check_checksum(j);
   if (state == true)
     {
-     print(char s[]="Correcte");	
+      char p[]="Correcte";
+      print(p);	
     }
-  else print(char s[]="Fals");
+  else {
+    char d[]="Fals";
+    print(d);
+  }
+  serial_close();
   return 1; 
-  
 }
 
