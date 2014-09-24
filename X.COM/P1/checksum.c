@@ -82,14 +82,27 @@ bool check_checksum(char j[]){
 
 void main (void) {
 	numero num;
+	uint8_t i,a=0;
+	bool state;
 	char j[64];
 	printf("%s\n","Escriu alguna cosa: " );
 	scanf("%s",j);
 	num = checksum(j);
-	// Fer proba del chech_checksum com??? hex_to_byte ; on afegir?
 	printf("%c\n", num.a);
 	printf("%c\n", num.b);
-
+	a=hex_to_byte(num)
+	while(j[i]!='\0'){
+		i++
+	}
+	j[i++] = a;
+	j[i] = '\0';
+	state = check_checksum(j);
+	if (state == true)
+	{
+		printf("%s\n","Cert" );	
+	}
+	else printf("%s\n","Fals" );
+	return true 
 
 }
 
