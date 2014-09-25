@@ -1,3 +1,5 @@
 #!/bin/bash
 
-ls -b --block-size=M $1 | cut -b
+
+
+ls $1 -h -l | cut -d " " -f  5-5
