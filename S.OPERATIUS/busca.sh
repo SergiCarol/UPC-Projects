@@ -1,3 +1,3 @@
 #!/bin/bash
 
-find $HOME|grep [$1]*
+find $HOME|grep .*$1
