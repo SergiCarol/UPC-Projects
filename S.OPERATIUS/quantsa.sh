@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ls|grep 'a'|wc -l
+ls $1|grep 'a'|wc -l
