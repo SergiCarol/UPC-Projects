@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ls $1|grep 'a'|wc -l
+find $HOME|grep [$1]|wc -l
