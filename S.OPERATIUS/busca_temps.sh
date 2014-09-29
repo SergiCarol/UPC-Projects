@@ -1,3 +1,3 @@
 #!/bin/bash
 
-find $HOME -atime 30
+find $HOME -atime -90
