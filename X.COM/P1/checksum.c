@@ -2,6 +2,7 @@
 #include <inttypes.h>
 #include <stdbool.h>
 #include "blck_serial.h"
+#include "serial.h"
 
 typedef struct num{
   uint8_t a,b;
@@ -65,34 +66,23 @@ numero checksum(char j[]){
 bool check_checksum(char j[]){
   numero num;
   //en la 'a' guardarem la suma
-  uint16_t a = 0x00;
   // en la b i ficarem el carry
-  uint8_t b,i,c = 0x00;
+  uint8_t b,i,c,d,e,a = 0x00;
   while (j[i] != '\0'){
-    a+=j[i];
     i++; 
   }
-  i-=1;
-  printf("Caracter check: %d\n",j[i]);
-  num.a=j[i];
-  a-=j[i];
-  i-=1;
-  printf("Caracter check: %d\n",j[i]);
-  num.b=j[i];
-  a-=j[i];
-  
+  num.a=j[--i];
+  num.b=j[--i];
+ 
   c=hex_to_byte(num);
-  printf("Suma del hex: %d\n",c );
-  
-  while (a>0xFF){
-    b = (a >> 8);
-    a&=0xFF;
-    a+=b;
-  }
-  a+=c;
-  printf("Suma total : %d\n",a);
+  j[i++]=c;
+  j[i]='\0';
+   serial_put(j[--i]+0x48);
+  num=checksum(j);
+
+  c=hex_to_byte(num);
   // Suma normal
-  if (a==0xFF) return true;
+  if (c==0x01) return true;
   else return false;
 }
 /*
@@ -115,15 +105,13 @@ uint8_t main (void) {
   print(s);
   while (serial_can_read());
   readline(j,64);
-  print(j);
   num = checksum(j);
   while(j[i]!='\0'){
     i++;
   }
   j[i++] = num.b;
   j[i++] = num.a;
-  j[i++] = '\0';
-  //print(j);
+  j[i] = '\0';
   //-----------------------------------
   state = check_checksum(j);
   if (state == true)
@@ -132,6 +120,7 @@ uint8_t main (void) {
       print(p);	
     }
   else {
+    serial_put('U');
     char d[]="Fals";
     print(d);
   }
