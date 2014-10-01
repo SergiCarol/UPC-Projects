@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <inttypes.h>
 #include <stdbool.h>
+//#include <util/crc16.h>
 
 typedef struct num{
   uint8_t a,b;
