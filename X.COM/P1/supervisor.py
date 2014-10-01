@@ -20,4 +20,6 @@ if __name__=="__main__":
     ser.write(a)
     r=ser.readline()
     print r
+    r=ser.readline()
+    print r
     ser.close()
