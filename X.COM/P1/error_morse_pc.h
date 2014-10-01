@@ -13,8 +13,8 @@ typedef struct num{
 
 
 
-numero checksum(char j[]);
-bool check_checksum(char j[]);
+numero checksum(uint8_t j[]);
+bool check_checksum(uint8_t j[]);
 numero crc_morse(char j[]);
 
 #endif

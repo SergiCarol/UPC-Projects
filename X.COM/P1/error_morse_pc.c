@@ -33,7 +33,7 @@ static numero byte_to_hex (uint8_t hex){
 }
 
 
-numero checksum(char j[]){
+numero checksum(uint8_t j[]){
   numero num;
   
   //en la 'a' guardarem la suma
@@ -50,44 +50,31 @@ numero checksum(char j[]){
     a&=0xFF;
     a+=b;
   }
-  printf("Carcter a checksum %d\n",a );
+  printf("VALOR CHECHSUM: %d\n",a );
   a=~a;		
   num=byte_to_hex(a);
   return num; 
   
 }
 
-bool check_checksum(char j[]){
-  numero num;
+bool check_checksum(uint8_t j[]){
+   numero num;
   //en la 'a' guardarem la suma
-  uint16_t a = 0x00;
   // en la b i ficarem el carry
-  uint8_t b,i,c = 0x00;
+  uint8_t a,b,i = 0x00;
   while (j[i] != '\0'){
-    a+=j[i];
     i++; 
   }
-  i-=1;
-  printf("Caracter check: %d\n",j[i]);
-  num.a=j[i];
-  a-=j[i];
-  i-=1;
-  printf("Caracter check: %d\n",j[i]);
-  num.b=j[i];
-  a-=j[i];
-  
-  c=hex_to_byte(num);
-  printf("Suma del hex: %d\n",c );
-  
-  while (a>0xFF){
-    b = (a >> 8);
-    a&=0xFF;
-    a+=b;
-  }
-  a+=c;
-  printf("Suma total : %d\n",a);
-  // Suma normal
-  if (a==0xFF) return true;
+  num.a=j[--i];
+  num.b=j[--i];  
+  a=hex_to_byte(num);
+  j[i++]=a;
+  j[i]='\0';
+  i=0;
+  num=checksum(j);
+  b=hex_to_byte(num);
+
+  if (b==0x00) return true;
   else return false;
 }
 /*

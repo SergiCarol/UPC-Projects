@@ -40,7 +40,7 @@ static numero byte_to_hex (uint8_t hex){
 }
 
 
-numero checksum(char j[]){
+numero checksum(uint8_t j[]){
   numero num;
   
   //en la 'a' guardarem la suma
@@ -63,27 +63,26 @@ numero checksum(char j[]){
   
 }
 
-bool check_checksum(char j[]){
-  numero num;
+bool check_checksum(uint8_t j[]){
+   numero num;
   //en la 'a' guardarem la suma
   // en la b i ficarem el carry
-  uint8_t b,i,c,d,e,a = 0x00;
+  uint8_t a,b,i = 0x00;
   while (j[i] != '\0'){
     i++; 
   }
   num.a=j[--i];
-  num.b=j[--i];
- 
-  c=hex_to_byte(num);
-  j[i++]=c;
+  num.b=j[--i];  
+  a=hex_to_byte(num);
+  j[i++]=a;
   j[i]='\0';
-   serial_put(j[--i]+0x48);
+  i=0;
   num=checksum(j);
+  b=hex_to_byte(num);
 
-  c=hex_to_byte(num);
-  // Suma normal
-  if (c==0x01) return true;
+  if (b==0x00) return true;
   else return false;
+
 }
 /*
 numero crc_morse(char j[]){
@@ -105,6 +104,7 @@ uint8_t main (void) {
   print(s);
   while (serial_can_read());
   readline(j,64);
+  print(j);
   num = checksum(j);
   while(j[i]!='\0'){
     i++;
@@ -116,11 +116,10 @@ uint8_t main (void) {
   state = check_checksum(j);
   if (state == true)
     {
-      char p[]="Correcte";
+      char p[]="True";
       print(p);	
     }
   else {
-    serial_put('U');
     char d[]="Fals";
     print(d);
   }
