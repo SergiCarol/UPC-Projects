@@ -13,12 +13,12 @@ uint8_t hex_to_byte (numero byte){
   uint8_t a,b;
   if (byte.a>='0' & byte.a<='9') byte.a-=48;
   else byte.a-=55;
-  if (byte.b>='0' & byte.a<='9') byte.b-=48;
+  if (byte.b>='0' & byte.b<='9') byte.b-=48;
   else byte.b-=55;
   a = (byte.a<<4); // 0xB0
   b = byte.b & 0x0F; // 0x09
   a&=0xF0;
-   return (a|b);
+  return (a|b);
 }
 
 numero byte_to_hex (uint8_t hex){
@@ -107,6 +107,7 @@ uint8_t main (void) {
   j[i++] = num.b;
   j[i++] = num.a;
   j[i++] = '\0';
+  print(j);
   //-----------------------------------
   state = check_checksum(j);
   if (state == true)
