@@ -7,7 +7,7 @@ typedef struct num{
   uint8_t a,b;
 } numero;
 
-uint8_t hex_to_byte (numero byte){
+static uint8_t hex_to_byte (numero byte){
   // FUNCIONA
   numero num;
   uint8_t a,b;
@@ -18,10 +18,12 @@ uint8_t hex_to_byte (numero byte){
   a = (byte.a<<4); // 0xB0
   b = byte.b & 0x0F; // 0x09
   a&=0xF0;
+  printf("Part alta %d\n",a );
+  printf("Part baixa %d\n",b );
   return (a|b);
 }
 
-numero byte_to_hex (uint8_t hex){
+static numero byte_to_hex (uint8_t hex){
   numero num;
   uint8_t a = (hex>>4);
   uint8_t b = hex & 0x0F;
@@ -71,13 +73,16 @@ bool check_checksum(char j[]){
     i++; 
   }
   i-=1;
+  printf("Caracter check: %d\n",j[i]);
   num.a=j[i];
   a-=j[i];
   i-=1;
+  printf("Caracter check: %d\n",j[i]);
   num.b=j[i];
   a-=j[i];
   
   c=hex_to_byte(num);
+  printf("Suma del hex: %d\n",c );
   
   while (a>0xFF){
     b = (a >> 8);
@@ -85,11 +90,20 @@ bool check_checksum(char j[]){
     a+=b;
   }
   a+=c;
+  printf("Suma total : %d\n",a);
   // Suma normal
   if (a==0xFF) return true;
   else return false;
 }
-
+/*
+numero crc_morse(char j[]){
+	uint8_t crc,i = 0;
+	for(i=0;i!='\0';i++){
+		crc=_crc_ibutton_update(crc,j[i]);
+	}
+	return byte_to_hex(crc);
+}
+*/
 
 uint8_t main (void) {
   numero num;
@@ -99,7 +113,9 @@ uint8_t main (void) {
   char s[]="Escriu alguna cosa";
   serial_open();
   print(s);
+  while (serial_can_read());
   readline(j,64);
+  print(j);
   num = checksum(j);
   while(j[i]!='\0'){
     i++;
@@ -107,7 +123,7 @@ uint8_t main (void) {
   j[i++] = num.b;
   j[i++] = num.a;
   j[i++] = '\0';
-  print(j);
+  //print(j);
   //-----------------------------------
   state = check_checksum(j);
   if (state == true)
