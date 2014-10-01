@@ -22,10 +22,9 @@ static numero byte_to_hex (uint8_t hex){
   numero num;
   uint8_t a = (hex>>4);
   uint8_t b = hex & 0x0F;
-  
   if (a>9 & a<=0x0F) a+=55;
   else a+=48;
-  if (b>9 & 0x0F) b+=55;
+  if (b>9 & b<=0x0F) b+=55;
   else b+=48;
   num.a=a;
   num.b=b;
@@ -51,6 +50,7 @@ numero checksum(char j[]){
     a&=0xFF;
     a+=b;
   }
+  printf("Carcter a checksum %d\n",a );
   a=~a;		
   num=byte_to_hex(a);
   return num; 
