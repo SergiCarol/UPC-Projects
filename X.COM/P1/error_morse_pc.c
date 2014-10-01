@@ -1,20 +1,14 @@
-#include <stdio.h>
-#include <inttypes.h>
-#include <stdbool.h>
-
-typedef struct num{
-  uint8_t a,b;
-} numero;
+#include "error_morse_pc.h"
 
 
 
-uint8_t hex_to_byte (numero byte){
+static uint8_t hex_to_byte (numero byte){
   // FUNCIONA
   numero num;
   uint8_t a,b;
   if (byte.a>='0' & byte.a<='9') byte.a-=48;
   else byte.a-=55;
-  if (byte.b>='0' & byte.a<='9') byte.b-=48;
+  if (byte.b>='0' & byte.b<='9') byte.b-=48;
   else byte.b-=55;
   a = (byte.a<<4); // 0xB0
   b = byte.b & 0x0F; // 0x09
@@ -24,7 +18,7 @@ uint8_t hex_to_byte (numero byte){
   return (a|b);
 }
 
-numero byte_to_hex (uint8_t hex){
+static numero byte_to_hex (uint8_t hex){
   numero num;
   uint8_t a = (hex>>4);
   uint8_t b = hex & 0x0F;
@@ -96,8 +90,15 @@ bool check_checksum(char j[]){
   if (a==0xFF) return true;
   else return false;
 }
-
-
+/*
+numero crc_morse(char j[]){
+	uint8_t crc,i = 0;
+	for(i=0;i!='\0';i++){
+		crc=_crc_ibutton_update(crc,j[i]);
+	}
+	return byte_to_hex(crc);
+}
+*/
 uint8_t main (void) {
   numero num;
   uint8_t i=0,a;
