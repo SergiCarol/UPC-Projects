@@ -7,6 +7,10 @@
 #include "blck_serial.h"
 #include "serial.h"
 
+typedef struct num{
+  uint8_t a,b;
+} numero;
+
 numero checksum(uint8_t j[]);
 bool check_checksum(uint8_t j[]);
 numero crc_morse(uint8_t j[]);

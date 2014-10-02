@@ -1,9 +1,5 @@
 #include "checksum.h"
 
-typedef struct num{
-  uint8_t a,b;
-} numero;
-
 static uint8_t hex_to_byte (numero byte){
   // FUNCIONA
   numero num;
