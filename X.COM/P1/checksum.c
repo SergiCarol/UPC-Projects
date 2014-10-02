@@ -1,9 +1,4 @@
-#include <stdio.h>
-#include <inttypes.h>
-#include <stdbool.h>
-#include <util/crc16.h>
-#include "blck_serial.h"
-#include "serial.h"
+#include "checksum.h"
 
 typedef struct num{
   uint8_t a,b;
