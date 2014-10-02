@@ -9,3 +9,6 @@ avr:
 .PHONY: clean
 clean:
 	rm -f main ∗ ̃ *.hex *.txt *.pyc *.c~ *.o 
+.PHONY: tar_clean
+	rm -f main ∗ ̃ *.hex *.txt *.pyc *.c~ *.o 
+	tar cvf projecte.tar.gz .
