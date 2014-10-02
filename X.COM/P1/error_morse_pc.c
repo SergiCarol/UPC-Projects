@@ -77,15 +77,7 @@ bool check_checksum(uint8_t j[]){
   if (b==0x00) return true;
   else return false;
 }
-/*
-numero crc_morse(char j[]){
-	uint8_t crc,i = 0;
-	for(i=0;i!='\0';i++){
-		crc=_crc_ibutton_update(crc,j[i]);
-	}
-	return byte_to_hex(crc);
-}
-*/
+
 uint8_t main (void) {
   numero num;
   uint8_t i=0,a;

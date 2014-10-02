@@ -64,11 +64,13 @@ numero checksum(uint8_t j[]){
 }
 
 bool check_checksum(uint8_t j[]){
-   numero num;
+  numero num;
   //en la 'a' guardarem la suma
+  uint16_t a = 0x00;
   // en la b i ficarem el carry
   uint8_t a,b,i = 0x00;
   while (j[i] != '\0'){
+    a+=j[i];
     i++; 
   }
   num.a=j[--i];
@@ -79,20 +81,19 @@ bool check_checksum(uint8_t j[]){
   i=0;
   num=checksum(j);
   b=hex_to_byte(num);
-
+  
   if (b==0x00) return true;
   else return false;
+  
+}
 
-}
-/*
 numero crc_morse(char j[]){
-	uint8_t crc,i = 0;
-	for(i=0;i!='\0';i++){
-		crc=_crc_ibutton_update(crc,j[i]);
-	}
-	return byte_to_hex(crc);
+  uint8_t crc,i = 0;
+  for(i=0;i!='\0';i++){
+    crc=_crc_ibutton_update(crc,j[i]);
+  }
+  return byte_to_hex(crc);
 }
-*/
 
 uint8_t main (void) {
   numero num;
@@ -119,10 +120,11 @@ uint8_t main (void) {
       char p[]="True";
       print(p);	
     }
-  else {
-    char d[]="Fals";
-    print(d);
-  }
+  else
+    {
+      char d[]="Fals";
+      print(d);
+    }
   serial_close();
   return 1; 
 }
