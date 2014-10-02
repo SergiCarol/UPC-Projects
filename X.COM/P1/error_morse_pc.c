@@ -34,11 +34,9 @@ static numero byte_to_hex (uint8_t hex){
 
 
 numero checksum(uint8_t j[]){
-  numero num;
-  
-  //en la 'a' guardarem la suma
+  //En la 'a' guardarem la suma
   uint16_t a = 0x00;
-  // en la b i ficarem el carry
+  //En la b i ficarem el carry
   uint8_t b,i = 0x00;
   while (j[i] != '\0'){
     a+=j[i];
@@ -52,15 +50,11 @@ numero checksum(uint8_t j[]){
   }
   printf("VALOR CHECHSUM: %d\n",a );
   a=~a;		
-  num=byte_to_hex(a);
-  return num; 
-  
+  return byte_to_hex(a);
 }
 
 bool check_checksum(uint8_t j[]){
-   numero num;
-  //en la 'a' guardarem la suma
-  // en la b i ficarem el carry
+  numero num;
   uint8_t a,b,i = 0x00;
   while (j[i] != '\0'){
     i++; 
@@ -101,7 +95,6 @@ uint8_t main (void) {
       printf("%s\n","Cert" );	
     }
   else printf("%s\n","Fals" );
-  return 1; 
-  
+  return 0; 
 }
 
