@@ -116,7 +116,7 @@ bool check_crc(uint8_t j[]){
 }
 
 uint8_t main (void) {
-  /*  numero num;
+   numero num;
   uint8_t i=0,a;
   bool state;
   char j[64];
@@ -127,8 +127,6 @@ uint8_t main (void) {
   readline(j,64);
   print(j);
   num = crc_morse(j);
-  print(num.a);
-  print(num.b);
   while(j[i]!='\0'){
     i++;
   }
@@ -150,7 +148,7 @@ uint8_t main (void) {
   serial_close();
   return 0; 
 } 
-*/
+/*
   numero num;
   uint8_t i=0,a;
   bool state;
@@ -183,5 +181,5 @@ uint8_t main (void) {
   serial_close();
   return 0; 
 }
-  
+ */ 
 
