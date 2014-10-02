@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <inttypes.h>
 #include <stdbool.h>
+#include <util/crc16.h>
 #include "blck_serial.h"
 #include "serial.h"
 
@@ -66,11 +67,9 @@ numero checksum(uint8_t j[]){
 bool check_checksum(uint8_t j[]){
   numero num;
   //en la 'a' guardarem la suma
-  uint16_t a = 0x00;
   // en la b i ficarem el carry
   uint8_t a,b,i = 0x00;
   while (j[i] != '\0'){
-    a+=j[i];
     i++; 
   }
   num.a=j[--i];
@@ -87,15 +86,71 @@ bool check_checksum(uint8_t j[]){
   
 }
 
-numero crc_morse(char j[]){
+numero crc_morse(uint8_t j[]){
+  numero num;
   uint8_t crc,i = 0;
   for(i=0;i!='\0';i++){
     crc=_crc_ibutton_update(crc,j[i]);
   }
-  return byte_to_hex(crc);
+  num=byte_to_hex(crc);
+  return num;
+}
+
+bool check_crc(uint8_t j[]){
+  numero num;
+  //en la 'a' guardarem la suma
+  // en la b i ficarem el carry
+  uint8_t a,b,i = 0x00;
+  while (j[i] != '\0'){
+    i++; 
+  }
+  num.a=j[--i];
+  num.b=j[--i];  
+  a=hex_to_byte(num);
+  j[i]='\0';
+  for(i=0;i!='\0';i++){
+    a=_crc_ibutton_update(a,j[i]);
+  }
+  if (a==0x00) return true;
+  else return false;
 }
 
 uint8_t main (void) {
+  /*  numero num;
+  uint8_t i=0,a;
+  bool state;
+  char j[64];
+  char s[]="Escriu alguna cosa";
+  serial_open();
+  print(s);
+  while (serial_can_read());
+  readline(j,64);
+  print(j);
+  num = crc_morse(j);
+  print(num.a);
+  print(num.b);
+  while(j[i]!='\0'){
+    i++;
+  }
+  j[i++] = num.b;
+  j[i++] = num.a;
+  j[i] = '\0';
+  //-----------------------------------
+  state = check_crc(j);
+  if (state == true)
+    {
+      char p[]="True";
+      print(p);	
+    }
+  else
+    {
+      char d[]="Fals";
+      print(d);
+    }
+  serial_close();
+  return 0; 
+} 
+*/
   numero num;
   uint8_t i=0,a;
   bool state;
@@ -126,6 +181,7 @@ uint8_t main (void) {
       print(d);
     }
   serial_close();
-  return 1; 
+  return 0; 
 }
+  
 
