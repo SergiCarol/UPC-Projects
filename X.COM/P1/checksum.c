@@ -111,7 +111,10 @@ bool check_crc(uint8_t j[]){
   for(i=0;i!='\0';i++){
     a=_crc_ibutton_update(a,j[i]);
   }
-  if (a==0x00) return true;
+  if (a==0x00){
+   // print('A');
+    return true;
+  }
   else return false;
 }
 
@@ -126,6 +129,7 @@ uint8_t main (void) {
   while (serial_can_read());
   readline(j,64);
   print(j);
+  serial_put('\r');
   num = crc_morse(j);
   while(j[i]!='\0'){
     i++;
