@@ -77,24 +77,27 @@ uint8_t main (void) {
   uint8_t i=0,a;
   bool state;
   char j[64];
-  printf("%s\n","Escriu alguna cosa: " );
-  scanf("%s",j);
-  num = checksum(j);
-  printf("Caracter checksum: %c\n", num.a);
-  printf("Caracter checksum: %c\n", num.b);
-  while(j[i]!='\0'){
-    i++;
-  }
-  j[i++] = num.b;
-  j[i++] = num.a;
-  j[i++] = '\0';
-  //-----------------------------------
-  state = check_checksum(j);
-  if (state == true)
-    {
-      printf("%s\n","Cert" );	
+  while(1){
+    printf("%s\n","Escriu alguna cosa: " );
+    scanf("%s",j);
+    num = checksum(j);
+    printf("Caracter checksum: %c\n", num.a);
+    printf("Caracter checksum: %c\n", num.b);
+    i=0;
+    while(j[i]!='\0'){
+      i++;
     }
-  else printf("%s\n","Fals" );
+    j[i++] = num.b;
+    j[i++] = num.a;
+    j[i++] = '\0';
+    //-----------------------------------
+    state = check_checksum(j);
+    if (state == true)
+      {
+        printf("%s\n","Cert" );  
+      }
+    else printf("%s\n","Fals" );
+  }
   return 0; 
 }
 
