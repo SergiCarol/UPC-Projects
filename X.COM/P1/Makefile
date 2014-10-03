@@ -23,4 +23,4 @@ clean:
 	rm -f main ∗ ̃ *.hex *.txt *.pyc *.c~ *.o 
 tar_clean:
 	rm -f main ∗ ̃ *.hex *.txt *.pyc *.c~ *.o 
-	tar cvf projecte.tar.gz .
+	tar cvf Sergi_Carol_Enric_Lenard.tar.gz .
