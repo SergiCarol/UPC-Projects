@@ -23,8 +23,8 @@ uint8_t main (void) {
     while(j[i]!='\0'){
       i++;
     }
-    j[i++] = num.b;
     j[i++] = num.a;
+    j[i++] = num.b;
     j[i] = '\0';
     //-----------------------------------
     state = check_checksum(j);
