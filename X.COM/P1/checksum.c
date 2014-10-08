@@ -57,8 +57,8 @@ bool check_checksum(uint8_t j[]){
   while (j[i] != '\0'){
     i++; 
   }
-  num.a=j[--i];
-  num.b=j[--i];  
+  num.b=j[--i];
+  num.a=j[--i];  
   a=hex_to_byte(num);
   j[i++]=a;
   j[i]='\0';
@@ -71,9 +71,11 @@ bool check_checksum(uint8_t j[]){
 }
 
 numero crc_morse(uint8_t j[]){
-  uint8_t crc,i = 0;
-  for(i=0;i!='\0';i++){
+  uint8_t crc,i,aux = 0;
+  crc=_crc_ibutton_update(crc,j[i]);
+  for(i=1;j[i]!='\0';i++){
     crc=_crc_ibutton_update(crc,j[i]);
+    
   }
   return byte_to_hex(crc);
 }
@@ -84,13 +86,13 @@ bool check_crc(uint8_t j[]){
   while (j[i] != '\0'){
     i++; 
   }
-  num.a=j[--i];
-  num.b=j[--i];  
+  num.b=j[--i];
+  num.a=j[--i];  
   a=hex_to_byte(num);
+  j[i++]=a;
   j[i]='\0';
-  for(i=0;i!='\0';i++){
-    a=_crc_ibutton_update(a,j[i]);
-  }
+  num=crc_morse(j);
+  a=hex_to_byte(num);
   if (a==0x00)  return true;
   else return false;
 }

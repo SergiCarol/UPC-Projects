@@ -8,7 +8,6 @@ uint8_t main (void) {
   serial_open();
   while(true){
     char s[]="Escriu alguna cosa";
-
     print(s);
     while (serial_can_read());
     readline(j,64);
@@ -22,11 +21,11 @@ uint8_t main (void) {
     while(j[i]!='\0'){
       i++;
     }
-    j[i++] = num.b;
     j[i++] = num.a;
+    j[i++] = num.b;
     j[i] = '\0';
     //-----------------------------------
-    state = check_crc(j);
+    state = check_crc("HOLA5B");
     if (state == true)
       {
         char p[]="True";
