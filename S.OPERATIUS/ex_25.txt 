@@ -1,4 +1,0 @@
-La ordre sq permet comprimir fitxers de tal forma que al comprimirlo aconseguim un fitxer de menor pes. 
-Per comprimirlo s'eliminen els prefixos comuns i es canvien per un sol caracter que codifica la paraula anterior. 
-
-Aquesta ordre es podria utilitzar per comprimir i enviar arxius de text automaticament.
