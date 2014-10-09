@@ -15,7 +15,7 @@ typedef struct {
 } entry;
 
 typedef struct {
-	// Per mirar l'estat que esta el cronometre ( ences (true)  o parat(false) segon la practica)
+	// Per mirar l'estat que esta el cronometre (ences (true)  o parat(false) segon la practica)
 	// El on aquet esta de mes per mirar si ja hem creat el cronometre o no que si ho feia tot amb el estat després es liava a la hora de fer el cronometre i al entrar a la interrupcio
 	bool estat,on ;
 	// Comprador del cronometre en si.
