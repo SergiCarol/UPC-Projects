@@ -2,7 +2,7 @@
 import urllib2
 from dataset import Dataset
 from datetime import *
-class DataSetFetcher(object):
+class DataSetFetcher (object):
     def __init__(self,url='http://localhost:8000'):
         self.url=url
     

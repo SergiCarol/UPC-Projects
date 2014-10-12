@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from dataset import Dataset
 
 
-class DataSetPlot(object):
+class DataSetPlot (object):
 	"""
 	La classe *dsplot* serà l'encarregat d'imprimir la gràfica a pantalla, desde l'informació rebuda desde el *dataset*
 	Degut a que aquesta classe representa la gràfica no em sapigut fer doctest

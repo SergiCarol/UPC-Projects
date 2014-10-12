@@ -5,6 +5,6 @@ avr:
 	avr-objcopy -Oihex main main.hex	
 	sudo avrdude -c arduino -p atmega328p -P /dev/ttyACM0 -U main.hex
 clean:
-	rm main main.hex *.txt *.pyc *.c~
+	rm -f main main.hex *.txt *.pyc *.c~
 tar: 
 	tar cvf projecte.tar.gz .
