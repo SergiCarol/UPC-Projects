@@ -1,9 +1,11 @@
 # -*- encoding:utf-8 -*-
 from node import *
 
-class triport(object):
+class triport (object):
+
 	"""
-	La classe triport es l'encarregada de treballar amb els nodes i convinar-los
+
+	La clase triport es l'encarregada de treballar amb els nodes i convinar-los
 
 	>>> a= Entrada('node1')
 	>>> b= Entrada('node2')
@@ -40,7 +42,8 @@ class triport(object):
 	        estat2=self._i2.ask()
 		return (("\nEstat 1: " + str(estat1) +"\nEstat 2: " +  str(estat2)+  "\nSortida: " +str(self._out) +  '\n'+"Operació: " + str(self.get_name())))
 
-class And(triport):
+class And (triport):
+
 	"""
 	Aquesta classe es l'encarregada de comparar dos estats emulant una porta AND, si el estat1 i estat2 valen 1, retorna 1
 	
@@ -73,7 +76,7 @@ class And(triport):
 		"""
 		return "And"
 		
-class Or(triport):
+class Or (triport):
 	"""
 	La classe Or es l'encarregada d'emular una porta OR utilitzant el metode _do_function
 
