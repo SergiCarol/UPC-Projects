@@ -1,18 +1,17 @@
 #include "lan.h"
 
-#define pendent_enviar 0 // suposu que es fa aixi xD
-#define esperant 1	// ^
+#define pendent_enviar 0 // suposu que es fa aixi xD False
+#define esperant 1	// ^ True
 #define MAX_TRY 3 // Numero maxim d'intens
 
-static uint8_t fix(const block_morse b, uint8_t nd);
+static block_morse fix(const block_morse b, uint8_t nd);
 
-
-block_morse tx[32]; // transmissio
+block_morse tx[32]; // transmissio 
 block_morse rx[32]; // recepcio
 
 static uint8_t node_origen; // guardem el node d'origen
 static uint8_t intens = 0; // Numero d'intens d'enviar (MAXIM TRES)
-
+static uint8_t estat;
 void lan_init(uint8_t no){	
 
 	node_origen = no;
@@ -28,11 +27,11 @@ bool lan_can_put(void){
 
 void lan_block_put(const block_morse b , uint8_t nd){
 	// [no,nd,missatje,checksum]
-	uint8_t t[32];
+	block_morse t;
 	t=fix(b,nd);
-	// Fer funcio per ficar ^ ????
+	// Passar a estat pendent_enviar 
 	// COmrpovar intents (fer funcior que miri el lan_can_put, si retorna fals 3 cops print ERROR (ENRIC))
-	ether_block_put(b)
+	ether_block_put(t);
 }
 
 void on_lan_recived(lan_callback_t l){
@@ -40,7 +39,9 @@ void on_lan_recived(lan_callback_t l){
 }
 
 
-static uint8_t fix(const block_morse b, uint8_t nd){
+
+
+static block_morse fix(const block_morse b, uint8_t nd){
 	uint8_t t[32];
 	uint8_t i = 0;
 
@@ -50,7 +51,6 @@ static uint8_t fix(const block_morse b, uint8_t nd){
 	for (;b[i-2]!='\0';i++){
 		t[i]=b[i-2];      // fiquem els valors del block morse dintre la taula
 	}
-
 	// checksum, fa falta?????
 
 	return t;
