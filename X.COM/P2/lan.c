@@ -36,10 +36,8 @@ void lan_block_put(const block_morse b , uint8_t nd){
 
 void on_lan_recived(lan_callback_t l){
 	// on_message_recived del ether???
-}
+	on_message_recived(l);
 
-void main(void){
-	
 }
 
 
