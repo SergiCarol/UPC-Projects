@@ -9,9 +9,9 @@ vpath lib% libpbn
 
 checksum.o: checksum.h 
 
-lan.o:lan.h  checksum.h
+lan.o:lan.h 
 
-aplic: lan.h checksum.h aplic.h -lpbn
+aplic: lan.o checksum.o -lpbn
 
 main.hex: aplic
 		avr-objcopy -Oihex $< $@
