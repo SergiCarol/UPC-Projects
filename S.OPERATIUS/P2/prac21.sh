@@ -4,7 +4,7 @@ FILE=$(zenity --title="Selecciona un fitxer" --file-selection)
 NAME=$(zenity --title="Escriu una paraula" --entry)
 
 if grep $NAME $FILE; then
-    echo "Si s'ha trobat la paraula" $NAME
+    zenity --info --text="S'ha trobat la paraula"
 else
-    echo "No s'ha trobat la paraula" $NAME
+	zenity --info --text="No s'ha trobat la paraula"    
 fi
