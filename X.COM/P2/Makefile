@@ -7,14 +7,13 @@ vpath lib% libpbn
 
 .PHONY: clean veryclean  main avr
 
-main: checksum.o lan.o -lpbn
-		$(CC) $(CFLAGS) checksum.o lan.o -o main
-
 checksum.o: checksum.h 
 
-lan.o:lan.h  
+lan.o:lan.h  checksum.h
 
-main.hex: main
+aplic: lan.h checksum.h aplic.h -lpbn
+
+main.hex: aplic
 		avr-objcopy -Oihex $< $@
 
 
@@ -23,8 +22,8 @@ avr:main.hex
 
 
 clean:
-	rm -f main ∗ ̃ *.hex *.txt *.pyc *.c~ *.o 
+	rm -f aplic ∗ ̃ *.hex *.txt *.pyc *.c~ *.o 
 tar_clean:
-	rm -f main ∗ ̃ *.hex *.txt *.pyc *.c~ *.o 
+	rm -f aplic ∗ ̃ *.hex *.txt *.pyc *.c~ *.o 
 	tar cvf Sergi_Carol_Enric_Lenard.tar.gz .
 
