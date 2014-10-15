@@ -1,5 +1,7 @@
 #ifndef LAN_H
 #define LAN_H 
+#define pendent_enviar 0 // suposu que es fa aixi xD False
+#define esperant 1	// ^ True
 
 #include <inttypes.h>
 #include <stdbool.h>
