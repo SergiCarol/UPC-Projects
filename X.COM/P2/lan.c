@@ -5,6 +5,7 @@
 #define MAX_TRY 3 // Numero maxim d'intens
 
 static void fix(const block_morse b, uint8_t nd);
+static bool comprova(const block_morse b);
 
 uint8_t t_tx[32];
 uint8_t t_rx[32];
@@ -13,7 +14,7 @@ block_morse rx = t_rx; // recepcio
 
 static uint8_t node_origen; // guardem el node d'origen
 static uint8_t intens = 0; // Numero d'intens d'enviar (MAXIM TRES)
-static uint8_t estat;
+uint8_t estat;
 
 void lan_init(uint8_t no){	
   node_origen = no;
@@ -23,15 +24,17 @@ void lan_init(uint8_t no){
 }
 
 bool lan_can_put(void){
-  return ether_can_put(); // true, fals o pendent_enviar / esperant ??
+  return ether_can_put();
 }
 
 void lan_block_put(const block_morse b , uint8_t nd){
   // [no,nd,missatje,checksum]
   block_morse t;
+  lan_can_put();
   fix(b,nd);
   // Passar a estat pendent_enviar 
   // COmrpovar intents (fer funcior que miri el lan_can_put, si retorna fals 3 cops print ERROR (ENRIC))
+  comprova(tx);
   ether_block_put(t);
 }
 
@@ -50,3 +53,21 @@ static void fix(const block_morse b, uint8_t nd){
   // checksum, fa falta?????
 }
 // Faltarien fer mes funcions estatiques per comprovar coses...
+
+static bool comprova(const block_morse b){
+  //Coprovar 3 cops si cal enviar.
+  if (estat==esperant){
+    if (intens < 3){
+      if(lan_can_put()){
+	return;
+      }
+      else{
+	intens++;
+      }
+    }
+    else{
+      print('ERROR');
+    }
+  }
+  
+
