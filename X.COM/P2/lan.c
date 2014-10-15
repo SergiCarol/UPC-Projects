@@ -18,6 +18,7 @@ uint8_t estat;
 
 void lan_init(uint8_t no){	
   node_origen = no;
+  on_message_received(comp);
   ether_init();
   serial_init();
   timer_init();
@@ -33,13 +34,12 @@ void lan_block_put(const block_morse b , uint8_t nd){
   lan_can_put();
   fix(b,nd);
   // Passar a estat pendent_enviar 
-  // COmrpovar intents (fer funcior que miri el lan_can_put, si retorna fals 3 cops print ERROR (ENRIC))
   comprova(tx);
   ether_block_put(t);
 }
 
 void on_lan_recived(lan_callback_t l){
-  on_message_received(l);
+  l();
 }
 
 static void fix(const block_morse b, uint8_t nd){
@@ -70,4 +70,8 @@ static bool comprova(const block_morse b){
     }
   }
   
-
+  //comprova{
+  //ether_block_get(rx){
+  //si es error
+  //si es destinatari
+  //exe.f()}}
