@@ -31,10 +31,9 @@ bool lan_can_put(void){
 void lan_block_put(const block_morse b , uint8_t nd){
   // [no,nd,missatje,checksum]
   estat=pendent_enviar;
-  lan_can_put();
   fix(b,nd);
-  envia(tx);
-  ether_block_put(t);
+  envia();
+  intens=0;
   estat=esperant;
 }
 
@@ -54,18 +53,16 @@ static void fix(const block_morse b, uint8_t nd){
 }
 // Faltarien fer mes funcions estatiques per comprovar coses...
 
-static bool envia(const block_morse b){
+static void envia(void){
   //Coprovar 3 cops si pot enviar.
   if (intens < MAX_TRY){
     if(lan_can_put()){
-      return true;
+      ether_block_put(tx);
     }
     else{
       intens++;
+      timer_after(TIMER_MS(rand(n)),envia);
     }
-  }
-  else{
-    return false;
   }
 }
 
