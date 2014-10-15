@@ -10,6 +10,7 @@
 
 
 typedef void (*lan_callback_t)(void);
+typedef void (*funcio)(void);
 
 void lan_init(uint8_t no);
 
