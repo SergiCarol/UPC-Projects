@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <pbn.h>
 
-
 typedef void (*lan_callback_t)(void);
 typedef void (*funcio)(void);
 
