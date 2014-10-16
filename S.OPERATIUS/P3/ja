@@ -21,6 +21,29 @@ while getopts "na:rb:e:h" o; do
 		touch ~/.ja/$OPTARG
 	    fi
 	    ;;
+	r)
+
+
+	    
+
+
+	    ;;
+
+	b)
+
+
+
+
+	    ;;
+
+	e)
+
+
+
+	    
+	    ;;
+    
+	#Sergi ja
     esac
 done
 
