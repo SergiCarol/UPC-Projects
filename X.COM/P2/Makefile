@@ -19,10 +19,11 @@ main.hex: aplic
 
 avr:main.hex 
 	avrdude -c arduino -p atmega328p -P /dev/ttyACM0 -U $<
+	picocom /dev/ttyACM0
 
 
 clean:
-	rm -f aplic ∗ ̃ *.hex *.txt *.pyc *.c~ *.o 
+	rm -f  ∗ ̃ *.hex *.txt *.pyc *.c~ *.o 
 tar_clean:
 	rm -f aplic ∗ ̃ *.hex *.txt *.pyc *.c~ *.o 
 	tar cvf Sergi_Carol_Enric_Lenard.tar.gz .
