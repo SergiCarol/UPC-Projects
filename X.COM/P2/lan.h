@@ -6,7 +6,9 @@
 #include <inttypes.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include <pbn.h>
+#include "checksum.h"
 
 typedef void (*lan_callback_t)(void);
 typedef void (*funcio)(void);
@@ -17,5 +19,10 @@ bool lan_can_put(void);
 void lan_block_put(const block_morse b,uint8_t nd);
 
 void on_lan_recived(lan_callback_t l);
+
+void print(char s[]);
+void readline(char s[],uint8_t m);
+
+uint8_t estat;
 
 #endif

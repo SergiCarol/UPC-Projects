@@ -3,6 +3,6 @@
 
 #include <pbn.h>
 #include "lan.h"
-
+#include <avr/interrupt.h>
 
 #endif
