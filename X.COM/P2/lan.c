@@ -11,7 +11,7 @@ char t_tx[32];
 char t_rx[32];
 static block_morse tx = t_tx; // transmissio 
 static block_morse rx = t_rx; // recepcio
-
+static lan_callback_t funcio;
 static uint8_t node_origen; // guardem el node d'origen
 static uint8_t intens = 0; // Numero d'intens d'enviar (MAXIM TRES)
 
@@ -103,7 +103,7 @@ static void comp(void){
 	if (check_crc(rx)){
 	// Comprovem el origen
 		if(rx[1]==node_origen){
-			print("\r\nTot es correcte")
+			print("\r\nTot es correcte");
 			funcio();
 		}
 	}
