@@ -22,29 +22,66 @@ while getopts "na:rb:e:h" o; do
 	    fi
 	    ;;
 	r)
-
-
+	    #Enric
 	    
-
-
+	    
+	    
+	    
 	    ;;
-
+	
 	b)
-
-
-
-
+	    if [ -f ~/.ja/$OPTARG ]; then
+		LINE=$(tail -1 ~/.ja/$OPTARG | cut -d " " -f  1-1)
+		if [ "$LINE" = "B" ]; then 
+		    echo "S'esta treballant amb el projecte"
+		else
+		    echo -n "B  " >> ~/.ja/$OPTARG
+		    date +%s >> ~/.ja/$OPTARG
+		fi
+	    else
+		echo "Aquet projecte no existeix"
+	    fi
 	    ;;
-
+	    #Acabat
+	
 	e)
-
+	#Enric
 
 
 	    
 	    ;;
     
-	#Sergi ja
+
+
+
     esac
 done
+
+	#Sergi ja
+
+# http://unix.stackexchange.com/questions/50563/how-can-i-detect-that-no-options-were-passed-with-getopts
+if [ $OPTIND -eq 1 ]; then
+	NUMERO=$(grep -c "E" ~/.ja/$1)
+	echo El numero de lots de treball es de $NUMERO
+	awk '/^B/{s=$2} /^E/{t=t+$2-s} END {printf "El temps total dedicat es de %.0f segons\n", t}' ~/.ja/$1
+	#Agafem les linies que començen per B i guardem el valor del temps     
+	#Agafem les linies que començen per E i summem el valor del temps a t (inicialment 0) i hi restem el valor del temps de B (s)
+fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
