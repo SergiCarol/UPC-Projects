@@ -10,7 +10,6 @@ static void pinta(void);
 
 void main(void){
 	uint8_t a,i=0,b;
-	on_lan_recived(pinta);
 	serial_init();
 	sei();
 	print("Escriu el node d'origen i a continuacio el de desti");
@@ -18,6 +17,7 @@ void main(void){
 	a=serial_get();
 	serial_put(a);
 	lan_init(a);
+	on_lan_recived(pinta);
 	while(true){
 		begin:
 		serial_put('-');
@@ -45,10 +45,10 @@ void main(void){
 		}
 		while (lan_can_put()==pendent_enviar);
 		if (i>0){
-			tx_H[i]='\0';
-			i=0;
-			lan_block_put(tx_H,b);
-			print("\n\rEscriu un nou node de desti i escriu un nou missatge");
+		  tx_H[i]='\0';
+		  i=0;
+		  lan_block_put(tx_H,b);
+		  print("\n\rEscriu un nou node de desti i escriu un nou missatge");
 		}
 	}
 }

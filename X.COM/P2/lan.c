@@ -18,9 +18,9 @@ static uint8_t intens = 0; // Numero d'intens d'enviar (MAXIM TRES)
 
 void lan_init(uint8_t no){	
   node_origen = no;
-  on_message_received(comp);
-  ether_init();
   timer_init();
+  ether_init();
+  on_message_received(comp);
 }
 
 bool lan_can_put(void){
@@ -39,7 +39,7 @@ void lan_block_put(const block_morse b , uint8_t nd){
 }
 
 void on_lan_recived(lan_callback_t l){
-  	lan_callback_t exec_f = l;
+  	lan_callback_t funcio  = l;
 }
 
 
@@ -100,6 +100,7 @@ static void comp(void){
 	// Agafem els blocks
 	ether_block_get(rx);
 	// Comprovem el crc 
+	print(rx);
 	if (check_crc(rx)){
 	// Comprovem el origen
 		if(rx[1]==node_origen){
