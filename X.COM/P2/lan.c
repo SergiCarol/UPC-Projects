@@ -39,7 +39,7 @@ void lan_block_put(const block_morse b , uint8_t nd){
 }
 
 void on_lan_recived(lan_callback_t l){
-  	lan_callback_t funcio  = l;
+  funcio  = l;
 }
 
 
@@ -51,7 +51,7 @@ uint8_t lan_block_get(block_morse b){
 	for (i=0;rx[i+2]!='\0';i++){
 		b[i]=rx[i+2];
 	}
-	b[i]='\0';
+	b[i-1]='\0';
 	return rx[0];
 
 
@@ -97,6 +97,8 @@ static void comp(void){
 	*/
 
 	uint8_t i;
+	//uint8_t miss[120];
+  	//block_morse ms=miss;
 	// Agafem els blocks
 	ether_block_get(rx);
 	// Comprovem el crc 
@@ -105,7 +107,9 @@ static void comp(void){
 	// Comprovem el origen
 		if(rx[1]==node_origen){
 			print("\r\nTot es correcte");
-			funcio();
+			//serial_put(lan_block_get(ms));
+			//print(ms);
+			(funcio)();
 		}
 	}
 }  
