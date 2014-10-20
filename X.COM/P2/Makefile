@@ -26,7 +26,7 @@ avr_rx: main.hex
 	picocom /dev/ttyACM1
 
 clean:
-	rm -f  ∗ ̃ *.hex *.txt *.pyc *.c~ *.o 
+	rm -f  aplic ∗ ̃ *.hex *.txt *.pyc *.c~ *.o 
 tar_clean:
 	rm -f aplic ∗ ̃ *.hex *.txt *.pyc *.c~ *.o 
 	tar cvf Sergi_Carol_Enric_Lenard.tar.gz .

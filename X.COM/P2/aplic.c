@@ -3,8 +3,8 @@
 
 uint8_t ta_tx[32];
 uint8_t ta_rx[32];
-block_morse tx_H = ta_tx; // transmissio 
-block_morse rx_H = ta_rx; // recepcio
+static block_morse tx_H = ta_tx; // transmissio 
+static block_morse rx_H = ta_rx; // recepcio
 
 static void pinta(void);
 
@@ -33,7 +33,7 @@ void main(void){
 			if (a=='r'){
 				estat=esperant;
 				i=0;
-				print("\n\rHas reiniciat el programa. Escriu un nou node de desti i escriu un nou missatge");
+				print("\n\rHas reiniciat el programa.");
 				a='\r';
 				break;
 				
@@ -45,6 +45,7 @@ void main(void){
 		}
 		while (lan_can_put()==pendent_enviar);
 		if (i>0){
+		  // print(tx_H);
 		  tx_H[i]='\0';
 		  i=0;
 		  lan_block_put(tx_H,b);
@@ -57,11 +58,29 @@ void main(void){
 
 void pinta(void){
 	uint8_t a,i;
-
-	print("\r\nS'ha rebut un missatge de:");
+	char t[]="Node:";
 	a=lan_block_get(rx_H);
+	/*serial_put('N');
+	serial_put('o');
+	serial_put('d');
+	serial_put('e');
+	serial_put(':');*/
+	print(t);
 	serial_put(a);
-	print("El missatge rebut es:");
+	serial_put('\r');
+	serial_put('\n');
+	//Tot aixo esta aqui perque si feia print em sortia "*"
+	serial_put('M');
+	serial_put('i');
+	serial_put('s');
+	serial_put('s');
+	serial_put('a');
+	serial_put('t');
+	serial_put('g');
+	serial_put('e');
+	serial_put(':');
+	serial_put('\r');
+	serial_put('\n');
 	print(rx_H);
 
 }
