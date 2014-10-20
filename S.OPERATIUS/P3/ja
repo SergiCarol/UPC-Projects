@@ -52,7 +52,19 @@ while getopts "na:rb:e:h" o; do
 	    ;;
     
 
+	h)
+	
+		echo -e "\nAquesta es una commanda d'ajuda:\n"\
+			 "L'opcio -n crea una carpeta de projecta nova, en cas de que ja existeixi borra el contingut de dintre.\n" \
+			 "L'opcio -a crea un projecte nou de com <prjid> , la commanda sera: ./ja -a <prjid>\n" \
+			 "L'opcio -r esborra un projecte de nom <prjid>\n" \
+			 "L'opcio -b indica que es vol començar a treballar amb el projecte <prjid>, la commanda sera: ./ja -b <prjid>\n" \
+			 "L'opcio -e indica que es vol acabar de treballar amb el projecte <prjid>, la commanda sera: ./ja -e <prjid>\n" \
+			 "Finalment , si no fiquem cap opcio i nomes el nom d'un projecte <prjid>, s'ens mostrara una resum del projecte <prjid>"\
+			 "en el que veurem el total de segons i en quants lots de treball ho hem fet.\n"
 
+
+	;;
 
     esac
 done

@@ -5,7 +5,7 @@ LDFLAGS=-mmcu=atmega328p
 
 vpath lib% libpbn
 
-.PHONY: clean veryclean  main avr
+.PHONY: clean veryclean  main avr avr_rx
 
 checksum.o: checksum.h 
 
@@ -21,6 +21,9 @@ avr:main.hex
 	avrdude -c arduino -p atmega328p -P /dev/ttyACM0 -U $<
 	picocom /dev/ttyACM0
 
+avr_rx: main.hex
+	avrdude -c arduino -p atmega328p -P /dev/ttyACM1 -U $<
+	picocom /dev/ttyACM1
 
 clean:
 	rm -f  ∗ ̃ *.hex *.txt *.pyc *.c~ *.o 
