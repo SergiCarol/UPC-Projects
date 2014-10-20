@@ -97,8 +97,8 @@ static void comp(void){
 	*/
 
 	uint8_t i;
-	//uint8_t miss[120];
-  	//block_morse ms=miss;
+	uint8_t miss[64];
+  	block_morse ms=miss;
 	// Agafem els blocks
 	ether_block_get(rx);
 	// Comprovem el crc 
@@ -107,9 +107,9 @@ static void comp(void){
 	// Comprovem el origen
 		if(rx[1]==node_origen){
 			print("\r\nTot es correcte");
-			//serial_put(lan_block_get(ms));
-			//print(ms);
-			(funcio)();
+			serial_put(lan_block_get(ms));
+			print(ms);
+			//(funcio)();
 		}
 	}
 }  
