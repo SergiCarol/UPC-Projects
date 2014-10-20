@@ -1,6 +1,6 @@
 #!/bin/bash
 
-while getopts "na:rb:e:h" o; do
+while getopts "na:r:b:e:h" o; do
     case "${o}" in 
 	
 	n)
