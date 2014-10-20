@@ -1,7 +1,7 @@
 #include "lan.h"
 
 #define pendent_enviar 0 // suposu que es fa aixi xD False
-#define esperant 1	// ^ True
+#define esperant 1  // ^ True
 #define MAX_TRY 3 // Numero maxim d'intens
 
 static void fix(const block_morse b, uint8_t nd);
@@ -16,7 +16,7 @@ static uint8_t node_origen; // guardem el node d'origen
 static uint8_t intens = 0; // Numero d'intens d'enviar (MAXIM TRES)
 
 
-void lan_init(uint8_t no){	
+void lan_init(uint8_t no){  
   node_origen = no;
   timer_init();
   ether_init();
@@ -34,27 +34,28 @@ void lan_block_put(const block_morse b , uint8_t nd){
   print("\n\rTrama: ");
   print(tx); 
   envia();
+  print("\r\nDone");
   intens=0;
   estat=esperant;
 }
 
 void on_lan_recived(lan_callback_t l){
-  funcio  = l;
+   funcio = l;
 }
 
 
 uint8_t lan_block_get(block_morse b){
-	/* Conclusio meva:
-	Aixo per l'unic que serveix es per passar de la taula morse
-	del lan a la de l'aplicacio */
-	uint8_t i;
-	for (i=0;rx[i+2]!='\0';i++){
-		b[i]=rx[i+2];
-	}
-	b[i-1]='\0';
-	return rx[0];
-
-
+  /* Conclusio meva:
+     Aixo per l'unic que serveix es per passar de la taula morse
+     del lan a la de l'aplicacio */
+  uint8_t i;
+  for (i=0;rx[i+2]!='\0';i++){
+    b[i]=rx[i+2];
+  }
+  b[i-1]='\0';
+  return rx[0];
+  
+  
 }
 static void fix(const block_morse b, uint8_t nd){
   uint8_t i = 0;
@@ -62,7 +63,7 @@ static void fix(const block_morse b, uint8_t nd){
   tx[i++]=node_origen;  // node origen ve de la variable global
   tx[i]=nd; // node desti
   for (i=2;b[i-2]!='\0';i++){
-  	tx[i]=b[i-2];
+    tx[i]=b[i-2];
   }
   num=crc_morse(tx);
   tx[i++]=num.a;
@@ -76,7 +77,8 @@ static void envia(void){
   //Coprovar 3 cops si pot enviar.
   if (intens < MAX_TRY){
     if(lan_can_put()){// AIxo despres es te que treure (es per mirar que surt)
-      	ether_block_put(tx);
+      ether_block_put(tx);
+      for(uint8_t i=0; i<32;i++) tx[i]='\0';
     }
     else{
       intens++;
@@ -87,31 +89,30 @@ static void envia(void){
 
 
 static void comp(void){
-	/*
-	1- El on_message_recived del init detecta que rebem un missatge
-	2- El on_message_recived crida a la funcio comp ^
-	3- La funcio comp comprova que tot funcioni be i crida a la funcio funcio()
-	4- La funcio funcio() s'hagfa del on_lan_recived
-	5- La funcio on_lan_recived es crida al main de l'applicacio
-	6- La funcio cridada es la funcio pinta del modul aplicacio .c
-	*/
+  /*
+    1- El on_message_recived del init detecta que rebem un missatge
+    2- El on_message_recived crida a la funcio comp ^
+    3- La funcio comp comprova que tot funcioni be i crida a la funcio funcio()
+    4- La funcio funcio() s'hagfa del on_lan_recived
+    5- La funcio on_lan_recived es crida al main de l'applicacio
+    6- La funcio cridada es la funcio pinta del modul aplicacio .c
+  */
+  uint8_t miss[120];
+  block_morse ms=miss;
+  uint8_t i,a;
+  // Agafem els blocks
+  ether_block_get(rx);
+  // Comprovem el crc 
+  //print(rx);
+  if (check_crc(rx)){
+    // Comprovem el origen
+    if(rx[1]==node_origen){
+//      serial_put(lan_block_get(rx));
+//      print(rx);
+        funcio();
+    }
+  }
 
-	uint8_t i;
-	uint8_t miss[64];
-  	block_morse ms=miss;
-	// Agafem els blocks
-	ether_block_get(rx);
-	// Comprovem el crc 
-	print(rx);
-	if (check_crc(rx)){
-	// Comprovem el origen
-		if(rx[1]==node_origen){
-			print("\r\nTot es correcte");
-			serial_put(lan_block_get(ms));
-			print(ms);
-			//(funcio)();
-		}
-	}
 }  
 
 
@@ -135,9 +136,9 @@ void readline(char s[],uint8_t m){
   uint8_t i=0,a;
   a=serial_get();
   while (m!=i && isgraph(a)){
-      s[i] = a;
-      i++;
-      a=serial_get();
+    s[i] = a;
+    i++;
+    a=serial_get();
     
   }
   s[i]='\0';
