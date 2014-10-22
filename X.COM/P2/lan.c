@@ -21,7 +21,8 @@ void lan_init(uint8_t no){
   timer_init();
   ether_init();
   on_message_received(comp);
-  DDRB=0x00;
+  pin = pin_create(&PORTB,5,Output);
+  pin_w(pin,false);
 }
 
 bool lan_can_put(void){
@@ -86,7 +87,7 @@ static void envia(void){
       timer_after(TIMER_MS(rand()%((10+1)*1000)),envia);
     }
   }
-  else DDRB=0xFF;
+  else pin_w(pin,true);
 }
 
 
