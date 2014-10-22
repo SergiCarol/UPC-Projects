@@ -82,7 +82,7 @@ static void envia(void){
     }
     else{
       intens++;
-      timer_after(TIMER_MS(rand()),envia);
+      timer_after(TIMER_MS(rand()%10+1*1000),envia);
     }
   }
   else DDRB=0xFF;
@@ -98,8 +98,6 @@ static void comp(void){
     5- La funcio on_lan_recived es crida al main de l'applicacio
     6- La funcio cridada es la funcio pinta del modul aplicacio .c
   */
-
-  uint8_t i,a;
   // Agafem els blocks
   ether_block_get(rx);
   serial_put('A');
