@@ -82,7 +82,7 @@ static void envia(void){
     }
     else{
       intens++;
-      timer_after(TIMER_MS(rand()%10+1*1000),envia);
+      timer_after(TIMER_MS(rand()%((10+1)*1000)),envia);
     }
   }
   else DDRB=0xFF;
@@ -100,9 +100,7 @@ static void comp(void){
   */
   // Agafem els blocks
   while (ether_can_get()==false);
-  serial_put('A');
   ether_block_get(rx);
-  serial_put('A');
   // Comprovem el crc 
   if (check_crc(rx)){
     // Comprovem el origen
