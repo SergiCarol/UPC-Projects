@@ -12,7 +12,7 @@ void main(void){
   uint8_t a,i=0,b;
   serial_init();
   sei();
-  print("Escriu el node d'origen i a continuacio el de desti");
+  //print("Escriu el node d'origen i a continuacio el de desti");
   while(serial_can_read()==false);
   a=serial_get();
   serial_put(a);
@@ -34,7 +34,7 @@ void main(void){
       if (a=='r'){
 	estat=esperant;
 	i=0;
-	print("\n\rHas reiniciat el programa.");
+	//print("\n\rHas reiniciat el programa.");
 	a='\r';
 	break;
 	
