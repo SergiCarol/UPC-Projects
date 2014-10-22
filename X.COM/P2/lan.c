@@ -99,6 +99,7 @@ static void comp(void){
     6- La funcio cridada es la funcio pinta del modul aplicacio .c
   */
   // Agafem els blocks
+  while (ether_can_get()==false);
   ether_block_get(rx);
   serial_put('A');
   // Comprovem el crc 
