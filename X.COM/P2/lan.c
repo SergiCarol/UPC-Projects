@@ -79,7 +79,7 @@ static void envia(void){
   if (intens < MAX_TRY){
     if(lan_can_put()){// AIxo despres es te que treure (es per mirar que surt)
       ether_block_put(tx);
-      for(uint8_t i=0; i<32;i++) tx[i]='\0';
+      for(uint8_t i=0; i<120;i++) tx[i]='\0';
     }
     else{
       intens++;
@@ -100,8 +100,12 @@ static void comp(void){
     6- La funcio cridada es la funcio pinta del modul aplicacio .c
   */
   // Agafem els blocks
-  while (ether_can_get()==false);
   ether_block_get(rx);
+  for (uint8_t i = 0;rx[i]!='\0';i++){
+    serial_put(rx[i]);
+  }
+    serial_put('\r');
+  serial_put('\n');
   // Comprovem el crc 
   if (check_crc(rx)){
     // Comprovem el origen

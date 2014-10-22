@@ -15,6 +15,8 @@ lan.o:lan.h
 
 aplic: lan.o checksum.o gpio_device.o -lpbn
 
+prova: -lpbn
+
 main.hex: aplic
 		avr-objcopy -Oihex $< $@
 
