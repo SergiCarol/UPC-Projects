@@ -14,7 +14,7 @@ static block_morse rx = t_rx; // recepcio
 static lan_callback_t funcio;
 static uint8_t node_origen; // guardem el node d'origen
 static uint8_t intens = 0; // Numero d'intens d'enviar (MAXIM TRES)
-
+bool not_done = false;
 
 void lan_init(uint8_t no){  
   node_origen = no;
@@ -34,7 +34,8 @@ void lan_block_put(const block_morse b , uint8_t nd){
   print("\n\rTrama: ");
   print(tx); 
   envia();
-  print("\r\nDone");
+  if (not_done) print("No s'ha pogut transmetre");
+  else print("\r\nDone");   
   intens=0;
   estat=esperant;
 }
@@ -53,6 +54,7 @@ uint8_t lan_block_get(block_morse b){
     b[i]=rx[i+2];
   }
   b[i-1]='\0';
+  not_done=false;
   return rx[0];
   
   
@@ -79,12 +81,14 @@ static void envia(void){
     if(lan_can_put()){// AIxo despres es te que treure (es per mirar que surt)
       ether_block_put(tx);
       for(uint8_t i=0; i<32;i++) tx[i]='\0';
+      not_done=false;
     }
     else{
       intens++;
       timer_after(TIMER_MS(rand()),envia);
     }
   }
+  else not_done=true;
 }
 
 
@@ -100,16 +104,15 @@ static void comp(void){
   uint8_t miss[120];
   block_morse ms=miss;
   uint8_t i,a;
+  while(not_done);
   // Agafem els blocks
   ether_block_get(rx);
   // Comprovem el crc 
-  //print(rx);
   if (check_crc(rx)){
     // Comprovem el origen
     if(rx[1]==node_origen){
-//      serial_put(lan_block_get(rx));
-//      print(rx);
-        funcio();
+      not_done=true;
+      funcio();
     }
   }
 
