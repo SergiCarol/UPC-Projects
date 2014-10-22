@@ -7,8 +7,8 @@
 static void fix(const block_morse b, uint8_t nd);
 static void envia(void);
 static void comp(void);
-char t_tx[128];
-char t_rx[128];
+char t_tx[32];
+char t_rx[32];
 static block_morse tx = t_tx; // transmissio 
 static block_morse rx = t_rx; // recepcio
 static lan_callback_t funcio;
