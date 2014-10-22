@@ -14,13 +14,15 @@ static block_morse rx = t_rx; // recepcio
 static lan_callback_t funcio;
 static uint8_t node_origen; // guardem el node d'origen
 static uint8_t intens = 0; // Numero d'intens d'enviar (MAXIM TRES)
-bool not_done = false;
+static pin_t pin;
 
 void lan_init(uint8_t no){  
   node_origen = no;
   timer_init();
   ether_init();
   on_message_received(comp);
+  pin=pin_create(&DDRB,5,Output);
+  pin_w(pin,false);
 }
 
 bool lan_can_put(void){
@@ -33,9 +35,7 @@ void lan_block_put(const block_morse b , uint8_t nd){
   fix(b,nd);
   print("\n\rTrama: ");
   print(tx); 
-  envia();
-  if (not_done) print("No s'ha pogut transmetre");
-  else print("\r\nDone");   
+  envia();   
   intens=0;
   estat=esperant;
 }
@@ -80,14 +80,13 @@ static void envia(void){
     if(lan_can_put()){// AIxo despres es te que treure (es per mirar que surt)
       ether_block_put(tx);
       for(uint8_t i=0; i<32;i++) tx[i]='\0';
-      not_done=false;
     }
     else{
       intens++;
       timer_after(TIMER_MS(rand()),envia);
     }
   }
-  else not_done=true;
+  else pin_w(pin,true);
 }
 
 
@@ -109,8 +108,9 @@ static void comp(void){
     if(rx[1]==node_origen){
       funcio();
     }
+    else pin_w(pin,true);
   }
-
+  else pin_w(pin,true);
 }  
 
 
