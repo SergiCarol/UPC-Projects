@@ -100,7 +100,7 @@ static void comp(void){
     6- La funcio cridada es la funcio pinta del modul aplicacio .c
   */
   // Agafem els blocks
-  serial_put('A');
+ /* serial_put('A');
   ether_block_get(rx);
   for (uint8_t i = 0;rx[i]!='\0';i++){
     serial_put(rx[i]);
@@ -115,7 +115,13 @@ static void comp(void){
     }
     else DDRB=0xFF;
   }
-  else DDRB=0xFF;
+  else DDRB=0xFF;*/
+  ether_block_get(rx);
+  for (uint8_t i = 0;rx[i]!='\0';i++){
+    serial_put(rx[i]);
+  }
+  serial_put('\r');
+  serial_put('\n');
 }  
 
 
