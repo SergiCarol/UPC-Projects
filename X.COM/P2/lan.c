@@ -100,6 +100,7 @@ static void comp(void){
   */
   // Agafem els blocks
   while (ether_can_get()==false);
+  serial_put('A');
   ether_block_get(rx);
   serial_put('A');
   // Comprovem el crc 
