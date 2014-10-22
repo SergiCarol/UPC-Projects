@@ -54,7 +54,6 @@ uint8_t lan_block_get(block_morse b){
     b[i]=rx[i+2];
   }
   b[i-1]='\0';
-  not_done=false;
   return rx[0];
   
   
@@ -104,14 +103,12 @@ static void comp(void){
   uint8_t miss[120];
   block_morse ms=miss;
   uint8_t i,a;
-  while(not_done);
   // Agafem els blocks
   ether_block_get(rx);
   // Comprovem el crc 
   if (check_crc(rx)){
     // Comprovem el origen
     if(rx[1]==node_origen){
-      not_done=true;
       funcio();
     }
   }
