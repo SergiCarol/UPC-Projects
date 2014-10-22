@@ -111,7 +111,7 @@ static void comp(void){
   if (check_crc(rx)){
     // Comprovem el origen
     if(rx[1]==node_origen){
-      lan_block_get(ms)
+      lan_block_get(ms);
     }
   }
 }  
