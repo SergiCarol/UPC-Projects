@@ -52,7 +52,7 @@ void main(void){
       tx_H[i]='\0';
       i=0;
       lan_block_put(tx_H,b);
-      print("\n\rEscriu un nou node de desti i escriu un nou missatge");
+      //print("\n\rEscriu un nou node de desti i escriu un nou missatge");
     }
   }
 }
