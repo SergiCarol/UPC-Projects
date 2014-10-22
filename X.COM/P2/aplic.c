@@ -34,6 +34,8 @@ void main(void){
       if (a=='r'){
 	estat=esperant;
 	i=0;
+  	serial_put('\r');
+  	serial_put('\n');
 	//print("\n\rHas reiniciat el programa.");
 	a='\r';
 	break;
