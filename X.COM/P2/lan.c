@@ -122,6 +122,12 @@ static void comp(void){
   }
   serial_put('\r');
   serial_put('\n');
+  if (check_crc(rx)){
+    // Comprovem el origen
+    if(rx[1]==node_origen){
+      funcio();
+    }
+  }
 }  
 
 
