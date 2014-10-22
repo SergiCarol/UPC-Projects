@@ -100,22 +100,8 @@ static void comp(void){
     6- La funcio cridada es la funcio pinta del modul aplicacio .c
   */
   // Agafem els blocks
- /* serial_put('A');
-  ether_block_get(rx);
-  for (uint8_t i = 0;rx[i]!='\0';i++){
-    serial_put(rx[i]);
-  }
-    serial_put('\r');
-  serial_put('\n');
-  // Comprovem el crc 
-  if (check_crc(rx)){
-    // Comprovem el origen
-    if(rx[1]==node_origen){
-      funcio();
-    }
-    else DDRB=0xFF;
-  }
-  else DDRB=0xFF;*/
+  char msi[64];
+  block_morse ms = msi;
   ether_block_get(rx);
   for (uint8_t i = 0;rx[i]!='\0';i++){
     serial_put(rx[i]);
@@ -125,7 +111,7 @@ static void comp(void){
   if (check_crc(rx)){
     // Comprovem el origen
     if(rx[1]==node_origen){
-      //funcio();
+      lan_block_get(ms)
     }
   }
 }  
