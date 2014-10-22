@@ -60,25 +60,8 @@ void main(void){
 
 
 void pinta(void){
-  uint8_t a,i;
-  char t[]="\r\nNode:";
+  uint8_t a;
   a=lan_block_get(rx_H);
-  print(t);
-  serial_put(a);
-  serial_put('\r');
-  serial_put('\n');
-	   //Tot aixo esta aqui perque si feia print em sortia "*" * HOLA
-  serial_put('M');
-  serial_put('i');
-  serial_put('s');
-  serial_put('s');
-  serial_put('a');
-  serial_put('t');
-  serial_put('g');
-  serial_put('e');
-  serial_put(':');
-  serial_put('\r');
-  serial_put('\n');
   print(rx_H);
   
 }
