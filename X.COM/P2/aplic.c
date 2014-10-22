@@ -1,8 +1,8 @@
 #include "aplic.h"
 
 	
-uint8_t ta_tx[32];
-uint8_t ta_rx[32];
+uint8_t ta_tx[120];
+uint8_t ta_rx[120];
 static block_morse tx_H = ta_tx; // transmissio 
 static block_morse rx_H = ta_rx; // recepcio
 

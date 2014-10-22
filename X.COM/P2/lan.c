@@ -7,8 +7,8 @@
 static void fix(const block_morse b, uint8_t nd);
 static void envia(void);
 static void comp(void);
-char t_tx[32];
-char t_rx[32];
+char t_tx[120];
+char t_rx[120];
 static block_morse tx = t_tx; // transmissio 
 static block_morse rx = t_rx; // recepcio
 static lan_callback_t funcio;
@@ -98,9 +98,11 @@ static void comp(void){
     5- La funcio on_lan_recived es crida al main de l'applicacio
     6- La funcio cridada es la funcio pinta del modul aplicacio .c
   */
+
   uint8_t i,a;
   // Agafem els blocks
   ether_block_get(rx);
+  serial_put('A');
   // Comprovem el crc 
   if (check_crc(rx)){
     // Comprovem el origen
