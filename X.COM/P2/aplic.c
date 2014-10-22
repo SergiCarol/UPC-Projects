@@ -63,9 +63,6 @@ void pinta(void){
   uint8_t a;
   a=lan_block_get(rx_H);
   serial_put('N');
-  serial_put('o');
-  serial_put('d');
-  serial_put('e');
   serial_put(':');
   serial_put(a);
   serial_put('\r');
