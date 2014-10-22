@@ -103,9 +103,6 @@ static void comp(void){
   char msi[64];
   block_morse ms = msi;
   ether_block_get(rx);
-  for (uint8_t i = 0;rx[i]!='\0';i++){
-    serial_put(rx[i]);
-  }
   serial_put('\r');
   serial_put('\n');
   if (check_crc(rx)){
