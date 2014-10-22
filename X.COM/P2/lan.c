@@ -36,6 +36,7 @@ void lan_block_put(const block_morse b , uint8_t nd){
   print(tx); 
   envia();   
   intens=0;
+  print("Done");
   estat=esperant;
 }
 
