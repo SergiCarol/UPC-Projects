@@ -9,9 +9,11 @@ vpath lib% libpbn
 
 checksum.o: checksum.h 
 
+gpio_device.o: gpio_device.h
+
 lan.o:lan.h 
 
-aplic: lan.o checksum.o -lpbn
+aplic: lan.o checksum.o gpio_device.o -lpbn
 
 main.hex: aplic
 		avr-objcopy -Oihex $< $@
