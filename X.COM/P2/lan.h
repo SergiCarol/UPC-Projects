@@ -9,6 +9,7 @@
 #include <ctype.h>
 #include <pbn.h>
 #include "checksum.h"
+#include "gpio_device.h"
 
 typedef void (*lan_callback_t)(void);
 
