@@ -1,6 +1,6 @@
 #include "aplic.h"
 
-
+	
 uint8_t ta_tx[32];
 uint8_t ta_rx[32];
 static block_morse tx_H = ta_tx; // transmissio 
@@ -24,8 +24,9 @@ void main(void){
 		serial_put('>');
 		b=serial_get();
 		serial_put(b);
-		print("\r\nEscriu el missatge");	
-// -------------------------------------------------------------
+		  //print("\r\nEscriu el missatge");
+		serial_put(':');
+	// -------------------------------------------------------------
 		while(serial_can_read()==false);
 		a=serial_get();
 		while (a!='\r'){
@@ -46,10 +47,10 @@ void main(void){
 		while (lan_can_put()==pendent_enviar);
 		if (i>0){
 		  // print(tx_H);
-		  tx_H[i]='\0';
-		  i=0;
-		  lan_block_put(tx_H,b);
-		  print("\n\rEscriu un nou node de desti i escriu un nou missatge");
+			tx_H[i]='\0';
+			i=0;
+			lan_block_put(tx_H,b);
+			print("\n\rEscriu un nou node de desti i escriu un nou missatge");
 		}
 	}
 }
@@ -58,18 +59,13 @@ void main(void){
 
 void pinta(void){
 	uint8_t a,i;
-	char t[]="Node:";
+	char t[]="\r\nNode:";
 	a=lan_block_get(rx_H);
-	/*serial_put('N');
-	serial_put('o');
-	serial_put('d');
-	serial_put('e');
-	serial_put(':');*/
 	print(t);
 	serial_put(a);
 	serial_put('\r');
 	serial_put('\n');
-	//Tot aixo esta aqui perque si feia print em sortia "*"
+	   //Tot aixo esta aqui perque si feia print em sortia "*" * HOLA
 	serial_put('M');
 	serial_put('i');
 	serial_put('s');
