@@ -1,7 +1,9 @@
 #ifndef LAN_H
 #define LAN_H 
-#define pendent_enviar 0 // suposu que es fa aixi xD False
-#define esperant 1	// ^ True
+#define pendent_enviar 0 // No pot enviar 
+#define esperant 1  // Si pot enviar
+#define MAX_TRY 3 // Numero maxim d'intens#define pendent_enviar 0 // suposu que es fa aixi xD False
+
 
 #include <inttypes.h>
 #include <stdbool.h>
@@ -23,6 +25,7 @@ void on_lan_recived(lan_callback_t l);
 void print(char s[]);
 void readline(char s[],uint8_t m);
 
-uint8_t estat;
+// Diu l'estat en que esta l'ether
+bool estat;
 
 #endif

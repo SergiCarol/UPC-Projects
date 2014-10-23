@@ -10,49 +10,55 @@ static void pinta(void);
 
 void main(void){
   uint8_t a,i=0,b;
+  //Iniciem el serial
   serial_init();
+  //Activem les interrupcions
   sei();
-  //print("Escriu el node d'origen i a continuacio el de desti");
   while(serial_can_read()==false);
+  //Agafem el node d'origen
+  //Aixo nomes es fa un cop al principi
   a=serial_get();
   serial_put(a);
+  //Incialitzem el lan
   lan_init(a);
   on_lan_recived(pinta);
   while(true){
-  begin:
     serial_put('-');
     serial_put('>');
+    //Agafem el node de desti
     b=serial_get();
     serial_put(b);
-    //print("\r\nEscriu el missatge");
     serial_put(':');
     // -------------------------------------------------------------
     while(serial_can_read()==false);
+    //Començem a agafar el missatge
     a=serial_get();
     while (a!='\r'){
       serial_put(a);
+      //Si hem escrit una 'r'
       if (a=='r'){
-	estat=esperant;
-	i=0;
-  	serial_put('\r');
-  	serial_put('\n');
-	//print("\n\rHas reiniciat el programa.");
-	a='\r';
-	break;
-	
+        //Reiniciem el programa
+        estat=esperant;
+        i=0;
+        serial_put('\r');
+        serial_put('\n');
+        a='\r';
+        break;
       }
+      // Sino...
       else {
-	tx_H[i++]=a;
-	a=serial_get();
+        //Anem guardan lo que anem escribint
+        tx_H[i++]=a;
+        a=serial_get();
       }
     }
+    //Ens esperem fins que s'hagi acabat de enviar (si es que hi ha alguna cosa)
     while (lan_can_put()==pendent_enviar);
     if (i>0){
-      // print(tx_H);
       tx_H[i]='\0';
       i=0;
-      lan_block_put(tx_H,b);
-      //print("\n\rEscriu un nou node de desti i escriu un nou missatge");
+      //Enviem el missatge
+      lan_block_put(tx_H,b);    
     }
   }
 }
