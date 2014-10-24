@@ -30,7 +30,10 @@ void lan_init(uint8_t no){
 
 bool lan_can_put(void){
   // Comprova si podem enviar per l'ether o no
-  return ether_can_put();
+  if (ether_can_put()){
+  	if (estat = esperant) return true;
+  }
+  else return false;
 }
 
 void lan_block_put(const block_morse b , uint8_t nd){
