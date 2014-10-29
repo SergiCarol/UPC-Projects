@@ -11,21 +11,22 @@ checksum.o: checksum.h
 
 gpio_device.o: gpio_device.h
 
-lan.o:lan.h 
+frame.o:frame.h 
 
-aplic: lan.o checksum.o gpio_device.o -lpbn
+trans: frame.o checksum.o gpio_device.o -lpbn
 
-prova: -lpbn
+recep: frame.o checksum.o gpio_device.o -lpbn
 
-main.hex: aplic
+trans.hex: trans
+		avr-objcopy -Oihex $< $@
+recep.hex: recep
 		avr-objcopy -Oihex $< $@
 
-
-avr:main.hex 
+avr:trans.hex 
 	avrdude -c arduino -p atmega328p -P /dev/ttyACM0 -U $<
 	picocom /dev/ttyACM0
 
-avr_rx: main.hex
+avr_rx: recep.hex
 	avrdude -c arduino -p atmega328p -P /dev/ttyACM1 -U $<
 	picocom /dev/ttyACM1
 
