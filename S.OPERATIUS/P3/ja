@@ -80,7 +80,7 @@ done
 
 # http://unix.stackexchange.com/questions/50563/how-can-i-detect-that-no-options-were-passed-with-getopts
 if [ $OPTIND -eq 1 ]; then
-    NUMERO=$(grep -c "E" ~/.ja/$1)
+    NUMERO=$(grep -c  "E" ~/.ja/$1)
     echo El numero de lots de treball es de $NUMERO
     awk '/^B/{s=$2} /^E/{t=t+$2-s} END {printf "El temps total dedicat es de %.0f segons\n", t}' ~/.ja/$1
     #Agafem les linies que començen per B i guardem el valor del temps     
