@@ -13,7 +13,7 @@ gpio_device.o: gpio_device.h
 
 frame.o:frame.h 
 
-trans: frame.o checksum.o gpio_device.o -lpbn
+trans: frame.o checksum.o gpio_device.o  -lpbn
 
 recep: frame.o checksum.o gpio_device.o -lpbn
 
