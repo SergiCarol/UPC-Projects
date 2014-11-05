@@ -19,7 +19,7 @@ static void build(const block_morse b);
 static void send(void);
 static void check(void);
 static void next(void);
-static void time_out(void);
+static void start_timer(void);
 static void error(void);
 
 
@@ -177,3 +177,11 @@ void print(char s[]){
   serial_put('\r');
   serial_put('\n');
 }
+
+timer_handler_t start_timer(void){
+  if(numeracio_trama=='0'||numeracio_trama=='1'){
+    timeout_number=timer_affer();
+  }
+  else{error();
+  }
+  
