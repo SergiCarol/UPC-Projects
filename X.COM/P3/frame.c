@@ -30,6 +30,7 @@ void frame_init(void){
   on_message_received(check);
   pin = pin_create(&PORTB,5,Output);
   pin_w(pin,false);
+  // Canviar sempre on_finished
   if (states_frame == transmissor) on_finished_transmission(timeout);
 }
 
@@ -98,6 +99,7 @@ static void send(void){
 
 static void check(void){
   ether_block_get(rx);
+  timer_cancel(timeout_number);
   // Comprovem si hem rebut lo que esperavem
   if (check_checksum(rx)){
     if (rx[0]==waiting_for)	next();
@@ -108,7 +110,7 @@ static void check(void){
 
 void next (void){
   numero num;
-  if (states_frame==receptor){
+  if ((rx[0]==0) || (rx[0]==1)) {
     // Mirem la numeracio de la trama
     if (rx[0]==0){
       // Si hem rebut un 0 tenim que enviar un missatge de confirmacio amb una A
@@ -131,8 +133,7 @@ void next (void){
     funcio();
   }
   // En el cas de que siguem el transmissor
-  else if (states_frame==transmissor) {
-    timer_cancel(timeout_number);
+  else if ((rx[0]=='A') || (rx[0]=='B')) {
     // Comprovem si el missatge de confirmacio es una A
     if (rx[0]=='A'){
       // Si ho es el seguent missatge te que començar amb un 1
@@ -148,7 +149,7 @@ void next (void){
 }
 
 void error(void){
-  if (states_frame==receptor){
+  if ((rx[0]==0) || (rx[0]==1)){
     if (waiting_for==0) {
       tx[0]='B';
     }
