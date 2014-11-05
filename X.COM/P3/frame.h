@@ -23,6 +23,6 @@ void on_frame_recived(frame_callback_t l);
 
 void print(char j[]);
 // Fiquem si soc transmissor o receptor
-//typedef enum {transmissor,receptor} state_frame;
+typedef enum {transmissor,receptor} state_frame;
 
 #endif
