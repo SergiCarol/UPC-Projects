@@ -25,4 +25,7 @@ void print(char j[]);
 // Fiquem si soc transmissor o receptor
 typedef enum {transmissor,receptor} state_frame;
 
+uint8_t numeracio_trama;
+uint8_t waiting_for;
+
 #endif
