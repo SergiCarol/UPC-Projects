@@ -10,6 +10,8 @@ int main(void){
 	serial_init();
 	sei();
 	frame_init();
+	numeracio_trama=0;
+	waiting_for='A';
 	while(serial_can_read()==false);
 	while(true){
 		for(i=0;a=serial_get()!='\r';i++){

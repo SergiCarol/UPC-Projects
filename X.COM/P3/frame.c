@@ -8,14 +8,12 @@ uint8_t t_rx[32];
 static block_morse tx = t_tx; // transmissio 
 static block_morse rx = t_rx; // recepcio
 
-uint8_t numeracio_trama;
-uint8_t waiting_for;
-
-
 static estat state = esperant;
 static frame_callback_t funcio;
 static pin_t pin;
 static uint8_t intens=0;
+static int timeout_number;
+
 
 static void build(const block_morse b);
 static void send(void);
@@ -24,9 +22,8 @@ static void next(void);
 static void time_out(void);
 static void error(void);
 
+
 void frame_init(void){
-	numeracio_trama = 0;
-	waiting_for = 0;
 	state = esperant;
 	timer_init();
   	ether_init();
@@ -80,7 +77,7 @@ static void build(block_morse b){
 
 static void send(void){
 	if (intens < MAX_TRY){
-    	if(frame_can_put()){
+    	if(ether_can_put()){
       		// Si el canal no esat ocupat enviem
       		ether_block_put(tx);
       		for(uint8_t i=0; i<64;i++) tx[i]='\0';
@@ -102,11 +99,11 @@ static void send(void){
 static void check(void){
 	ether_block_get(rx);
 	// Comprovem si hem rebut lo que esperavem
-	if (rx[0]==waiting_for){
-		// Comprovem el crc
-		if (check_checksum(rx))	next();
+	if (check_checksum(rx)){
+		if (rx[0]==waiting_for)	next();
+		else error();
 	}
-	else error();
+	else pin_w(pin,true);
 }
 
 void next (void){
@@ -135,6 +132,7 @@ void next (void){
 	}
 	// En el cas de que siguem el transmissor
 	else if (states_frame==transmissor) {
+		timer_cancel(timeout_number);
 		// Comprovem si el missatge de confirmacio es una A
 		if (rx[0]=='A'){
 			// Si ho es el seguent missatge te que començar amb un 1
