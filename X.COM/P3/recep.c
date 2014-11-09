@@ -3,7 +3,7 @@
 	
 uint8_t ta_rx[32];
 static block_morse rx_H = ta_rx;
-state_frame state_frames = receptor;
+
 static void pinta(void);
 
 int main(void){
