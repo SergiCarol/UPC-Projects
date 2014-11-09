@@ -12,7 +12,7 @@ static estat state = esperant;
 static frame_callback_t funcio;
 static pin_t pin;
 static uint8_t intens=0;
-static int timeout_number;
+static int8_t timeout_number;
 
 
 static void build(const block_morse b);
@@ -31,7 +31,7 @@ void frame_init(void){
   pin = pin_create(&PORTB,5,Output);
   pin_w(pin,false);
   // Canviar sempre on_finished
-  if (states_frame == transmissor) on_finished_transmission(timeout);
+  on_finish_transmission(start_timer);
 }
 
 bool frame_can_put(void){
@@ -100,7 +100,6 @@ static void send(void){
 static void check(void){
   ether_block_get(rx);
   timer_cancel(timeout_number);
-  // Comprovem si hem rebut lo que esperavem
   if (check_checksum(rx)){
     if (rx[0]==waiting_for)	next();
     else error();
@@ -144,11 +143,12 @@ void next (void){
       numeracio_trama = 0;
       waiting_for = 'A';
     }
-    state=esperant
+    state=esperant;
       }
 }
 
 void error(void){
+  numero num;
   if ((rx[0]==0) || (rx[0]==1)){
     if (waiting_for==0) {
       tx[0]='B';
@@ -178,10 +178,9 @@ void print(char s[]){
   serial_put('\n');
 }
 
-timer_handler_t start_timer(void){
+void start_timer(void){
   if(numeracio_trama=='0'||numeracio_trama=='1'){
-    timeout_number=timer_affer();
+    timeout_number=timer_after(TIMER_MS(10),error);
   }
-  else{error();
-  }
+}
   

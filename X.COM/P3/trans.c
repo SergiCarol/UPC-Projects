@@ -3,7 +3,6 @@
 
 uint8_t ta_tx[32];
 static block_morse tx_H = ta_tx;
-state_frame state_frames = transmissor;
 
 int main(void){
 	uint8_t a,i=0;
