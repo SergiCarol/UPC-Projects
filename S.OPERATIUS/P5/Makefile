@@ -2,11 +2,12 @@ CC=gcc
 
 .PHONY: parent child
 
-parent.o: parent.c 
+parent.o: parent.c matrix.o
 child.o: child.c
+matrix.o: matrix.h
 
-parent: parent.o 
-	$(CC) parent.o -o parent
+parent: child parent.o matrix.o
+	$(CC) parent.o matrix.o -o parent
 child: child.o
 	$(CC) child.o -o child
 
