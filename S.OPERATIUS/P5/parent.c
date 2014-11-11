@@ -2,14 +2,17 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 #include <stdbool.h>
+#include <unistd.h>
 #define POSIX_C_SOURCE_200809L
 
 
 int main (void){
 
 	pid_t pid;
-	int i,a,c;
+	int i,a,c,e;
 	int t[4];
+	char ch[]="child";
+	char child[8],child2[2];
 	for (i = 0; i < 4; i++){
 		pid = fork();
 		if (pid > 0){	
@@ -31,7 +34,14 @@ int main (void){
 			exit(EXIT_FAILURE);
 		}
 		else if (pid == 0){
-			printf("%s%d\n","Soc el process ",i);
+			sprintf(child,"%s%d",ch,i);
+			sprintf(child2,"%d",i);
+			e=execlp("./child",child,"hola",child2,NULL);
+			printf("%d\n",i );
+			if (e!=0){
+				printf("%s\n","Error al cridar el programa");
+				exit(EXIT_FAILURE);
+			}
 			exit(EXIT_SUCCESS);
 		}
 		
