@@ -20,9 +20,6 @@ int main(void){
 }
 
 static void pinta(void){
-	serial_put('\r');
-	serial_put('\n');
 	frame_block_get(rx_H);
 	print(rx_H);
-
 }

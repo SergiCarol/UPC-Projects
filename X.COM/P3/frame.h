@@ -6,6 +6,7 @@
 #include <ctype.h>
 #include <inttypes.h>
 #include <stdlib.h>
+#include <avr/io.h>
 #include <avr/interrupt.h>
 #include "checksum.h"
 #include "gpio_device.h"
