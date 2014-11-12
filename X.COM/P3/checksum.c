@@ -80,16 +80,18 @@ numero crc_morse(uint8_t j[]){
 
 bool check_crc(uint8_t j[]){
   numero num;
+  uint8_t t[32];
   uint8_t a,b,i = 0x00;
   while (j[i] != '\0'){
+    t[i]=j[i];
     i++; 
   }
   num.b=j[--i];
   num.a=j[--i];  
   a=hex_to_byte(num);
-  j[i++]=a;
-  j[i]='\0';
-  num=crc_morse(j);
+  t[i++]=a;
+  t[i]='\0';
+  num=crc_morse(t);
   a=hex_to_byte(num);
   if (a==0x00)  return true;
   else return false;

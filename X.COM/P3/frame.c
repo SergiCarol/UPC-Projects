@@ -13,7 +13,6 @@ static frame_callback_t funcio;
 static pin_t pin;
 static uint8_t intens=0;
 static int8_t timeout_number;
-static uint8_t a=0;
 
 static void build(const block_morse b);
 static void send(void);
@@ -49,7 +48,7 @@ void frame_block_put(const block_morse b){
   // Tenim que esperanr-nos fins que haguem acabat de enviar i rebre la confirmacio
   state = enviant;
   build(b);
-  for(uint8_t i = 0;tx[i]!='\0';i++) serial_put(tx[i]);
+  print(tx);
   send();
 }
 
@@ -58,7 +57,8 @@ void frame_block_get(block_morse b){
   for (i=0;rx[i+1]!='\0';i++){
     b[i]=rx[i+1];
   }
-  b[i-1]='\0';
+  b[i-2]='\0';
+  //for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
 }
 
 void on_frame_recived(frame_callback_t l){
@@ -104,13 +104,16 @@ static void send(void){
 
 static void check(void){
   ether_block_get(rx);
-  timer_cancel(timeout_number);
+  if ((rx[0]=='A') || (rx[0]=='B')) timer_cancel(timeout_number);
+  print(rx);
   if (check_crc(rx)){
-    print(rx);
     if (rx[0]==waiting_for)	next();
     else error();
   }
-  else pin_w(pin,true);
+  else{
+  	serial_put('E');
+  	pin_w(pin,true);
+  }
 }
 
 void next (void){
@@ -122,7 +125,7 @@ void next (void){
       // Si hem rebut un 0 tenim que enviar un missatge de confirmacio amb una A
       numeracio_trama = 'A';
       // I el seguent missatge que rebem te que començar per 1
-      waiting_for = 1;
+      waiting_for = '1';
     }
     else {
       // En cas contrari tenim que enviar una B
@@ -131,13 +134,15 @@ void next (void){
       waiting_for = '0';
     }
     tx[0]=numeracio_trama;
-    num = checksum(tx);
+    tx[1]='\0';
+    num = crc_morse(tx);
     tx[1]=num.a;
     tx[2]=num.b;
     tx[3]='\0';
-    send();
+    ether_block_put(tx);
     print(tx);
     funcio();
+    //for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
   }
   // En el cas de que siguem el transmissor
   else if ((rx[0]=='A') || (rx[0]=='B')) {
@@ -152,7 +157,9 @@ void next (void){
       waiting_for = 'A';
     }
     state=esperant;
-      }
+    for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
+    }
+  
 }
 
 void error(void){
@@ -178,7 +185,7 @@ void print(uint8_t s[]){
   /* Envia pel port serie tots el elements de la taula s
      fins que troba un simbol de final de paraula */
   uint8_t i=0;
-  while(isgraph(s[i])){
+  while(isprint(s[i])){
     serial_put(s[i]);
     i++;
   }
