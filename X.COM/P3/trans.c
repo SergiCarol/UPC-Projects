@@ -9,11 +9,14 @@ int main(void){
 	serial_init();
 	sei();
 	frame_init();
-	numeracio_trama=0;
+	numeracio_trama='0';
 	waiting_for='A';
-	while(serial_can_read()==false);
 	while(true){
-		for(i=0;a=serial_get()!='\r';i++){
+		while (frame_can_put()==false);
+		serial_put('-');
+		serial_put('>');
+		a=serial_get();
+    	while (a!='\r'){
 			serial_put(a);
 			if (a=='r'){
 				i=0;
@@ -23,14 +26,19 @@ int main(void){
 			}
 			else{
 				tx_H[i]=a;
+				i++;
+				a=serial_get();
 			}
 		}
+		serial_put('\n');
+      	serial_put('\r');
 		while (frame_can_put()==false);
     	if (i>0){
       		tx_H[i]='\0';
       		i=0;
       		//Enviem el missatge
-      		frame_block_put(tx_H);    
+      		frame_block_put(tx_H);  
+
     	}
 	}
 	return 0;

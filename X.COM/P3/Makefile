@@ -5,7 +5,7 @@ LDFLAGS=-mmcu=atmega328p
 
 vpath lib% libpbn
 
-.PHONY: clean veryclean  main avr avr_rx
+.PHONY: clean veryclean  main avr avr_rx prova_avr
 
 checksum.o: checksum.h 
 
@@ -17,9 +17,14 @@ trans: frame.o checksum.o gpio_device.o  -lpbn
 
 recep: frame.o checksum.o gpio_device.o -lpbn
 
+prova:prova.o -lpbn
+
 trans.hex: trans
 		avr-objcopy -Oihex $< $@
 recep.hex: recep
+		avr-objcopy -Oihex $< $@
+
+prova.hex: prova
 		avr-objcopy -Oihex $< $@
 
 avr:trans.hex 
@@ -29,6 +34,11 @@ avr:trans.hex
 avr_rx: recep.hex
 	avrdude -c arduino -p atmega328p -P /dev/ttyACM1 -U $<
 	picocom /dev/ttyACM1
+
+prova_avr: prova.hex
+	avrdude -c arduino -p atmega328p -P /dev/ttyACM1 -U $<
+	picocom /dev/ttyACM0
+
 
 clean:
 	rm -f  aplic ∗ ̃ *.hex *.txt *.pyc *.c~ *.o 

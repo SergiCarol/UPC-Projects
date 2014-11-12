@@ -21,7 +21,7 @@ void frame_block_put(const block_morse b);
 void frame_block_get(block_morse b);
 void on_frame_recived(frame_callback_t l);
 
-void print(char j[]);
+void print(uint8_t j[]);
 // Fiquem si soc transmissor o receptor
 
 uint8_t numeracio_trama;
