@@ -11,9 +11,11 @@ int main(void){
 	sei();
 	frame_init();
 	numeracio_trama='A';
-	waiting_for=0;
-	while(serial_can_read()==false);
+	waiting_for='0';
 	on_frame_recived(pinta);
+	serial_put('K');
+	serial_put('\r');
+	serial_put('\n');
 	while(true);
 }
 

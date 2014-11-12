@@ -3,7 +3,7 @@
 #define MAX_TRY 3
 
 
-uint8_t t_tx[32];
+char t_tx[32];
 uint8_t t_rx[32];
 static block_morse tx = t_tx; // transmissio 
 static block_morse rx = t_rx; // recepcio
@@ -13,7 +13,7 @@ static frame_callback_t funcio;
 static pin_t pin;
 static uint8_t intens=0;
 static int8_t timeout_number;
-
+static uint8_t a=0;
 
 static void build(const block_morse b);
 static void send(void);
@@ -27,16 +27,17 @@ void frame_init(void){
   state = esperant;
   timer_init();
   ether_init();
+  on_finish_transmission(start_timer);
   on_message_received(check);
   pin = pin_create(&PORTB,5,Output);
   pin_w(pin,false);
   // Canviar sempre on_finished
-  on_finish_transmission(start_timer);
+  
 }
 
 bool frame_can_put(void){
   if (ether_can_put()){
-    if (state = esperant) return true;
+    if (state == esperant) return true;
     else return false;
   }
   else return false;
@@ -48,13 +49,14 @@ void frame_block_put(const block_morse b){
   // Tenim que esperanr-nos fins que haguem acabat de enviar i rebre la confirmacio
   state = enviant;
   build(b);
+  for(uint8_t i = 0;tx[i]!='\0';i++) serial_put(tx[i]);
   send();
 }
 
 void frame_block_get(block_morse b){
   uint8_t i;
-  for (i=0;rx[i+2]!='\0';i++){
-    b[i]=rx[i+2];
+  for (i=0;rx[i+1]!='\0';i++){
+    b[i]=rx[i+1];
   }
   b[i-1]='\0';
 }
@@ -64,24 +66,27 @@ void on_frame_recived(frame_callback_t l){
 }
 
 static void build(block_morse b){
-  uint8_t i;
+  uint8_t i,a=0;
   numero num;
   tx[0]=numeracio_trama;
-  for (i=1;b[i]!='\0';i++){
-    tx[i]=b[i-1];
+  // Fica be la numeracio
+  for (i=0;b[i]!='\0';i++){
+    tx[i+1]=b[i];
   }
-  num=checksum(tx);
-  tx[i++]=num.a;
-  tx[i++]=num.b;
-  tx[i]='\0';
+  // Fica be el bloc
+  num=crc_morse(tx);
+  tx[++i]=num.a;
+  tx[++i]=num.b;
+  tx[++i]='\0';
+  //MIRAR CRC
 } 
 
 static void send(void){
+
   if (intens < MAX_TRY){
     if(ether_can_put()){
       // Si el canal no esat ocupat enviem
       ether_block_put(tx);
-      for(uint8_t i=0; i<64;i++) tx[i]='\0';
     }
     else{
       // Si el canal esta ocupat sumem 1 als intents
@@ -100,7 +105,8 @@ static void send(void){
 static void check(void){
   ether_block_get(rx);
   timer_cancel(timeout_number);
-  if (check_checksum(rx)){
+  if (check_crc(rx)){
+    print(rx);
     if (rx[0]==waiting_for)	next();
     else error();
   }
@@ -109,9 +115,10 @@ static void check(void){
 
 void next (void){
   numero num;
-  if ((rx[0]==0) || (rx[0]==1)) {
+  //Entra
+  if ((rx[0]=='0') || (rx[0]=='1')) {
     // Mirem la numeracio de la trama
-    if (rx[0]==0){
+    if (rx[0]=='0'){
       // Si hem rebut un 0 tenim que enviar un missatge de confirmacio amb una A
       numeracio_trama = 'A';
       // I el seguent missatge que rebem te que començar per 1
@@ -121,7 +128,7 @@ void next (void){
       // En cas contrari tenim que enviar una B
       numeracio_trama = 'B';
       // I el seguent missatge te que començar per 0
-      waiting_for = 0;
+      waiting_for = '0';
     }
     tx[0]=numeracio_trama;
     num = checksum(tx);
@@ -129,6 +136,7 @@ void next (void){
     tx[2]=num.b;
     tx[3]='\0';
     send();
+    print(tx);
     funcio();
   }
   // En el cas de que siguem el transmissor
@@ -136,11 +144,11 @@ void next (void){
     // Comprovem si el missatge de confirmacio es una A
     if (rx[0]=='A'){
       // Si ho es el seguent missatge te que començar amb un 1
-      numeracio_trama = 1;
+      numeracio_trama = '1';
       waiting_for = 'B';
     }
     else {
-      numeracio_trama = 0;
+      numeracio_trama = '0';
       waiting_for = 'A';
     }
     state=esperant;
@@ -149,8 +157,8 @@ void next (void){
 
 void error(void){
   numero num;
-  if ((rx[0]==0) || (rx[0]==1)){
-    if (waiting_for==0) {
+  if ((rx[0]=='0') || (rx[0]=='1')){
+    if (waiting_for=='0') {
       tx[0]='B';
     }
     else{
@@ -166,11 +174,11 @@ void error(void){
 }
 
 
-void print(char s[]){
+void print(uint8_t s[]){
   /* Envia pel port serie tots el elements de la taula s
      fins que troba un simbol de final de paraula */
-  uint8_t i=0, c;
-  while(s[i]!='\0'){
+  uint8_t i=0;
+  while(isgraph(s[i])){
     serial_put(s[i]);
     i++;
   }
@@ -180,7 +188,7 @@ void print(char s[]){
 
 void start_timer(void){
   if(numeracio_trama=='0'||numeracio_trama=='1'){
-    timeout_number=timer_after(TIMER_MS(10),error);
+    timeout_number=timer_after(TIMER_MS(10000),error);
   }
 }
   
