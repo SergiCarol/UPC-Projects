@@ -42,7 +42,6 @@ bool frame_can_put(void){
   else return false;
 }
 
-
 void frame_block_put(const block_morse b){
   //[0/1,DADES,CHECKSUM]
   // Tenim que esperanr-nos fins que haguem acabat de enviar i rebre la confirmacio
@@ -179,7 +178,6 @@ void error(void){
   }
   else frame_block_put(tx);
 }
-
 
 void print(uint8_t s[]){
   /* Envia pel port serie tots el elements de la taula s
