@@ -1,7 +1,7 @@
 #include "frame.h"
 
 #define MAX_TRY 3
-
+#define TIME_OUT 7000
 
 char t_tx[32];
 uint8_t t_rx[32];
@@ -104,13 +104,11 @@ static void send(void){
 static void check(void){
   ether_block_get(rx);
   if ((rx[0]=='A') || (rx[0]=='B')) timer_cancel(timeout_number);
-  print(rx);
   if (check_crc(rx)){
     if (rx[0]==waiting_for)	next();
     else error();
   }
   else{
-  	serial_put('E');
   	pin_w(pin,true);
   }
 }
@@ -139,7 +137,6 @@ void next (void){
     tx[2]=num.b;
     tx[3]='\0';
     ether_block_put(tx);
-    print(tx);
     funcio();
     //for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
   }
@@ -176,7 +173,9 @@ void error(void){
     tx[3]='\0';
     send();
   }
-  else frame_block_put(tx);
+  else {
+  	ether_block_put(tx);
+  }
 }
 
 void print(uint8_t s[]){
@@ -193,7 +192,7 @@ void print(uint8_t s[]){
 
 void start_timer(void){
   if(numeracio_trama=='0'||numeracio_trama=='1'){
-    timeout_number=timer_after(TIMER_MS(10000),error);
+    timeout_number=timer_after(TIMER_MS(TIME_OUT),error);
   }
 }
   

@@ -41,7 +41,7 @@ prova_avr: prova.hex
 
 
 clean:
-	rm -f  aplic ∗ ̃ *.hex *.txt *.pyc *.c~ *.o 
+	rm -f  recep trans ∗ ̃ *.hex *.txt *.pyc *.c~ *.o 
 tar_clean:
 	rm -f aplic ∗ ̃ *.hex *.txt *.pyc *.c~ *.o 
 	tar cvf Sergi_Carol_Enric_Lenard.tar.gz .
