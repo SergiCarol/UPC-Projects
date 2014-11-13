@@ -3,6 +3,9 @@
 #include <sys/wait.h>
 #include <stdbool.h>
 #include <unistd.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <fcntl.h>  
 #include "matrix.h"
 #define POSIX_C_SOURCE_200809L
 
