@@ -7,7 +7,7 @@ child.o: child.c
 matrix.o: matrix.h
 
 parent: child parent.o matrix.o
-	$(CC) parent.o matrix.o -o parent
+	$(CC) parent.o matrix.o -o parent -lrt
 child: child.o
 	$(CC) child.o -o child -lrt
 
