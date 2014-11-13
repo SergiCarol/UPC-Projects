@@ -6,14 +6,24 @@
 #include "matrix.h"
 #define POSIX_C_SOURCE_200809L
 
-
 int main (void){
 
   pid_t pid;
-  int i,a,c,e;
-  int t[4];
+  int i,a,c,e,t[4],fd;
   char ch[]="child";
   char child[8],child2[2];
+  void *addr;
+  fd=shm_open ("nomfit",O_RDWR|O_CREAT,S_IRUSR|S_IWUSR);
+  if (fd==-1) exit(EXIT_FAILUER);
+  if(ftruncate(fd,3*SIZE)==-1)exit(EXIT_FAILUER);
+  addr=mmap(NULL,3*SIZE,PROT_READ|PORT_WRITE,MAP_SHARED,fd,0);
+  if(addr==MAP_FAILED) exit(EXIT_FAILURE);
+  mencpy(addr,"Hola",5);
+  close(fd);
+  matrix A = addr;
+  matrix B = addr + SIZE;
+  matrix R = addr + 2*SIZE;
+
   for (i = 0; i < 4; i++){
     pid = fork();
     if (pid > 0){	
@@ -26,7 +36,7 @@ int main (void){
     else if (pid == 0){
       sprintf(child,"%s%d",ch,i);
       sprintf(child2,"%d",i);
-      e=execlp("./child",child,"hola",child2,NULL);
+      e=execlp("./child",child,"nomfit",child2,NULL);
       if (e!=0){
 	printf("%s\n","Error al cridar el programa");
 	exit(EXIT_FAILURE);
@@ -43,10 +53,11 @@ int main (void){
 	kill(t[a],SIGTERM);
 	wait(NULL);
       }
-      
-      exit(EXIT_FAILURE);
+      shm_unlink("nomfit");
+      exit(EXIT_FAILURE)     
     }
   }
   }
-  exit(EXIT_SUCCESS);
+  shm_unlink("nomfit");
+  exit(EXIT_SUCCESS); 
 }
