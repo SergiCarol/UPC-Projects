@@ -21,7 +21,7 @@ int main (void){
   if(ftruncate(fd,3*SIZE)==-1)exit(EXIT_FAILURE);
   addr=mmap(NULL,3*SIZE,PROT_READ|PROT_WRITE,MAP_SHARED,fd,0);
   if(addr==MAP_FAILED) exit(EXIT_FAILURE);
-  mencpy(addr,"Hola",5);
+  // memcpy(addr,"Hola",5);
   close(fd);
   matrix A = addr;
   matrix B = addr + SIZE;
