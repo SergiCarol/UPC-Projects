@@ -15,7 +15,7 @@ int main(int argc, char *argv[]){
 	if (argc==3){
 //		for (i=0;i<3;i++) printf("%s ",argv[i]);
 //		printf("\n");
-		fd = shm_open(argv[1],O_RWR,0);
+		fd = shm_open(argv[1],O_RDWR,0);
 		if(fstat(fd,&st)==-1) exit(EXIT_FAILURE);
 		addr=mmap(NULL,st.st_size,PROT_READ | PROT_WRITE,MAP_SHARED,fd,0);
 		close(fd);
