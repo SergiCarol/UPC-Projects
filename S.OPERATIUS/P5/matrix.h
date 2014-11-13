@@ -8,7 +8,7 @@
 #define SIZE (DIM*DIM*sizeof(float))
 
 /* el tipus matriu */
-typedef float (* const matrix) [DIM];
+typedef float (*const matrix)[DIM];
 
 /* escriu pel canal de sortida la matriu 'a' */
 void print_matrix(const matrix a);
