@@ -25,7 +25,9 @@ void on_frame_recived(frame_callback_t l);
 void print(uint8_t j[]);
 // Fiquem si soc transmissor o receptor
 
-uint8_t numeracio_trama;
-uint8_t waiting_for;
+uint8_t numeracio_trama_rx;
+uint8_t waiting_for_rx;
 
+uint8_t numeracio_trama_tx;
+uint8_t waiting_for_tx;
 #endif
