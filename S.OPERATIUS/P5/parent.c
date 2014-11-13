@@ -26,8 +26,10 @@ int main (void){
   matrix A = addr;
   matrix B = addr + SIZE;
   matrix R = addr + 2*SIZE;
-  const_matrix(A,2);
-  const_matrix(B,2);
+  float q[DIM][DIM];
+  float b[DIM][DIM];
+  const_matrix(q,3);
+  const_matrix(b,2);
   
   for (i = 0; i < 4; i++){
     pid = fork();
