@@ -17,9 +17,9 @@ int main (void){
   char child[8],child2[2];
   void *addr;
   fd=shm_open ("nomfit",O_RDWR|O_CREAT,S_IRUSR|S_IWUSR);
-  if (fd==-1) exit(EXIT_FAILUER);
-  if(ftruncate(fd,3*SIZE)==-1)exit(EXIT_FAILUER);
-  addr=mmap(NULL,3*SIZE,PROT_READ|PORT_WRITE,MAP_SHARED,fd,0);
+  if (fd==-1) exit(EXIT_FAILURE);
+  if(ftruncate(fd,3*SIZE)==-1)exit(EXIT_FAILURE);
+  addr=mmap(NULL,3*SIZE,PROT_READ|PROT_WRITE,MAP_SHARED,fd,0);
   if(addr==MAP_FAILED) exit(EXIT_FAILURE);
   mencpy(addr,"Hola",5);
   close(fd);
@@ -57,7 +57,7 @@ int main (void){
 	wait(NULL);
       }
       shm_unlink("nomfit");
-      exit(EXIT_FAILURE)     
+      exit(EXIT_FAILURE);     
     }
   }
   }
