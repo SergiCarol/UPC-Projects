@@ -9,7 +9,7 @@ matrix.o: matrix.h
 parent: child parent.o matrix.o
 	$(CC) parent.o matrix.o -o parent
 child: child.o
-	$(CC) child.o -o child
+	$(CC) child.o -o child -lrt
 
 
 clean:
