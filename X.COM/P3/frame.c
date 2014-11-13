@@ -13,11 +13,13 @@ static frame_callback_t funcio;
 static pin_t pin;
 static uint8_t intens=0;
 static int8_t timeout_number;
+static bool first_time = true;
 
 static void build(const block_morse b);
 static void send(void);
 static void check(void);
-static void next(void);
+static void next_rx(void);
+static void next_tx(void);
 static void start_timer(void);
 static void error(void);
 
@@ -46,6 +48,7 @@ void frame_block_put(const block_morse b){
   //[0/1,DADES,CHECKSUM]
   // Tenim que esperanr-nos fins que haguem acabat de enviar i rebre la confirmacio
   state = enviant;
+  for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
   build(b);
   print(tx);
   send();
@@ -57,7 +60,6 @@ void frame_block_get(block_morse b){
     b[i]=rx[i+1];
   }
   b[i-2]='\0';
-  //for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
 }
 
 void on_frame_recived(frame_callback_t l){
@@ -67,7 +69,7 @@ void on_frame_recived(frame_callback_t l){
 static void build(block_morse b){
   uint8_t i,a=0;
   numero num;
-  tx[0]=numeracio_trama;
+  tx[0]=numeracio_trama_tx;
   // Fica be la numeracio
   for (i=0;b[i]!='\0';i++){
     tx[i+1]=b[i];
@@ -103,65 +105,65 @@ static void send(void){
 
 static void check(void){
   ether_block_get(rx);
+  print(rx);
   if ((rx[0]=='A') || (rx[0]=='B')) timer_cancel(timeout_number);
   if (check_crc(rx)){
-    if (rx[0]==waiting_for)	next();
+    if (rx[0]==waiting_for_tx) next_tx();
+    else if (rx[0]==waiting_for_rx) next_rx(); 
     else error();
   }
   else{
-  	pin_w(pin,true);
+    pin_w(pin,true);
   }
 }
 
-void next (void){
+void next_rx (void){
   numero num;
-  //Entra
-  if ((rx[0]=='0') || (rx[0]=='1')) {
-    // Mirem la numeracio de la trama
-    if (rx[0]=='0'){
-      // Si hem rebut un 0 tenim que enviar un missatge de confirmacio amb una A
-      numeracio_trama = 'A';
-      // I el seguent missatge que rebem te que començar per 1
-      waiting_for = '1';
-    }
-    else {
-      // En cas contrari tenim que enviar una B
-      numeracio_trama = 'B';
-      // I el seguent missatge te que començar per 0
-      waiting_for = '0';
-    }
-    tx[0]=numeracio_trama;
-    tx[1]='\0';
-    num = crc_morse(tx);
-    tx[1]=num.a;
-    tx[2]=num.b;
-    tx[3]='\0';
-    ether_block_put(tx);
-    funcio();
-    //for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
+  // Mirem la numeracio de la trama
+  if (rx[0]=='0'){
+    // Si hem rebut un 0 tenim que enviar un missatge de confirmacio amb una A
+    numeracio_trama_rx = 'A';
+    // I el seguent missatge que rebem te que començar per 1
+    waiting_for_rx = '1';
   }
+  else {
+    // En cas contrari tenim que enviar una B
+    numeracio_trama_rx = 'B';
+    // I el seguent missatge te que començar per 0
+    waiting_for_rx = '0';
+  }
+  tx[0]=numeracio_trama_rx;
+  tx[1]='\0';
+  num = crc_morse(tx);
+  tx[1]=num.a;
+  tx[2]=num.b;
+  tx[3]='\0';
+  ether_block_put(tx);
+  funcio();
+  for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
+}
+
+void next_tx(void){
+  numero num;
   // En el cas de que siguem el transmissor
-  else if ((rx[0]=='A') || (rx[0]=='B')) {
-    // Comprovem si el missatge de confirmacio es una A
-    if (rx[0]=='A'){
-      // Si ho es el seguent missatge te que començar amb un 1
-      numeracio_trama = '1';
-      waiting_for = 'B';
-    }
-    else {
-      numeracio_trama = '0';
-      waiting_for = 'A';
-    }
-    state=esperant;
-    for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
-    }
-  
+  // Comprovem si el missatge de confirmacio es una A
+  if (rx[0]=='A'){
+    // Si ho es el seguent missatge te que començar amb un 1
+    numeracio_trama_tx = '1';
+    waiting_for_tx = 'B';
+  }
+  else {
+    numeracio_trama_tx = '0';
+    waiting_for_tx = 'A';
+  }
+  state=esperant;
+  for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
 }
 
 void error(void){
   numero num;
   if ((rx[0]=='0') || (rx[0]=='1')){
-    if (waiting_for=='0') {
+    if (waiting_for_rx == '0') {
       tx[0]='B';
     }
     else{
@@ -174,7 +176,7 @@ void error(void){
     send();
   }
   else {
-  	ether_block_put(tx);
+    ether_block_put(tx);
   }
 }
 
@@ -191,7 +193,7 @@ void print(uint8_t s[]){
 }
 
 void start_timer(void){
-  if(numeracio_trama=='0'||numeracio_trama=='1'){
+  if(numeracio_trama_tx == '0'||numeracio_trama_tx == '1'){
     timeout_number=timer_after(TIMER_MS(TIME_OUT),error);
   }
 }

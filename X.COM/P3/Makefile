@@ -19,26 +19,24 @@ recep: frame.o checksum.o gpio_device.o -lpbn
 
 prova:prova.o -lpbn
 
+aplic: frame.o checksum.o gpio_device.o -lpbn
+
 trans.hex: trans
-		avr-objcopy -Oihex $< $@
+	avr-objcopy -Oihex $< $@
+
 recep.hex: recep
-		avr-objcopy -Oihex $< $@
+	avr-objcopy -Oihex $< $@
 
-prova.hex: prova
-		avr-objcopy -Oihex $< $@
+aplic.hex: aplic
+	avr-objcopy -Oihex $< $@
 
-avr:trans.hex 
+avr_tx: aplic.hex 
 	avrdude -c arduino -p atmega328p -P /dev/ttyACM0 -U $<
 	picocom /dev/ttyACM0
 
-avr_rx: recep.hex
+avr_rx: aplic.hex
 	avrdude -c arduino -p atmega328p -P /dev/ttyACM1 -U $<
 	picocom /dev/ttyACM1
-
-prova_avr: prova.hex
-	avrdude -c arduino -p atmega328p -P /dev/ttyACM1 -U $<
-	picocom /dev/ttyACM0
-
 
 clean:
 	rm -f  recep trans ∗ ̃ *.hex *.txt *.pyc *.c~ *.o 
