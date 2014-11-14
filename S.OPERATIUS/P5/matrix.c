@@ -27,11 +27,10 @@ void const_matrix(matrix m, float v){
   int i,j;
   for (i = 0; i < DIM; i++){
     for (j = 0;j < DIM; j++){
-      m[i][j]=v;
+      m[i][j] = v;
     }
   }
 }
-
 
 /*int main(void){
 	float m[DIM][DIM];
