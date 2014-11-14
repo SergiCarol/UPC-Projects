@@ -22,14 +22,15 @@ int main (void){
   addr=mmap(NULL,3*SIZE,PROT_READ|PROT_WRITE,MAP_SHARED,fd,0);
   if(addr==MAP_FAILED) exit(EXIT_FAILURE);
   // memcpy(addr,"Hola",5);
-  close(fd);
+  i = close(fd);
+  if (i!=0){
+    printf("%s\n","Close erroni");
+    shm_unlink("nomfit");
+    exit(EXIT_FAILURE);
+  }
   matrix A = addr;
   matrix B = addr + SIZE;
   matrix R = addr + 2*SIZE;
-  float q[DIM][DIM];
-  float b[DIM][DIM];
-  const_matrix(q,3);
-  const_matrix(b,2);
   
   for (i = 0; i < 4; i++){
     pid = fork();
@@ -65,6 +66,8 @@ int main (void){
     }
   }
   }
+  printf("%s\n","Matriu resultant");
+  print_matrix(R);
   shm_unlink("nomfit");
   exit(EXIT_SUCCESS); 
 }
