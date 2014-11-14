@@ -21,4 +21,8 @@ int minf, int maxf, int minc, int maxc);
 
 /* omple 'm' amb el valor 'v' */
 void const_matrix(matrix m, float v);
+
+void save_matrix(const char filename[], const matrix m);
+
+void load_matrix(const char filename[], matrix m);
 #endif

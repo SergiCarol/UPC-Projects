@@ -32,9 +32,39 @@ void const_matrix(matrix m, float v){
   }
 }
 
-/*int main(void){
-	float m[DIM][DIM];
-	const_matrix(m,5);
-	print_matrix(m);
-	return 0;
-}*/
+void save_matrix(const char filename[],const matrix m){
+  int i,j;
+  FILE *fp;
+  
+  fp = fopen(filename,"w");
+  for (i = 0; i < DIM; i++){
+    for (j = 0;j < DIM; j++){
+      fprintf(fp,"%f ",m[i][j]);
+    }
+    fprintf(fp,"\n");
+  }
+  fclose(fp);
+}
+
+void load_matrix(const char filename[],matrix m){
+  int i,j;
+  FILE *fp;  
+  fp = fopen(filename,"r");
+  for (i = 0; i < DIM; i++){
+    for (j = 0;j < DIM; j++){
+      fscanf(fp,"%f",&m[i][j]);
+    }
+  }
+  fclose(fp);
+}
+
+
+int main(void){
+  float a[DIM][DIM];
+  float b[DIM][DIM];
+  const_matrix(a,5);
+  save_matrix("hola.txt",a);
+  load_matrix("hola.txt",b);
+  print_matrix(b);
+  return 0;
+}
