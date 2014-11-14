@@ -23,12 +23,18 @@ int main(int argc, char *argv[]){
     matrix BB = addr + SIZE;
     matrix RR = addr + SIZE*2;
     if (*argv[2]=='0'){
-      const_matrix(AA,5);
+      printf("%s\n","Argv 0");
+      prod_matrix(AA,BB,RR,0,DIM/2,0,DIM/2);
     }
-    if (*argv[2]=='3'){
-      print_matrix(BB);
+    else if (*argv[2]=='1'){
+      prod_matrix(AA,BB,RR,DIM/2,DIM,0,DIM/2);
     }
-     print_matrix(AA);
+    else if (*argv[2]=='2'){
+      prod_matrix(AA,BB,RR,0,DIM/2,DIM/2,DIM);
+    }
+    else if (*argv[2]=='3'){
+      prod_matrix(AA,BB,RR,DIM/2,DIM,DIM/2,DIM);
+    }
   }
   else exit(EXIT_FAILURE);
 
