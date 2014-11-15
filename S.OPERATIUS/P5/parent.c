@@ -91,6 +91,11 @@ int main(int argc, char *argv[]){
   printf("%s\n","Matriu resultant");
   print_matrix(addr + SIZE*2);
   save_matrix(argv[3],addr + SIZE*2);    
-  shm_unlink("nomfit");
+  i=shm_unlink("nomfit");
+  if (i!=0){
+      printf("%s\n","Unlink erroni");
+      exit(EXIT_FAILURE);
+    }
+
   exit(EXIT_SUCCESS); 
 }
