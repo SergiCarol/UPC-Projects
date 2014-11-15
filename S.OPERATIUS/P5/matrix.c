@@ -6,7 +6,7 @@ void prod_matrix(const matrix a, const matrix b, matrix r,int minf, int maxf, in
   for(i = minf; i < maxf;i++){
     for(j = minc; j < maxc; j++){
       for (k = 0;k < DIM; k++){ 
-	r[j][i]+= a[i][k] * b[k][j];
+	r[i][j]+= a[i][k] * b[k][j];
       }
     }
   }
@@ -52,19 +52,9 @@ void load_matrix(const char filename[],matrix m){
   fp = fopen(filename,"r");
   for (i = 0; i < DIM; i++){
     for (j = 0;j < DIM; j++){
-      fscanf(fp,"%f",&m[i][j]);
+      fscanf(fp,"%f,",&m[i][j]);
     }
   }
   fclose(fp);
 }
 
-
-/*int main(void){
-  float a[DIM][DIM];
-  float b[DIM][DIM];
-  const_matrix(a,5);
-  save_matrix("hola.txt",a);
-  load_matrix("hola.txt",b);
-  print_matrix(b);
-  return 0;
-  }*/

@@ -6,40 +6,49 @@
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <fcntl.h>  
-#include <string.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <sys/types.h>
+#include <signal.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include "matrix.h"
 #define POSIX_C_SOURCE_200809L
 
-int main (void){
-  //int main(int argc, char *argv[]){
+
+int main(int argc, char *argv[]){
   pid_t pid;
   int i,a,c,e,t[4],fd;
   char ch[]="child";
   char child[8],child2[2];
   void *addr;
-  //if(argc==3){
+
+  if(argc==4){
     fd=shm_open ("nomfit",O_RDWR|O_CREAT,S_IRUSR|S_IWUSR);
     if (fd==-1) exit(EXIT_FAILURE);
-    if(ftruncate(fd,3*SIZE)==-1)exit(EXIT_FAILURE);
+    if ((ftruncate(fd,3*SIZE))==-1)exit(EXIT_FAILURE);
     addr=mmap(NULL,3*SIZE,PROT_READ|PROT_WRITE,MAP_SHARED,fd,0);
     if(addr==MAP_FAILED) exit(EXIT_FAILURE);
-    // memcpy(addr,"Hola",5);
     i = close(fd);
+
     if (i!=0){
       printf("%s\n","Close erroni");
       shm_unlink("nomfit");
       exit(EXIT_FAILURE);
     }
-    
+
     matrix A = addr;
     matrix B = addr + SIZE;
     matrix R = addr + SIZE*2;
-    const_matrix(A,2);
-    const_matrix(B,3);
-    //save_matrix(argv[1],A);
-    //save_matrix(argv[2],B);
-    //save_matrix(argv[3],R);    
-     
+
+    load_matrix(argv[1],A);
+    load_matrix(argv[2],B);
+
+    print_matrix(A);
+    print_matrix(B);
 
     for (i = 0; i < 4; i++){
       pid = fork();
@@ -61,8 +70,9 @@ int main (void){
 	exit(EXIT_SUCCESS);
       }
     }
-    // } 
-  // else exit(EXIT_FAILURE);
+  } 
+
+  else exit(EXIT_FAILURE);
   
   for (a=0;a<i;a++){
     wait(&c);
@@ -78,10 +88,9 @@ int main (void){
       }
     }
   }
-  
   printf("%s\n","Matriu resultant");
-  print_matrix(R);
-  //load_matrix(argv[3],R);
+  print_matrix(addr + SIZE*2);
+  save_matrix(argv[3],addr + SIZE*2);    
   shm_unlink("nomfit");
   exit(EXIT_SUCCESS); 
 }
