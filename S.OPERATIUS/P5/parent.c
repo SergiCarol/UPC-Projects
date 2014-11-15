@@ -9,13 +9,14 @@
 #include "matrix.h"
 #define POSIX_C_SOURCE_200809L
 
-int main (void){
+int main (int argc, char *argv[]){
 
   pid_t pid;
   int i,a,c,e,t[4],fd;
   char ch[]="child";
   char child[8],child2[2];
   void *addr;
+  if(argc==3){
   fd=shm_open ("nomfit",O_RDWR|O_CREAT,S_IRUSR|S_IWUSR);
   if (fd==-1) exit(EXIT_FAILURE);
   if(ftruncate(fd,3*SIZE)==-1)exit(EXIT_FAILURE);
@@ -28,12 +29,19 @@ int main (void){
     shm_unlink("nomfit");
     exit(EXIT_FAILURE);
   }
-  matrix A = addr;
-  matrix B = addr + SIZE;
-  matrix R = addr + 2*SIZE;
-  const_matrix(A,2);
-  const_matrix(B,3);
-  
+
+    matrix A = addr;
+    matrix B = addr + SIZE;
+    matrix R = addr + 2*SIZE;
+    const_matrix(A,2);
+    const_matrix(B,3);
+    save_matrix(argv[1],A);
+    save_matrix(argv[2],B);
+    save_matrix(argv[3],R);    
+    
+  }
+  else exit(EXIT_FAILURE);
+
   for (i = 0; i < 4; i++){
     pid = fork();
     if (pid > 0){	
@@ -69,7 +77,8 @@ int main (void){
   }
   }
   printf("%s\n","Matriu resultant");
-  print_matrix(R);
+  //print_matrix(R);
+  load_matrix(argv[3],R);
   shm_unlink("nomfit");
   exit(EXIT_SUCCESS); 
 }
