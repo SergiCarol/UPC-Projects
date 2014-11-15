@@ -59,7 +59,7 @@ void load_matrix(const char filename[],matrix m){
 }
 
 
-int main(void){
+/*int main(void){
   float a[DIM][DIM];
   float b[DIM][DIM];
   const_matrix(a,5);
@@ -67,4 +67,4 @@ int main(void){
   load_matrix("hola.txt",b);
   print_matrix(b);
   return 0;
-}
+  }*/
