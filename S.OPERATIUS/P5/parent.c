@@ -16,7 +16,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include "matrix.h"
-#define POSIX_C_SOURCE_200809L
+#define _POSIX_C_SOURCE_200809L
 
 
 int main(int argc, char *argv[]){
