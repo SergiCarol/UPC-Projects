@@ -8,7 +8,7 @@
 #include <fcntl.h> 
 #include <string.h>
 #include "matrix.h"        
-#define POSIX_C_SOURCE_20080
+#define _POSIX_C_SOURCE_200809L
 
 int main(int argc, char *argv[]){
   int i,fd;
