@@ -1,3 +1,4 @@
+#define _POSIX_C_SOURCE_200809L
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/wait.h>
@@ -6,17 +7,10 @@
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <fcntl.h>  
-#include <unistd.h>
-#include <sys/wait.h>
-#include <stdlib.h>
-#include <stdio.h>
 #include <sys/types.h>
 #include <signal.h>
-#include <sys/mman.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 #include "matrix.h"
-#define _POSIX_C_SOURCE_200809L
+
 
 
 int main(int argc, char *argv[]){
