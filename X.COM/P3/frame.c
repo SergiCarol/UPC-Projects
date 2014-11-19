@@ -178,7 +178,7 @@ void error(void){
     else{
       tx[0]='A';
     }
-    num = checksum(tx);
+    num = crc_morse(tx);
     tx[1]=num.a;
     tx[2]=num.b;
     tx[3]='\0';
