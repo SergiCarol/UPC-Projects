@@ -106,7 +106,11 @@ static void send(void){
 static void check(void){
   for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
   ether_block_get(rx);
+
   serial_put(rx[0]);
+  serial_put('\r');
+  serial_put('\n');
+
   if ((rx[0]=='A') || (rx[0]=='B')) timer_cancel(timeout_number);
   if (check_crc(rx)){
     if (rx[0]==waiting_for_tx) next_tx();
@@ -139,7 +143,8 @@ void next_rx (void){
   tx[1]=num.a;
   tx[2]=num.b;
   tx[3]='\0';
-  serial_put('C');
+  serial_put('c');
+  while (frame_can_put()==false);
   ether_block_put(tx);
   funcio();
   for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
@@ -164,7 +169,7 @@ void next_tx(void){
 
 void error(void){
   numero num;
-  serial_put('B');
+  serial_put('b');
   if ((rx[0]=='0') || (rx[0]=='1')){
     if (waiting_for_rx == '0') {
       tx[0]='B';
