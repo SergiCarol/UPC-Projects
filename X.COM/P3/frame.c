@@ -136,7 +136,7 @@ void next_rx (void){
   ether_block_put(tx);
   print(tx);
   funcio();
-  while(ether_can_put()==false);
+  //while(ether_can_put()==false);
   for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
 }
 
