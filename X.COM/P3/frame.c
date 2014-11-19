@@ -98,7 +98,7 @@ static void send(void){
 static void check(void){
   for(uint8_t i=0;i<32;i++) rx[i]='\0';  
   ether_block_get(rx);
-  serial_put(rx);
+  print(rx);
   if (check_crc(rx)){
   	if ((rx[0]=='A') || (rx[0]=='B')) timer_cancel(timeout_number);
     if (rx[0]==waiting_for_tx) next_tx();
@@ -144,10 +144,12 @@ void next_tx(void){
   // Comprovem si el missatge de confirmacio es una A
   if (rx[0]=='A'){
     // Si ho es el seguent missatge te que començar amb un 1
+    serial_put('A');
     numeracio_trama_tx = '1';
     waiting_for_tx = 'B';
   }
   else {
+  	serial_put('B');
     numeracio_trama_tx = '0';
     waiting_for_tx = 'A';
   }
