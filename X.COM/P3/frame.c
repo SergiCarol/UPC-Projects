@@ -146,12 +146,12 @@ void next_tx(void){
   // Comprovem si el missatge de confirmacio es una A
   if (rx[0]=='A'){
     // Si ho es el seguent missatge te que començar amb un 1
-    serial_put('A');
+    serial_put('a');
     numeracio_trama_tx = '1';
     waiting_for_tx = 'B';
   }
   else {
-  	serial_put('B');
+  	serial_put('d');
     numeracio_trama_tx = '0';
     waiting_for_tx = 'A';
   }
