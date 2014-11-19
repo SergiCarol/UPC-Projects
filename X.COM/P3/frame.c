@@ -105,6 +105,7 @@ static void check(void){
 //  for (i=0;i<10;i++)serial_put(rx[i]);
   if (check_crc(rx)){
     if (rx[0]==waiting_for_tx) next_tx();
+    //else timer_error();
     else if (rx[0]==waiting_for_rx) next_rx(); 
     //else error();
   }
@@ -122,7 +123,7 @@ void next_rx (void){
     // I el seguent missatge que rebem te que començar per 1
     waiting_for_rx = '1';
   }
-  else {
+  else if (rx[0]=='1'){
     // En cas contrari tenim que enviar una B
     numeracio_trama_rx = 'B';
     // I el seguent missatge te que començar per 0
@@ -139,6 +140,7 @@ void next_rx (void){
   //_delay_ms(1000);
   for(uint8_t i=0;i<32;i++) tx[i]='\0';  
   for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
+
 }
 
 void next_tx(void){
@@ -163,19 +165,26 @@ void next_tx(void){
 
 void error(void){
   numero num;
+  
   if ((rx[0]=='0') || (rx[0]=='1')){
     if (waiting_for_rx == '0') {
       tx[0]='B';
+      tx[1]='\0';
+      num = crc_morse(tx);
+      tx[1]=num.a;
+      tx[2]=num.b;
+      tx[3]='\0';
+      send();
     }
-    else{
+    else if (waiting_for_rx == '1'){
       tx[0]='A';
+      tx[1]='\0';
+      num = crc_morse(tx);
+      tx[1]=num.a;
+      tx[2]=num.b;
+      tx[3]='\0';
+      send();
     }
-     tx[1]='\0';
-    num = crc_morse(tx);
-    tx[1]=num.a;
-    tx[2]=num.b;
-    tx[3]='\0';
-    send();
   }
 }
 
@@ -191,12 +200,18 @@ void print(uint8_t s[]){
   serial_put('\n');
 }
 
- void timer_error(void){    
-   //   print(tx);
-if (ether_can_put()){   
-  ether_block_put(tx);
+ void timer_error(void){   
+   if ( tx[0] == '1' || tx[0]=='0'){
+     if (ether_can_put()){  
+       ether_block_put(tx);
+     }
+     else {
+       print("TERROR")
+       timeout_on=false;
+       state=esperant;
+     }
+   }
  }
-}
 
 void start_timer(void){
   if(timeout_on==false){
