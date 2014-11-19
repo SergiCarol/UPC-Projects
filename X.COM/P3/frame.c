@@ -1,7 +1,7 @@
 #include "frame.h"
 
 #define MAX_TRY 3
-#define TIME_OUT 8000
+#define TIME_OUT 7000
 
 char t_tx[32];
 uint8_t t_rx[32];
@@ -60,7 +60,6 @@ void frame_block_get(block_morse b){
     b[i]=rx[i+1];
   }
   b[i-2]='\0';
-  for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
 }
 
 void on_frame_recived(frame_callback_t l){
@@ -85,9 +84,17 @@ static void build(block_morse b){
 
 static void send(void){
 
-  if(ether_can_put()){
-    // Si el canal no esat ocupat enviem
-    ether_block_put(tx);
+  if (intens < MAX_TRY){
+    if(ether_can_put()){
+      // Si el canal no esat ocupat enviem
+      ether_block_put(tx);
+    }
+    else{
+      // Si el canal esta ocupat sumem 1 als intents
+      intens++;
+      // Esperem un temps aleatori i tornem a provar.
+      timer_after(TIMER_MS(rand()%((10+1)*1000)),send);
+    }
   }
   // En el cas de que no s'hagi pogut enviar encenem el LED
   else {
@@ -97,12 +104,10 @@ static void send(void){
 }
 
 static void check(void){
-  for(uint8_t i=0;i<32;i++) rx[i]='\0';
-  pin_toggle(pin);
+  for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
   ether_block_get(rx);
-  print(rx);
+  if ((rx[0]=='A') || (rx[0]=='B')) timer_cancel(timeout_number);
   if (check_crc(rx)){
-    if ((rx[0]=='A') || (rx[0]=='B')) timer_cancel(timeout_number);
     if (rx[0]==waiting_for_tx) next_tx();
     else if (rx[0]==waiting_for_rx) next_rx(); 
     else error();
@@ -133,11 +138,8 @@ void next_rx (void){
   tx[1]=num.a;
   tx[2]=num.b;
   tx[3]='\0';
-  //while(frame_can_put()==false);
   ether_block_put(tx);
-  print(tx);
   funcio();
-  //while(ether_can_put()==false);
   for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
 }
 
@@ -167,16 +169,13 @@ void error(void){
     else{
       tx[0]='A';
     }
-    num = crc_morse(tx);
+    num = checksum(tx);
     tx[1]=num.a;
     tx[2]=num.b;
     tx[3]='\0';
-    while(frame_can_put()==false);
-    ether_block_put(tx);
+    send();
   }
   else {
-    while(ether_can_put()==false);
-    print(tx);
     ether_block_put(tx);
   }
 }
