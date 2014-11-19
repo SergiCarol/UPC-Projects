@@ -84,23 +84,23 @@ static void build(block_morse b){
 
 static void send(void){
 
-   if(ether_can_put()){
-      // Si el canal no esat ocupat enviem
-      serial_put('y');
-      ether_block_put(tx);
-    }
-   else {
+  if(ether_can_put()){
+    // Si el canal no esat ocupat enviem
+    ether_block_put(tx);
+  }
+  // En el cas de que no s'hagi pogut enviar encenem el LED
+  else {
     pin_w(pin,true);
     state=esperant;
   }
 }
 
 static void check(void){
-  for(uint8_t i=0;i<32;i++) rx[i]='\0';  
+  for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
   ether_block_get(rx);
   print(rx);
   if (check_crc(rx)){
-  	if ((rx[0]=='A') || (rx[0]=='B')) timer_cancel(timeout_number);
+    if ((rx[0]=='A') || (rx[0]=='B')) timer_cancel(timeout_number);
     if (rx[0]==waiting_for_tx) next_tx();
     else if (rx[0]==waiting_for_rx) next_rx(); 
     else error();
@@ -131,9 +131,6 @@ void next_rx (void){
   tx[1]=num.a;
   tx[2]=num.b;
   tx[3]='\0';
-  while (frame_can_put()==false);
-  print(tx);
-  serial_put('e');
   ether_block_put(tx);
   funcio();
   for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
@@ -145,12 +142,10 @@ void next_tx(void){
   // Comprovem si el missatge de confirmacio es una A
   if (rx[0]=='A'){
     // Si ho es el seguent missatge te que començar amb un 1
-    serial_put('a');
     numeracio_trama_tx = '1';
     waiting_for_tx = 'B';
   }
   else {
-  	serial_put('d');
     numeracio_trama_tx = '0';
     waiting_for_tx = 'A';
   }
@@ -161,24 +156,19 @@ void next_tx(void){
 void error(void){
   numero num;
   if ((rx[0]=='0') || (rx[0]=='1')){
-  	 serial_put('r');
     if (waiting_for_rx == '0') {
       tx[0]='B';
     }
     else{
       tx[0]='A';
     }
-    num = crc_morse(tx);
+    num = checksum(tx);
     tx[1]=num.a;
     tx[2]=num.b;
     tx[3]='\0';
-    while (frame_can_put()==false);
-    serial_put('g');
-    ether_block_put(tx);
+    send();
   }
   else {
-    while (frame_can_put()==false);
-    serial_put('t');
     ether_block_put(tx);
   }
 }
