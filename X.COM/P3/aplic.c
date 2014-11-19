@@ -21,7 +21,7 @@ int main(void){
   on_frame_recived(pinta);
   
   while(true){
-    //while (frame_can_put()==false);
+    while (frame_can_put()==false);
     serial_put('-');
     serial_put('>');
     a=serial_get();
@@ -53,6 +53,6 @@ int main(void){
 }
 
 static void pinta(void){
-	frame_block_get(rx_H);
-	print(rx_H);
+  frame_block_get(rx_H);
+  print(rx_H);
 }
