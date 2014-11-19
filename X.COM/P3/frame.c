@@ -106,7 +106,7 @@ static void send(void){
 static void check(void){
   for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
   ether_block_get(rx);
-  print(rx);
+  serial_put(rx[0]);
   if ((rx[0]=='A') || (rx[0]=='B')) timer_cancel(timeout_number);
   if (check_crc(rx)){
     if (rx[0]==waiting_for_tx) next_tx();
@@ -139,7 +139,7 @@ void next_rx (void){
   tx[1]=num.a;
   tx[2]=num.b;
   tx[3]='\0';
-  print(tx);
+  serial_put('C');
   ether_block_put(tx);
   funcio();
   for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
