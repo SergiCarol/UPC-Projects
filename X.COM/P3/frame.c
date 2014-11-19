@@ -164,7 +164,7 @@ void error(void){
     else{
       tx[0]='A';
     }
-    num = crc(tx);
+    num = crc_morse(tx);
     tx[1]=num.a;
     tx[2]=num.b;
     tx[3]='\0';
