@@ -86,7 +86,6 @@ static void send(void){
 
    if(ether_can_put()){
       // Si el canal no esat ocupat enviem
-      print(tx);
       serial_put('y');
       ether_block_put(tx);
     }
@@ -133,6 +132,7 @@ void next_rx (void){
   tx[2]=num.b;
   tx[3]='\0';
   while (frame_can_put()==false);
+  print(tx);
   serial_put('e');
   ether_block_put(tx);
   funcio();
