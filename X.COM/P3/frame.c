@@ -192,6 +192,7 @@ void print(uint8_t s[]){
 
 void start_timer(void){
   if(numeracio_trama_tx == '0'||numeracio_trama_tx == '1'){
+    serial_put('T');
     timeout_number=timer_after(TIMER_MS(TIME_OUT),error);
   }
 }
