@@ -178,6 +178,7 @@ void error(void){
     send();
   }
   else {
+    serial_put('A');
     while (frame_can_put()==false);
     ether_block_put(tx);
   }
