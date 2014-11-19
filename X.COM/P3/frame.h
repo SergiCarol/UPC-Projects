@@ -12,6 +12,7 @@
 #include "gpio_device.h"
 
 typedef void (*frame_callback_t)(void);
+
 typedef enum {esperant,enviant} estat;
 
 void frame_init(void);
