@@ -164,7 +164,7 @@ void next_tx(void){
 
 void error(void){
   numero num;
-  serial_put('A');
+  serial_put('B');
   if ((rx[0]=='0') || (rx[0]=='1')){
     if (waiting_for_rx == '0') {
       tx[0]='B';
