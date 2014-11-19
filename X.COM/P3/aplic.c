@@ -21,7 +21,7 @@ int main(void){
   on_frame_recived(pinta);
   
   while(true){
-    while (frame_can_put()==false);
+    //while (frame_can_put()==false);
     serial_put('-');
     serial_put('>');
     a=serial_get();
