@@ -8,8 +8,8 @@
 typedef enum {Input, Output} pin_direction_t;
 
 typedef struct {											// pin_t.port agafa el port
-	volatile uint8_t*  port ;						
-	uint8_t pin;											// pin_t.pin agafa el pin del port
+  volatile uint8_t*  port ;						
+  uint8_t pin;											// pin_t.pin agafa el pin del port
 } pin_t;
 
 
