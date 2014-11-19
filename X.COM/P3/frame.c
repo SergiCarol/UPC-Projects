@@ -1,5 +1,5 @@
 #include "frame.h"
-
+#include <util/delay.h>
 #define MAX_TRY 3
 #define TIME_OUT 7000
 
@@ -14,6 +14,7 @@ static pin_t pin;
 static uint8_t intens=0;
 static int8_t timeout_number;
 static bool first_time = true;
+static bool timeout_on = false;
 
 static void build(const block_morse b);
 static void send(void);
@@ -22,7 +23,7 @@ static void next_rx(void);
 static void next_tx(void);
 static void start_timer(void);
 static void error(void);
-
+static void timer_error(void);
 
 void frame_init(void){
   state = esperant;
@@ -83,34 +84,29 @@ static void build(block_morse b){
 } 
 
 static void send(void){
-
-  if (intens < MAX_TRY){
+  int i = 0;
+  if ((tx[0]=='0') || (tx[0]=='1')) { 
     if(ether_can_put()){
       // Si el canal no esat ocupat enviem
       ether_block_put(tx);
     }
-    else{
-      // Si el canal esta ocupat sumem 1 als intents
-      intens++;
-      // Esperem un temps aleatori i tornem a provar.
-      timer_after(TIMER_MS(rand()%((10+1)*1000)),send);
+    // En el cas de que no s'hagi pogut enviar encenem el LED
+    else {
+      pin_w(pin,true);
+      state=esperant;
     }
-  }
-  // En el cas de que no s'hagi pogut enviar encenem el LED
-  else {
-    pin_w(pin,true);
-    state=esperant;
   }
 }
 
 static void check(void){
-  for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
+  //  for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
+  uint8_t i;
   ether_block_get(rx);
-  if ((rx[0]=='A') || (rx[0]=='B')) timer_cancel(timeout_number);
+//  for (i=0;i<10;i++)serial_put(rx[i]);
   if (check_crc(rx)){
     if (rx[0]==waiting_for_tx) next_tx();
     else if (rx[0]==waiting_for_rx) next_rx(); 
-    else error();
+    //else error();
   }
   else{
     pin_w(pin,true);
@@ -140,13 +136,15 @@ void next_rx (void){
   tx[3]='\0';
   ether_block_put(tx);
   funcio();
-  for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
+  //_delay_ms(1000);
+  //for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
 }
 
 void next_tx(void){
   numero num;
   // En el cas de que siguem el transmissor
   // Comprovem si el missatge de confirmacio es una A
+  timer_cancel(timeout_number);
   if (rx[0]=='A'){
     // Si ho es el seguent missatge te que començar amb un 1
     numeracio_trama_tx = '1';
@@ -156,8 +154,9 @@ void next_tx(void){
     numeracio_trama_tx = '0';
     waiting_for_tx = 'A';
   }
+  timeout_on==false;
   state=esperant;
-  for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
+  //  for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
 }
 
 void error(void){
@@ -169,14 +168,12 @@ void error(void){
     else{
       tx[0]='A';
     }
-    num = checksum(tx);
+     tx[1]='\0';
+    num = crc_morse(tx);
     tx[1]=num.a;
     tx[2]=num.b;
     tx[3]='\0';
     send();
-  }
-  else {
-    ether_block_put(tx);
   }
 }
 
@@ -192,9 +189,20 @@ void print(uint8_t s[]){
   serial_put('\n');
 }
 
-void start_timer(void){
-  if(numeracio_trama_tx == '0'||numeracio_trama_tx == '1'){
-    timeout_number=timer_after(TIMER_MS(TIME_OUT),error);
-  }
+ void timer_error(void){    
+   //   print(tx);
+if (ether_can_put()){   
+  ether_block_put(tx);
+ }
 }
+
+void start_timer(void){
+  if(timeout_on==false){
+    if ((tx[0]=='0') || (tx[0]=='1')){
+      timeout_on=true;
+      timeout_number=timer_after(TIMER_MS(TIME_OUT),timer_error);
+   }
+}
+}
+
   
