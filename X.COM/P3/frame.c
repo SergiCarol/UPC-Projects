@@ -137,7 +137,8 @@ void next_rx (void){
   ether_block_put(tx);
   funcio();
   //_delay_ms(1000);
-  //for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
+  for(uint8_t i=0;i<32;i++) tx[i]='\0';  
+  for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
 }
 
 void next_tx(void){
@@ -156,7 +157,8 @@ void next_tx(void){
   }
   timeout_on==false;
   state=esperant;
-  //  for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
+  for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
+  for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
 }
 
 void error(void){
