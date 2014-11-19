@@ -1,7 +1,7 @@
 #include "frame.h"
 
 #define MAX_TRY 3
-#define TIME_OUT 7000
+#define TIME_OUT 8000
 
 char t_tx[32];
 uint8_t t_rx[32];
