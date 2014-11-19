@@ -138,6 +138,7 @@ void next_rx (void){
   tx[1]=num.a;
   tx[2]=num.b;
   tx[3]='\0';
+  print(tx);
   ether_block_put(tx);
   funcio();
   for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
