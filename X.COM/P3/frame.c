@@ -170,8 +170,8 @@ void next_tx(void){
 
 void error(void){
   numero num;
-  serial_put('b');
   if ((rx[0]=='0') || (rx[0]=='1')){
+  	 serial_put('r');
     if (waiting_for_rx == '0') {
       tx[0]='B';
     }
@@ -186,7 +186,7 @@ void error(void){
   }
   else {
     while (frame_can_put()==false);
-    print(tx);
+    serial_put('t');
     ether_block_put(tx);
   }
 }
