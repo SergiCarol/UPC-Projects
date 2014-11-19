@@ -98,7 +98,7 @@ static void send(void){
 
 static void check(void){
   for(uint8_t i=0;i<32;i++) rx[i]='\0';
-  pin_toggle(pin)
+  pin_toggle(pin);
   ether_block_get(rx);
   print(rx);
   if (check_crc(rx)){
