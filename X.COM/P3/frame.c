@@ -170,6 +170,7 @@ void error(void){
     tx[2]=num.b;
     tx[3]='\0';
     while (frame_can_put()==false);
+    print(tx);
     ether_block_put(tx);
   }
   else {
