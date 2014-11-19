@@ -173,7 +173,7 @@ void error(void){
     ether_block_put(tx);
   }
   else {
-    //while(frame_can_put()==false);
+    while(ether_can_put()==false);
     print(tx);
     ether_block_put(tx);
   }
