@@ -84,21 +84,12 @@ static void build(block_morse b){
 
 static void send(void){
 
-  if (intens < MAX_TRY){
-    if(ether_can_put()){
+   if(ether_can_put()){
       // Si el canal no esat ocupat enviem
       print(tx);
       ether_block_put(tx);
     }
-    else{
-      // Si el canal esta ocupat sumem 1 als intents
-      intens++;
-      // Esperem un temps aleatori i tornem a provar.
-      timer_after(TIMER_MS(rand()%((10+1)*1000)),send);
-    }
-  }
-  // En el cas de que no s'hagi pogut enviar encenem el LED
-  else {
+   else {
     pin_w(pin,true);
     state=esperant;
   }
@@ -106,14 +97,11 @@ static void send(void){
 
 static void check(void){
   for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
+ 
   ether_block_get(rx);
-  
-  serial_put(rx[0]);
-  serial_put('\r');
-  serial_put('\n');
-  serial_put('l');
-  if ((rx[0]=='A') || (rx[0]=='B')) timer_cancel(timeout_number);
+  serial_put(rx);
   if (check_crc(rx)){
+  	if ((rx[0]=='A') || (rx[0]=='B')) timer_cancel(timeout_number);
     if (rx[0]==waiting_for_tx) next_tx();
     else if (rx[0]==waiting_for_rx) next_rx(); 
     else error();
@@ -182,7 +170,8 @@ void error(void){
     tx[1]=num.a;
     tx[2]=num.b;
     tx[3]='\0';
-    send();
+    while (frame_can_put()==false);
+    ether_block_put(tx);
   }
   else {
     while (frame_can_put()==false);
