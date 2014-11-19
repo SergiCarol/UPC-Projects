@@ -60,6 +60,7 @@ void frame_block_get(block_morse b){
     b[i]=rx[i+1];
   }
   b[i-2]='\0';
+  for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
 }
 
 void on_frame_recived(frame_callback_t l){
@@ -131,6 +132,7 @@ void next_rx (void){
   tx[1]=num.a;
   tx[2]=num.b;
   tx[3]='\0';
+  while(frame_can_put()==false);
   ether_block_put(tx);
   funcio();
   for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
@@ -162,13 +164,15 @@ void error(void){
     else{
       tx[0]='A';
     }
-    num = checksum(tx);
+    num = crc(tx);
     tx[1]=num.a;
     tx[2]=num.b;
     tx[3]='\0';
-    send();
+    while(frame_can_put()==false);
+    ether_block_put(tx);
   }
   else {
+  	while(frame_can_put()==false);
     ether_block_put(tx);
   }
 }
