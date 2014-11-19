@@ -177,6 +177,7 @@ void error(void){
     send();
   }
   else {
+    while (frame_can_put()==false);
     ether_block_put(tx);
   }
 }
