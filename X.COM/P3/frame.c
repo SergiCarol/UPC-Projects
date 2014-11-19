@@ -206,9 +206,15 @@ void print(uint8_t s[]){
        ether_block_put(tx);
      }
      else {
-       print("TERROR")
-       timeout_on=false;
-       state=esperant;
+       if (intens==2){
+	 print("TERROR");
+	 timeout_on=false;
+	 state=esperant;
+       }
+       else {
+	 intens++;
+	 timeout_number=timer_after(TIMER_MS(TIME_OUT),timer_error);
+       }
      }
    }
  }
