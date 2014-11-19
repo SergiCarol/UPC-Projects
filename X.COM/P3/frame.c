@@ -133,7 +133,6 @@ void next_rx (void){
   tx[2]=num.b;
   tx[3]='\0';
   while (frame_can_put()==false);
-  print(tx);
   serial_put('e');
   ether_block_put(tx);
   funcio();
