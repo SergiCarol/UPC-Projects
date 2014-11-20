@@ -20,6 +20,7 @@ static void build(const block_morse b);
 static void send(void);
 static void check(void);
 static void next_rx(void);
+static void recibed(uint8_t a);
 static void next_tx(void);
 static void start_timer(void);
 static void error(void);
@@ -99,18 +100,34 @@ static void send(void){
 }
 
 static void check(void){
-  for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
+  //for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
   uint8_t i;
   ether_block_get(rx);
-//  for (i=0;i<10;i++)serial_put(rx[i]);
-  if (check_crc(rx)){
-    if (rx[0]==waiting_for_tx) next_tx();
-    //else timer_error();
-    else if (rx[0]==waiting_for_rx) next_rx(); 
-    //else error();
-  }
-  else{
+  //for (i=0;i<10;i++)serial_put(rx[i]);
+  if (check_crc(rx)) recibed(rx[0]);
+  else {
     pin_w(pin,true);
+    state = esperant;
+  }
+}
+
+
+void recibed(uint8_t a){
+  serial_put(a);
+  if (a == waiting_for_rx){
+    next_rx();
+  }
+  
+  else if (a == not_waiting_for_rx){
+    error();
+  }
+
+  else if (a == waiting_for_tx){
+    next_tx();
+  }
+  
+  else if (a == not_waiting_for_tx){
+    error();
   }
 }
 
@@ -118,16 +135,14 @@ void next_rx (void){
   numero num;
   // Mirem la numeracio de la trama
   if (rx[0]=='0'){
-    // Si hem rebut un 0 tenim que enviar un missatge de confirmacio amb una A
     numeracio_trama_rx = 'A';
-    // I el seguent missatge que rebem te que començar per 1
     waiting_for_rx = '1';
+    not_waiting_for_rx = '0';
   }
   else if (rx[0]=='1'){
-    // En cas contrari tenim que enviar una B
-    numeracio_trama_rx = 'B';
-    // I el seguent missatge te que començar per 0
+    numeracio_trama_rx = 'B';    
     waiting_for_rx = '0';
+    not_waiting_for_rx = '1';
   }
   tx[0]=numeracio_trama_rx;
   tx[1]='\0';
@@ -138,8 +153,8 @@ void next_rx (void){
   ether_block_put(tx);
   funcio();
   //_delay_ms(1000);
-  for(uint8_t i=0;i<32;i++) tx[i]='\0';  
-  for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
+  //  for(uint8_t i=0;i<32;i++) tx[i]='\0';  
+  //for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
 
 }
 
@@ -148,19 +163,22 @@ void next_tx(void){
   // En el cas de que siguem el transmissor
   // Comprovem si el missatge de confirmacio es una A
   timer_cancel(timeout_number);
+  
   if (rx[0]=='A'){
-    // Si ho es el seguent missatge te que començar amb un 1
     numeracio_trama_tx = '1';
     waiting_for_tx = 'B';
+    not_waiting_for_tx = 'A';
   }
   else {
     numeracio_trama_tx = '0';
     waiting_for_tx = 'A';
+    not_waiting_for_tx = 'B';
   }
+  
   timeout_on==false;
   state=esperant;
-  for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
-  for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
+  //  for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
+  //for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
 }
 
 void error(void){
@@ -174,7 +192,7 @@ void error(void){
       tx[1]=num.a;
       tx[2]=num.b;
       tx[3]='\0';
-      send();
+      ether_block_put(tx);
     }
     else if (waiting_for_rx == '1'){
       tx[0]='A';
@@ -183,7 +201,8 @@ void error(void){
       tx[1]=num.a;
       tx[2]=num.b;
       tx[3]='\0';
-      send();
+      //send();
+      ether_block_put(tx);
     }
   }
 }
@@ -219,6 +238,7 @@ void start_timer(void){
     if ((tx[0]=='0') || (tx[0]=='1')){
       timeout_on=true;
       timeout_number=timer_after(TIMER_MS(TIME_OUT),timer_error);
+      serial_put('i');
    }
 }
 }

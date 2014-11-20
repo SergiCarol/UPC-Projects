@@ -28,7 +28,9 @@ void print(uint8_t j[]);
 
 uint8_t numeracio_trama_rx;
 uint8_t waiting_for_rx;
+uint8_t not_waiting_for_rx;
 
 uint8_t numeracio_trama_tx;
 uint8_t waiting_for_tx;
+uint8_t not_waiting_for_tx;
 #endif
