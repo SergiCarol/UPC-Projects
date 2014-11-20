@@ -16,8 +16,10 @@ int main(void){
   frame_init();
   numeracio_trama_tx='0';
   waiting_for_tx='A';
+  not_waiting_for_tx = 'B';
   numeracio_trama_rx='A';
   waiting_for_rx='0';
+  not_waiting_for_tx = '1';
   on_frame_recived(pinta);
   
   while(true){
