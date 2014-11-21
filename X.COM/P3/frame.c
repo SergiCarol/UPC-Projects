@@ -1,211 +1,237 @@
 #include "frame.h"
-#include <util/delay.h>
-#define MAX_TRY 3
-#define TIME_OUT 7000
+#include "error_morse.h"
+#include <stdlib.h>
+#include <avr/io.h>
+#include <avr/interrupt.h>
 
-char t_tx[32];
-uint8_t t_rx[32];
-static block_morse tx = t_tx; // transmissio 
-static block_morse rx = t_rx; // recepcio
+#define TIME_OUT 8000
 
-static estat state = esperant;
-static frame_callback_t funcio;
-static pin_t pin;
-static uint8_t intens=0;
-static int8_t timeout_number;
-static bool first_time = true;
-static bool timeout_on = false;
+static uint8_t t_rx[120];
+static uint8_t t_tx[120];
+static uint8_t trama_control[4];
 
-static void build(const block_morse b);
-static void send(void);
+static block_morse rx=t_rx;
+static block_morse tx=t_tx;
+static block_morse control=trama_control;
+
+
+
 static void check(void);
-static void next_rx(void);
-static void recibed(uint8_t a);
-static void next_tx(void);
 static void start_timer(void);
-static void error(void);
-static void timer_error(void);
+static void estats (uint8_t a);
+static void event_tx(events_tx e_tx);
+static void event_rx(events_rx e_rx);
+static void build(const block_morse b);
+static void make_ACK(void);
+static void make_NCK(void);
+static void send(void);
+
+
+static uint8_t intents=0;
+static int8_t timeout_number;
+static frame_callback_t funcio;
+static state_tx estat_tx = enviar_0;
+static state_rx estat_rx = rebut_0;
+static events_rx e_rx;
+static events_tx e_tx;
+
 
 void frame_init(void){
-  state = esperant;
+  DDRB |= (1<<DDB5);
+  PORTB &= ~(1<<PB5);
   timer_init();
   ether_init();
-  on_finish_transmission(start_timer);
+  serial_init();
   on_message_received(check);
-  pin = pin_create(&PORTB,5,Output);
-  pin_w(pin,false);
-  // Canviar sempre on_finished
-  
+  on_finish_transmission(start_timer);
 }
 
 bool frame_can_put(void){
-  if (ether_can_put()){
-    if (state == esperant) return true;
-    else return false;
+  
+  if (ether_can_put()) {
+    return (estat_tx==enviar_0 || estat_tx==enviar_1); 
   }
-  else return false;
 }
 
 void frame_block_put(const block_morse b){
-  //[0/1,DADES,CHECKSUM]
-  // Tenim que esperanr-nos fins que haguem acabat de enviar i rebre la confirmacio
-  state = enviant;
-  for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
-  build(b);
-  print(tx);
-  send();
+ 	
+ 	build(b);
+ 	print(tx);
+ 	send();
 }
 
-void frame_block_get(block_morse b){
-  uint8_t i;
-  for (i=0;rx[i+1]!='\0';i++){
-    b[i]=rx[i+1];
-  }
-  b[i-2]='\0';
-}
 
 void on_frame_recived(frame_callback_t l){
   funcio=l;
 }
 
-static void build(block_morse b){
-  uint8_t i,a=0;
-  numero num;
-  tx[0]=numeracio_trama_tx;
-  // Fica be la numeracio
-  for (i=0;b[i]!='\0';i++){
-    tx[i+1]=b[i];
-  }
-  // Fica be el bloc
-  num=crc_morse(tx);
-  tx[++i]=num.a;
-  tx[++i]=num.b;
-  tx[++i]='\0';
-  //MIRAR CRC
-} 
+void frame_block_get(block_morse b){
+  uint8_t i=0;
+  for (i; rx[i+1]!='\0'; i++) b[i]=rx[i+1];
+  b[i-2]='\0';
+}
 
-static void send(void){
-  int i = 0;
-  if ((tx[0]=='0') || (tx[0]=='1')) { 
-    if(ether_can_put()){
-      // Si el canal no esat ocupat enviem
+
+void build (const block_morse b){
+  uint8_t i=1;
+  numero num;
+  event_tx(ready_tx);
+  
+  for (uint8_t j=0; b[j]!='\0'; i++, j++) tx[i]=b[j];
+  
+  tx[i]='\0';
+  num=crc_morse(tx);
+  tx[i++]=num.a;
+  tx[i++]=num.b;
+  tx[i]='\0';
+ }
+
+void send(){
+  if (intents<3) {
+    if (ether_can_put()) {
       ether_block_put(tx);
+      intents=0;
     }
-    // En el cas de que no s'hagi pogut enviar encenem el LED
     else {
-      pin_w(pin,true);
-      state=esperant;
+      intents++;
+      timer_after(TIMER_MS((rand()%(10+1))*1000), send);
     }
+  }
+  else {
+  	// FIcar led
+  	intents = 0;
   }
 }
+
 
 static void check(void){
-  //for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
-  uint8_t i;
-  ether_block_get(rx);
-  //for (i=0;i<10;i++)serial_put(rx[i]);
-  if (check_crc(rx)) recibed(rx[0]);
-  else {
-    pin_w(pin,true);
-    state = esperant;
-  }
+
+  for (uint8_t i=0; i<120; i++) rx[i]='\0';
+  ether_block_get(rx); 
+  if (test_crc_morse(rx)) estats(rx[0]);
+}
+
+static void estats (uint8_t a){
+
+    if (a=='0') event_rx(rep0);
+    
+    else if  (a=='1') event_rx(rep1); 
+    
+    else if (a=='A') event_tx(accep0);
+    
+    else if (a=='B') event_tx(accep1);
+    
+    else make_NCK();
+}
+
+static void event_tx(events_tx e_tx){
+  switch(estat_tx) {
+    case enviar_0:
+      switch(e_tx) {
+      case ready_tx:
+	tx[0]='0';
+	estat_tx=ACK0;
+	break;
+      }
+    break;
+    case enviar_1 :
+      switch(e_tx){
+      case ready_tx:
+	tx[0]='1';
+	estat_tx=ACK1;
+	break;
+      }
+    break;
+    case ACK0:
+      switch(e_tx){
+      case accep0:
+	estat_tx=enviar_1;
+	timer_cancel(timeout_number);
+	break;
+	
+      }
+    break;
+    case ACK1: 
+      switch(e_tx){
+      case accep1:
+	estat_tx=enviar_0;
+	timer_cancel(timeout_number);
+	break;
+      }
+    break;
+  }    
 }
 
 
-void recibed(uint8_t a){
-  serial_put(a);
-  if (a == waiting_for_rx){
-    next_rx();
-  }
-  
-  else if (a == not_waiting_for_rx){
-    error();
-  }
-
-  else if (a == waiting_for_tx){
-    next_tx();
-  }
-  
-  else if (a == not_waiting_for_tx){
-    error();
-  }
-}
-
-void next_rx (void){
-  numero num;
-  // Mirem la numeracio de la trama
-  if (rx[0]=='0'){
-    numeracio_trama_rx = 'A';
-    waiting_for_rx = '1';
-    not_waiting_for_rx = '0';
-  }
-  else if (rx[0]=='1'){
-    numeracio_trama_rx = 'B';    
-    waiting_for_rx = '0';
-    not_waiting_for_rx = '1';
-  }
-  tx[0]=numeracio_trama_rx;
-  tx[1]='\0';
-  num = crc_morse(tx);
-  tx[1]=num.a;
-  tx[2]=num.b;
-  tx[3]='\0';
-  ether_block_put(tx);
-  funcio();
-  //_delay_ms(1000);
-  //  for(uint8_t i=0;i<32;i++) tx[i]='\0';  
-  //for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
-
-}
-
-void next_tx(void){
-  numero num;
-  // En el cas de que siguem el transmissor
-  // Comprovem si el missatge de confirmacio es una A
-  timer_cancel(timeout_number);
-  
-  if (rx[0]=='A'){
-    numeracio_trama_tx = '1';
-    waiting_for_tx = 'B';
-    not_waiting_for_tx = 'A';
-  }
-  else {
-    numeracio_trama_tx = '0';
-    waiting_for_tx = 'A';
-    not_waiting_for_tx = 'B';
-  }
-  
-  timeout_on==false;
-  state=esperant;
-  //  for(uint8_t i=0;i<32;i++) tx[i]='\0'; 
-  //for(uint8_t i=0;i<32;i++) rx[i]='\0'; 
-}
-
-void error(void){
-  numero num;
-  
-  if ((rx[0]=='0') || (rx[0]=='1')){
-    if (waiting_for_rx == '0') {
-      tx[0]='B';
-      tx[1]='\0';
-      num = crc_morse(tx);
-      tx[1]=num.a;
-      tx[2]=num.b;
-      tx[3]='\0';
-      ether_block_put(tx);
+static void event_rx(events_rx e_rx){
+  switch(estat_rx){
+  case rebut_0:
+    switch(e_rx){
+    case rep0:
+      estat_rx=rebut_1;
+      make_ACK();
+      funcio();
+      break;
     }
-    else if (waiting_for_rx == '1'){
-      tx[0]='A';
-      tx[1]='\0';
-      num = crc_morse(tx);
-      tx[1]=num.a;
-      tx[2]=num.b;
-      tx[3]='\0';
-      //send();
-      ether_block_put(tx);
+    break;
+  case rebut_1:
+    switch(e_rx){
+    case rep1:
+      estat_rx=rebut_0;
+      make_ACK();
+      funcio();
+      break;
     }
+    break;
   }
 }
+
+
+static void make_ACK(void){
+  numero num;
+  //serial_put('a');
+  if (rx[0]=='0') control[0]='A';
+  
+  else if (rx[0]=='1') control[0]='B';
+  
+  control[1]='\0';
+  num=crc_morse(control);
+  control[1]=num.a;
+  control[2]=num.b;
+  control[3]='\0';
+  ether_block_put(control);
+}
+
+static void make_NCK(void){
+
+  numero num;
+
+  if (rx[0]=='0') control[0]='B';
+
+  else if (rx[0]=='1') control[0]='A';
+
+  control[1]='\0';
+  num=crc_morse(control);
+  control[1]=num.a;
+  control[2]=num.b;
+  control[3]='\0';
+  ether_block_put(control);
+}
+
+
+void timer_error(void){   
+
+  if (ether_can_put()) ether_block_put(tx);
+
+}
+
+
+void start_timer(void){
+
+  if ((tx[0]=='0') || (tx[0]=='1')) timeout_number=timer_ntimes(2,TIMER_MS(TIME_OUT),timer_error);
+
+}
+
 
 void print(uint8_t s[]){
   /* Envia pel port serie tots el elements de la taula s
@@ -218,29 +244,3 @@ void print(uint8_t s[]){
   serial_put('\r');
   serial_put('\n');
 }
-
- void timer_error(void){   
-   if ( tx[0] == '1' || tx[0]=='0'){
-     if (ether_can_put()){  
-       ether_block_put(tx);
-     }
-     else {
-       print("TERROR");
-       timeout_on=false;
-       state=esperant;
-       intens = 0;
-     }
-   }
- }
-
-void start_timer(void){
-  if(timeout_on==false){
-    if ((tx[0]=='0') || (tx[0]=='1')){
-      timeout_on=true;
-      timeout_number=timer_after(TIMER_MS(TIME_OUT),timer_error);
-      serial_put('i');
-   }
-}
-}
-
-  
