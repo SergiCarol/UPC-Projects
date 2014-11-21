@@ -7,19 +7,19 @@ vpath lib% libpbn
 
 .PHONY: clean veryclean  main avr avr_rx prova_avr
 
-checksum.o: checksum.h 
+error_morse.o: error_morse.h 
 
 gpio_device.o: gpio_device.h
 
 frame.o:frame.h 
 
-trans: frame.o checksum.o gpio_device.o  -lpbn
+trans: frame.o error_morse.o gpio_device.o  -lpbn
 
-recep: frame.o checksum.o gpio_device.o -lpbn
+recep: frame.o error_morse.o gpio_device.o -lpbn
 
 prova:prova.o -lpbn
 
-aplic: frame.o checksum.o gpio_device.o -lpbn
+aplic: frame.o error_morse.o gpio_device.o -lpbn
 
 trans.hex: trans
 	avr-objcopy -Oihex $< $@

@@ -14,12 +14,6 @@ int main(void){
   serial_init();
   sei();
   frame_init();
-  numeracio_trama_tx='0';
-  waiting_for_tx='A';
-  not_waiting_for_tx = 'B';
-  numeracio_trama_rx='A';
-  waiting_for_rx='0';
-  not_waiting_for_tx = '1';
   on_frame_recived(pinta);
   
   while(true){
@@ -43,7 +37,6 @@ int main(void){
     }
     serial_put('\n');
     serial_put('\r');
-    while (frame_can_put()==false);
     if (i>0){
       tx_H[i]='\0';
       i=0;
