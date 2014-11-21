@@ -33,5 +33,9 @@ void frame_block_get(block_morse b);
 void on_frame_recived(frame_callback_t l);
 void print(uint8_t j[]);
 
+typedef enum {enviar_0, ACK0, enviar_1, ACK1} state_tx;
+typedef enum {ready_tx, accep0, accep1} events_tx;
+typedef enum {rebut_0, rebut_1} state_rx;
+typedef enum {rep0, rep1} events_rx;
 
 #endif

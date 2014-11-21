@@ -1,10 +1,9 @@
 #include "frame.h"
 #include "error_morse.h"
-#include <stdlib.h>
-#include <avr/io.h>
-#include <avr/interrupt.h>
+#include "gpio_device.h"
 
 #define TIME_OUT 8000
+
 
 static uint8_t t_rx[120];
 static uint8_t t_tx[120];
@@ -13,8 +12,6 @@ static uint8_t trama_control[4];
 static block_morse rx=t_rx;
 static block_morse tx=t_tx;
 static block_morse control=trama_control;
-
-
 
 static void check(void);
 static void start_timer(void);
@@ -26,7 +23,6 @@ static void make_ACK(void);
 static void make_NCK(void);
 static void send(void);
 
-
 static uint8_t intents=0;
 static int8_t timeout_number;
 static frame_callback_t funcio;
@@ -34,16 +30,16 @@ static state_tx estat_tx = enviar_0;
 static state_rx estat_rx = rebut_0;
 static events_rx e_rx;
 static events_tx e_tx;
-
+static pin_t pin;
 
 void frame_init(void){
-  DDRB |= (1<<DDB5);
-  PORTB &= ~(1<<PB5);
   timer_init();
   ether_init();
   serial_init();
   on_message_received(check);
   on_finish_transmission(start_timer);
+  pin = pin_create(&PORTB,5,Output);
+  pin_w(pin,false);
 }
 
 bool frame_can_put(void){
@@ -98,7 +94,7 @@ void send(){
     }
   }
   else {
-  	// FIcar led
+  	pin_w(pin,true);
   	intents = 0;
   }
 }
@@ -122,6 +118,31 @@ static void estats (uint8_t a){
     else if (a=='B') event_tx(accep1);
     
     else make_NCK();
+}
+
+
+
+static void event_rx(events_rx e_rx){
+  switch(estat_rx){
+  case rebut_0:
+    switch(e_rx){
+    case rep0:
+      estat_rx=rebut_1;
+      make_ACK();
+      funcio();
+      break;
+    }
+    break;
+  case rebut_1:
+    switch(e_rx){
+    case rep1:
+      estat_rx=rebut_0;
+      make_ACK();
+      funcio();
+      break;
+    }
+    break;
+  }
 }
 
 static void event_tx(events_tx e_tx){
@@ -162,31 +183,6 @@ static void event_tx(events_tx e_tx){
   }    
 }
 
-
-static void event_rx(events_rx e_rx){
-  switch(estat_rx){
-  case rebut_0:
-    switch(e_rx){
-    case rep0:
-      estat_rx=rebut_1;
-      make_ACK();
-      funcio();
-      break;
-    }
-    break;
-  case rebut_1:
-    switch(e_rx){
-    case rep1:
-      estat_rx=rebut_0;
-      make_ACK();
-      funcio();
-      break;
-    }
-    break;
-  }
-}
-
-
 static void make_ACK(void){
   numero num;
   //serial_put('a');
@@ -222,6 +218,7 @@ static void make_NCK(void){
 void timer_error(void){   
 
   if (ether_can_put()) ether_block_put(tx);
+  else pin_w(pin,true);
 
 }
 

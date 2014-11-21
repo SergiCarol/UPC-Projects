@@ -11,7 +11,7 @@ error_morse.o: error_morse.h
 
 gpio_device.o: gpio_device.h
 
-frame.o:frame.h 
+frame.o:frame.h gpio_device.o
 
 trans: frame.o error_morse.o gpio_device.o  -lpbn
 
