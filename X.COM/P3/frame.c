@@ -16,18 +16,19 @@ static block_morse control=trama_control;
 static void check(void);
 static void start_timer(void);
 static void estats (uint8_t a);
-static void event_tx(events_tx e_tx);
-static void event_rx(events_rx e_rx);
+static void next_tx(events_tx e_tx);
+static void next_rx(events_rx e_rx);
 static void build(const block_morse b);
-static void make_ACK(void);
-static void make_NCK(void);
+static void mk_pk_ACK(void);
+static void mk_pk_NCK(void);
 static void send(void);
 
 static uint8_t intents=0;
 static int8_t timeout_number;
+static uint8_t waiting_for_rx = '0';
+static uint8_t numeracio_trama_tx = 'A';
 static frame_callback_t funcio;
 static state_tx estat_tx = enviar_0;
-static state_rx estat_rx = rebut_0;
 static events_rx e_rx;
 static events_tx e_tx;
 static pin_t pin;
@@ -50,10 +51,10 @@ bool frame_can_put(void){
 }
 
 void frame_block_put(const block_morse b){
- 	
- 	build(b);
- 	print(tx);
- 	send();
+  
+  build(b);
+  print(tx);
+  send();
 }
 
 
@@ -71,16 +72,20 @@ void frame_block_get(block_morse b){
 void build (const block_morse b){
   uint8_t i=1;
   numero num;
-  event_tx(ready_tx);
   
-  for (uint8_t j=0; b[j]!='\0'; i++, j++) tx[i]=b[j];
+  next_tx(ready_tx);
   
+  tx[0]=numeracio_trama_tx;
+  
+  for (i=1;b[i-1]!='\0';i++){
+    tx[i]=b[i-1];
+  }
   tx[i]='\0';
   num=crc_morse(tx);
   tx[i++]=num.a;
   tx[i++]=num.b;
   tx[i]='\0';
- }
+}
 
 void send(){
   if (intents<3) {
@@ -94,98 +99,97 @@ void send(){
     }
   }
   else {
-  	pin_w(pin,true);
-  	intents = 0;
+    pin_w(pin,true);
+    intents = 0;
   }
 }
 
 
 static void check(void){
-
+  
   for (uint8_t i=0; i<120; i++) rx[i]='\0';
   ether_block_get(rx); 
   if (test_crc_morse(rx)) estats(rx[0]);
 }
 
 static void estats (uint8_t a){
-
-    if (a=='0') event_rx(rep0);
-    
-    else if  (a=='1') event_rx(rep1); 
-    
-    else if (a=='A') event_tx(accep0);
-    
-    else if (a=='B') event_tx(accep1);
-    
-    else make_NCK();
+  
+  if (a=='0') next_rx(rep0);
+  
+  else if  (a=='1') next_rx(rep1); 
+  
+  else if (a=='A') next_tx(accep0);
+  
+  else if (a=='B') next_tx(accep1);
+  
+  else mk_pk_NCK();
 }
 
 
 
-static void event_rx(events_rx e_rx){
-  switch(estat_rx){
-  case rebut_0:
+static void next_rx(events_rx e_rx){
+
+  if (waiting_for_rx == '0'){
     switch(e_rx){
     case rep0:
-      estat_rx=rebut_1;
-      make_ACK();
+      waiting_for_rx = '1';
+      mk_pk_ACK();
       funcio();
       break;
     }
-    break;
-  case rebut_1:
+  }
+  
+  else if (waiting_for_rx == '1') {
     switch(e_rx){
     case rep1:
-      estat_rx=rebut_0;
-      make_ACK();
+      waiting_for_rx = '0';
+      mk_pk_ACK();
       funcio();
       break;
     }
-    break;
   }
 }
 
-static void event_tx(events_tx e_tx){
+static void next_tx(events_tx e_tx){
   switch(estat_tx) {
-    case enviar_0:
-      switch(e_tx) {
-      case ready_tx:
-	tx[0]='0';
-	estat_tx=ACK0;
-	break;
-      }
+  case enviar_0:
+    switch(e_tx) {
+    case ready_tx:
+      numeracio_trama_tx = '0';
+      estat_tx=ACK0;
+      break;
+    }
     break;
-    case enviar_1 :
-      switch(e_tx){
-      case ready_tx:
-	tx[0]='1';
-	estat_tx=ACK1;
-	break;
-      }
+  case enviar_1 :
+    switch(e_tx){
+    case ready_tx:
+      numeracio_trama_tx = '1';
+      estat_tx=ACK1;
+      break;
+    }
     break;
-    case ACK0:
-      switch(e_tx){
-      case accep0:
-	estat_tx=enviar_1;
-	timer_cancel(timeout_number);
-	break;
-	
-      }
+  case ACK0:
+    switch(e_tx){
+    case accep0:
+      estat_tx=enviar_1;
+      timer_cancel(timeout_number);
+      break;
+    }
     break;
-    case ACK1: 
-      switch(e_tx){
-      case accep1:
-	estat_tx=enviar_0;
-	timer_cancel(timeout_number);
-	break;
-      }
+  case ACK1: 
+    switch(e_tx){
+    case accep1:
+      estat_tx=enviar_0;
+      timer_cancel(timeout_number);
+      break;
+    }
     break;
   }    
 }
 
-static void make_ACK(void){
+static void mk_pk_ACK(void){
   numero num;
-  //serial_put('a');
+  
   if (rx[0]=='0') control[0]='A';
   
   else if (rx[0]=='1') control[0]='B';
@@ -198,14 +202,14 @@ static void make_ACK(void){
   ether_block_put(control);
 }
 
-static void make_NCK(void){
-
+static void mk_pk_NCK(void){
+  
   numero num;
-
+  
   if (rx[0]=='0') control[0]='B';
-
+  
   else if (rx[0]=='1') control[0]='A';
-
+  
   control[1]='\0';
   num=crc_morse(control);
   control[1]=num.a;
@@ -215,18 +219,10 @@ static void make_NCK(void){
 }
 
 
-void timer_error(void){   
-
-  if (ether_can_put()) ether_block_put(tx);
-  else pin_w(pin,true);
-
-}
-
-
 void start_timer(void){
-
-  if ((tx[0]=='0') || (tx[0]=='1')) timeout_number=timer_ntimes(2,TIMER_MS(TIME_OUT),timer_error);
-
+  
+  if ((tx[0]=='0') || (tx[0]=='1')) timeout_number=timer_after(TIMER_MS(TIME_OUT),send);
+  
 }
 
 
