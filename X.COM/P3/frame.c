@@ -136,9 +136,6 @@ static void next_rx(events_rx e_rx){
       mk_pk_ACK();
       funcio();
       break;
-    default:
-      mk_pk_NCK();
-      break;
     }
   }
   
@@ -148,9 +145,6 @@ static void next_rx(events_rx e_rx){
       waiting_for_rx = '0';
       mk_pk_ACK();
       funcio();
-      break;
-    default:
-      mk_pk_NCK();
       break;
     }
   }
