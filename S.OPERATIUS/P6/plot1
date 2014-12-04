@@ -1,0 +1,8 @@
+set auto x
+set yrange [0:20]
+set style data histogram
+set style histogram cluster gap 1
+set style fill solid border -1
+set boxwidth 0.5
+set bmargin 1 
+plot for [COL=1:2] 'dades' using COL:xticlabels(1) title 'vots'
