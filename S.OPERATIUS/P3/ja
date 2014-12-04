@@ -68,7 +68,7 @@ while getopts "na:r:b:e:h" o; do
 		"L'opcio -b indica que es vol començar a treballar amb el projecte <prjid>, la commanda sera: ./ja -b <prjid>\n" \
 		"L'opcio -e indica que es vol acabar de treballar amb el projecte <prjid>, la commanda sera: ./ja -e <prjid>\n" \
 		"Finalment , si no fiquem cap opcio i nomes el nom d'un projecte <prjid>, s'ens mostrara una resum del projecte <prjid>"\
-			 "en el que veurem el total de segons i en quants lots de treball ho hem fet.\n"
+		"en el que veurem el total de segons i en quants lots de treball ho hem fet.\n"
 	    
 	    
 	    ;;
