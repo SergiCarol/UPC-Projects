@@ -1,0 +1,4 @@
+sudo iwconfig wlan0 essid "iTIC"
+
+sudo ifconfig wlan0 192.168.55.30 netmask 255.255.254.0
+

@@ -1,0 +1,40 @@
+Ethernet -> inet addr:192.168.40.103
+My IP -> 147.83.5.90
+NAT -> inet addr:192.168.40.0/24
+	Bcast:192.168.40.255
+
+Getway -> 192.168.40.1
+    Afegim una porta d'enllaç a l'@ 192.168.40.1, permet l'acces a internet.
+	>sudo route add default gw 192.168.40.1
+
+link-local -> 147.83.5.90 //es posa automaticament, no temim cap @IP abilitada
+
+PASSOS POC A POC:
+1r) Desabilitem el gestor de xarxes.
+    Fiquem a eth0 i eth1 @ 0.0.0.0
+	>brctl addbr br0
+	>brctl addif br0 eth0
+	>brctl addif br0 eth1
+	>brctl show
+    Treballem amb 'br0' per tant l'hem de configurar.
+	>ifconfig br0 192.168.40.x/24
+    Escollim una @IP d'un dels latres ordinadors i li fem un PING.
+	>ping 192.168.40.100
+    Es pot tenir comunicacio entre dos PC connectast per un pont (bridge)?
+	NO: Perque no estan a la mateixa xarxa. No encaixa el prefix de subxarxa.
+	Perque tingui connexio hem de conviarli la @IP per 192.168.40.X/24
+    Modifique @IP.
+	>sudo ifconfig eth0 192.168.40.103/16
+    Convertir PC amb router.
+	>emacs /proc/sys/net/ipv4/ip_forward
+	 1
+    Ficar de default gateway pc torres  
+	>sudo ifconfig eth0 192.168.40.103/16
+
+    Ficar sortida de les ip 192.168.3.0/24 pc torres
+	>sudo route add -net 192.168.3.0/24 gw 192.168.40.101
+
+PREGUNTA:
+Com fer que el 192.168.3.200 pugui sortir cap internet?
+
+
