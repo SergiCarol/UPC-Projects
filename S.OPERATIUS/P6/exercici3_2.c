@@ -18,7 +18,7 @@ int main(void){
   else {
     printf ("OK\n");
     fprintf(gnuplotPipe,"set auto x\n");
-    fprintf(gnuplotPipe,"set yrange [0:30]\n");
+    fprintf(gnuplotPipe,"set yrange [2:20]\n");
     fprintf(gnuplotPipe,"set style histogram cluster gap 1\n");
     fprintf(gnuplotPipe,"set style fill transparent solid 0.75 border -3\n");
     fprintf(gnuplotPipe,"set output 'ex1.png'\n");
@@ -38,12 +38,12 @@ int main(void){
   
   while(true){
     fflush(gnuplotPipe);
-    sleep(10);
+    sleep(4);
     fprintf(gnuplotPipe,"replot\n");
-    fprintf(gnuplotPipe,"Petra %d\n",rand() % 30);
-    fprintf(gnuplotPipe,"Pol %d\n",rand() % 30);
-    fprintf(gnuplotPipe,"Paula %d\n",rand() % 30);
-    fprintf(gnuplotPipe,"Pep %d\n",rand() % 30);
+    fprintf(gnuplotPipe,"Petra %d\n",rand() % 20);
+    fprintf(gnuplotPipe,"Pol %d\n",rand() % 20);
+    fprintf(gnuplotPipe,"Paula %d\n",rand() % 20);
+    fprintf(gnuplotPipe,"Pep %d\n",rand() % 20);
     fprintf(gnuplotPipe,"e\n");
   }
   
