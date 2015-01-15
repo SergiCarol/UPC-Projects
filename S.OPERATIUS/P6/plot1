@@ -1,14 +1,14 @@
 #!/usr/bin/gnuplot
 set auto x
-set yrange [2:20]
+set yrange [2:20] #Valors eix Y.
 set style data histogram
 set style histogram cluster gap 1
-set style fill transparent solid 0.75 border -3
-set boxwidth 0.75
+set style fill transparent solid 0.75 border -3 #Interior barra amb transparencia i verda.
+set boxwidth 0.75 #Amplada de la grafica.
 set bmargin 3
-set grid x
-set grid y
-set xlabel "Agrupacions"
-set ylabel "Vots (Percentatge)"
+set grid x #Reixa pels valors de X.
+set grid y #Reixa pels valors de Y.
+set xlabel "Agrupacions" #Nom eix X.
+set ylabel "Vots (Percentatge)" #Nom eix Y.
 plot 'dades' u 2:xticlabels(1) w boxes ls 2 notitle
 pause -1
