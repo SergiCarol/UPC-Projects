@@ -26,7 +26,6 @@ typedef struct{
   int max;
   // Numero de linies que podem tenir
   partit dades[DIM];
-  sem_t *w;  //wait
 }taula;
 
 typedef void travapp(const char *const id, int votes, void *const data);
