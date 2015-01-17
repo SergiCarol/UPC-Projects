@@ -24,6 +24,7 @@ typedef struct {
 
 typedef struct{
   int max;
+  sem_t w;
   // Numero de linies que podem tenir
   partit dades[DIM];
 }taula;

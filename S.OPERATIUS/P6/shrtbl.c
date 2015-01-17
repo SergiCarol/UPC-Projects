@@ -1,141 +1,148 @@
+#define _POSIX_C_SOURCE 200809L
 #include "shrtbl.h"
  
 //COMPILAR AMB -pthread
 
-
-taula data_t;
-sem_t w;  //wait
+static taula *addr;
+static taula *t;  //wait
 int fd;
-void *addr;
+
+
+
+
+int remove_shared_table(void){
+  int ft;
+  if ((ft=shm_unlink("nomfit"))==-1){
+    sem_destroy(&(t->w));
+    return ERR;
+  }
+  sem_destroy(&(t->w));
+  return OK;	
+}
 
 
 int create_shared_table(void){
-  int i;
-  
-  fd=shm_open ("nomfit",O_RDWR|O_CREAT,S_IRUSR|S_IWUSR);
-  if (fd==-1) return ERR;
-  
-  if ((ftruncate(fd,SIZE))==-1){
-    shm_unlink("nomfit");
-    return ERR;
+	int c;
+
+	if((fd=shm_open("nomfit", O_RDWR|O_CREAT,S_IRUSR|S_IWUSR))==-1) return ERR;
+  c=ftruncate(fd,SIZE);
+  if (c == -1){
+   	remove_shared_table();
+   	return ERR;
   }
-  i = close(fd);
-  
   return OK;
 }
 
-int remove_shared_table(void){
-  int i;
-  i=shm_unlink("nomfit");
-  if (i!=0) return ERR;
-  if (sem_destroy(&w) == -1) return ERR;
-  return OK; 
-}
+
 
 int bind_shared_table(void){
-  int i;
-  
-  fd=shm_open ("nomfit",O_RDWR|O_CREAT,S_IRUSR|S_IWUSR);
-  if (fd==-1) return ERR;
-
-  addr=mmap(NULL,SIZE,PROT_READ|PROT_WRITE,MAP_SHARED,fd,0);
-
-  if(addr==MAP_FAILED) {
-    shm_unlink("nomfit");
+  int c;
+  fd = shm_open("nomfit", O_RDWR, S_IRUSR|S_IWUSR);	
+  if (fd == -1) {
     return ERR;
   }
-  i = close(fd);
-  
+  addr=mmap(NULL,SIZE,PROT_READ|PROT_WRITE, MAP_SHARED,fd,0);
+
+  if (addr==MAP_FAILED){
+    remove_shared_table();
+    return ERR;
+  }
+  c=close(fd);
+  if(c==-1){
+    remove_shared_table();
+    return ERR;
+  }
+  t=addr;
   return OK;
 }
 
+
+
 void init_table(void){
-
-  sem_init(&w,1,1);
-  data_t.max = 0;
+  t->max=0;
+  sem_init(&(t->w),1,1);
 }
-
 
 int add_party(const char id[]){
   int i;
   
-  sem_wait(&w);
-  // Recorrem la taula
-  for (i = 0; i < data_t.max; i++){
-    // Comrpovem si el partit esta a la taula
-    if (strcmp(data_t.dades[i].partit,id)==0){
-      printf("Aquet partit ja existeix a la taula\n");
-      sem_post(&w);
+  sem_wait(&(t->w));
+  // Recorrem la t
+  for (i = 0; i < t->max; i++){
+    // Comrpovem si el partit esta a la t
+    if (strcmp(t->dades[i].partit,id)==0){
+      printf("Aquet partit ja existeix a la t\n");
+      sem_post(&(t->w));
       return OK;
     }
   }
   // Si no ho esta l'afegim
-  strcpy(data_t.dades[data_t.max].partit,id);
-  (data_t.max)++;
-  sem_post(&w);
+  strcpy(t->dades[t->max].partit,id);
+  (t->max)++;
+  sem_post(&(t->w));
   return OK;
 }
 
 int del_party(const char id[]){
   int i;
   
-  sem_wait(&w);
-  for (i = 0; i < data_t.max; i++){
-    if (strcmp(data_t.dades[i].partit,id)==0){
+  sem_wait(&(t->w));
+  for (i = 0; i < t->max; i++){
+    if (strcmp(t->dades[i].partit,id)==0){
       // Canviem el partit de dalt per el que volem canviar
-      data_t.dades[i] = data_t.dades[data_t.max];
+      t->dades[i] = t->dades[t->max];
       // Eliminem el partit de dalt
-      (data_t.max)--;
-      sem_post(&w);
+      (t->max)--;
+      sem_post(&(t->w));
       return OK;
     }
   }
   printf("Aquest partit no existeix\n");
-  sem_post(&w);
+  sem_post(&(t->w));
   return OK;
 }
 
-void inc_votes(const char party[], int votes){
+void inc_votes(const char party[], int vots){
   int i;
   bool a = false;
   
-  sem_wait(&w);
-  // Mateix concepte que abans, busquem el partit a la taula
-  for (i = 0; i<data_t.max; i++){
-    if (strcmp(data_t.dades[i].partit,party) == 0){
+  sem_wait(&(t->w));
+  // Mateix concepte que abans, busquem el partit a la t
+  for (i = 0; i<t->max; i++){
+    if (strcmp(t->dades[i].partit,party) == 0){
       // Si el trobem li sumem els vots
-      data_t.dades[i].vots += votes;
+      t->dades[i].vots += vots;
       a = true;
       break;
     }
   }
   // Si no el trobem error
   if (a == false) printf("No s'ha trobat el partit\n");
-  sem_post(&w);
+  sem_post(&(t->w));
 }
 
 int get_votes(const char party[]){
   int i;
   
-  sem_wait(&w);
+  sem_wait(&(t->w));
   
-  for(i = 0; i<data_t.max; i++){
-    if (strcmp(data_t.dades[i].partit,party) == 0){
-      sem_post(&w);
-      return data_t.dades[i].vots;
+  for(i = 0; i<t->max; i++){
+    if (strcmp(t->dades[i].partit,party) == 0){
+      sem_post(&(t->w));
+      return t->dades[i].vots;
     }
   }
   printf("Aquet partit no existeix\n");
-  sem_post(&w);
+  sem_post(&(t->w));
   return ERR;
 }
 
 int get_nparties(void){
   int a;
   
-  sem_wait(&w);
-  a = data_t.max;
-  sem_post(&w);
+  sem_wait(&(t->w));
+  a = t->max;
+  sem_post(&(t->w));
   
   return a;
 }
@@ -143,15 +150,15 @@ int get_nparties(void){
 void traverse(travapp *const f, void *const data){
   int i;
    
-  sem_wait(&w);
+  sem_wait(&(t->w));
   //-------------------------------------
-  for (i = 0; i < data_t.max; i++){
-    f(data_t.dades[i].partit,data_t.dades[i].vots,NULL);
+  for (i = 0; i < t->max; i++){
+    f(t->dades[i].partit,t->dades[i].vots,NULL);
   }
-  sem_post(&w); 
+  sem_post(&(t->w)); 
 }
 
- 
+/*
 int main(void){
   
   int a,b;
@@ -176,7 +183,8 @@ int main(void){
   del_party("Pato");
 
   a = get_nparties();
-  
+  remove_shared_table();
   printf("Numero de partits: %d\n",a);
   return 0;
 }
+*/
