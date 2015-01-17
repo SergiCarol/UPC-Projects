@@ -7,51 +7,49 @@ static taula *addr;
 static taula *t;  //wait
 int fd;
 
+int create_shared_table(void){
+  int i;
+  
+  fd=shm_open("nomfit", O_RDWR|O_CREAT,S_IRUSR|S_IWUSR);
+  if (fd==-1) return ERR;
 
-
-
-int remove_shared_table(void){
-  int ft;
-  if ((ft=shm_unlink("nomfit"))==-1){
-    sem_destroy(&(t->w));
+  if (ftruncate(fd,SIZE) == -1){
+    shm_unlink("nomfit");
     return ERR;
   }
-  sem_destroy(&(t->w));
-  return OK;	
-}
+  
+  i = close(fd);
 
-
-int create_shared_table(void){
-	int c;
-
-	if((fd=shm_open("nomfit", O_RDWR|O_CREAT,S_IRUSR|S_IWUSR))==-1) return ERR;
-  c=ftruncate(fd,SIZE);
-  if (c == -1){
-   	remove_shared_table();
-   	return ERR;
-  }
   return OK;
 }
 
 
 
+int remove_shared_table(void){
+  int i;
+  
+  i=shm_unlink("nomfit");
+  if (i!=0) return ERR;
+  if (sem_destroy(&(t->w)) == -1) return ERR;
+
+  return OK; 
+}
+
+
 int bind_shared_table(void){
-  int c;
+  int i;
+    
   fd = shm_open("nomfit", O_RDWR, S_IRUSR|S_IWUSR);	
-  if (fd == -1) {
-    return ERR;
-  }
+  if (fd == -1) return ERR;
+ 
   addr=mmap(NULL,SIZE,PROT_READ|PROT_WRITE, MAP_SHARED,fd,0);
 
   if (addr==MAP_FAILED){
-    remove_shared_table();
+    shm_unlink("nomfit");
     return ERR;
   }
-  c=close(fd);
-  if(c==-1){
-    remove_shared_table();
-    return ERR;
-  }
+
+  close(fd);
   t=addr;
   return OK;
 }
