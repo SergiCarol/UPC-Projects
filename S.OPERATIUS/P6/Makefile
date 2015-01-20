@@ -5,6 +5,8 @@ shrtbl.o: shrtbl.h
 poll.o: poll.c shrtbl.o
 pollgraph.o: pollgraph.c shrtbl.o
 
+shrtbl: shrtbl.o
+	$(CC) shrtbl.o -o shrtbl -lrt -pthread
 poll: poll.o shrtbl.o
 	$(CC)  poll.o shrtbl.o -o poll -lrt -pthread
 pollgraph: pollgraph.o shrtbl.o
