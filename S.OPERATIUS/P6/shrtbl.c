@@ -69,7 +69,7 @@ int add_party(const char id[]){
   for (i = 0; i < t->max; i++){
     // Comrpovem si el partit esta a la t
     if (strcmp(t->dades[i].partit,id)==0){
-      printf("Aquet partit ja existeix a la t\n");
+      printf("Aquet partit ja existeix a la taula\n");
       sem_post(&(t->w));
       return OK;
     }
@@ -82,15 +82,15 @@ int add_party(const char id[]){
 }
 
 int del_party(const char id[]){
-  int i;
+  int i,j;
   
   sem_wait(&(t->w));
   for (i = 0; i < t->max; i++){
     if (strcmp(t->dades[i].partit,id)==0){
       // Canviem el partit de dalt per el que volem canviar
-      t->dades[i] = t->dades[t->max];
+      for (i;i<t->max;i++) t->dades[i] = t->dades[i+1];
       // Eliminem el partit de dalt
-      (t->max)--;
+      t->max--;
       sem_post(&(t->w));
       return OK;
     }
@@ -156,7 +156,11 @@ void traverse(travapp *const f, void *const data){
   sem_post(&(t->w)); 
 }
 
-/*
+
+static void printentry(const char *const id, int votes, void *const data) {
+  printf("%s %d\n", id, votes);
+}
+
 int main(void){
   
   int a,b;
@@ -169,6 +173,7 @@ int main(void){
   printf("Afegit Pato i Lobo\n");
  
   inc_votes("Pato",2);
+  inc_votes("Pato",3);
   
   b = get_votes("Pato");
   printf("Numero de vots de Pato: %d\n",b);
@@ -176,13 +181,15 @@ int main(void){
   a = get_nparties();
   printf("Numero de partits: %d\n",a);
 
-
-  add_party("Pato");
-  del_party("Pato");
-
+  add_party("Hola");
+  printf("Afegit Hola \n");
+  //add_party("Pato");
+  del_party("Lobo");
+  printf("aixo es max %d\n",t->max);
   a = get_nparties();
+  traverse(printentry,NULL);
   remove_shared_table();
   printf("Numero de partits: %d\n",a);
   return 0;
 }
-*/
+
