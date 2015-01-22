@@ -1,11 +1,47 @@
 #define _POSIX_C_SOURCE 200809L
 #include "shrtbl.h"
- 
+
+#define VALOR_VOTS(x,y) ((x*y)/100) 
+#define PARCENTATGE(x,y)((x/y)*100)
+
 //COMPILAR AMB -pthread
 
 static taula *addr;
 static taula *t;  //wait
+static int vots_totals = 0;
 int fd;
+
+
+static int calculate_parcentage(int vots_afegir, int vots_actuals){
+  float i,j;
+  printf("Vots_afegir i vots_actuals %d, %d \n",vots_afegir,vots_actuals);
+  j = VALOR_VOTS(vots_actuals,(vots_totals-vots_afegir));
+  j+=vots_afegir;
+  //if (j == 0) j=vots_afegir;
+  printf("VALOR_VOTS %f \n",j);
+  i = PARCENTATGE(j,vots_totals);
+  printf("PARECENTATGE %f \n",i);
+  return i;
+}
+
+static void actualitza_parcentatge(int vots_afegir ,int f){
+  float i,j;
+  int a,total;
+  total = vots_totals - vots_afegir;
+  
+  printf ("Vots totals dintr antualitza %d\n",total);
+  for (a = 0; a < t->max; a++){
+    if (a!=f){
+      printf("Estem mirant: %s\n",t->dades[a].partit);
+      printf("Vots actuals actualitza %d\n",t->dades[a].vots);
+      j = VALOR_VOTS(t->dades[a].vots,(vots_totals-vots_afegir))+0.05;
+      printf("VALOR_VOTS actualitza %0.1f \n",j);
+      t->dades[a].vots= PARCENTATGE(j,vots_totals);
+      printf("Valor percentatge actualitza %f \n",PARCENTATGE(j,vots_totals));
+    }
+  }
+}
+
 
 int create_shared_table(void){
   int i;
@@ -104,12 +140,15 @@ void inc_votes(const char party[], int vots){
   int i;
   bool a = false;
   
+  vots_totals += vots;
+  printf("vots_totals %d \n",vots_totals);
   sem_wait(&(t->w));
   // Mateix concepte que abans, busquem el partit a la t
   for (i = 0; i<t->max; i++){
     if (strcmp(t->dades[i].partit,party) == 0){
       // Si el trobem li sumem els vots
-      t->dades[i].vots += vots;
+      t->dades[i].vots = calculate_parcentage(vots,t->dades[i].vots);
+      actualitza_parcentatge(vots,i);
       a = true;
       break;
     }
@@ -156,7 +195,7 @@ void traverse(travapp *const f, void *const data){
   sem_post(&(t->w)); 
 }
 
-
+/*
 static void printentry(const char *const id, int votes, void *const data) {
   printf("%s %d\n", id, votes);
 }
@@ -164,15 +203,19 @@ static void printentry(const char *const id, int votes, void *const data) {
 int main(void){
   
   int a,b;
+  float i;
+
   create_shared_table();
   bind_shared_table();
   init_table();
   
   add_party("Pato");
-  add_party("Lobo");
+
   printf("Afegit Pato i Lobo\n");
- 
+
   inc_votes("Pato",2);
+  add_party("Lobo");
+  inc_votes("Lobo",2);
   inc_votes("Pato",3);
   
   b = get_votes("Pato");
@@ -182,14 +225,24 @@ int main(void){
   printf("Numero de partits: %d\n",a);
 
   add_party("Hola");
-  printf("Afegit Hola \n");
-  //add_party("Pato");
-  del_party("Lobo");
-  printf("aixo es max %d\n",t->max);
+  
+  //printf("Afegit Hola \n");
+
+
   a = get_nparties();
+
+  inc_votes("Hola",3);
+  inc_votes("Hola",3);
   traverse(printentry,NULL);
+  
   remove_shared_table();
   printf("Numero de partits: %d\n",a);
+  
   return 0;
 }
 
+
+
+
+
+*/

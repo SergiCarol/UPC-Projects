@@ -42,5 +42,4 @@ int get_votes(const char party[]);
 int get_nparties(void);
 void traverse(travapp *const f, void *const data);
 
-
 #endif
