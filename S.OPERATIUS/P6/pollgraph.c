@@ -36,7 +36,7 @@ void gnuplot_init(void){
   fprintf(gnuplotPipe,"set style histogram cluster gap 1\n");
   fprintf(gnuplotPipe,"set yrange [0:*]\n");
   fprintf(gnuplotPipe,"set ylabel 'Vots (Percentatge)'\n");
-  fprintf(gnuplotPipe,"set ylabel 'Agrupacions'\n");
+  fprintf(gnuplotPipe,"set xlabel 'Agrupacions'\n");
 }
 
 void actualitza(void){
@@ -74,7 +74,7 @@ int main(void){
   gnuplot_init();
 
   while (get_nparties() == 0) sleep(2);
-  fprintf(gnuplotPipe,"plot '-' using 2:xtic(1) t '' lc rgb \'green\'\n");
+  fprintf(gnuplotPipe,"plot '-' using 2:xticlabels(1) w boxes ls 2 notitle\n");
   fflush(gnuplotPipe);
   traverse(printentry,NULL);
   fprintf(gnuplotPipe,"e\n");

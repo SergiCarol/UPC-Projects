@@ -13,4 +13,4 @@ pollgraph: pollgraph.o shrtbl.o
 	$(CC)  pollgraph.o shrtbl.o -o pollgraph -lrt -pthread
 
 clean:
-	rm -f *.o *.png poll pollgraph 
+	rm -f *.o *.png poll pollgraph shrtbl
