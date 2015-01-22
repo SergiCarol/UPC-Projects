@@ -1,6 +1,7 @@
 #!/usr/bin/gnuplot
 set auto x
-set yrange [2:20] #Valors eix Y.
+set yrange [0:100]
+set autoscale ymax #Valors eix Y.
 set style data histogram
 set style histogram cluster gap 1
 set style fill transparent solid 0.75 border -3 #Interior barra amb transparencia i verda.
