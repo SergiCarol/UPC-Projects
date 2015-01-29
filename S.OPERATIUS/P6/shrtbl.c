@@ -90,7 +90,7 @@ int del_party(const char id[]){
   sem_wait(&(t->w));
   for (i = 0; i < t->max; i++){
     if (strcmp(t->dades[i].partit,id)==0){
-      // Canviem el partit de dalt per el que volem canviar
+      // Movem tots els partits una posicio inferior
       for (i;i<t->max;i++) t->dades[i] = t->dades[i+1];
       // Eliminem el partit de dalt
       t->max--;

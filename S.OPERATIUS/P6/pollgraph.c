@@ -49,7 +49,7 @@ void gnuplot_init(void){
   fprintf(gnuplotPipe,"set bmargin 3\n");
   fprintf(gnuplotPipe,"set grid x\n");
   fprintf(gnuplotPipe,"set grid y\n");
-  fprintf(gnuplotPipe,"set terminal png truecolor\n");
+  //  fprintf(gnuplotPipe,"set terminal png truecolor\n");
   fprintf(gnuplotPipe,"set style fill transparent solid 0.75 border -3\n");
   fprintf(gnuplotPipe,"set style data histogram\n");
   fprintf(gnuplotPipe,"set style histogram cluster gap 1\n");
@@ -75,7 +75,7 @@ int main(void){
   signal(SIGINT,handler);
   signal(SIGHUP,handler);
   
-  gnuplotPipe = popen("gnuplot","w");
+  gnuplotPipe = popen("gnuplot -p","w");
  
   if (!gnuplotPipe){
     fprintf (stderr, "Error\n");
