@@ -31,3 +31,8 @@ def ocupar_first(m):
     else:
         print('El parking esta complet')
     
+def cerca(m):
+    if is_in() == -1:
+        print('No es traboa dins del parking')
+    else:
+        print(str(m)+' esta en la plaça '+str(is_in))
