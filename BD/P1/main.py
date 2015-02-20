@@ -10,10 +10,7 @@ def consulta(x):
 
 def ocupa(p,m):
     if ocupar_placa(p,m) == True:
-        if m=="XXXXXXX":
-            print('Plaça '+str(p)+' buidada')
-        else:
-            print('Plaça '+str(p)+' ocupada correctament per '+str(m))
+        print('Plaça '+str(p)+' ocupada correctament per '+str(m))
     else:
         print('Plaça '+str(p)+' ocupada per '+str(llegir_placa(p)))
 
@@ -21,6 +18,16 @@ def sortir(m):
     if is_in(m) == -1:
         print('No es traboa dins del parking')
     else:
-        ocupa(is_in(m),"XXXXXXX")
-        
-sortir("0123456")
+        ocupar_placa(is_in(m),"XXXXXXX")
+        print(str(m)+' ha sortit correctament')
+
+#Aquesta funcio ocupa la primera plaça buida que troba, en cas 
+#de que es pugui ocupar retorna true, en cas contrari false
+def primera_buida(m):
+    j = is_in("XXXXXXX")
+    if j >= 0:
+        ocupar_placa(j,m)
+        return True
+    else:
+        return False
+    
