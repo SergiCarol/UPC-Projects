@@ -10,10 +10,17 @@ def consulta(x):
 
 def ocupa(p,m):
     if ocupar_placa(p,m) == True:
-        print('Plaça '+str(p)+' ocupada correctament per '+str(m))
+        if m=="XXXXXXX":
+            print('Plaça '+str(p)+' buidada')
+        else:
+            print('Plaça '+str(p)+' ocupada correctament per '+str(m))
     else:
         print('Plaça '+str(p)+' ocupada per '+str(llegir_placa(p)))
 
-
-consulta(1)
-ocupa(2,"9874563")
+def sortir(m):
+    if is_in(m) == -1:
+        print('No es traboa dins del parking')
+    else:
+        ocupa(is_in(m),"XXXXXXX")
+        
+sortir("0123456")
