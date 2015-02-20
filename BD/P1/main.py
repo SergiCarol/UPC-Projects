@@ -23,11 +23,11 @@ def sortir(m):
 
 #Aquesta funcio ocupa la primera plaça buida que troba, en cas 
 #de que es pugui ocupar retorna true, en cas contrari false
-def primera_buida(m):
+def ocupar_first(m):
     j = is_in("XXXXXXX")
     if j >= 0:
         ocupar_placa(j,m)
-        return True
+        print(str(m)+' ha ocupat la plaça '+str(j))
     else:
-        return False
+        print('El parking esta complet')
     
