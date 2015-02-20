@@ -13,7 +13,7 @@ def ocupa(p,m):
         print('Plaça '+str(p)+' ocupada correctament per '+str(m))
     else:
         print('Plaça '+str(p)+' ocupada per '+str(llegir_placa(p)))
-    
+
 
 consulta(1)
-ocupa(2)
+ocupa(2,"9874563")
