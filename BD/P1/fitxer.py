@@ -7,10 +7,8 @@ def llegir_placa(p):
 	f=open('places.dat','r+')
 	# Calculem la posicio que volem mirar
 	posicio = p*7
-	
 	f.seek(posicio)
 	s+=f.read(7)
-
 	f.close()
 	return s
 
@@ -32,17 +30,26 @@ def ocupar_placa(p,m):
 		f.close()
 		return False
 
+#Aquesta funcio comprova si una matricula es troba dintre 
+#el parquing, i retorna la seva posicio, en cas de que no i sigui
+#retorna -1
+
 def is_in(m):
 	f=open('places.dat','r+')
 	r = f.read()
+	f.close()
 	if str(m) in r:
-		f.close()
 		j = r.index(m)/7
 		return j
 	else:
-		f.close()
 		return -1
 
+def proba():
+	f = open('places.dat','r+')
+	for x in range(7007):
+		f.seek(x)
+		f.write('X')
+	f.close()
 
 
 			
