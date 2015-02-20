@@ -26,11 +26,24 @@ def ocupar_placa(p,m):
 		posicio = p*7
 		f.seek(posicio)
 		f.write(m)
+		f.close()
 		return True
 	else :
+		f.close()
 		return False
 
-llegir_placa(0)
+def is_in(m):
+	f=open('places.dat','r+')
+	r = f.read()
+	if str(m) in r:
+		f.close()
+		j = r.index(m)/7
+		return j
+	else:
+		f.close()
+		return -1
+
+
 
 			
 
