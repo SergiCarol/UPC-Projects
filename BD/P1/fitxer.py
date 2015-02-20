@@ -19,17 +19,12 @@ def llegir_placa(p):
 def ocupar_placa(p,m):
 
 	f=open('places.dat','r+')
-
-	if llegir_placa(p) == "XXXXXXX":
-		posicio = p*7
-		f.seek(posicio)
-		f.write(m)
-		f.close()
-		return True
-	else :
-		f.close()
-		return False
-
+	posicio = p*7
+	f.seek(posicio)
+	f.write(m)
+	f.close()
+	
+	
 #Aquesta funcio comprova si una matricula es troba dintre 
 #el parquing, i retorna la seva posicio, en cas de que no i sigui
 #retorna -1
@@ -44,11 +39,16 @@ def is_in(m):
 	else:
 		return -1
 
+
+#Aquesta funcio ocupa la primera plaça buida que troba, en cas 
+#de que es pugui ocupar retorna true, en cas contrari false
+
 def primera_buida(m):
 	
 	j = is_in("XXXXXXX")
 	if j >= 0:
 		ocupar_placa(j,m)
+		return True
 	else:
 		return False
 
@@ -59,8 +59,6 @@ def proba():
 		f.write('X')
 	f.close()
 
-
-			
 
 
 
