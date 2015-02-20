@@ -39,10 +39,18 @@ def is_in(m):
 	r = f.read()
 	f.close()
 	if str(m) in r:
-		j = r.index(m)/7
+		j = r.find(m)/7
 		return j
 	else:
 		return -1
+
+def primera_buida(m):
+	
+	j = is_in("XXXXXXX")
+	if j >= 0:
+		ocupar_placa(j,m)
+	else:
+		return False
 
 def proba():
 	f = open('places.dat','r+')
