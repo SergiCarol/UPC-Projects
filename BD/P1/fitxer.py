@@ -40,17 +40,6 @@ def is_in(m):
 		return -1
 
 
-#Aquesta funcio ocupa la primera plaça buida que troba, en cas 
-#de que es pugui ocupar retorna true, en cas contrari false
-
-def primera_buida(m):
-	
-	j = is_in("XXXXXXX")
-	if j >= 0:
-		ocupar_placa(j,m)
-		return True
-	else:
-		return False
 
 def proba():
 	f = open('places.dat','r+')
