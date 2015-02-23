@@ -45,4 +45,4 @@ def llistat():
         print(list(empty_number()))
 
 
-llista()
+llistat()
