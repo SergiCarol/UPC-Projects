@@ -22,12 +22,16 @@ escriu la matricula, si funciona correctament retorna true,
 en cas contrari retorna false
 """
 def ocupar_placa(p,m):
+	if len(m) == 7 and p < 1000:
+		f=open('places.dat','r+')
+		posicio = p*7
+		f.seek(posicio)
+		f.write(m)
+		f.close()
+		return True
+	else:
+		return False
 
-	f=open('places.dat','r+')
-	posicio = p*7
-	f.seek(posicio)
-	f.write(m)
-	f.close()
 	
 """
 Aquesta funcio comprova si una matricula es troba dintre 
