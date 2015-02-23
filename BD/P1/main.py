@@ -66,7 +66,7 @@ def ending():
 
 def begining():
     print "\t\t\t Benvingut al interpret"
-    print "Les comanandes són : exit , cerca matricula , llistat_buides , consulta plaça, sortir matricula, ocupar_primera matricula i ocupar plaça matricula"
+    print "Les comanandes són : exit , cerca matricula , llistat_buides ,consulta plaça, sortir matricula, ocupar_primera matricula i ocupar plaça matricula"
 
 if __name__=="__main__":
     I= Interpret()
