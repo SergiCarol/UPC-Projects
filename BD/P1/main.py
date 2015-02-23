@@ -43,6 +43,3 @@ def llistat():
     else:
         print('El parking disposa daquestes places: ')
         print(list(empty_number()))
-
-
-llistat()
