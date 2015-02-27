@@ -59,6 +59,9 @@ def cerca(m):
             print(str(m)+' esta en la plaça '+str(a))
 
 def llistat():
+    """
+    Et retorna una llista amb les places que estan buides.
+    """
     if empty_number() == []:
         print('El parking esta complet')
     else:
@@ -66,12 +69,18 @@ def llistat():
         print(list(empty_number()))
 
 def ending():
+    """
+    Funcio que s'executa quan sortim del programa.
+    """
     print "Gracies per utilitzar el PARKING 'CARLE'"
 
 def begining():
     print "\n\t\t\t PARKING 'CARLE'"
     info()
 def info():
+    """
+    Et mostra el conjunt de comandes que pots utilitzar en l'interpret.
+    """
     print "Les comanandes són:\n -info\n -exit\n -cerca 'matricula'\n -llistat_buides\n -consulta 'plaça'\n -sortir 'matricula'\n -ocupar_primera 'matricula'\n -ocupar 'plaça' 'matricula'"
     print "*Aquells noms entre cometes simples '' indiquen el nom de la variable"
 
