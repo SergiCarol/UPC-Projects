@@ -3,18 +3,19 @@
 from fitxer2 import *
 from interpret import Interpret
 
-def ocupa(p,m):
+def ocupa(p,m,c,t):
     """ 
     No es comproven coses dintre ocupar_placa, canviar consulta perque retorni True o false
     o bé fer comrpovacions aqui dintre 
     """
-    if  llegir_placa(int(p)) == "XXXXXXX":
-        if ocupar_placa(int(p),m) == True:
-            print('Plaça '+str(p)+' ocupada correctament per '+str(m))
+    if  llegir_placa(int(p)) == ["XXXXXXX","XXXXXXXXXX","XXXXXXXXXX"]:
+        if ocupar_placa(int(p),m,c,t) == True:
+            print('Plaça '+str(p)+' ocupada correctament per '+str(m)+str(c)+str(t))
         else:
             print('Has introduit una plaça o una matricula incorrecte')
     else:
-        print('Plaça '+str(p)+' ja està ocupada per '+str(llegir_placa(int(p))))
+        [a,b,h]=llegir_placa(int(p))
+        print('Plaça '+str(p)+' ja està ocupada per '+str(a)+' color: '+str(b.strip('x00'))+' model: '+str(h.strip('x00')))
 
 def ocupar_first(m):
     """

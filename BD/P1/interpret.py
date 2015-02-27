@@ -71,6 +71,11 @@ class Interpret(object):
 		        b(a[1])
 		elif len(a) == 3:
 		        b(a[1],a[2])
+		elif len(a) == 4:
+		        b(a[1],a[2],a[3])
+		elif len(a) == 5:
+		        b(a[1],a[2],a[3],a[4])
+
 	                
             a =raw_input(self._prompt)
             a = a.split()
