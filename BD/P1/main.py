@@ -16,9 +16,11 @@ def ocupa(p,m):
     else:
         print('Plaça '+str(p)+' ja està ocupada per '+str(llegir_placa(int(p))))
 
-#Aquesta funcio ocupa la primera plaça buida que troba, en cas 
-#de que es pugui ocupar retorna true, en cas contrari false
 def ocupar_first(m):
+    """
+    Aquesta funcio ocupa la primera plaça buida que troba amb la matricula m.
+    En cas de que es pugui ocupar retorna true, en cas contrari false
+    """
     j = is_in("XXXXXXX")
     if j >= 0:
         ocupar_placa(j,m)
@@ -27,6 +29,10 @@ def ocupar_first(m):
         print('El parking esta complet')
 
 def sortir(m):
+    """
+    Comprovem que la matricula m es troba dins el parking.
+    En cas afirmatiu la treiem subtituint el seu valor per 'XXXXXXX'
+    """
     if is_in(m) == -1:
         print('No es traboa dins del parking')
     else:
