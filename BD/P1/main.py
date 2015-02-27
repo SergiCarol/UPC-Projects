@@ -77,6 +77,7 @@ def ending():
 def begining():
     print "\n\t\t\t PARKING 'CARLE'"
     info()
+
 def info():
     """
     Et mostra el conjunt de comandes que pots utilitzar en l'interpret.
