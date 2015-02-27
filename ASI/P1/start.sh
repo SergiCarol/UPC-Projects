@@ -10,3 +10,7 @@ sudo ifconfig tap1 up
 sudo ifconfig tap2 up
 
 brctl show
+
+sudo sysctl -w net.ipv4.ip_forward=1
+
+sudo iptables -t nat -A POSTROUTING -s 172.20.2.0/16 -o wlan0 -j MASQUERADE
