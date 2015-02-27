@@ -58,11 +58,9 @@ class Interpret(object):
         if a == []:
             a = ["No command"]
         while a[0] != "exit":
-            if a[0]== "ajuda":
-                print "Les comanandes són : exit , cerca matricula , llistat_buides , consulta plaça, sortir matricula, ocupar_primera matricula i ocupar plaça matricula"
-            elif a[0] not in self._dcom:
+            if a[0] not in self._dcom:
                 if a[0] != "No command":
-                    print "Aquest metode no existeix"
+                    print "Aquesta comanda no existeix"
             
             else:
                 b = self._dcom[a[0]]

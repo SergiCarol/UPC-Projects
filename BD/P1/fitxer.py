@@ -1,10 +1,10 @@
 #-*- encoding: utf-8 -*-
 
-"""
-Donada una posicio retorna la matricula del cotxe aparcat o
-XXXXXXX en cas de que estigui buida
-"""
 def llegir_placa(p):
+        """
+        Donada una posicio retorna la matricula del cotxe aparcat o
+        XXXXXXX en cas de que estigui buida
+        """
 	# Obrim el fitxer
 	s = ""
 	f=open('places.dat','r+')
@@ -15,15 +15,14 @@ def llegir_placa(p):
 	f.close()
 	return s
 
-
-"""
-Comprova si la posicio esta ocupada, en el cas de que no ho estigui
-escriu la matricula, si funciona correctament retorna true,
-en cas contrari retorna false
-"""
 def ocupar_placa(p,m):
+        """
+        Comprova si la posicio esta ocupada, en el cas de que no ho estigui
+        escriu la matricula, si funciona correctament retorna true,
+        en cas contrari retorna false
+        """
 	if len(m) == 7 and p < 1000:
-		f=open('places.dat','r+')
+                f=open('places.dat','r+')
 		posicio = p*7
 		f.seek(posicio)
 		f.write(m)
@@ -32,13 +31,12 @@ def ocupar_placa(p,m):
 	else:
 		return False
 
-	
-"""
-Aquesta funcio comprova si una matricula es troba dintre 
-el parquing, i retorna la seva posicio, en cas de que no i sigui
-retorna -1
-"""
 def is_in(m):
+        """
+        Aquesta funcio comprova si una matricula es troba dintre 
+        el parquing, i retorna la seva posicio, en cas de que no i sigui
+        retorna -1
+        """
 	f=open('places.dat','r')
 	r = f.read()
 	f.close()
@@ -48,15 +46,13 @@ def is_in(m):
 	else:
 		return -1
 
-
-
-"""
-Aquesta funcio busca el numero de plaçes buides que hi ha, 
-les plaçes buides es representen amb la matricula XXXXXXX
-per tan busquem totes les posicions per veure quantes tenen
-espais buits.
-"""
 def empty_number():
+        """
+        Aquesta funcio busca el numero de plaçes buides que hi ha, 
+        les plaçes buides es representen amb la matricula XXXXXXX
+        per tan busquem totes les posicions per veure quantes tenen
+        espais buits.
+        """
 	f = open('places.dat','r')
 	r= f.read()
 	i = 0
@@ -74,21 +70,12 @@ def empty_number():
 	f.close()
 	return l
 
-
-"""
-Aquesta funcio fica tots els aparcaments buits
-"""
 def buidar():
+        """
+        Aquesta funcio fica tots els aparcaments buits
+        """
 	f = open('places.dat','r+')
 	for x in range(7007):
 		f.seek(x)
 		f.write('X')
 	f.close()
-
-
-
-
-
-
-
-
