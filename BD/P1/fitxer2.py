@@ -24,12 +24,18 @@ escriu la matricula, si funciona correctament retorna true,
 en cas contrari retorna false
 """
 def ocupar_placa(p,m,c,t):
-    f=open('places.dat','r+')
-    posicio=p*27
-    f.seek(posicio)
-    a = struct.pack('7s10s10s',m,c,t)
-    f.write(a)
-    f.close()
+    if len(m) = 7 and p < 1000: 
+        f=open('places.dat','r+')
+        posicio=p*27
+        f.seek(posicio)
+        a = struct.pack('7s10s10s',m,c,t)
+        f.write(a)
+        f.close()
+        return True
+    else:
+        print len(m)
+        print p
+        return False
   
         
 	
