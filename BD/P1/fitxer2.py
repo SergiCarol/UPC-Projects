@@ -24,7 +24,7 @@ escriu la matricula, si funciona correctament retorna true,
 en cas contrari retorna false
 """
 def ocupar_placa(p,m,c,t):
-    if len(m) = 7 and p < 1000: 
+    if len(m) == 7 and p < 1000: 
         f=open('places.dat','r+')
         posicio=p*27
         f.seek(posicio)
