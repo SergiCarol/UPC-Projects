@@ -15,7 +15,6 @@ def llegir_placa(p):
     [m,c,t] = struct.unpack('7s10s10s',f.read(27))
     #c = c.strip('x00')
     f.close()
-    print [m,c,t]
     return [m,c,t]
     
     
@@ -44,7 +43,7 @@ def is_in(m):
     r = f.read()
     f.close()
     if str(m) in r:
-        j = r.find(m)/7
+        j = r.find(m)/27
         return j
     else:
         return -1
@@ -64,15 +63,16 @@ def empty_number():
     l = []
     
     if is_in("XXXXXXX") < 0:
-        return l
-        
-    while i < 7007:
+        return l        
+    
+    while i < 27027:
         f.seek(i)
         i=r.find("XXXXXXX",i)
         if i > 0:
-            l.append(i/7)
-            i+=7
+            l.append(i/27)
+            i+=27
     f.close()
+        
     return l
 
 
@@ -81,15 +81,8 @@ Aquesta funcio fica tots els aparcaments buits
 """
 def buidar():
     f = open('places.dat','r+')
-    for x in range(7007):
+    for x in range(27026):
         f.seek(x)
         f.write('X')
     f.close()
-
-
-
-buidar()
-ocupar_placa(1,"6543210","VERD","PEUGOT") 
-llegir_placa(1)
-
 
