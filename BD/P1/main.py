@@ -3,10 +3,6 @@
 from fitxer import *
 from interpret import Interpret
 
-
-
-
-
 def ocupa(p,m):
     """ 
     No es comproven coses dintre ocupar_placa, canviar consulta perque retorni True o false
@@ -38,7 +34,6 @@ def sortir(m):
         print(str(m)+' ha sortit correctament')
 
 
-
 def consulta(p):
     a = llegir_placa(int(p))
     if a == "XXXXXXX":
@@ -48,11 +43,14 @@ def consulta(p):
         print('La plaça '+ str(p) +' esta ocupada per '+ a)
         return False   
 def cerca(m):
-    a = is_in(m)
-    if a == -1:
-        print('No es traboa dins del parking')
+    if len(m)<7:
+        print "La matricula no es correcte"
     else:
-        print(str(m)+' esta en la plaça '+str(a))
+        a = is_in(m)
+        if a == -1:
+            print('No es traboa dins del parking')
+        else:
+            print(str(m)+' esta en la plaça '+str(a))
 
 def llistat():
     if empty_number() == []:
@@ -62,17 +60,21 @@ def llistat():
         print(list(empty_number()))
 
 def ending():
-    print "Gracies per fer servir l'interpret"
+    print "Gracies per utilitzar el PARKING 'CARLE'"
 
 def begining():
-    print "\t\t\t Benvingut al interpret"
-    print "Les comanandes són : exit , cerca matricula , llistat_buides ,consulta plaça, sortir matricula, ocupar_primera matricula i ocupar plaça matricula"
+    print "\n\t\t\t PARKING 'CARLE'"
+    info()
+def info():
+    print "Les comanandes són:\n -info\n -exit\n -cerca 'matricula'\n -llistat_buides\n -consulta 'plaça'\n -sortir 'matricula'\n -ocupar_primera 'matricula'\n -ocupar 'plaça' 'matricula'"
+    print "*Aquells noms entre cometes simples '' indiquen el nom de la variable"
 
 if __name__=="__main__":
     I= Interpret()
-    I._prompt="-->"
+    I._prompt="=> "
     I.set_end(ending)
     I.set_begin(begining)
+    I.afegeix_ordre("info",info)
     I.afegeix_ordre("cerca",cerca)
     I.afegeix_ordre("llistat_buides",llistat)
     I.afegeix_ordre("consulta",consulta)
