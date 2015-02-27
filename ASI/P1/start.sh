@@ -8,3 +8,5 @@ sudo brctl addif br0 tap2
 
 sudo ifconfig tap1 up
 sudo ifconfig tap2 up
+
+brctl show
