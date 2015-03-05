@@ -10,22 +10,22 @@ def ocupa(p,m,c,t):
     """
     if  llegir_placa(int(p)) == ["XXXXXXX","XXXXXXXXXX","XXXXXXXXXX"]:
         if ocupar_placa(int(p),m,c,t) == True:
-            print('Plaça '+str(p)+' ocupada correctament per '+str(m)+str(c)+str(t))
+            print('Plaça '+str(p)+' ocupada correctament per matricula: '+str(m)+' color: '+str(c)+' model: '+str(t))
         else:
             print('Has introduit una plaça o una matricula incorrecte')
     else:
         [a,b,h]=llegir_placa(int(p))
-        print('Plaça '+str(p)+' ja està ocupada per '+str(a)+' color: '+str(b.strip('x00'))+' model: '+str(h.strip('x00')))
+        print('Plaça '+str(p)+' ja està ocupada per matricula: '+str(a)+' color: '+str(b.strip('x00'))+' model: '+str(h.strip('x00')))
 
-def ocupar_first(m):
+def ocupar_first(m,c,t):
     """
     Aquesta funcio ocupa la primera plaça buida que troba amb la matricula m.
     En cas de que es pugui ocupar retorna true, en cas contrari false
     """
-    j = is_in("XXXXXXX")
-    if j >= 0:
-        ocupar_placa(j,m)
-        print(str(m)+' ha ocupat la plaça '+str(j))
+    p = is_in("XXXXXXX")
+    if p >= 0:
+        ocupar_placa(int(p),m,c,t)
+        print('Matricula: '+str(m)+' color: '+str(c)+' model: '+str(t)+' ha ocupat la plaça '+str(p))
     else:
         print('El parking esta complet')
 
@@ -37,17 +37,18 @@ def sortir(m):
     if is_in(m) == -1:
         print('No es traboa dins del parking')
     else:
-        ocupar_placa(is_in(m),"XXXXXXX")
-        print(str(m)+' ha sortit correctament')
+        [a,b,h]=llegir_placa(is_in(m))
+        ocupar_placa(is_in(m),"XXXXXXX",'X','X')
+        print('Matricula: '+str(a)+' color: '+str(b.strip('x00'))+' model: '+str(h.strip('x00'))+' ha sortit correctament')
 
 
 def consulta(p):
-    a = llegir_placa(int(p))
+    [a,b,h] = llegir_placa(int(p))
     if a == "XXXXXXX":
         print('La plaça '+ str(p) +' esta buida')
         return True
     else:
-        print('La plaça '+ str(p) +' esta ocupada per '+ a)
+        print('La plaça '+ str(p) +' esta ocupada per matricula: '+str(a)+' color: '+str(b.strip('x00'))+' model: '+str(h.strip('x00')))
         return False   
 def cerca(m):
     if len(m)<7:
@@ -57,7 +58,7 @@ def cerca(m):
         if a == -1:
             print('No es traboa dins del parking')
         else:
-            print(str(m)+' esta en la plaça '+str(a))
+            print('La matricula: '+str(m)+' esta en la plaça '+str(a))
 
 def llistat():
     """
@@ -83,7 +84,7 @@ def info():
     """
     Et mostra el conjunt de comandes que pots utilitzar en l'interpret.
     """
-    print "Les comanandes són:\n -info\n -exit\n -cerca 'matricula'\n -llistat_buides\n -consulta 'plaça'\n -sortir 'matricula'\n -ocupar_primera 'matricula'\n -ocupar 'plaça' 'matricula'"
+    print "Les comanandes són:\n -info\n -exit\n -cerca 'matricula'\n -llistat_buides\n -consulta 'plaça'\n -sortir 'matricula'\n -ocupar_primera 'matricula' 'color' 'marca'\n -ocupar 'plaça' 'matricula' 'color' 'marca'"
     print "*Aquells noms entre cometes simples '' indiquen el nom de la variable"
 
 if __name__=="__main__":
