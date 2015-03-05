@@ -28,6 +28,7 @@ Enric Lenard Uró
 DETALLS DE LES TASQUES
 =====================
 Hem aconseguir realitzar tots els espectes i documentar totes les funcions.
+Els documents amb 'nom.py' son els corresponents a la Tasca 1 i els 'nom2.py' son els corresponents a la Tasca 4.
 
 Pel que fa el sistema que interactua amb l'ussuari creiem que es d'ús fàcil, ja que quan l'inicialitzes et mostre les indicacions que disposes i com és el seu correcte funcionament.
 Per realitzar una operació cal escriure el nom que set diu i a continuacio posar els atributs que et demanen.
@@ -35,4 +36,4 @@ EXEMPLE:
 - Si volem cercar la matricula 1234ABC
      cerca 1234ABC
 - Si volem ocupar la plaça 45 amb el cotxe 1234ABC color VERD i model OPEL
-     ocupar 45 1234ABC VERD OPEL
+     ocupar 4 1234ABC VERD OPEL
