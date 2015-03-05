@@ -10,12 +10,12 @@ def ocupa(p,m,c,t):
     """
     if  llegir_placa(int(p)) == ["XXXXXXX","XXXXXXXXXX","XXXXXXXXXX"]:
         if ocupar_placa(int(p),m,c,t) == True:
-            print('Plaça '+str(p)+' ocupada correctament per matricula: '+str(m)+' color: '+str(c)+' model: '+str(t))
+            print('La plaça '+str(p)+' ha estat ocupada correctament per\nmatricula: '+str(m)+'\ncolor: '+str(c)+'\nmodel: '+str(t))
         else:
             print('Has introduit una plaça o una matricula incorrecte')
     else:
         [a,b,h]=llegir_placa(int(p))
-        print('Plaça '+str(p)+' ja està ocupada per matricula: '+str(a)+' color: '+str(b.strip('x00'))+' model: '+str(h.strip('x00')))
+        print('La plaça '+str(p)+' ja està ocupada per\nmatricula: '+str(a)+'\ncolor: '+str(b.strip('x00'))+'\nmodel: '+str(h.strip('x00')))
 
 def ocupar_first(m,c,t):
     """
@@ -25,7 +25,7 @@ def ocupar_first(m,c,t):
     p = is_in("XXXXXXX")
     if p >= 0:
         ocupar_placa(int(p),m,c,t)
-        print('Matricula: '+str(m)+' color: '+str(c)+' model: '+str(t)+' ha ocupat la plaça '+str(p))
+        print('La plaça '+str(p)+' ha estat ocupada correctament per\nmatricula: '+str(m)+'\ncolor: '+str(c)+'\nmodel: '+str(t))
     else:
         print('El parking esta complet')
 
@@ -39,7 +39,7 @@ def sortir(m):
     else:
         [a,b,h]=llegir_placa(is_in(m))
         ocupar_placa(is_in(m),"XXXXXXX",'X','X')
-        print('Matricula: '+str(a)+' color: '+str(b.strip('x00'))+' model: '+str(h.strip('x00'))+' ha sortit correctament')
+        print('Ha sortit correctament\nmatricula: '+str(a)+'\ncolor: '+str(b.strip('x00'))+'\nmodel: '+str(h.strip('x00'))+)
 
 
 def consulta(p):
@@ -48,7 +48,7 @@ def consulta(p):
         print('La plaça '+ str(p) +' esta buida')
         return True
     else:
-        print('La plaça '+ str(p) +' esta ocupada per matricula: '+str(a)+' color: '+str(b.strip('x00'))+' model: '+str(h.strip('x00')))
+        print('La plaça '+ str(p) +' esta ocupada per\nmatricula: '+str(a)+'\ncolor: '+str(b.strip('x00'))+'\nmodel: '+str(h.strip('x00')))
         return False   
 def cerca(m):
     if len(m)<7:
