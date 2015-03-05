@@ -38,7 +38,7 @@ def sortir(m):
         print('No es traboa dins del parking')
     else:
         [a,b,h]=llegir_placa(is_in(m))
-        ocupar_placa(is_in(m),"XXXXXXX",'X','X')
+        ocupar_placa(is_in(m),"XXXXXXX","XXXXXXXXXX","XXXXXXXXXX")
         print('Ha sortit correctament\nmatricula: '+str(a)+'\ncolor: '+str(b.strip('x00'))+'\nmodel: '+str(h.strip('x00')))
 
 
