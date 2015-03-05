@@ -95,3 +95,4 @@ def buidar():
         f.write('X')
     f.close()
 
+buidar()
