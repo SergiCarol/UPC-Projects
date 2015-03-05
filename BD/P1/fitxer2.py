@@ -94,5 +94,3 @@ def buidar():
         f.seek(x)
         f.write('X')
     f.close()
-
-buidar()
