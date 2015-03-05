@@ -94,6 +94,3 @@ def buidar():
         f.seek(x)
         f.write('X')
     f.close()
-
-ocupar_placa(1,"7654321","verd","hola")
-print empty_number()
