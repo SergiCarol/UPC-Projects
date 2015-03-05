@@ -39,7 +39,7 @@ def sortir(m):
     else:
         [a,b,h]=llegir_placa(is_in(m))
         ocupar_placa(is_in(m),"XXXXXXX",'X','X')
-        print('Ha sortit correctament\nmatricula: '+str(a)+'\ncolor: '+str(b.strip('x00'))+'\nmodel: '+str(h.strip('x00'))+)
+        print('Ha sortit correctament\nmatricula: '+str(a)+'\ncolor: '+str(b.strip('x00'))+'\nmodel: '+str(h.strip('x00')))
 
 
 def consulta(p):
