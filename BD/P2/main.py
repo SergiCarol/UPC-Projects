@@ -1,6 +1,6 @@
 #-*- encoding: utf-8 -*-
 
-from fitxer2 import *
+from fitxer import *
 from interpret import Interpret
 
 def ocupa(p,m,c,t):
