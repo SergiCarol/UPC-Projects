@@ -3,12 +3,13 @@
 import struct
 
 def hash_(a):
-    hash=0
+    hashh=0
     i =1
     for c in str(a):
-        hash= (101*hash + ord(c))*i
+        hashh= (101*hashh + ord(c))*i
         i+=1
-    return hash%23023
+    print (hashh%23023)
+    return hashh%23023
 
 def llegir(nom):
     
@@ -49,13 +50,12 @@ def ocupar_seg(nom,dni,data):
     if len(dni) == 9 and len(data) == 4: 
         f=open('persones.dat','r+')
         posicio=hash_(nom)
-        f.seek(posicio+23)
+        f.seek(posicio+1)
         [a,b,c] = struct.unpack('10s9s4s',f.read(23))
-        i=2
         while [a,b,c] != ["XXXXXXXXXX","XXXXXXXXX","XXXX"]:
-            f.seek(posicio+23*i)
+            posicio=posicio+1
+            f.seek(posicio)
             [a,b,c] = struct.unpack('10s9s4s',f.read(23))
-            i=i+1
         a = struct.pack('10s9s4s',nom,dni,data)
         f.write(a)
         f.close()
