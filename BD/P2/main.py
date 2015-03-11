@@ -16,6 +16,8 @@ def ocupa(nom,dni,data):
     else:
         [a,b,h]=llegir(nom)
         print('Tenim una colisio per\nNOM: '+str(a.strip('x00'))+'\nDNI: '+str(b)+'\nDATA: '+str(h))
+        if ocupar(nom,dni,data) == True:
+            print('Shan guardat les dades correctament:\nNOM: '+str(nom)+'\nDNI: '+str(dni)+'\nDATA: '+str(data))
 
 def sortir(nom):
     """
@@ -42,24 +44,26 @@ def consulta(p):
 """
 
 def cerca(nom):
-    if len(nom)>10 or len(nom)=0:
+    if len(nom)>10 or len(nom)==0:
         print "El NOM no es correcte"
     else:
         a = is_in(nom)
         if a == -1:
             print('No es traboa dins la taula')
         else:
-            print('El NOM: '+str(nom)+' esta en la plaça '+str(a))
-
+            [a,b,h]=llegir(nom)
+            print('NOM: '+str(a.strip('x00'))+'\nDNI: '+str(b)+'\nDATA: '+str(h))
+"""
 def llistat():
-    """
+    
     Et retorna una llista amb les places que estan buides.
-    """
+    
     if empty_number() == []:
         print('La taula esta plena')
     else:
         print('La taula disposa daquestes places: ')
         print(list(empty_number()))
+"""
 
 def ending():
     """
@@ -75,7 +79,7 @@ def info():
     """
     Et mostra el conjunt de comandes que pots utilitzar en l'interpret.
     """
-    print "Les comanandes són:\n -info\n -exit\n -reset\n -cerca 'NOM'\n -llistat_buides\n -sortir 'NOM'\n -ocupar 'NOM' 'DNI' 'DATA'"
+    print "Les comanandes són:\n -info\n -exit\n -reset\n -consulta 'NOM'\n -esborra 'NOM'\n -insereix 'NOM' 'DNI' 'DATA'"
     print "*Aquells noms entre cometes simples '' indiquen el nom de la variable"
 
 if __name__=="__main__":
@@ -85,12 +89,12 @@ if __name__=="__main__":
     I.set_begin(begining)
     I.afegeix_ordre("info",info)
     I.afegeix_ordre("reset",buidar)
-    I.afegeix_ordre("cerca",cerca)
-    I.afegeix_ordre("llistat_buides",llistat)
+    I.afegeix_ordre("consulta",cerca)
+    #I.afegeix_ordre("llistat_buides",llistat)
     #I.afegeix_ordre("consulta",consulta)
-    I.afegeix_ordre("sortir",sortir)
+    I.afegeix_ordre("esborra",sortir)
     #I.afegeix_ordre("ocupar_primera",ocupar_first)
-    I.afegeix_ordre("ocupar",ocupa)
+    I.afegeix_ordre("insereix",ocupa)
     I.run()
 
 

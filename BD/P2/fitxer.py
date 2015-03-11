@@ -45,6 +45,24 @@ def ocupar(nom,dni,data):
     else:
         return False
 
+def ocupar_seg(nom,dni,data):
+    if len(dni) == 9 and len(data) == 4: 
+        f=open('persones.dat','r+')
+        posicio=hash_(nom)
+        f.seek(posicio+23)
+        [a,b,c] = struct.unpack('10s9s4s',f.read(23))
+        i=2
+        while [a,b,c] != ["XXXXXXXXXX","XXXXXXXXX","XXXX"]:
+            f.seek(posicio+23*i)
+            [a,b,c] = struct.unpack('10s9s4s',f.read(23))
+            i=i+1
+        a = struct.pack('10s9s4s',nom,dni,data)
+        f.write(a)
+        f.close()
+        return True
+    else:
+        return False
+
 def subs(posicio):
     if posicio < 23023:
         f=open('persones.dat','r+')
