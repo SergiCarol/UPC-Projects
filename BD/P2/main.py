@@ -16,7 +16,7 @@ def ocupa(nom,dni,data):
     else:
         [a,b,h]=llegir(nom)
         print('Tenim una colisio per\nNOM: '+str(a.strip('x00'))+'\nDNI: '+str(b)+'\nDATA: '+str(h))
-        if ocupar(nom,dni,data) == True:
+        if ocupar_seg(nom,dni,data) == True:
             print('Shan guardat les dades correctament:\nNOM: '+str(nom)+'\nDNI: '+str(dni)+'\nDATA: '+str(data))
 
 def sortir(nom):
@@ -53,17 +53,17 @@ def cerca(nom):
         else:
             [a,b,h]=llegir(nom)
             print('NOM: '+str(a.strip('x00'))+'\nDNI: '+str(b)+'\nDATA: '+str(h))
-"""
+
 def llistat():
-    
+    """
     Et retorna una llista amb les places que estan buides.
-    
+    """
     if empty_number() == []:
         print('La taula esta plena')
     else:
         print('La taula disposa daquestes places: ')
-        print(list(empty_number()))
-"""
+        print(len(list(empty_number())))
+
 
 def ending():
     """
@@ -90,7 +90,7 @@ if __name__=="__main__":
     I.afegeix_ordre("info",info)
     I.afegeix_ordre("reset",buidar)
     I.afegeix_ordre("consulta",cerca)
-    #I.afegeix_ordre("llistat_buides",llistat)
+    I.afegeix_ordre("llistat_buides",llistat)
     #I.afegeix_ordre("consulta",consulta)
     I.afegeix_ordre("esborra",sortir)
     #I.afegeix_ordre("ocupar_primera",ocupar_first)
