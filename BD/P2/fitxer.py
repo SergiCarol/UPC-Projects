@@ -10,7 +10,7 @@ def hash_(a):
         i+=1
     return hash%23023
 
-def llegir(dni):
+def llegir(nom):
     
     """
     Donada una posicio retorna la matricula, el color i la marxa del 
@@ -20,13 +20,13 @@ def llegir(dni):
     # Obrim el fitxer
     f=open('persones.dat','r+')
     # Calculem la posicio que volem mirar
-    posicio = hash_(dni)
+    posicio = hash_(nom)
     f.seek(posicio)
-    [dni,nom,data] = struct.unpack('9s10s4s',f.read(23))
+    [nom,dni,data] = struct.unpack('10s9s4s',f.read(23))
     f.close()
-    return [dni,nom,data]
+    return [nom,dni,data]
     
-def ocupar(dni,nom,data):
+def ocupar(nom,dni,data):
     
     """
     Comprova si la posicio esta ocupada, en el cas de que no ho estigui
@@ -36,9 +36,9 @@ def ocupar(dni,nom,data):
 
     if len(dni) == 9 and len(data) == 4: 
         f=open('persones.dat','r+')
-        posicio=hash_(dni)
+        posicio=hash_(nom)
         f.seek(posicio)
-        a = struct.pack('9s10s4s',dni,nom,data)
+        a = struct.pack('10s9s4s',nom,dni,data)
         f.write(a)
         f.close()
         return True
@@ -50,7 +50,7 @@ def subs(posicio):
         f=open('persones.dat','r+')
         r = f.read()
         f.seek(posicio)
-        a = struct.pack('9s10s4s',"XXXXXXXXX","XXXXXXXXXX","XXXX")
+        a = struct.pack('10s9s4s',"XXXXXXXXXX","XXXXXXXXX","XXXX")
         f.write(a)
         f.close()
         return True
@@ -58,7 +58,7 @@ def subs(posicio):
         return False
         
 
-def is_in(dni):
+def is_in(nom):
 	
     """
     Aquesta funcio comprova si una matricula es troba dintre 
@@ -68,8 +68,8 @@ def is_in(dni):
     f=open('persones.dat','r')
     r = f.read()
     f.close()
-    if str(dni) in r:
-        j = r.find(dni)
+    if str(nom) in r:
+        j = r.find(nom)
         return j
     else:
         return -1
@@ -88,11 +88,11 @@ def empty_number():
     i = 0
     l = []
     
-    if is_in("XXXXXXXXX") < 0:
+    if is_in("XXXXXXXXXX") < 0:
         return l        
     while i < 23023:
         f.seek(i)
-        i=r.find("XXXXXXXXX",i)
+        i=r.find("XXXXXXXXXX",i)
         
         l.append(i/23)
         i+=23        
