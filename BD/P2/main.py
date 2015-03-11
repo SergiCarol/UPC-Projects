@@ -51,6 +51,7 @@ def cerca(nom):
         if a == -1:
             print('No es traboa dins la taula')
         else:
+            #La posicio l'ha de trobar ammb is_in(), si borrem aquesta varia.
             [a,b,h]=llegir(nom)
             print('NOM: '+str(a.strip('x00'))+'\nDNI: '+str(b)+'\nDATA: '+str(h))
 

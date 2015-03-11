@@ -50,12 +50,15 @@ def ocupar_seg(nom,dni,data):
     if len(dni) == 9 and len(data) == 4: 
         f=open('persones.dat','r+')
         posicio=hash_(nom)
-        f.seek(posicio+1)
+        f.seek(posicio+23)
         [a,b,c] = struct.unpack('10s9s4s',f.read(23))
         while [a,b,c] != ["XXXXXXXXXX","XXXXXXXXX","XXXX"]:
-            posicio=posicio+1
-            f.seek(posicio)
-            [a,b,c] = struct.unpack('10s9s4s',f.read(23))
+            posicio=posicio+23
+            if posicio<=23023:
+                f.seek(posicio)
+                [a,b,c] = struct.unpack('10s9s4s',f.read(23))
+            else:
+                return False
         a = struct.pack('10s9s4s',nom,dni,data)
         f.write(a)
         f.close()
@@ -83,15 +86,15 @@ def is_in(nom):
     el parquing, i retorna la seva posicio, en cas de que no i sigui
     retorna -1
     """
+    #Obrir document llegir i trobar posicio on hi ha el nom, f.seek(pos.nom) tornar a buscar, posar tote sles posiscions en una llista.
     f=open('persones.dat','r')
     r = f.read()
     f.close()
     if str(nom) in r:
-        j = r.find(nom)
+        j=r.find(nom)
         return j
     else:
         return -1
-        
         
 def empty_number():
     
