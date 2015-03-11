@@ -3,31 +3,31 @@
 from fitxer import *
 from interpret import Interpret
 
-def ocupa(dni,nom,data):
+def ocupa(nom,dni,data):
     """ 
     No es comproven coses dintre ocupar_placa, canviar consulta perque retorni True o false
     o bé fer comrpovacions aqui dintre 
     """
-    if  llegir(dni) == ["XXXXXXXXX","XXXXXXXXXX","XXXX"]:
-        if ocupar(dni,nom,data) == True:
-            print('Shan guardat les dades correctament:\nDNI: '+str(dni)+'\nNOM: '+str(nom)+'\nDATA: '+str(data))
+    if  llegir(nom) == ["XXXXXXXXXX","XXXXXXXXX","XXXX"]:
+        if ocupar(nom,dni,data) == True:
+            print('Shan guardat les dades correctament:\nNOM: '+str(nom)+'\nDNI: '+str(dni)+'\nDATA: '+str(data))
         else:
             print('Has introduit una DNI o una DATA incorrectament')
     else:
-        [a,b,h]=llegir(dni)
-        print('Tenim una colisio per\nDNI: '+str(a.strip('x00'))+'\nNOM: '+str(b)+'\nDATA: '+str(h))
+        [a,b,h]=llegir(nom)
+        print('Tenim una colisio per\nNOM: '+str(a.strip('x00'))+'\nDNI: '+str(b)+'\nDATA: '+str(h))
 
-def sortir(dni):
+def sortir(nom):
     """
     Comprovem que la matricula m es troba dins el parking.
     En cas afirmatiu la treiem subtituint el seu valor per 'XXXXXXX'
     """
-    if is_in(dni) == -1:
+    if is_in(nom) == -1:
         print('No es traboa dins de la taula')
     else:
-        [a,b,h]=llegir(dni)
-        if subs(is_in(dni)) == True:
-            print('Ha sortit correctament\nDNI: '+str(a)+'\nNOM: '+str(b.strip('x00'))+'\nDATA: '+str(h.strip('x00')))
+        [a,b,h]=llegir(nom)
+        if subs(is_in(nom)) == True:
+            print('Ha sortit correctament\nNOM: '+str(a)+'\nDNI: '+str(b.strip('x00'))+'\nDATA: '+str(h.strip('x00')))
         else:
             print('Hi ha agut un error')
 """
@@ -41,15 +41,15 @@ def consulta(p):
         return False   
 """
 
-def cerca(dni):
-    if len(dni)!=9:
-        print "El DNI no es correcte"
+def cerca(nom):
+    if len(nom)>10 or len(nom)=0:
+        print "El NOM no es correcte"
     else:
-        a = is_in(dni)
+        a = is_in(nom)
         if a == -1:
             print('No es traboa dins la taula')
         else:
-            print('El DNI: '+str(dni)+' esta en la plaça '+str(a))
+            print('El NOM: '+str(nom)+' esta en la plaça '+str(a))
 
 def llistat():
     """
@@ -75,7 +75,7 @@ def info():
     """
     Et mostra el conjunt de comandes que pots utilitzar en l'interpret.
     """
-    print "Les comanandes són:\n -info\n -exit\n -reset\n -cerca 'DNI'\n -llistat_buides\n -sortir 'DNI'\n -ocupar 'DNI' 'NOM' 'DATA'"
+    print "Les comanandes són:\n -info\n -exit\n -reset\n -cerca 'NOM'\n -llistat_buides\n -sortir 'NOM'\n -ocupar 'NOM' 'DNI' 'DATA'"
     print "*Aquells noms entre cometes simples '' indiquen el nom de la variable"
 
 if __name__=="__main__":
