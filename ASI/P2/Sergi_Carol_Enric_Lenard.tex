@@ -1,0 +1,207 @@
+\documentclass[11p]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{graphicx}
+\begin{document}
+\inputencoding{utf8}
+\part*{Memòria pràctica 2}
+\section{Introducció}
+
+En aquesta pràctica hem configurat un servidor de DNS tan de forma local com autoritària. El programa utilitzat per tal d'aconseguir aquest objectiu es el programa bind9, un servidor de DNS. \\
+
+
+En un primer moment, cap maquina disposava de un servidor de noms definit, així que encara que hi havia connexió a  Internet, (pings funcionaven) no hi havia cap servei que en el cas de que introduíssim un nom, per exemple www.google.com, pogués preguntar quina és la IP d'aquest nom.
+Per tan el primer pas va ser modificar el arxiu resolv.conf trobat a:\\ 	
+	/etc/resolve.conf\\		
+Un cop modificat estem al document, escriurem un servidor de DNS extern. Per exemple el DNS pùblic de google.\\
+
+	nameserver 8.8.8.8 \\
+	\\
+D'aquesta forma ja disposem d'un servei de resolució de noms.
+
+\section{Configuració}
+
+Un cop ja hem instal·lat l'aplicacció bind9, ja disposem d'un servidor de noms local, això significa que podem tornar a l'arxiu resolv.conf i canviar el que teniem per:\\
+
+	nameserver 127.0.0.1\\
+	\\
+Indicant així que el servidor de noms local és la propia màquina.\\
+
+Ara que ja disposem de un DNS local configurarem un DNS autoritatiu. Aquet DNS serà l'encarregat de gestionar el domini gn.asi.itic.cat. Per realitzar això primer de tot tenim que configurar la ip de la nostra maquina virtual perque segueixi el següent format:\\
+
+	172.20.gn.4 \\
+	\\
+en el cas del servidor autoritatiu primari, i \\
+
+	172.20.gn.5\\
+	\\
+en el cas del secundari. Un cop ja tenim les IP's configurades passarem a configurar els fitxers necessaris. El primer fitxer que configurarem serà:\\
+
+	/etc/bind/named.conf.local\\
+	\\
+
+En aquest arxiu es configuren totes les configuracions locals. Per exemple en el nostre cas tindriem el següent:
+	\\
+\label{conf.zona}
+\begin{lstlisting}
+
+// Do any local configuration here
+//
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+zone "g2.asi.itic.cat" {
+        type master;
+        file "/etc/bind/db.g2";
+	allow-transfer {
+		172.20.2.5;
+	};
+};
+
+zone "2.20.172.in-addr.arpa" {
+	type master;
+	file "/etc/bind/db.172";
+};
+\end{lstlisting}
+
+En aquest arxiu configurem la zona g2.asi.itic.cat. Ja que aquest document es part del DNS primari es de tipus master, i l'arxiu de configuració es troba a:\\
+
+\begin{lstlisting}
+	
+	/etc/bind/g2
+
+\end{lstlisting}
+
+D'altre banda també hi ha la configuració de la zona encarregada del DNS invers.
+\newpage 
+\subsection{Configuració DNS primari}
+
+Un cop hem definit la zona és hora de configurar el DNS autoritatiu. Per fer-ho obrir l'arxiu /etc/bind/g2 i l'editem.
+
+\begin{lstlisting}
+	
+
+$TTL    1w
+g2.asi.itic.cat.       IN      SOA     dns1.g2.asi.itic.cat. sergicarol35.gmail.com. (
+                         2015031201         ; Serial
+                                 2h         ; Refresh
+                         	      1h         ; Retry
+                                 1w         ; Expire
+                                 1w )       ; Negative Cache TTL
+
+
+;;;;;;;;;;;;;;;;
+; SERVER NAME
+;;;;;;;;;;;;;;;;
+
+g2.asi.itic.cat.        NS       dns1.g2.asi.itic.cat.
+g2.asi.itic.cat.        NS       dns2.g2.asi.itic.cat.
+
+
+;;;;;;;;;;;;;;;;;
+; MAPA DE NOMS
+;;;;;;;;;;;;;;;;;
+
+dns1.g2.asi.itic.cat.	A    172.20.2.4
+dns2.g2.asi.itic.cat.   A    172.20.2.5
+
+
+\end{lstlisting}
+
+En aquest arxiu estem dient que la nostra zona de autoritat és la de g2.asi.itic.cat, a continuació diem una serie de parametres, com per exemple any,mes,dia,hora de la última modificacció, aixi com cada quant és te que refrescar, quant expira...\\
+
+A continuació definim el Server Name. En aquest apartat definim quins "subgrups" volem crear. En el nostre cas hem creat un subgrup per cada maquina virtual (dns1 i dns2). D'aquesta forma li estem dient que g2.asi.itic.cat dona servei a dns1.g2.asi.itic.cat i a dns2.g2.asi.itic.cat. \\
+
+Finalment tenim el mapa de noms, aqui definim la IP de cada nom definit anteriorment, de tal forma que els dominis amb nom dns1.g2.asi.itic.cat aniran a parar a 172.20.2.4\\
+
+Un cop definit aquest arxiu podem definir el servidor secundari (slave)\\
+
+\subsection{Configuració DNS secundari}
+
+Per tal de definir el DNS secundari tenim que mirar un altre cop com definim la zona del DNS primari. \ref{conf.zona}
+Veiem com indiquem que volem un allow-transfer	a 172.20.2.5 , que es la IP del nostre servidor secundari. D'aquesta forma li diem que aquesta zona es pot transferir a un altre servidor.\\
+En el DNS secundari també tenim que modificar l'arxiu /etc/bind/named.conf.local de la següent forma:
+\begin{lstlisting}
+
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+zone "g2.asi.itic.cat" {
+	type slave;
+	file "secundari.g2.asi.itic.cat";
+	masters { 172.20.2.4; };
+};
+
+zone "2.20.172.in-addr.arpa" {
+	type slave;
+	file "local.g2.asi.itic.cat";
+	masters { 172.20.2.4; };
+};
+
+
+\end{lstlisting}
+
+Aqui podem veure com estem definint la zona g2.asi.itic.cat de tipus esclau i dient que el master es el 172.20.2.4. Això tan ho fem per la zona normal com la inversa.\\
+
+El servidor secondari no necessita configurar cap més arxiu.
+\newpage 
+\section{Proves}
+
+A conitnuació hi han un seguit de proves realitzades amb la eina "dig"\\\\
+\centerline{\includegraphics[scale=0.40]{../Imatges/dig_dns1_torres2.png}}
+En la imatge anterior veiem com podem fer un dig a dns1.g8.asi.itic.cat. També podem fer-ne un a dns2.g8.asi.itic.cat:\\\\
+\centerline{\includegraphics[scale=0.40]{../Imatges/dig_dns2_torres2.png} }\\\\
+Així com un al nostre propi dns1.g2.asi.itic.cat\\\\
+\centerline{\includegraphics[scale=0.40]{../Imatges/dig_propi2.png} }\\\\
+A conitnuació fem un dig a g8.asi.itic.cat\\\\
+\centerline{\includegraphics[scale=0.40]{../Imatges/g8_dig2.png} }\\\\
+També podem veure com fer el mateix a g7.asi.itic.cat funciona:\\\\
+\centerline{\includegraphics[scale=0.40]{../Imatges/g7_dig2.png} }\\\\
+
+
+\section{DNS invers}
+
+Finalment configurarem el DNS invers. El dns invers, com el sue nom indica ens permet buscar el nom de un domini apartir de una adreça IP. Per exemple buscar el DNS invers de 172.20.2.4 tindria que donar com a resposta dns1.g2.asi.itic.cat. La configuració d'aquest arxiu es una mica peculiar, ja que si recuperem el que haviem descrit en el fitxer /etc/bind/named.conf.local podem veure el següent.
+\begin{lstlisting}
+	
+zone "2.20.172.in-addr.arpa" {
+	type master;
+	file "/etc/bind/db.172";
+};
+
+\end{lstlisting}
+
+Podem veure com la definició de la zona ja és peculiar, ja que aquesta tè els 3 primers digits de la IP de la maquina inversament. L'arxiu de configuració sera el db.172\\
+En l'arxiu i trobem el següent: 
+\newpage 
+\begin{lstlisting}
+	
+$TTL    604800
+@       IN      SOA     dns1.g2.asi.itic.cat. sergicarol35.gmail.com. (
+                      201503111         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+
+	IN	NS 	g2.asi.itic.cat.
+
+4 	IN      PTR     dns1.g2.asi.itic.cat.
+5	IN	    PTR		dns2.g2.asi.itic.cat.
+
+\end{lstlisting}
+
+Aqui definim la configuració del DNS invers. Podem veure que es una configuració mes curta que les anteriors. Basicament diem que les IP's que hem definit a la zona (172.20.2) que acabin amb 4 es refereixen a dns1.g2.asi.itic.cat, i les que acaben en 5 es refereixen a dns2.g2.asi.itic.cat.\\
+Per tal de provar això podem utilitzar un altre cop la eina dig amb l'opció -x o sino host 172.20.2.4 \\\\
+
+\centerline{\includegraphics[scale=0.40]{../Imatges/dns_invers2.png} }
+Podem veure com a la secció de answer hi ha el nom de la maquina, dns1.g2.asi.itic.cat i com la autoritat de aquest subdomini pertany a g2.asi.itic.cat.
+
+
+
+\end{document} 
