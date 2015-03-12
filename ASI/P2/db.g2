@@ -1,0 +1,29 @@
+;
+; BIND data file for local loopback interface
+;
+$TTL    1w
+g2.asi.itic.cat.       IN      SOA     dns1.g2.asi.itic.cat. sergicarol35.gmail.com. (
+                         2015031201         ; Serial
+                                 2h         ; Refresh
+                         	 1h         ; Retry
+                                 1w         ; Expire
+                                 1w )       ; Negative Cache TTL
+
+
+;;;;;;;;;;;;;;;;
+; SERVER NAME
+;;;;;;;;;;;;;;;;
+
+g2.asi.itic.cat.        NS       dns1.g2.asi.itic.cat.
+g2.asi.itic.cat.        NS       dns2.g2.asi.itic.cat.
+
+
+;;;;;;;;;;;;;;;;;
+; MAPA DE NOMS
+;;;;;;;;;;;;;;;;;
+
+dns1.g2.asi.itic.cat.	A    172.20.2.4
+dns2.g2.asi.itic.cat.   A    172.20.2.5
+
+
+
