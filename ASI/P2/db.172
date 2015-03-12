@@ -10,8 +10,7 @@ $TTL    604800
                          604800 )       ; Negative Cache TTL
 ;
 
-2.20.172.in-addr.arpa.		IN	NS 	g2.asi.itic.cat.
-2.20.172.in-addr.arpa.		IN	NS	g2.asi.itic.cat.
+	IN	NS 	g2.asi.itic.cat.
 
-4.2.20   IN      PTR     dns1.g2.asi.itic.cat.
-5.2.20	 IN	 PTR	 dns2.g2.asi.itic.cat.
+4 	IN      PTR     dns1.g2.asi.itic.cat.
+5	IN	PTR	dns2.g2.asi.itic.cat.
