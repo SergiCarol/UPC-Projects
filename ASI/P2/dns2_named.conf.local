@@ -6,15 +6,13 @@
 // organization
 //include "/etc/bind/zones.rfc1918";
 zone "g2.asi.itic.cat" {
-        type master;
-        file "/etc/bind/db.g2";
-	allow-transfer {
-		172.20.2.5;
-	};
+	type slave;
+	file "secundari.g2.asi.itic.cat";
+	masters { 172.20.2.4; };
 };
 
 zone "2.20.172.in-addr.arpa" {
-	type master;
-	file "/etc/bind/db.172";
+	type slave;
+	file "local.g2.asi.itic.cat";
+	masters { 172.20.2.4; };
 };
-
