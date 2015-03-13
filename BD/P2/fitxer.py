@@ -54,7 +54,7 @@ def ocupar_seg(nom,dni,data):
         [a,b,c] = struct.unpack('10s9s4s',f.read(23))
         while [a,b,c] != ["XXXXXXXXXX","XXXXXXXXX","XXXX"]:
             posicio=posicio+23
-            if posicio<=23023:
+            if posicio<=23000:
                 f.seek(posicio)
                 [a,b,c] = struct.unpack('10s9s4s',f.read(23))
             else:
