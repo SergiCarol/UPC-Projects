@@ -152,20 +152,21 @@ El servidor secondari no necessita configurar cap més arxiu.
 \section{Proves}
 
 A conitnuació hi han un seguit de proves realitzades amb la eina "dig"\\\\
-\centerline{\includegraphics[scale=0.40]{../Imatges/dig_dns1_torres2.png}}
+\centerline{\includegraphics[scale=0.4]{../../../Imatges/dig_dns1_torres2.png} }
 En la imatge anterior veiem com podem fer un dig a dns1.g8.asi.itic.cat. També podem fer-ne un a dns2.g8.asi.itic.cat:\\\\
-\centerline{\includegraphics[scale=0.40]{../Imatges/dig_dns2_torres2.png} }\\\\
+\centerline{\includegraphics[scale=0.40]{../../../Imatges/dig_dns2_torres2.png} }\\\\
 Així com un al nostre propi dns1.g2.asi.itic.cat\\\\
-\centerline{\includegraphics[scale=0.40]{../Imatges/dig_propi2.png} }\\\\
+\centerline{\includegraphics[scale=0.40]{../../../Imatges/dig_propi2.png} }\\\\
 A conitnuació fem un dig a g8.asi.itic.cat\\\\
-\centerline{\includegraphics[scale=0.40]{../Imatges/g8_dig2.png} }\\\\
+\centerline{\includegraphics[scale=0.40]{../../../Imatges/g8_dig2.png} }\\\\
 També podem veure com fer el mateix a g7.asi.itic.cat funciona:\\\\
-\centerline{\includegraphics[scale=0.40]{../Imatges/g7_dig2.png} }\\\\
+\centerline{\includegraphics[scale=0.40]{../../../Imatges/g7_dig2.png} }\\\\
 
 
 \section{DNS invers}
 
 Finalment configurarem el DNS invers. El dns invers, com el sue nom indica ens permet buscar el nom de un domini apartir de una adreça IP. Per exemple buscar el DNS invers de 172.20.2.4 tindria que donar com a resposta dns1.g2.asi.itic.cat. La configuració d'aquest arxiu es una mica peculiar, ja que si recuperem el que haviem descrit en el fitxer /etc/bind/named.conf.local podem veure el següent.
+
 \begin{lstlisting}
 	
 zone "2.20.172.in-addr.arpa" {
@@ -199,9 +200,12 @@ $TTL    604800
 Aqui definim la configuració del DNS invers. Podem veure que es una configuració mes curta que les anteriors. Basicament diem que les IP's que hem definit a la zona (172.20.2) que acabin amb 4 es refereixen a dns1.g2.asi.itic.cat, i les que acaben en 5 es refereixen a dns2.g2.asi.itic.cat.\\
 Per tal de provar això podem utilitzar un altre cop la eina dig amb l'opció -x o sino host 172.20.2.4 \\\\
 
-\centerline{\includegraphics[scale=0.40]{../Imatges/dns_invers2.png} }
+\centerline{\includegraphics[scale=0.40]{../../../Imatges/dns_invers2.png} }
 Podem veure com a la secció de answer hi ha el nom de la maquina, dns1.g2.asi.itic.cat i com la autoritat de aquest subdomini pertany a g2.asi.itic.cat.
-
+\newpage 
+\section{Conclusions}
+Finalment han quedat que les maquines tenen connexió a internet tan utilitzant IP's com utilitzant noms de domini. L'unic inconvenient es que el bind9 no s'inicia amb les aplicaccions de startup, tenint que activar-lo manualment, ja que sino s'activa el servei de noms no esta disponible.\\
+D'altre banda en el cas de que creesim una nova maquina virtual n'hi hauria suficient ficant com a servidor local de DNS una de les dues maquines configurades, dns1 o dns2.
 
 
 \end{document} 
