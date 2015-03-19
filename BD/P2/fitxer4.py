@@ -16,9 +16,7 @@ def llegir(nom):
     Donada una posicio retorna la matricula, el color i la marxa del 
     cotxe aparcat o XXXXXXX en cas de que estigui buida
     """
-    # Obrim el fitxer
     f=open('persones.dat','r+')
-    # Calculem la posicio que volem mirar
     posicio = hash_(nom)
     f.seek(posicio)
     [nom,dni,data] = struct.unpack('10s9s4s',f.read(23))
@@ -31,11 +29,7 @@ def posicio(p):
     Donada una posicio retorna la matricula, el color i la marxa del 
     cotxe aparcat o XXXXXXX en cas de que estigui buida
     """
-
-    # Obrim el fitxer
     f=open('persones.dat','r+')
-    # Calculem la posicio que volem mirar
-    
     f.seek(p)
     [nom,dni,data] = struct.unpack('10s9s4s',f.read(23))
     f.close()
@@ -112,37 +106,10 @@ def is_in(nom):
     while True:
         j=r.find(a,j+1)
         if j==-1:
-            print llista
             return llista
         else:
             llista.append(j)
     
-def empty_number():
-    
-    """
-    Aquesta funcio busca el numero de plaçes buides que hi ha, 
-    les plaçes buides es representen amb la matricula XXXXXXX
-    per tan busquem totes les posicions per veure quantes tenen
-    espais buits.
-    """
-    f = open('persones.dat','r')
-    r= f.read()
-    i = 0
-    l = []
-    
-    if is_in("XXXXXXXXXX") < 0:
-        return l        
-    while i < 23023:
-        f.seek(i)
-        i=r.find("XXXXXXXXXX",i)
-        
-        l.append(i/23)
-        i+=23        
-    f.close()
-        
-    return l
-
-
 def buidar():
     
     """
