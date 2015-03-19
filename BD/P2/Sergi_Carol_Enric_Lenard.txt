@@ -1,0 +1,39 @@
+========================
+JUSTIFICACIÓ DEL DISSENY
+========================
+Per tal de realitzar aquest pràctica l’hem estructurat de la següent manera.
+Hem realitzat tres fitxers perquè quedes estructurat de la millor forma possible i que fos entenedor.
+
+Per una banda tenim el fitxer/2.py que conté les funcions primàries:	- Llegir plaça
+    - Ocupar plaça
+    - Buscar matricula
+    - Llistar places buides
+    - Buidar el parking
+Aquestes són les funcions bàsiques que seran utilitzades per generar el programa final.
+
+Després tenim el programa main/2.py que conté les funcions definitives, formades amb les funcions bàsiques realitzades en el fitxer/2.py.
+Aquest programa consta de totes les funcions que sens ha ordenat que féssim, juntament amb les declaracions que se li comunicaran a l’usuari quan estigui fent ús d’aquest programa.
+
+Per últim, tenim l’interpret.py, aquest programa és el que ens permet interactuar amb l’usuari i obtenir les seves ordres.
+
+Pel que fa el tractament de dades hem utilitzat la llibreria de struct, ja que és una manera senzilla de agrupar i relacionar diverses dades, i això ens facilita el funcionament del programa un cop l’hem modificat i es pot enregistrar matricula, color i model de cada cotxe que accedeix al parking.
+
+===================
+COMPONENTS DEL GRUP
+===================
+Sergi Carol Bosch
+Enric Lenard Uró
+
+======================
+DETALLS DE LES TASQUES
+======================
+Hem aconseguir realitzar tots els espectes i documentar totes les funcions.
+Els documents amb 'nom.py' son els corresponents a la Tasca 1 i els 'nom2.py' son els corresponents a la Tasca 4.
+
+Pel que fa el sistema que interactua amb l'ussuari creiem que es d'ús fàcil, ja que quan l'inicialitzes et mostre les indicacions que disposes i com és el seu correcte funcionament.
+Per realitzar una operació cal escriure el nom que set diu i a continuacio posar els atributs que et demanen.
+EXEMPLE:
+- Si volem cercar la matricula 1234ABC
+     cerca 1234ABC
+- Si volem ocupar la plaça 45 amb el cotxe 1234ABC color VERD i model OPEL
+     ocupar 4 1234ABC VERD OPEL
