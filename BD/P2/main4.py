@@ -8,18 +8,17 @@ def ocupa(nom,dni,data):
     No es comproven coses dintre ocupar_placa, canviar consulta perque retorni True o false
     o bé fer comrpovacions aqui dintre 
     """
+    if len(nom)>10:
+        print('*La mida del nom ha sigut escursada a 10 caracters.')   
     if  llegir(nom) == ["XXXXXXXXXX","XXXXXXXXX","XXXX"]:
-        if len(nom)>10:
-            print('*La mida del nom ha sigut escursada a 10 caracters')   
         if ocupar(nom,dni,data) == True:
-            print('Shan guardat les dades correctament:\nNOM: '+str(nom)+'\nDNI: '+str(dni)+'\nDATA: '+str(data))
+            print('Shan guardat les dades correctament:\nNOM: '+str(nom[0:10])+'\nDNI: '+str(dni)+'\nDATA: '+str(data))
         else:
             print('Has introduit una DNI o una DATA incorrectament')
     else:
-        [a,b,h]=llegir(nom)
-        print('Tenim una colisio per\nNOM: '+str(a.strip('x00'))+'\nDNI: '+str(b)+'\nDATA: '+str(h))
+        print('TENIM COLISIO.')
         if ocupar_seg(nom,dni,data) == True:
-            print('Shan guardat les dades correctament:\nNOM: '+str(nom)+'\nDNI: '+str(dni)+'\nDATA: '+str(data))
+            print('Shan guardat les dades correctament:\nNOM: '+str(nom[0:10])+'\nDNI: '+str(dni)+'\nDATA: '+str(data))
 
 def sortir(nom,dni):
     """
@@ -28,13 +27,11 @@ def sortir(nom,dni):
     """
     a = is_in(nom)
     if a == []:
-        print('No es traboa dins de la taula')
+        print('No es troba dins de la taula')
     else:
         [c,b,h]=subs(nom,dni)
         print('Ha sortit correctament\nNOM: '+str(c)+'\nDNI: '+str(b.strip('x00'))+'\nDATA: '+str(h.strip('x00')))
     
-
-
 def cerca(nom):
     if len(nom)>10 or len(nom)==0:
         print "El NOM no es correcte"
