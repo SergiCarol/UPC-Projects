@@ -5,8 +5,10 @@ from interpret import Interpret
 
 def ocupa(nom,dni,data):
     """ 
-    No es comproven coses dintre ocupar_placa, canviar consulta perque retorni True o false
-    o bé fer comrpovacions aqui dintre 
+    Introduim unes dades utilitzant le sfuncions corresponents.
+    Comprovem que la mida del nom no supera la permes (10).
+    Inserim les dades en la posicio que li correspon, sempre que aquesta estigui buida.
+    En cas contrari, tenim una colisio amb els noms, busquem la posicio buida següent.
     """
     if len(nom)>10:
         print('*La mida del nom ha sigut escursada a 10 caracters.')   
@@ -24,8 +26,7 @@ def ocupa(nom,dni,data):
 
 def sortir(nom,dni):
     """
-    Comprovem que la matricula m es troba dins el parking.
-    En cas afirmatiu la treiem subtituint el seu valor per 'XXXXXXX'
+    Comprovem que el nom esta dins de la taula, si es aixi esborrem totes les seves dades.
     """
     a = is_in(nom)
     if a == []:
@@ -35,6 +36,10 @@ def sortir(nom,dni):
         print('Ha sortit correctament\nNOM: '+str(c)+'\nDNI: '+str(b)+'\nDATA: '+str(h))
     
 def cerca(nom):
+    """
+    Busquem les dades del nom que estem buscant, si no existeix ens mostra que el nom no es troba dins la taula.
+    Si troba el nom/s ens mostra les seves dades per pantalla.
+    """
     if len(nom)>10 or len(nom)==0:
         print "El NOM no es correcte"
     else:
@@ -45,17 +50,6 @@ def cerca(nom):
             for f in a:
                 [c,b,h]=posicio(f)
                 print('---------------\nNOM: '+str(c)+'\nDNI: '+str(b)+'\nDATA: '+str(h)+'\n----------------')
-
-def llistat():
-    """
-    Et retorna una llista amb les places que estan buides.
-    """
-    if empty_number() == []:
-        print('La taula esta plena')
-    else:
-        print('La taula disposa daquestes places: ')
-        print(len(list(empty_number())))
-
 
 def ending():
     """
