@@ -16,7 +16,6 @@ def llegir(nom):
     Donada una posicio retorna la matricula, el color i la marxa del 
     cotxe aparcat o XXXXXXX en cas de que estigui buida
     """
-
     # Obrim el fitxer
     f=open('persones.dat','r+')
     # Calculem la posicio que volem mirar
@@ -65,10 +64,10 @@ def ocupar_seg(nom,dni,data):
     if len(dni) == 9 and len(data) == 4: 
         f=open('persones.dat','r+')
         posicio=hash_(nom)
-        f.seek(posicio+22)
+        f.seek(posicio+1)
         [a,b,c] = struct.unpack('10s9s4s',f.read(23))
         while [a,b,c] != ["XXXXXXXXXX","XXXXXXXXX","XXXX"]:
-            posicio=posicio+22
+            posicio=posicio+1
             if posicio<=23000:
                 f.seek(posicio)
                 [a,b,c] = struct.unpack('10s9s4s',f.read(23))
@@ -155,12 +154,3 @@ def buidar():
         f.write('X')
     f.close()
     print ('La taula ha sigut buidada')
-
-"""
-ocupar("enric","39397715A","1994")
-ocupar("sergi","39381257J","1994")
-ocupar("Mc","77774525A","1999")
-print llegir("enric")
-print llegir("sergi")
-print llegir("Mc")
-"""
