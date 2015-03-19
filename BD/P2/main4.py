@@ -16,9 +16,11 @@ def ocupa(nom,dni,data):
         else:
             print('Has introduit una DNI o una DATA incorrectament')
     else:
-        print('TENIM COLISIO.')
         if ocupar_seg(nom,dni,data) == True:
+            print('TENIM COLISIO.')
             print('Shan guardat les dades correctament:\nNOM: '+str(nom[0:10])+'\nDNI: '+str(dni)+'\nDATA: '+str(data))
+        else:
+            print('Has introduit una DNI o una DATA incorrectament')
 
 def sortir(nom,dni):
     """
@@ -30,7 +32,7 @@ def sortir(nom,dni):
         print('No es troba dins de la taula')
     else:
         [c,b,h]=subs(nom,dni)
-        print('Ha sortit correctament\nNOM: '+str(c)+'\nDNI: '+str(b.strip('x00'))+'\nDATA: '+str(h.strip('x00')))
+        print('Ha sortit correctament\nNOM: '+str(c)+'\nDNI: '+str(b)+'\nDATA: '+str(h))
     
 def cerca(nom):
     if len(nom)>10 or len(nom)==0:
@@ -38,11 +40,11 @@ def cerca(nom):
     else:
         a = is_in(nom)
         if a == []:
-            print('No es traboa dins la taula')
+            print('No es troba dins la taula.')
         else:
             for f in a:
                 [c,b,h]=posicio(f)
-                print('NOM: '+str(c.strip('x00'))+'\nDNI: '+str(b)+'\nDATA: '+str(h))
+                print('---------------\nNOM: '+str(c)+'\nDNI: '+str(b)+'\nDATA: '+str(h)+'\n----------------')
 
 def llistat():
     """
@@ -59,10 +61,10 @@ def ending():
     """
     Funcio que s'executa quan sortim del programa.
     """
-    print "Gracies per utilitzar el PARKING 'CARLE'"
+    print "Gracies per utilitzar els serveis de 'CARLE'"
 
 def begining():
-    print "\n\t\t\t PARKING 'CARLE'"
+    print "\n\t\t\t TAULA 'CARLE'"
     info()
 
 def info():
@@ -80,16 +82,6 @@ if __name__=="__main__":
     I.afegeix_ordre("info",info)
     I.afegeix_ordre("reset",buidar)
     I.afegeix_ordre("consulta",cerca)
-    I.afegeix_ordre("llistat",llistat)
-    #I.afegeix_ordre("consulta",consulta)
     I.afegeix_ordre("esborra",sortir)
-    #I.afegeix_ordre("ocupar_primera",ocupar_first)
     I.afegeix_ordre("insereix",ocupa)
     I.run()
-
-
-#buidar()
-#ocupa("12345678Q","Pep","1994")
-#sortir("12345678Q")
-#cerca("12345678Q")
-#llistat()
