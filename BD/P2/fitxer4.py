@@ -3,6 +3,9 @@
 import struct
 
 def hash_(a):
+    """
+    Calculem la posicio en funcio de la mida del nom que introduim, la qual utilitzarem a la hora d'inserir unes noves dades.
+    """
     hashh=0
     i =1
     for c in str(a):
@@ -13,8 +16,7 @@ def hash_(a):
 def llegir(nom):
     
     """
-    Donada una posicio retorna la matricula, el color i la marxa del 
-    cotxe aparcat o XXXXXXX en cas de que estigui buida
+    Donat un nom trobem la seva posicio a partir del hash i retornem les dades que hi han en aquell lloc [nom,dni,data] 
     """
     f=open('persones.dat','r+')
     posicio = hash_(nom)
@@ -26,8 +28,7 @@ def llegir(nom):
 def posicio(p):
     
     """
-    Donada una posicio retorna la matricula, el color i la marxa del 
-    cotxe aparcat o XXXXXXX en cas de que estigui buida
+    Donada una posicio retorna llegeix els 23 caracters següents i retorna el nom, dni i data que es troban en aquella posicio.
     """
     f=open('persones.dat','r+')
     f.seek(p)
@@ -38,9 +39,8 @@ def posicio(p):
 def ocupar(nom,dni,data):
     
     """
-    Comprova si la posicio esta ocupada, en el cas de que no ho estigui
-    escriu la matricula, el color i la marca, si funciona correctament retorna true,
-    en cas contrari retorna false
+    Comprova que les dades son corretes, despres escrivim el nom, dni i data en el lloc que li correspon segons hash.
+    Si aixo no es correcta retornem False.
     """
 
     if len(dni) == 9 and len(data) == 4: 
@@ -55,6 +55,11 @@ def ocupar(nom,dni,data):
         return False
 
 def ocupar_seg(nom,dni,data):
+    """
+    Ens permet ocupar la següen posicio lliure si la que correspon al seu nom esta ocupada.
+    Comprovem les dades, posteriorment busquem la següent posicio lliure. Un co p trobada escrivim les dades corresponents i retornem True.
+    En cas contrari retornem False.
+    """
     if len(dni) == 9 and len(data) == 4: 
         f=open('persones.dat','r+')
         posicio=hash_(nom)
@@ -76,6 +81,12 @@ def ocupar_seg(nom,dni,data):
         return False
 
 def subs(nom,dni):
+    """
+    A partir del nom i del dni localitzem el nom que volem esborrar.
+    Per trobar el nom llegim el fitxer fins que localitzem el nom i dni.
+    Un cop localitzades ens coloquem a la seva posicio i substituim les dades per 'X'.
+    Finalment retornem les dades qu ehan sigut substituides.
+    """
     f=open('persones.dat','r+')
     r = f.read()
     a=struct.pack('10s9s',nom,dni) 
@@ -91,11 +102,9 @@ def subs(nom,dni):
 def is_in(nom):
 	
     """
-    Aquesta funcio comprova si una matricula es troba dintre 
-    el parquing, i retorna la seva posicio, en cas de que no i sigui
-    retorna -1
-    
-    Obrir document llegir i trobar posicio on hi ha el nom, f.seek(pos.nom) tornar a buscar, posar tote sles posiscions en una llista.
+    Comprovem si un nom es troba dins la taula a partir de la lectura del fitxer.
+    Guardem en una llista les posicions que corresponen a cada posicio que s'ha trobat el nom fins que obtenim -1, que ens indica que ja no ha trobat res mes.
+    Retornem la llista amb les posicion/s del nom.
     """
     f=open('persones.dat','r')
     a=struct.pack('10s',nom) 
@@ -113,7 +122,8 @@ def is_in(nom):
 def buidar():
     
     """
-    Aquesta funcio fica tots els aparcaments buits
+    Ens permet buidar tota la taula.
+    Omplim les 23023 posicions amb 'X'.
     """
     f = open('persones.dat','r+')
     for x in range(23023):
