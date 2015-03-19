@@ -21,7 +21,7 @@ def ocupa(nom,dni,data):
         if ocupar_seg(nom,dni,data) == True:
             print('Shan guardat les dades correctament:\nNOM: '+str(nom)+'\nDNI: '+str(dni)+'\nDATA: '+str(data))
 
-def sortir(nom):
+def sortir(nom,dni):
     """
     Comprovem que la matricula m es troba dins el parking.
     En cas afirmatiu la treiem subtituint el seu valor per 'XXXXXXX'
@@ -30,22 +30,10 @@ def sortir(nom):
     if a == []:
         print('No es traboa dins de la taula')
     else:
-        for f in a:
-            [c,b,h]=posicio(f)
-            if subs(f) == True:
-                print('Ha sortit correctament\nNOM: '+str(c)+'\nDNI: '+str(b.strip('x00'))+'\nDATA: '+str(h.strip('x00')))
-            else:
-                print('Hi ha agut un error')
-"""
-def consulta(p):
-    [a,b,h] = llegir(int(p))
-    if a == "XXXXXXX":
-        print('La plaça '+ str(p) +' esta buida')
-        return True
-    else:
-        print('La plaça '+ str(p) +' esta ocupada per\nmatricula: '+str(a)+'\ncolor: '+str(b.strip('x00'))+'\nmodel: '+str(h.strip('x00')))
-        return False   
-"""
+        [c,b,h]=subs(nom,dni)
+        print('Ha sortit correctament\nNOM: '+str(c)+'\nDNI: '+str(b.strip('x00'))+'\nDATA: '+str(h.strip('x00')))
+    
+
 
 def cerca(nom):
     if len(nom)>10 or len(nom)==0:
@@ -84,7 +72,7 @@ def info():
     """
     Et mostra el conjunt de comandes que pots utilitzar en l'interpret.
     """
-    print "Les comanandes són:\n -info\n -exit\n -reset\n -consulta 'NOM'\n -esborra 'NOM'\n -insereix 'NOM' 'DNI' 'DATA'"
+    print "Les comanandes són:\n -info\n -exit\n -reset\n -consulta 'NOM'\n -esborra 'NOM' 'DNI'\n -insereix 'NOM' 'DNI' 'DATA'"
     print "*Aquells noms entre cometes simples '' indiquen el nom de la variable"
 
 if __name__=="__main__":

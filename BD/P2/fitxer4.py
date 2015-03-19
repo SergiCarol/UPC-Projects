@@ -74,6 +74,7 @@ def ocupar_seg(nom,dni,data):
                 [a,b,c] = struct.unpack('10s9s4s',f.read(23))
             else:
                 return False
+        f.seek(posicio)
         a = struct.pack('10s9s4s',nom,dni,data)
         f.write(a)
         f.close()
@@ -81,19 +82,19 @@ def ocupar_seg(nom,dni,data):
     else:
         return False
 
-def subs(posicio):
-    if posicio < 23023:
-        f=open('persones.dat','r+')
-        r = f.read()
-        f.seek(posicio)
-        a = struct.pack('10s9s4s',"XXXXXXXXXX","XXXXXXXXX","XXXX")
-        f.write(a)
-        f.close()
-        return True
-    else:
-        return False
-        
-
+def subs(nom,dni):
+    f=open('persones.dat','r+')
+    r = f.read()
+    a=struct.pack('10s9s',nom,dni) 
+    p=r.find(a)
+    f.seek(p)
+    [k,b,c] = struct.unpack('10s9s4s',f.read(23))
+    f.seek(p)    
+    u=struct.pack('10s9s4s',"XXXXXXXXXX","XXXXXXXXX","XXXX")
+    f.write(u)
+    f.close()
+    return [k,b,c]
+    
 def is_in(nom):
 	
     """
@@ -107,7 +108,7 @@ def is_in(nom):
     a=struct.pack('10s',nom) 
     r=f.read()
     llista=[]
-    j=0
+    j=-1
     f.close()
     while True:
         j=r.find(a,j+1)
