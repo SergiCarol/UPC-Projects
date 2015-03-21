@@ -1,0 +1,165 @@
+\documentclass[11p]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{graphicx}
+\inputencoding{utf8}
+
+\begin{document}
+\part{Xarxa Social}
+\section{Introduccio}
+
+\section{Tasques}
+\subsection{Obtenir les dades dels usuaris (excepte pwd) que viuen a Manresa}
+
+\begin{lstlisting}
+
+SELECT email,nom,cognom,dataNeixement 
+FROM usuaris 
+WHERE poblacio=='Manresa';
+
+\end{lstlisting}
+Aquesta comanda ens mostra el següent resultat:\\
+
+\begin{tabular}{c c c c}
+	enriclenar@gmail.com & Enric & Lenard & 1994 \\
+    joanalbets@gmail.com & Joan & Albets & 2001\\
+	peregarcia@gmail.com & Pere & Garcia & 1990 \\
+
+\end{tabular}\\\\
+\subsection{Obtenir l’email dels usuaris amb cognom ”Albets”}
+
+\begin{lstlisting}
+
+SELECT email 
+FROM usuaris 
+WHERE cognom=='Albets';
+
+\end{lstlisting}
+Executant aquesta comanda obtenim:\\\\
+\centerline{joanalbets@gmail.com} \\\\
+
+
+\subsection{Visualitzar els amics (nom i cognom) de l’usuari ”Pere”, ”Garcia”(estat=Acceptada)}
+
+\begin{lstlisting}
+SELECT nom,cognom 
+FROM usuaris 
+WHERE email IN (SELECT email2 
+			FROM amistats 
+			WHERE email1='peregarcia@gmail.com' 
+			AND estat='Acceptada') 
+OR email IN (SELECT email1 
+			FROM amistats 
+			WHERE email2='peregarcia@gmail.com' 
+			AND estat ='Acceptada');
+
+\end{lstlisting}
+Amb aquesta comanda busquem dintre la taula d'amistats les persones que han intentat fer amistats amb l'usuari Pere Garcia i també les persones a les quals el Pere Garcia ha intentat fer amistat i la solicitud hagi estat acceptada.\\\\
+\begin{tabular}{c c}
+	Berta & Capdevila \\
+	Enric & Lenard\\
+	Anna & Vidella\\
+	Sergi & Carol\\
+	
+\end{tabular}
+\\\\
+\subsection{Obtenir els amics de l’usaris ”Pere””Garcia”que no són amics de l’usuari ”Jordi””Alba”}
+\begin{lstlisting}
+SELECT * 
+FROM usuaris 
+WHERE email IN 
+	(SELECT email2 
+	FROM amistats 
+	WHERE email1='peregarcia@gmail.com' 
+	AND estat='Acceptada') 
+OR email IN 
+	(SELECT email1 
+	FROM amistats 
+	WHERE email2='peregarcia@gmail.com' 
+	AND estat ='Acceptada') 
+AND email IN 
+	(SELECT email1 
+	FROM amistats 
+	WHERE email2 = 'jordialba@gmail.com' 
+	AND estat != 'Acceptada')
+OR email IN 
+	(SELECT email2 
+	FROM amistats 
+	WHERE email1 = 'jordialba@gmail.com' 
+	AND estat !='Acceptada')
+
+\end{lstlisting}
+Aquesat comanda és similar a la anterior, pero afegim una codicio més en la qual comprovem qui no es amic de l'usuari Jordi Alba\\\\ 
+\begin{tabular}{c c c c c c}
+
+bertacapdavila@nose.com & Berta & Capdevila & Navarcles & 1994 & 1234 \\
+enriclenard@gmail.com & Enric & Lenard & Manresa & 1994 & Correcalles \\
+annavidella@nose.com & Anna & Vidella & Sant Fruitos de Bages & 1991 & 1234 \\
+
+\end{tabular}
+\newpage
+\subsection{Obtenir el nombre total de peticions d’amistat rebutjades}
+
+\begin{lstlisting}
+SELECT count() 
+FROM amistats 
+WHERE estat == 'Rebutjada';
+
+\end{lstlisting}
+
+Executant aquesta comanda contem el numero de peticions rebutjades.\\\\
+\centerline{5}
+
+\subsection{Obtenir les dades (noms,cognoms) d’amics que viuen a Manresa}
+
+\begin{lstlisting}
+SELECT nom,cognom FROM usuaris WHERE (poblacio='Manresa') AND ((email IN (SELECT email1 FROM amistats WHERE ((estat='Acceptada') AND (email2 IN (SELECT email FROM usuaris WHERE (poblacio='Manresa')))))) OR (email IN (SELECT email2 FROM amistats WHERE ((estat = 'Acceptada') AND (email1 IN (SELECT email FROM usuaris WHERE (poblacio = 'Manresa')))))));
+\end{lstlisting}
+
+Pere|Garcia
+Enric|Lenard
+
+\subsection{Obtenir, per cada usuari, el nombre de peticions rebutjades}
+\begin{lstlisting}
+SELECT usuaris.nom, count() FROM amistats, usuaris WHERE (estat='Rebutjada') AND (usuaris.email==amistats.email1) GROUP BY usuaris.nom;
+\end{lstlisting}
+
+Berta|1
+Jordi|1
+Pere|3
+
+\subsection{Obtenir els usuaris que no son amics de ”Ana”, ”Vilella”}
+\begin{lstlisting}
+SELECT nom,cognom FROM usuaris WHERE (email IN (SELECT email1 FROM amistats WHERE email2='annavidella@nose.com' AND estat != 'Acceptada') OR email IN (SELECT email2 FROM amistats WHERE email1='annavidella@nose.com' AND estat !='Acceptada'));
+\end{lstlisting}
+
+Jordi|Alba
+Sergi|Carol
+
+
+
+\part{Empleats}
+
+\section{Introduccio}
+
+\section{Tasques}
+
+\subsection{Obtenir els identificadors i ciutat de residencia dels empleats que treballen per l'empresa "Bank Newton"} 
+\begin{lstlisting}
+SELECT id_empleat,ciutat 
+FROM empleat 
+WHERE (id_empleat IN (
+	SELECT id_empleat 
+	FROM feina 
+	WHERE (id_empresa == 12))
+	);
+\end{lstlisting}
+
+Resultat\\\\
+22|Sant Fruitos de Bages
+123|Manresa
+1238|Manresa
+1239|Manresa
+
+
+\end{document}
