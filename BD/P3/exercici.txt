@@ -1,5 +1,7 @@
 1)
-SELECT result_time,nodeid FROM sensors WHERE light>550;
+SELECT result_time, nodeid
+FROM sensors
+WHERE light>550;
 2015-03-05 09:10:18|1
 2015-03-05 10:20:10|1
 2015-03-05 10:30:11|1
@@ -30,11 +32,21 @@ SELECT result_time,nodeid FROM sensors WHERE light>550;
 
 
 2)
-SELECT avg(light) FROM sensors WHERE nodeid == 1 AND time(result_time) BETWEEN '06:00:00' AND '09:59:59' ;
+SELECT avg(light)
+FROM sensors
+WHERE nodeid == 1 AND time(result_time) BETWEEN '06:00:00' AND '09:59:59';
+
 555.0
 
 3)
-SELECT avg(light) FROM sensors WHERE nodeid == 1 AND time(result_time) BETWEEN '09:00:01' AND '10:59:59' ;
+SELECT avg(light)
+FROM sensors
+WHERE nodeid == 1 AND time(result_time) BETWEEN '09:00:01' AND '10:59:59';
+
 556.0
 
 4)
+SELECT avg(temp)
+FROM sensors
+WHERE nodeid == 2 AND (time(result_time) == '06:00:00' OR time(result_time) == '07:00:00' OR time(result_time) == '08:00:00' OR time(result_time) == '09:00:00');
+
