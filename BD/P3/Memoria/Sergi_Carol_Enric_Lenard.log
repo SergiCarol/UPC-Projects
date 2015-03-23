@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.3.12)  21 MAR 2015 16:26
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.3.12)  22 MAR 2015 15:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -702,23 +702,48 @@ Overfull \hbox (1101.01471pt too wide) in paragraph at lines 133--134
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[3] [4] (./Sergi_Carol_Enric_Lenard.aux) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 158--163
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 158--163
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 158--163
+
+ []
+
+[3]
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 172.
+
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 172.
+ [4]
+(./Sergi_Carol_Enric_Lenard.aux) ) 
 Here is how much of TeX's memory you used:
- 3298 strings out of 495028
- 44667 string characters out of 6181497
+ 3314 strings out of 495028
+ 44944 string characters out of 6181497
  113712 words of memory out of 5000000
- 6490 multiletter control sequences out of 15000+600000
+ 6503 multiletter control sequences out of 15000+600000
  5157 words of font info for 19 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  37i,6n,32p,458b,1514s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmsy10.pfb>
-Output written on Sergi_Carol_Enric_Lenard.pdf (4 pages, 51614 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy10.pfb>
+Output written on Sergi_Carol_Enric_Lenard.pdf (4 pages, 60060 bytes).
 PDF statistics:
- 29 PDF objects out of 1000 (max. 8388607)
- 19 compressed objects within 1 object stream
+ 33 PDF objects out of 1000 (max. 8388607)
+ 22 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
