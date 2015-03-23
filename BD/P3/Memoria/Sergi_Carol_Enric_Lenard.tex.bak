@@ -144,9 +144,114 @@ Sergi|Carol
 
 \section{Tasques}
 
-\subsection{Obtenir els identificadors i ciutat de residencia dels empleats que treballen per l'empresa
-"Bank Newton"} 
+\subsection{Obtenir els identificadors i ciutat de residencia dels empleats que treballen per l'empresa "Bank Newton"} 
+\begin{lstlisting}
+SELECT id_empleat,ciutat 
+FROM empleat 
+WHERE (id_empleat IN (
+	SELECT id_empleat 
+	FROM feina 
+	WHERE (id_empresa == 12))
+	);
+\end{lstlisting}
 
+Resultat\\\\
+22|Sant Fruitos de Bages
+123|Manresa
+1238|Manresa
+1239|Manresa\\\\
 
+\subsection{Obtenir totes les dades dels empeleats que treballen per "Bank Newton" guanyen mes de 10000}
+\begin{lstlisting}
+SELECT id_empleat,carrer,ciutat 
+FROM empleat 
+WHERE id_empleat IN 
+	(SELECT id_empleat 
+	FROM feina 
+	WHERE id_empresa == 12 
+	AND salari >10000
+	);
+\end{lstlisting}
 
+Resultat:\\\\
+1239|Carretera de Cardona|Manresa
+
+\subsection{Obtenir els identificadors dels treballadors que no treballen a ”Bank Newton”}
+
+\begin{lstlisting}
+SELECT id_empleat 
+FROM empleat 
+WHERE id_empleat 
+IN (SELECT id_empleat 
+	FROM feina 
+	WHERE id_empresa != 12
+	);
+\end{lstlisting}
+Resultat:\\\\
+1235
+1236
+1237
+
+\subsection{Trobar tots els treballadors que guanyen m ́es que cada empleat de ”Bank Newton”}
+
+\begin{lstlisting}
+SELECT * 
+FROM empleat 
+WHERE id_empleat IN 
+	(SELECT id_empleat 
+	FROM feina 
+	WHERE id_empresa != 12 
+	AND salari > (SELECT sum(salari) 
+		FROM feina 
+		WHERE id_empresa = 12)
+		); 
+\end{lstlisting}
+
+Resultat: \\\\
+1236|Carretera de Vic|Sant Fruitos de Bages
+
+\subsection{Troba la empresa que t ́e m ́es empleats}
+
+\begin{lstlisting}
+SELECT id_empresa,count() AS count 
+FROM feina 
+GROUP BY id_empresa 
+ORDER BY count DESC
+LIMIT 1;
+\end{lstlisting}
+Resultat\\\\
+12|4
+
+\subsection{Modifica la ciutat de resid`encia de l’empleat 22 a ’Barcelona’}
+\begin{lstlisting}
+UPDATE empleat SET ciutat = 'Barcelona' WHERE id_empleat == 22;
+SELECT ciutat FROM empleat ;
+\end{lstlisting}
+Resultat:\\\\
+
+Manresa
+Barcelona
+Manresa
+Sant Fruitos de Bages
+Manresa
+Manresa
+Manresa
+
+\subsection{Apuja el sou de tots els empleats coordinadors un 10}
+
+\begin{lstlisting}
+UPDATE feina SET salari = salari + 10  WHERE id_empleat IN (SELECT id_empleat FROM manager);
+SELECT id_empleat,salari FROM feina WHERE id_empleat IN (SELECT id_empleat FROM manager);
+\end{lstlisting}
+
+Resultat:\\\\
+
+1236|100010
+1239|50010
+
+\subsection{Troba el nom de tots els empleats que viuen a la mateixa ciutat on treballen}
+
+\begin{lstlisting}
+
+\end{lstlisting}
 \end{document}
