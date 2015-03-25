@@ -34,19 +34,37 @@ WHERE light>550;
 2)
 SELECT avg(light)
 FROM sensors
-WHERE nodeid == 1 AND time(result_time) BETWEEN '06:00:00' AND '09:59:59';
+WHERE nodeid = 1 AND time(result_time) BETWEEN '18:00:00' AND '21:59:59';
 
 555.0
 
 3)
-SELECT avg(light)
+SELECT avg(temp), avg(light)
 FROM sensors
-WHERE nodeid == 1 AND time(result_time) BETWEEN '09:00:01' AND '10:59:59';
+WHERE (time(result_time) BETWEEN '18:00:01' AND '21:59:59')
+EXCEPT SELECT avg(temp), avg(light)
+FROM sensors
+WHERE voltage > 418;
 
-556.0
+SELECT avg(temp), avg(light)
+FROM sensors
+WHERE (time(result_time) BETWEEN '18:00:01' AND '21:59:59')
+EXCEPT SELECT avg(temp), avg(light)
+FROM sensors
+WHERE voltage > 418;
+
+5.0|556.0
 
 4)
 SELECT avg(temp)
 FROM sensors
-WHERE nodeid == 2 AND (time(result_time) == '06:00:00' OR time(result_time) == '07:00:00' OR time(result_time) == '08:00:00' OR time(result_time) == '09:00:00');
+WHERE nodeid = 2 AND (time(result_time) = '18:01:00' OR time(result_time) = '19:00:00' OR time(result_time) = '20:00:00' OR time(result_time) = '21:00:00');
+
+5)
+SELECT sensor1.result_time, sensor2.result_time,sensor1.epoch, sensor2.epoch
+FROM sensors as sensor1, sensors as sensor2
+WHERE (sensor1.result_time - sensor2.result_time) < '0000-00-00 00:00:01'
+AND (sensor1.result_time - sensor2.result_time) > '0000-00-00 00:00:00'
+AND sensor1.nodeid = 1
+AND sensor2.nodeid = 2;
 
