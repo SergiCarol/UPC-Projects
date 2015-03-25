@@ -254,9 +254,9 @@ Resultat:\\\\
 \begin{lstlisting}
 SELECT id_empleat
 FROM feina
-WHERE (SELECT ciutat
+WHERE ((SELECT ciutat
 FROM empleat) == (SELECT ciutat
-FROM empresa);
+FROM empresa));
 
 
 \end{lstlisting}
@@ -264,13 +264,13 @@ FROM empresa);
 \subsection{Troba tots els empleats que viuen a la mateixa ciutat que els seus coordinadors}
 
 \begin{lstlisting}
-SELECT id_empleat
+SELECT id_empleat, id_empleat_coordinador
+FROM manager
+WHERE (SELECT ciutat
 FROM empleat
-WHERE
-
-SELECT ciutat
-from empleat
-
+WHERE id_empleat=id_empleat) = (SELECT ciutat
+FROM empleat
+WHERE id_empleat=id_empleat_coordinador);
 
 \end{lstlisting}
 \end{document}
