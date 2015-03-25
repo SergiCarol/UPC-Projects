@@ -252,6 +252,25 @@ Resultat:\\\\
 \subsection{Troba el nom de tots els empleats que viuen a la mateixa ciutat on treballen}
 
 \begin{lstlisting}
+SELECT id_empleat
+FROM feina
+WHERE (SELECT ciutat
+FROM empleat) == (SELECT ciutat
+FROM empresa);
+
+
+\end{lstlisting}
+
+\subsection{Troba tots els empleats que viuen a la mateixa ciutat que els seus coordinadors}
+
+\begin{lstlisting}
+SELECT id_empleat
+FROM empleat
+WHERE
+
+SELECT ciutat
+from empleat
+
 
 \end{lstlisting}
 \end{document}
