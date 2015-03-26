@@ -1,0 +1,26 @@
+===================
+COMPONENTS DEL GRUP
+===================
+
+Sergi Carol Bosch
+Enric Lenard Uró
+
+======================
+DETALLS DE LES TASQUES
+======================
+
+SENSORS
+-------
+
+En algun apartat hem considerat que les hores 6PM era equivalent a 06:00:00, però en d'altres s'ha considerat que és 18:00:00, ja que si consultes l'hora actual et retorna el valor en format 24H.
+
+XARXA SOCIAL
+------------
+
+Quan ens demana que calculem els "rebuig" nomes considerem aquells que et fan, no els que tu fas.
+     Exemple: Si Enric envia solicitud a Sergi i aquest la rebuiga, Enric té un rebuig però Sergi no.
+
+EMPLEATS
+--------
+
+Hem considerat que id_empresa és un numero identiicatori, per tant quan ens demana que cerquem l'empresa "Bank Newton" nosaltres cerquem '12', ja que és un dels id_empresa que utilitzem.

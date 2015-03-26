@@ -51,7 +51,7 @@ endobj
 << /Outlines 16 0 R /PageLabels 29 0 R /PageMode /UseNone /Pages 20 0 R /Type /Catalog >>
 endobj
 15 0 obj
-<< /Author () /CreationDate (D:20150326223523-01'00') /Creator (\(unspecified\)) /Keywords () /Producer (ReportLab PDF Library - www.reportlab.com) /Subject (\(unspecified\)) 
+<< /Author () /CreationDate (D:20150326230216-01'00') /Creator (\(unspecified\)) /Keywords () /Producer (ReportLab PDF Library - www.reportlab.com) /Subject (\(unspecified\)) 
   /Title (PR\300CTICA 3) >>
 endobj
 16 0 obj
@@ -4503,11 +4503,11 @@ Q
 endstream
 endobj
 28 0 obj
-<< /Length 5865 >>
+<< /Length 6155 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
 q
-1 0 0 1 62.69291 643.8236 cm
+1 0 0 1 62.69291 691.8236 cm
 q
 q
 1 0 0 1 0 0 cm
@@ -4517,81 +4517,97 @@ q
 .662745 .662745 .662745 RG
 .5 w
 .960784 .960784 .862745 rg
-n -6 -6 468.6898 120 re B*
+n -6 -6 468.6898 72 re B*
 Q
 q
 .960784 .960784 .862745 rg
-n 0 96.75 36 12 re f*
+n 0 48.75 36 12 re f*
 .960784 .960784 .862745 rg
-n 42 96.75 60 12 re f*
+n 42 48.75 54 12 re f*
 .960784 .960784 .862745 rg
-n 0 84.75 24 12 re f*
+n 96 48.75 6 12 re f*
 .960784 .960784 .862745 rg
-n 30 84.75 42 12 re f*
+n 102 48.75 60 12 re f*
 .960784 .960784 .862745 rg
-n 0 72.75 30 12 re f*
+n 0 36.75 24 12 re f*
 .960784 .960784 .862745 rg
-n 36 72.75 36 12 re f*
+n 30 36.75 42 12 re f*
 .960784 .960784 .862745 rg
-n 78 72.75 6 12 re f*
+n 72 36.75 6 12 re f*
 .960784 .960784 .862745 rg
-n 90 72.75 6 12 re f*
+n 84 36.75 42 12 re f*
 .960784 .960784 .862745 rg
-n 30 60.75 36 12 re f*
+n 132 36.75 12 12 re f*
 .960784 .960784 .862745 rg
-n 72 60.75 36 12 re f*
+n 150 36.75 54 12 re f*
 .960784 .960784 .862745 rg
-n 30 48.75 24 12 re f*
+n 204 36.75 6 12 re f*
 .960784 .960784 .862745 rg
-n 60 48.75 42 12 re f*
+n 216 36.75 42 12 re f*
 .960784 .960784 .862745 rg
-n 30 36.75 30 12 re f*
+n 0 24.75 30 12 re f*
 .960784 .960784 .862745 rg
-n 66 36.75 60 12 re f*
+n 36 24.75 42 12 re f*
 .960784 .960784 .862745 rg
-n 132 36.75 6 12 re f*
+n 78 24.75 6 12 re f*
 .960784 .960784 .862745 rg
-n 144 36.75 6 12 re f*
+n 84 24.75 60 12 re f*
 .960784 .960784 .862745 rg
-n 78 24.75 36 12 re f*
+n 144 24.75 6 12 re f*
 .960784 .960784 .862745 rg
-n 120 24.75 132 12 re f*
+n 150 24.75 54 12 re f*
 .960784 .960784 .862745 rg
-n 78 12.75 24 12 re f*
+n 204 24.75 6 12 re f*
 .960784 .960784 .862745 rg
-n 108 12.75 42 12 re f*
+n 210 24.75 60 12 re f*
 .960784 .960784 .862745 rg
-n 78 .75 30 12 re f*
+n 78 12.75 18 12 re f*
 .960784 .960784 .862745 rg
-n 114 .75 42 12 re f*
+n 102 12.75 42 12 re f*
 .960784 .960784 .862745 rg
-n 156 .75 6 12 re f*
+n 144 12.75 6 12 re f*
 .960784 .960784 .862745 rg
-n 162 .75 60 12 re f*
+n 150 12.75 132 12 re f*
 .960784 .960784 .862745 rg
-n 228 .75 6 12 re f*
+n 282 12.75 6 12 re f*
 .960784 .960784 .862745 rg
-n 240 .75 42 12 re f*
+n 288 12.75 42 12 re f*
 .960784 .960784 .862745 rg
-n 282 .75 6 12 re f*
+n 330 12.75 6 12 re f*
 .960784 .960784 .862745 rg
-n 288 .75 60 12 re f*
+n 336 12.75 60 12 re f*
 .960784 .960784 .862745 rg
-n 348 .75 18 12 re f*
-BT 1 0 0 1 0 98 Tm 12 TL /F3 10 Tf 0 .501961 0 rg (SELECT) Tj /F4 10 Tf 0 0 0 rg ( ) Tj 0 0 0 rg (id_empleat) Tj 0 0 0 rg  T* /F3 10 Tf 0 .501961 0 rg (FROM) Tj /F4 10 Tf 0 0 0 rg ( ) Tj 0 0 0 rg (empleat) Tj 0 0 0 rg  T* /F3 10 Tf 0 .501961 0 rg (WHERE) Tj /F4 10 Tf 0 0 0 rg ( ) Tj 0 0 0 rg (ciutat) Tj 0 0 0 rg ( ) Tj .4 .4 .4 rg (=) Tj 0 0 0 rg ( ) Tj 0 0 0 rg (\() Tj 0 0 0 rg  T* (     ) Tj /F3 10 Tf 0 .501961 0 rg (SELECT) Tj /F4 10 Tf 0 0 0 rg ( ) Tj 0 0 0 rg (ciutat) Tj 0 0 0 rg  T* (     ) Tj /F3 10 Tf 0 .501961 0 rg (FROM) Tj /F4 10 Tf 0 0 0 rg ( ) Tj 0 0 0 rg (empresa) Tj 0 0 0 rg  T* (     ) Tj /F3 10 Tf 0 .501961 0 rg (WHERE) Tj /F4 10 Tf 0 0 0 rg ( ) Tj 0 0 0 rg (id_empresa) Tj 0 0 0 rg ( ) Tj .4 .4 .4 rg (=) Tj 0 0 0 rg ( ) Tj 0 0 0 rg (\() Tj 0 0 0 rg  T* (             ) Tj /F3 10 Tf 0 .501961 0 rg (SELECT) Tj /F4 10 Tf 0 0 0 rg ( ) Tj 0 0 0 rg (id_empleat_coordinador) Tj 0 0 0 rg  T* (             ) Tj /F3 10 Tf 0 .501961 0 rg (FROM) Tj /F4 10 Tf 0 0 0 rg ( ) Tj 0 0 0 rg (manager) Tj 0 0 0 rg  T* (             ) Tj /F3 10 Tf 0 .501961 0 rg (WHERE) Tj /F4 10 Tf 0 0 0 rg ( ) Tj 0 0 0 rg (empleat) Tj 0 0 0 rg (.) Tj 0 0 0 rg (id_empleat) Tj 0 0 0 rg ( ) Tj .4 .4 .4 rg (=) Tj 0 0 0 rg ( ) Tj 0 0 0 rg (manager) Tj 0 0 0 rg (.) Tj 0 0 0 rg (id_empleat) Tj 0 0 0 rg (\)\);) Tj T* ET
+n 78 .75 18 12 re f*
+.960784 .960784 .862745 rg
+n 102 .75 42 12 re f*
+.960784 .960784 .862745 rg
+n 144 .75 6 12 re f*
+.960784 .960784 .862745 rg
+n 150 .75 36 12 re f*
+.960784 .960784 .862745 rg
+n 186 .75 6 12 re f*
+.960784 .960784 .862745 rg
+n 192 .75 54 12 re f*
+.960784 .960784 .862745 rg
+n 246 .75 6 12 re f*
+.960784 .960784 .862745 rg
+n 252 .75 36 12 re f*
+.960784 .960784 .862745 rg
+n 288 .75 6 12 re f*
+BT 1 0 0 1 0 50 Tm 12 TL /F3 10 Tf 0 .501961 0 rg (SELECT) Tj /F4 10 Tf 0 0 0 rg ( ) Tj 0 0 0 rg (empleatCO) Tj 0 0 0 rg (.) Tj 0 0 0 rg (id_empleat) Tj 0 0 0 rg  T* /F3 10 Tf 0 .501961 0 rg (FROM) Tj /F4 10 Tf 0 0 0 rg ( ) Tj 0 0 0 rg (empleat) Tj 0 0 0 rg (,) Tj 0 0 0 rg ( ) Tj 0 0 0 rg (empleat) Tj 0 0 0 rg ( ) Tj /F3 10 Tf 0 .501961 0 rg (as) Tj /F4 10 Tf 0 0 0 rg ( ) Tj 0 0 0 rg (empleatCO) Tj 0 0 0 rg (,) Tj 0 0 0 rg ( ) Tj 0 0 0 rg (manager) Tj 0 0 0 rg  T* /F3 10 Tf 0 .501961 0 rg (WHERE) Tj /F4 10 Tf 0 0 0 rg ( ) Tj 0 0 0 rg (manager) Tj 0 0 0 rg (.) Tj 0 0 0 rg (id_empleat) Tj .4 .4 .4 rg (=) Tj 0 0 0 rg (empleatCO) Tj 0 0 0 rg (.) Tj 0 0 0 rg (id_empleat) Tj 0 0 0 rg  T* (             ) Tj /F3 10 Tf 0 .501961 0 rg (AND) Tj /F4 10 Tf 0 0 0 rg ( ) Tj 0 0 0 rg (manager) Tj 0 0 0 rg (.) Tj 0 0 0 rg (id_empleat_coordinador) Tj .4 .4 .4 rg (=) Tj 0 0 0 rg (empleat) Tj 0 0 0 rg (.) Tj 0 0 0 rg (id_empleat) Tj 0 0 0 rg  T* (             ) Tj /F3 10 Tf 0 .501961 0 rg (AND) Tj /F4 10 Tf 0 0 0 rg ( ) Tj 0 0 0 rg (empleat) Tj 0 0 0 rg (.) Tj 0 0 0 rg (ciutat) Tj .4 .4 .4 rg (=) Tj 0 0 0 rg (empleatCO) Tj 0 0 0 rg (.) Tj 0 0 0 rg (ciutat) Tj 0 0 0 rg (;) Tj T* ET
 Q
 Q
 Q
 Q
 Q
 q
-1 0 0 1 62.69291 629.8236 cm
+1 0 0 1 62.69291 677.8236 cm
 Q
 q
-1 0 0 1 62.69291 629.8236 cm
+1 0 0 1 62.69291 677.8236 cm
 Q
 q
-1 0 0 1 62.69291 617.8236 cm
+1 0 0 1 62.69291 665.8236 cm
 0 0 0 rg
 BT /F1 10 Tf 12 TL ET
 q
@@ -4612,10 +4628,10 @@ q
 Q
 Q
 q
-1 0 0 1 62.69291 617.8236 cm
+1 0 0 1 62.69291 665.8236 cm
 Q
 q
-1 0 0 1 62.69291 488.6236 cm
+1 0 0 1 62.69291 536.6236 cm
 q
 q
 1 0 0 1 0 0 cm
@@ -4746,20 +4762,20 @@ xref
 0000126006 00000 n
 0000139801 00000 n
 0000151424 00000 n
-0000157346 00000 n
-0000157457 00000 n
-0000157494 00000 n
-0000157531 00000 n
-0000157568 00000 n
-0000157605 00000 n
-0000157642 00000 n
-0000157679 00000 n
-0000157716 00000 n
+0000157636 00000 n
+0000157747 00000 n
+0000157784 00000 n
+0000157821 00000 n
+0000157858 00000 n
+0000157895 00000 n
+0000157932 00000 n
+0000157969 00000 n
+0000158006 00000 n
 trailer
 << /ID 
  % ReportLab generated PDF document -- digest (http://www.reportlab.com)
- [(\236\023Cj\031\245\367\340,3Cs\352?\242}) (\236\023Cj\031\245\367\340,3Cs\352?\242})]
+ [(\032\030\233\030\221Fh\257>8`\255\212,\351S) (\032\030\233\030\221Fh\257>8`\255\212,\351S)]
  /Info 15 0 R /Root 14 0 R /Size 38 >>
 startxref
-157753
+158043
 %%EOF
