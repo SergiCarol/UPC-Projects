@@ -414,15 +414,11 @@ TEMPERATURE
 
 .. code-block:: sql
 
-   SELECT id_empleat
-   FROM empleat
-   WHERE ciutat = (
-	SELECT ciutat
-	FROM empresa
-	WHERE id_empresa = (
-		SELECT id_empleat_coordinador
-		FROM manager
-		WHERE empleat.id_empleat = manager.id_empleat));
+   SELECT empleatCO.id_empleat 
+   FROM empleat, empleat as empleatCO, manager
+   WHERE manager.id_empleat=empleatCO.id_empleat
+		AND manager.id_empleat_coordinador=empleat.id_empleat
+		AND empleat.ciutat=empleatCO.ciutat;
 
 10) Elimina a 'feina' totes les tuples corresponents a empleats que treballin a "Bank Newton".
 
