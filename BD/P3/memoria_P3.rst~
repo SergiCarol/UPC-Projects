@@ -1,0 +1,227 @@
+Pràctica 3
+==========
+
+:Autors: Pol Rodoreda i Xavi Llordella
+:Data: 13/03/2015
+
+Sensors
+-------
+
+Question 1
+..........
+
+.. code-block:: sql
+
+   sqlite> SELECT nodeid, result_time FROM sensors WHERE light > 550;
+
+   nodeid      result_time        
+   ----------  -------------------
+   1           2015-03-05 09:10:18
+   1           2015-03-05 10:20:10
+   1           2015-03-05 10:30:11
+   1           2015-03-05 11:33:15
+   1           2015-03-05 11:40:23
+   1           2015-03-05 12:42:28
+   1           2015-03-13 11:20:48
+   1           2015-03-13 11:20:48
+   1           2015-03-13 11:20:48
+   2           2015-03-05 09:10:18
+   2           2015-03-05 10:20:10
+   2           2015-03-05 10:30:11
+   2           2015-03-05 11:33:15
+   2           2015-03-05 11:40:23
+   2           2015-03-05 12:42:28
+   2           2015-03-13 11:20:49
+   2           2015-03-13 11:20:49
+   2           2015-03-13 11:20:49
+   3           2015-03-05 09:10:18
+   3           2015-03-05 10:20:10
+   3           2015-03-05 10:30:11
+   3           2015-03-05 11:33:15
+   3           2015-03-05 11:40:23
+   3           2015-03-05 12:42:28
+   3           2015-03-13 11:20:50
+   3           2015-03-13 11:20:50
+   3           2015-03-13 11:20:51
+   1           2015-03-05 18:10:18
+   1           2015-03-05 19:10:18
+   1           2015-03-05 20:10:18
+   1           2015-03-05 21:10:18
+   1           2015-03-05 21:00:00
+		
+Question 2
+..........
+
+.. code-block:: sql
+	
+   sqlite> SELECT avg(light) FROM sensors WHERE nodeid == '1' and
+   time(result_time) BETWEEN '18:00:00' AND '21:59:59';
+
+   avg(light)
+   ----------
+   555.0   
+
+Question 3
+..........
+
+.. code-block:: sql
+
+   sqlite> SELECT avg(temp), light FROM sensors WHERE
+   time(result_time) BETWEEN '18:00:01' AND '21:59:59' EXCEPT SELECT
+   avg(temp), light FROM sensors WHERE voltage > 418;
+
+   avg(temp)   light     
+   ----------  ----------
+   26.0        555     
+
+Question 4
+..........
+
+.. code-block:: sql
+
+   SELECT avg(temp) FROM sensors WHERE nodeid == 2 AND
+   (time(result_time) == '06:00:00' OR time(result_time) == '07:00:00'
+   OR time(result_time) == '08:00:00' OR time(result_time) ==
+   '09:00:00');
+
+   avg(temp) 
+   ----------
+   12.0     
+
+Question 5
+..........
+
+.. code-block:: sql
+		
+   SELECT sensor1.result_time, sensor2.result_time, sensor1.epoch,
+   sensor2.epoch FROM sensors as sensor1, sensors as sensor2 WHERE
+   (sensor1.result_time - sensor2.result_time) < '0000-00-00 00:00:01'
+   AND (sensor1.result_time - sensor2.result_time) > '0000-00-00
+   00:00:00' AND sensor1.nodeid == 1 AND sensor2.nodeid == 2
+
+.. raw:: pdf
+
+   PageBreak
+
+Mini-xarxa social
+-----------------
+
+Passos a Seguir: 
+................
+
+Pas 1: Creació Base de dades.
+
+xavi@xavi:~/Escritorio/BD/P3$ sqlite3 social.bd < xarxa_social.sql
+
+Pas 2: Entem dins la Base de Dades.
+
+xavi@xavi:~/Escritorio/BD/P3$ sqlite3 social.bd
+
+SQLite version 3.8.2 2013-12-06 14:53:30
+
+Enter ".help" for instructions
+
+Enter SQL statements terminated with a ";"
+
+Preguntes:
+..........
+1. Obtenir les dades dels usuaris (excepte pwd) que viuen a Manresa.
+
+.. code-block:: sql 
+		
+   SELECT email, nom, cognom, poblacio, dataNaixement FROM usuaris
+   WHERE poblacio == 'Manresa';
+
+   pepito@lospalotes.com|Pepito|LosPalotes|Manresa|1990-07-10
+   p.garcia@gmail.com|Pere|Garcia|Manresa|1986-05-05
+   lenard@gmail.com|Pere|Lenard|Manresa|1989-10-25
+
+2. Obtenir l’email dels usuaris amb cognom ”Albets”
+
+.. code-block:: sql 
+
+   SELECT email FROM usuaris WHERE cognom == 'Albets';
+
+   vall@gmail.com
+   albets@gmail.com
+   witwicky@gmail.com
+
+
+3. Visualitzar els amics (nom i cognom) de l’usuari ”Pere”, ”Garcia”(estat=Acceptada)
+
+.. code-block:: sql 
+
+   SELECT nom,cognom FROM usuaris WHERE email IN (SELECT email1 FROM
+   amistats WHERE email2='p.garcia@gmail.com' AND estat='Acceptada')
+   OR email IN (SELECT email2 FROM amistats WHERE email1
+   ='p.garcia@gmail.com' AND estat='Acceptada');
+
+   Pepito|LosPalotes
+   Enric|Llordella
+   Pol|Albets
+
+
+4. Obtenir els amics de l’usaris ”Pere””Garcia”que no són amics de l’usuari ”Jordi””Alba”
+
+.. code-block:: sql
+
+   SELECT nom,cognom FROM usuaris WHERE email IN (SELECT email1 FROM
+   amistats WHERE email2='p.garcia@gmail.com' AND estat='Acceptada')
+   OR email IN (SELECT email2 FROM amistats WHERE
+   email1='p.garcia@gmail.com' AND estat='Acceptada') EXCEPT SELECT
+   nom,cognom FROM usuaris WHERE email IN (SELECT email1 FROM amistats
+   WHERE email2='albafcb@gmail.com' AND estat='Acceptada') OR email IN
+   (SELECT email2 FROM amistats WHERE email1='albafcb@gmail.com' AND
+   estat='Acceptada');
+
+   Pepito|LosPalotes
+   Pol|Albets
+
+
+5. Obtenir el nombre total de peticions d’amistat rebutjades
+
+.. code-block:: sql
+
+   SELECT COUNT(estat) FROM amistats WHERE estat = 'Rebutjada';
+   
+   1
+
+6. Obtenir les dades (noms,cognoms) d’amics que viuen a Manresa
+
+.. code-block:: sql
+
+   SELECT nom,cognom FROM usuaris,amistats GROUP BY nom,cognom HAVING
+   estat='Acceptada' AND poblacio='Manresa';
+		
+   Pepito|LosPalotes
+   Pere|Garcia
+   Pere|Lenard
+
+
+7. Obtenir, per cada usuari, el nombre de peticions rebutjades
+
+.. code-block:: sql
+
+   SELECT nom,cognom,COUNT() FROM usuaris,amistats WHERE (estat
+   ='Rebutjada' AND email == email1) OR (estat='Rebutjada' AND email =
+   email2) GROUP BY nom;
+
+   Ana|Vilella|2
+   Berta|Albets|1
+   Jordi|Alba|1
+   Pepito|LosPalotes|1
+   Pere|Lenard|1
+
+
+8. Obtenir els usuaris que no són amics de ”Ana”, ”Vilella”
+
+.. code-block:: sql
+
+   SELECT nom,cognom FROM usuaris WHERE email IN (SELECT email1 FROM
+   amistats WHERE email2='anafont@gmail.com' AND estat='Rebutjada') OR
+   email IN (SELECT email2 FROM amistats WHERE
+   email1='anafont@gmail.com' AND estat='Rebutjada');
+		
+   Berta|Albets
+   Pere|Lenard
+
