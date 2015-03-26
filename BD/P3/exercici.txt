@@ -32,28 +32,30 @@ WHERE light>550;
 
 
 2)
-SELECT avg(light)
-FROM sensors
-WHERE nodeid = 1 AND time(result_time) BETWEEN '18:00:00' AND '21:59:59';
+ SELECT avg(light)
+   FROM sensors
+   WHERE nodeid = 1 AND time(result_time) BETWEEN '06:00:00' AND '09:00:00';
 
-555.0
-
+   555.5
 3)
-SELECT avg(temp), avg(light)
-FROM sensors
-WHERE (time(result_time) BETWEEN '18:00:01' AND '21:59:59')
-EXCEPT SELECT avg(temp), avg(light)
-FROM sensors
-WHERE voltage > 418;
+ SELECT avg(light)
+   FROM sensors
+   WHERE (time(result_time) BETWEEN '06:00:01' AND '09:59:59')
+   EXCEPT SELECT avg(light)
+   FROM sensors
+   WHERE voltage > 418;
 
-SELECT avg(temp), avg(light)
-FROM sensors
-WHERE (time(result_time) BETWEEN '18:00:01' AND '21:59:59')
-EXCEPT SELECT avg(temp), avg(light)
-FROM sensors
-WHERE voltage > 418;
+   555.333333333333
 
-5.0|556.0
+
+ SELECT avg(temp)
+   FROM sensors
+   WHERE (time(result_time) BETWEEN '18:00:01' AND '21:59:59')
+   EXCEPT SELECT avg(temp)
+   FROM sensors
+   WHERE voltage > 418;
+
+   16.6923076923077
 
 4)
 SELECT avg(temp)
