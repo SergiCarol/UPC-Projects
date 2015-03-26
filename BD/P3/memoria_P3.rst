@@ -1,6 +1,8 @@
+
 ==========
 PRÀCTICA 3
 ==========
+
 
 :Autors: Sergi Carol Bosch i Enric Lenard Uró
 :Data: 26/03/2015
@@ -282,3 +284,156 @@ TEMPERATURE
 ----------------
 
 1) Obtenir els identificadors i ciutat de residencia dels empleats que treballen per l'empresa "Bank Newton"=12.
+
+.. code-block:: sql
+
+   SELECT id_empleat,ciutat
+   FROM empleat 
+   WHERE (id_empleat IN (
+		SELECT id_empleat 
+		FROM feina 
+		WHERE (id_empresa = 12)));
+
+   22|Sant Fruitos de Bages
+   123|Manresa
+   1238|Manresa
+   1239|Manres
+
+2) Obtenir totes les dades dels empeleats que treballen per "Bank Newton" guanyen mes de 10000.
+
+.. code-block:: sql
+
+   SELECT id_empleat,carrer,ciutat 
+   FROM empleat 
+   WHERE id_empleat IN 
+		(SELECT id_empleat 
+		FROM feina 
+		WHERE id_empresa = 12 AND salari >10000);
+
+   1239|Carretera de Cardona|Manresa
+
+3) Obtenir els identificadors dels treballadors que no treballen a "Bank Newton".
+
+.. code-block:: sql
+
+   SELECT id_empleat 
+   FROM empleat 
+   WHERE id_empleat NOT IN (
+		SELECT id_empleat 
+		FROM feina 
+		WHERE id_empresa = 12);
+
+   1235
+   1236
+   1237
+
+4) Trobar tots els treballadors que guanyen més que cada empleat de "Bank Newton".
+
+.. code-block:: sql
+
+   SELECT id_empleat 
+   FROM feina 
+   WHERE salari > (
+		SELECT MAX(salari)  
+		FROM feina 
+		WHERE id_empresa = 12)
+   AND id_empresa != 12;
+
+   1236
+
+5) Troba l'empresa que té més empleats.
+
+.. code-block:: sql
+
+   SELECT id_empresa, count() AS count 
+   FROM feina 
+   GROUP BY id_empresa 
+   ORDER BY count DESC
+   LIMIT 1;
+
+   12|4
+
+6) Modifica la ciutat de residència de l'empleat 22 a 'Barcelona'.
+
+.. code-block:: sql
+
+   UPDATE empleat
+   SET ciutat = 'Barcelona'
+   WHERE id_empleat == 22;
+   
+   SELECT ciutat
+   FROM empleat;
+
+   Manresa
+   Barcelona
+   Manresa
+   Sant Fruitos de Bages
+   Manresa
+   Manresa
+   Manresa
+
+7) Apuja el sou de tots els empleats coordinadors un 10.
+
+.. code-block:: sql
+
+   UPDATE feina
+   SET salari = salari + 10
+   WHERE id_empleat IN (
+		SELECT id_empleat_coordinador
+		FROM manager);
+
+   SELECT id_empleat,salari
+   FROM feina
+   WHERE id_empleat IN (
+		SELECT id_empleat_coordinador
+		FROM manager);
+
+   1235|1510
+   1238|4010
+
+8) Troba el nom de tots els empleats que viuen a la mateixa ciutat on treballen.
+
+.. code-block:: sql
+
+   SELECT id_empleat
+   FROM empleat
+   WHERE ciutat = (
+	SELECT ciutat
+	FROM empresa
+	WHERE id_empresa = (
+		SELECT id_empresa
+		FROM feina
+		WHERE feina.id_empleat = empleat.id_empleat));
+
+   123
+   1236
+   1238
+   1239
+
+9) Troba tots els empleats que viuen a la mateixa ciutat que els seus coordinadors.
+
+.. code-block:: sql
+
+   SELECT id_empleat
+   FROM empleat
+   WHERE ciutat = (
+	SELECT ciutat
+	FROM empresa
+	WHERE id_empresa = (
+		SELECT id_empleat_coordinador
+		FROM manager
+		WHERE empleat.id_empleat = manager.id_empleat));
+
+10) Elimina a 'feina' totes les tuples corresponents a empleats que treballin a "Bank Newton".
+
+.. code-block:: sql
+
+   DELETE FROM feina 
+   WHERE (id_empresa = 12);
+
+   SELECT id_empleat, id_empresa
+   FROM feina;
+
+   1235|10
+   1236|10
+   1237|10
