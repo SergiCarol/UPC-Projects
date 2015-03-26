@@ -121,12 +121,15 @@ Enric|Lenard
 
 \subsection{Obtenir, per cada usuari, el nombre de peticions rebutjades}
 \begin{lstlisting}
-SELECT usuaris.nom, count() FROM amistats, usuaris WHERE (estat='Rebutjada') AND (usuaris.email==amistats.email1) GROUP BY usuaris.nom;
+SELECT nom, count() FROM amistats, usuaris WHERE (estat='Rebutjada' AND email=email1) OR (estat='Rebutjada' AND email=email2) GROUP BY nom;
 \end{lstlisting}
 
+Albert|1
+Anna|2
 Berta|1
-Jordi|1
+Jordi|3
 Pere|3
+Sergi|1
 
 \subsection{Obtenir els usuaris que no son amics de ”Ana”, ”Vilella”}
 \begin{lstlisting}
@@ -144,14 +147,14 @@ Sergi|Carol
 
 \section{Tasques}
 
-\subsection{Obtenir els identificadors i ciutat de residencia dels empleats que treballen per l'empresa "Bank Newton"} 
+\subsection{Obtenir els identificadors i ciutat de residencia dels empleats que treballen per l'empresa "Bank Newton"=12} 
 \begin{lstlisting}
-SELECT id_empleat,ciutat 
+SELECT id_empleat,ciutat
 FROM empleat 
 WHERE (id_empleat IN (
 	SELECT id_empleat 
 	FROM feina 
-	WHERE (id_empresa == 12))
+	WHERE (id_empresa = 12))
 	);
 \end{lstlisting}
 
