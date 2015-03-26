@@ -121,15 +121,14 @@ Enric|Lenard
 
 \subsection{Obtenir, per cada usuari, el nombre de peticions rebutjades}
 \begin{lstlisting}
-SELECT nom, count() FROM amistats, usuaris WHERE (estat='Rebutjada' AND email=email1) OR (estat='Rebutjada' AND email=email2) GROUP BY nom;
+SELECT usuaris.nom, count() FROM amistats, usuaris WHERE (estat='Rebutjada') AND (usuaris.email==amistats.email1) GROUP BY usuaris.nom;
 \end{lstlisting}
 
-Albert|1
-Anna|2
+Anna|1
 Berta|1
-Jordi|3
+Jordi|1
 Pere|3
-Sergi|1
+
 
 \subsection{Obtenir els usuaris que no son amics de ”Ana”, ”Vilella”}
 \begin{lstlisting}
@@ -253,11 +252,9 @@ Resultat:\\\\
 \subsection{Troba el nom de tots els empleats que viuen a la mateixa ciutat on treballen}
 
 \begin{lstlisting}
-SELECT feina.id_empleat
-FROM feina
-WHERE ((SELECT ciutat
-FROM empleat) == (SELECT ciutat
-FROM empresa));
+SELECT id_empleat
+FROM empleat
+WHERE ciutat=(SELECT ciutat FROM empresa WHERE id_empresa=(SELECT id_empresa FROM feina WHERE feina.id_empleat = empleat.id_empleat));
 
 
 \end{lstlisting}
@@ -265,13 +262,9 @@ FROM empresa));
 \subsection{Troba tots els empleats que viuen a la mateixa ciutat que els seus coordinadors}
 
 \begin{lstlisting}
-SELECT id_empleat, id_empleat_coordinador
-FROM manager
-WHERE (SELECT ciutat
+SELECT id_empleat
 FROM empleat
-WHERE id_empleat=id_empleat) = (SELECT ciutat
-FROM empleat
-WHERE id_empleat=id_empleat_coordinador);
+WHERE ciutat=(SELECT ciutat FROM empresa WHERE id_empresa=(SELECT id_empleat_coordinador FROM manager WHERE empleat.id_empleat = manager.id_empleat));
 
 \end{lstlisting}
 
