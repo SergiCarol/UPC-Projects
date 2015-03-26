@@ -185,9 +185,9 @@ Resultat:\\\\
 SELECT id_empleat 
 FROM empleat 
 WHERE id_empleat 
-IN (SELECT id_empleat 
+NOT IN (SELECT id_empleat 
 	FROM feina 
-	WHERE id_empresa != 12
+	WHERE id_empresa = 12
 	);
 \end{lstlisting}
 Resultat:\\\\
@@ -198,20 +198,18 @@ Resultat:\\\\
 \subsection{Trobar tots els treballadors que guanyen m ́es que cada empleat de ”Bank Newton”}
 
 \begin{lstlisting}
-SELECT * 
-FROM empleat 
-WHERE id_empleat IN 
-	(SELECT id_empleat 
+
+SELECT id_empleat 
+FROM feina 
+WHERE salari > (SELECT MAX(salari)  
 	FROM feina 
-	WHERE id_empresa != 12 
-	AND salari > (SELECT sum(salari) 
-		FROM feina 
-		WHERE id_empresa = 12)
-		); 
+	WHERE id_empresa = 12
+	) AND id_empresa != 12;
+
 \end{lstlisting}
 
 Resultat: \\\\
-1236|Carretera de Vic|Sant Fruitos de Bages
+1236
 
 \subsection{Troba la empresa que t ́e m ́es empleats}
 
@@ -243,19 +241,19 @@ Manresa
 \subsection{Apuja el sou de tots els empleats coordinadors un 10}
 
 \begin{lstlisting}
-UPDATE feina SET salari = salari + 10  WHERE id_empleat IN (SELECT id_empleat FROM manager);
-SELECT id_empleat,salari FROM feina WHERE id_empleat IN (SELECT id_empleat FROM manager);
+UPDATE feina SET salari = salari + 10  WHERE id_empleat IN (SELECT id_empleat_coordinador FROM manager);
+SELECT id_empleat,salari FROM feina WHERE id_empleat IN (SELECT id_empleat_coordinador FROM manager);
 \end{lstlisting}
 
 Resultat:\\\\
 
-1236|100010
-1239|50010
+1235|1510
+1238|4010
 
 \subsection{Troba el nom de tots els empleats que viuen a la mateixa ciutat on treballen}
 
 \begin{lstlisting}
-SELECT id_empleat
+SELECT feina.id_empleat
 FROM feina
 WHERE ((SELECT ciutat
 FROM empleat) == (SELECT ciutat
@@ -276,4 +274,20 @@ FROM empleat
 WHERE id_empleat=id_empleat_coordinador);
 
 \end{lstlisting}
+
+\subsection{Elimina a ’feina’ totes les tuples corresponents a empleats que treballin a ”Bank Newton”}
+
+\begin{lstlisting}
+DELETE FROM feina 
+WHERE (id_empresa = 12);
+SELECT id_empleat, id_empresa
+FROM feina;
+
+Resultat:\\\\
+1235|10
+1236|10
+1237|10
+
+\end{lstlisting}
+
 \end{document}
