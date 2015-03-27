@@ -4,11 +4,15 @@ sudo brctl addif br0 tap0
 sudo brctl addif br0 tap1
 sudo brctl addif br0 tap2
 sudo brctl addif br0 tap3
+sudo brctl addif br0 tap4
+sudo brctl addif br0 tap5
 
 sudo ifconfig tap0 up
 sudo ifconfig tap1 up
 sudo ifconfig tap2 up
 sudo ifconfig tap3 up
+sudo ifconfig tap4 up
+sudo ifconfig tap5 up
 
 sudo sysctl -w net.ipv4.ip_forward=1
 
