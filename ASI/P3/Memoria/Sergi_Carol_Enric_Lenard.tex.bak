@@ -1,0 +1,175 @@
+\documentclass[11p]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{graphicx}
+\title{\huge\textbf{ Memòria pràctica 3:\\ Servei de Correu}}
+\author{Sergi Carol\ i Enric Lenard }
+\begin{document}
+\inputencoding{utf8}
+\maketitle
+\section{Introducció}
+
+En aquesta pràctica voldrem crear un servei de correu per les nostres maquines virtuals.\\\\
+Existeixen varies aplicaccions que permeten realitzar el nostre objectiu, però la que nosaltres utilitzarem serà la anomenada \textbf{exim4} com a MTA i l'aplicacció \textbf{mail} com a MUA.\\\\
+En la pràctica crearem tres maquines virtuals noves, conjuntament amb les dues que haviem creat anteriorment, i les configurarem per tal de que funcionin de la següent forma:\\\\
+
+\begin{itemize}
+	\item Màquina mail1: Servidor de correu en mode internetconf. Gestiona el correu local i el sortint, accepta ser smarthost de les altres m'aquines i accepta correu entrant dirigit al seu nom i al domini d’autoritat g2.asi.itic.cat. 
+	\item Màquina proves: maquina d’usuari en mode smarthostconf. Gestiona el correu local, delega el correu sortint extern a l'smarthost i accepta correu entrant dirigit al seu nom.
+	\item Màquina mail3: servidor d’un altre servei en mode smarthostconf. Delega el correu sortint extern a l'smarthost i no accepta correu entrant.
+\end{itemize}
+
+Donc començarem a configurar les maquines\\
+\newpage
+\section{Internetconf}
+
+La màquina configurada com Internetconf actua de la següent forma:
+
+\begin{itemize}
+	\item Consulta el registre MX del DNS i lliura els missatges al servidor de correu
+	\item Si l'adreça es una adreça local la envia al servidor local corresponent
+\end{itemize}
+
+Cal entendre que una maquina configurada com internetconf no és el mateix que si estigues configurada com a smarthost, ja que aquesta última no delaga els missatges als servidors de correus corresponents, sino que els hi envia tot a una altre màquina.\\\\
+
+La configuració ha sigut realitzada utilitzant l'interfície gràfica, però a continuació podem veure la configuració final executant \textbf{debconf-show exim4-config} :\\
+
+\begin{lstlisting}
+root@mail1:/# debconf-show exim4-config
+  exim4/exim4-config-title:
+  exim4/dc_smarthost:
+  exim4/no_config: true
+* exim4/dc_relay_nets: 172.20.2.7;172.20.2.8
+  exim4/dc_postmaster: sergi
+* exim4/dc_localdelivery: mbox format in /var/mail/
+* exim4/mailname: mail1.g2.asi.itic.cat
+* exim4/dc_local_interfaces:
+* exim4/dc_relay_domains:
+* exim4/dc_minimaldns: false
+* exim4/use_split_config: false
+* exim4/dc_eximconfig_configtype: internet site; mail is sent and received directly using SMTP
+* exim4/dc_other_hostnames: localhost;mail1.g2.asi.itic.cat;g2.asi.itic.cat
+  exim4/dc_readhost:
+  exim4/hide_mailname:
+\end{lstlisting}
+
+Tambè es important modificar l'arxiu \textbf{/etc/exim4/exim4.conf.template} ja que sino no podrem enviar missatges de correu entre diferents grups, ja que per defecte el exim4 bloqueja les IP's privades. En aquest arxiu tenim que canviar el següent:\\
+
+\begin{lstlisting}
+dns_lookup
+
+	ignore_target_hosts = 0.0.0.0 :  127.0.0.0/8 : 255.255.255.255
+	
+	
+\end{lstlisting}
+A més a més aquesta maquina també farà entrega local aixì que tenim que modicar l'arxiu \textbf{/etc/hosts}.
+
+\begin{lstlisting}
+127.0.0.1	localhost
+127.0.1.1	mail1.g2.asi.itic.cat
+\end{lstlisting}
+D'aquesta forma ja tenim recepciò per dominis locals.
+
+\section{Smarthost amb local}
+
+Un cop configurada la primera maquina configurarem la següent, anomenada proves, que serà configurada com a smarthost i podra gestionar el correu local.\\
+Com en el cas anterior la configuracio també ha sigut realitzada a traves de un wizard, la configuració la podem veure a continucaió:\\
+\begin{lstlisting}
+root@proves:/home/sergi# debconf-show exim4-config
+* exim4/dc_eximconfig_configtype: mail sent by smarthost; received via SMTP or fetchmail
+* exim4/dc_minimaldns: false
+* exim4/dc_local_interfaces:
+* exim4/dc_relay_nets:
+* exim4/dc_other_hostnames: proves.g2.asi.itic.cat
+* exim4/dc_localdelivery: mbox format in /var/mail/
+  exim4/dc_readhost: proves.g2.asi.itic.cat
+* exim4/dc_smarthost: mail1.g2.asi.itic.cat
+  exim4/no_config: true
+  exim4/dc_postmaster: sergi
+* exim4/mailname: proves.g2.asi.itic.cat
+* exim4/hide_mailname: false
+  exim4/exim4-config-title:
+* exim4/use_split_config: false
+  exim4/dc_relay_domains:
+\end{lstlisting}
+També, com en el cas anterior, tenim que modificar l'arxiu \textbf{/etc/hosts}.\\
+Aquesta màquina actuarà de la següent forma: En el cas de que vulgui enviar algun correu primer de tot mirarà si es per ell mateix, si ho és el rebrà automaticament. Si el correu no és per a ell l'enviarà automaticament cap a la maquina mail1 (que és el smarthost de proves)
+
+\section{Smarthost sense local}
+
+Aquesta maquina anomenada mail3 és igual que la anterior, però no pot rebre correus, només enviar-ne. La configuració final és la següent:\\
+\begin{lstlisting}
+root@mail3:/home/sergi# debconf-show exim4-config
+* exim4/dc_local_interfaces: 127.0.0.1 ; ::1
+  exim4/hide_mailname: true
+* exim4/dc_minimaldns: false
+* exim4/dc_readhost: mail3.g2.asi.itic.cat
+* exim4/use_split_config: false
+* exim4/dc_other_hostnames: localhost
+* exim4/dc_eximconfig_configtype: mail sent by smarthost; no local mail
+* exim4/mailname: mail3.g2.asi.itic.cat
+  exim4/no_config: true
+  exim4/exim4-config-title:
+  exim4/dc_postmaster: sergi
+* exim4/dc_smarthost: 172.20.2.6
+  exim4/dc_relay_domains:
+  exim4/dc_localdelivery: mbox format in /var/mail/
+  exim4/dc_relay_nets:
+\end{lstlisting}
+
+\section{Modificacció dels registres del DNS}
+
+Per tal de que tot aquest muntatge funcioni tenim que modificar la configuració dels DNS de la pràctica anterior per tal de afegir-hi els registres MX (correu). Per tant modifiquem l'arxiu \textbf{etc/bind/db.g2} per tal d'afegir els registres:
+
+\begin{lstlisting}
+g2.asi.itic.cat.        MX 10    mail1.g2.asi.itic.cat.
+g2.asi.itic.cat.        MX 10    proves.g2.asi.itic.cat.
+g2.asi.itic.cat.        MX 10    mail3.g2.asi.itic.cat.
+
+
+mail1.g2.asi.itic.cat.  A    172.20.2.6
+proves.g2.asi.itic.cat. A    172.20.2.7
+mail3.g2.asi.itic.cat.  A    172.20.2.8
+\end{lstlisting}
+D'aquesta manera fer un \textbf{dig -t mx g2.asi.itic.cat} ens mostra lo següent:\\\\
+
+\centerline{\includegraphics[scale=0.4]{../../../../Imatges/dig_mx.png}}
+
+Podem veure a la secciò de resposta els correus de les nostres màquines.
+\newpage
+
+\section{Proves}
+\subsection{Enviament intern}
+
+A continuació farem un següit de proves en les quals ens enviarem correus entre les nostres màquines.
+
+\subsubsection{mail1 a proves}
+
+Enviament utilitzant l'eina mail:\\\\
+\centerline{\includegraphics[scale=0.4]{../../../../Imatges/mail1_proves.png}}\\\\
+Recepciò a proves:\\\\
+\centerline{\includegraphics[scale=0.4]{../../../../Imatges/rebuda_proves.png}}
+\subsubsection{mail3 a proves}
+
+Aquest cas podrem veure com el missatge passa atraves del smarthost mail1 abans de arribar a proves.\\\\
+
+\centerline{\includegraphics[scale=0.4]{../../../../Imatges/mail3_proves.png}}
+
+
+\subsection{Enviament a correus externs}
+
+En aquest apartat enviarem correus a maquines externes (en aquest cas seran les de la Silvia i la Nerea).\\\\
+Recepció de un correu enviat desde la màquina de la Silvia:\\\\
+\centerline{\includegraphics[scale=0.4]{../../../../Imatges/recepcio_silvia.png}}
+Com podem veure el destinatari del correu era el domini g2.asi.itic.cat, els correus dirigits a aquest domini aniran cap a la màquina mail1.\\
+A continuació un missatge rebut de la màquina de la Nerea:\\\\
+
+\centerline{\includegraphics[scale=0.4]{../../../../Imatges/rebuda_nerea.png}}
+Finalment, algunes recepcions de missatges meus que elles han vist:
+
+\centerline{\includegraphics[scale=0.8]{../../../../Imatges/nerea_rebut.png}} 
+
+
+
+
+\end{document}
