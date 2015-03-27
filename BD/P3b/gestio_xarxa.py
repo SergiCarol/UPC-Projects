@@ -35,5 +35,14 @@ def insert_values_amistats(email1,email2,estat):
     db.commit()
     db.close()
 
-create_db()
+def show_all_usuaris():
+    db = sqlite3.connect('xarxa_social.db')
+    cursor = db.cursor()
+    cursor.execute(''' SELECT email,nom,cognom,poblacio,dataNaixement FROM usuaris''')
+    all_row = cursor.fetchall()
+    for row in all_row:
+        print ('{0} : {1} : {2} : {3} :  {4}'.format(row[0],row[1],row[2],row[3],row[4]))
+    db.commit()
+    db.close()
+
 
