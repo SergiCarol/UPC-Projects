@@ -71,16 +71,14 @@ def empty_number():
     
     if is_in("XXXXXXX") < 0:
         return l        
-    print "hola"
     while i < 27027:
         f.seek(i)
         i=r.find("XXXXXXX",i)
         
         l.append(i/27)
         i+=27        
-        print i
-    f.close()
         
+    f.close()
     return l
 
 
