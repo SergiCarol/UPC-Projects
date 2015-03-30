@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -15,7 +14,7 @@ xmlhttp.onreadystatechange=function()
 if (xmlhttp.readyState==4 /*&& xmlhttp.status==200*/)
 {
 objecte_div.innerHTML=xmlhttp.responseText;
-objecte_div.style.color="green";
+objecte_div.style.color="red";
 }
 }
 xmlhttp.open("GET","entrada.txt",true);
@@ -26,8 +25,7 @@ xmlhttp.send();
 <body>
 <div id="myDiv" style="color:blue"> Hola!!!!!! </div>
 <script>
-<!--Cada 3 segons, crida la funci ́
-o loadXMLDoc()-->
+<!--Cada 3 segons, crida la funcio loadXMLDoc()-->
 setInterval("loadXMLDoc()",3000);
 </script>
 </body>
