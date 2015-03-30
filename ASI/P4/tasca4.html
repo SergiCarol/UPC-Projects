@@ -1,0 +1,34 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<TITLE>Programa Javascript</TITLE>
+<script>
+function loadXMLDoc()
+{
+var xmlhttp;
+var objecte_div;
+objecte_div=document.getElementById("myDiv");
+xmlhttp=new XMLHttpRequest();
+xmlhttp.onreadystatechange=function()
+{
+if (xmlhttp.readyState==4 /*&& xmlhttp.status==200*/)
+{
+objecte_div.innerHTML=xmlhttp.responseText;
+objecte_div.style.color="green";
+}
+}
+xmlhttp.open("GET","entrada.txt",true);
+xmlhttp.send();
+}
+</script>
+</head>
+<body>
+<div id="myDiv" style="color:blue"> Hola!!!!!! </div>
+<script>
+<!--Cada 3 segons, crida la funci ́
+o loadXMLDoc()-->
+setInterval("loadXMLDoc()",3000);
+</script>
+</body>
+</html>
