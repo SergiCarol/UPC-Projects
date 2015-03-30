@@ -6,6 +6,7 @@ def create_db():
     """
     Crea dues bases de dades, una gestiona els usuaris i una altre gestiona les amistats entre aquets usuaris
     """
+    #Nomes te que se cridada un cop
     try:
         db = sqlite3.connect('xarxa_social.db')
         cursor = db.cursor()
@@ -31,8 +32,9 @@ def insert_values_usuaris(email,nom,cognom,poblacio,dataNaixement,path):
     
     db = sqlite3.connect('xarxa_social.db')
     cursor = db.cursor()
-    
+    #COsa que he trobat perque no fasi echo del password
     pwd = getpass.getpass()
+    #Els try son perque no peti si li afageixes un email que aj existeix (peta pero diu que no es pot inserir)
     try:
         cursor.execute(''' INSERT INTO usuaris (email,nom,cognom,poblacio,DataNaixement,imatge,pwd) VALUES(?,?,?,?,?,?,?) ''', (email,nom,cognom,poblacio,dataNaixement,sqlite3.Binary(readImage(path)),pwd))
         print "S'ha inserit correctament l'usuari"
@@ -47,7 +49,7 @@ def insert_values_amistats(email1,email2,estat):
     """
     Fa el matex que la funcio anterior però per la base de dades de amistats
     """
-
+    #Nomes tindria que ser cridada per el send_friend_request que ja fica el estat a pendent
     db = sqlite3.connect('xarxa_social.db')
     cursor = db.cursor()
     try:
@@ -71,9 +73,12 @@ def show_all_usuaris():
     all_row = cursor.fetchall()
     for row in all_row:
         print ('{0} : {1} : {2} : {3} :  {4}'.format(row[0],row[1],row[2],row[3],row[4]))
+    """    
     cursor.execute("SELECT imatge FROM usuaris LIMIT 1")
     data = cursor.fetchone()[0]
     writeImage(data)
+    """
+    #Lo de sobre esta tret perque crec que nomes en mostra una , ho podria arreglar, pero fa falta? 10 ususaris = 10 fotos
     db.commit()
     db.close()
 
@@ -92,6 +97,10 @@ def show_all_amistats():
     db.close()
 
 def show_user_info(nom,cognom):
+    """
+    Mostra la informacio de un usuari en concret
+    """
+
     db = sqlite3.connect('xarxa_social.db')
     cursor = db.cursor()
     cursor.execute(''' SELECT email,nom,cognom,poblacio,dataNaixement FROM usuaris WHERE nom = ? AND cognom = ?''',(nom,cognom,))
@@ -108,7 +117,8 @@ def show_password(nom,cognom):
     """
     Mostra la contrasenya de un usuari especific
     """
-    
+    #Demanar password o algu??? nose
+
     db = sqlite3.connect('xarxa_social.db')
     cursor = db.cursor()
     cursor.execute(''' SELECT pwd FROM usuaris WHERE nom = ? AND cognom = ?''',(nom,cognom))
@@ -143,6 +153,50 @@ def show_friends_from(nom,cognom):
     db.commit()
     db.close()
 
+def send_friend_request(email1,email2):
+    """
+    Envia una peticio de amistat de l'usuari amb email1 a l'usuari amb email2
+    """
+    # Fa falta o es fa directament desde el main????
+    #Trobo tonto cridar nomes una funcio....
+    insert_values_amistats(email1,email2,'Pendent')
+
+def check_friend_request(email):
+    """
+    Comprova si hi ha alguna peticio d'amistat per resoldre i 
+    en cas de que n'hi hagi, les resol
+    """
+    
+    i = 0
+    saps_llegir=False
+
+    db = sqlite3.connect('xarxa_social.db')
+    cursor = db.cursor()		
+    cursor.execute(''' SELECT email1 FROM amistats WHERE email2 = ? AND estat = 'Pendent' ''',(email,))
+    all_row = cursor.fetchall()
+    # Comprovem si hi han soliciutds pendents
+    if len(all_row) > 0:
+        for row in all_row:	
+            print ('{0}' .format(all_row[i][0]))
+            while (saps_llegir==False):
+                ans = raw_input('Vols acceptar aquesta soliciut? (s/n)')
+                # Lo que hi ha aqui sota es pot optimitzar crec
+                if ans == 's':
+                    cursor.execute(''' UPDATE amistats SET estat = 'Acceptada' WHERE email1 = ? AND email2 = ? ''',(all_row[i][0],email,))
+                    saps_llegir = True
+                elif ans == 'n':
+                    cursor.execute(''' UPDATE amistats SET estat = 'Rebutjada' WHERE email1 = ? AND email2 = ? ''',(all_row[i][0],email,))
+                    saps_llegir = True
+                else:
+                    print 'Tens que escriure s o n'
+            i+=1
+            saps_llegir=False
+    else:
+        print 'No tens solicituds pendents'
+
+    db.commit()
+    db.close()
+
 def readImage(path):
     """
     Funcio de lectura de una imatge per tal de ficar-la amb un usuari
@@ -152,11 +206,9 @@ def readImage(path):
         fin = open(path, "rb")
         img = fin.read()
         return img
-
     except IOError, e:
         print "Error %d: %s" % (e.args[0],e.args[1])
         sys.exit(1)
-
     finally:        
         if fin:
             fin.close()
@@ -177,16 +229,21 @@ def writeImage(data):
         sys.exit(1)
 
 
-
-
-
+#-----------------------
+#*    Probes Aqui      *
+#-----------------------
 
 #create_db()
 #insert_values_usuaris('sergicarol35@gmail.com','Sergi','Carol Bosch','Sant Frutios de Bages',1994,'computer.png')
 #insert_values_usuaris('enriclenard@gmail.com','Enric','Lenard Uro','Manresa',1994,'enric.jpg')
+#insert_values_usuaris('moni_33_33@gmail.com','Monica','Carol Bosch','Sant Frutios de Bages',1992,'computer.png')
 #show_all_usuaris()
 #show_user_info('Enric','Lenard Uro')
-#insert_values_amistats('sergicarol35@gmail.com','enriclenard@gmail.com','Acceptada')
+#send_friend_request('moni_33_33@gmail.com','enriclenard@gmail.com')
+#send_friend_request('sergicarol35@gmail.com','enriclenard@gmail.com')
+#send_friend_request('sergicarol35@gmail.com','moni_33_33@gmail.com')
+#check_friend_request('moni_33_33@gmail.com')
 #show_all_amistats()
 #select_email('Sergi','Carol Bosch')
 #show_friends_from('Sergi','Carol Bosch')
+#show_friends_from('Enric','Lenard Uro')
