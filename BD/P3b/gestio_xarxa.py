@@ -159,7 +159,18 @@ def send_friend_request(email1,email2):
     """
     # Fa falta o es fa directament desde el main????
     #Trobo tonto cridar nomes una funcio....
-    insert_values_amistats(email1,email2,'Pendent')
+    #COMPROVAR QUE EL MAIL EXISTEIXI A USUARIS
+    db = sqlite3.connect('xarxa_social.db')
+    cursor = db.cursor()
+    cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email1,))
+    b = cursor.fetchone()
+    cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email2,))
+    a = cursor.fetchone()
+    if b or a != None:
+        insert_values_amistats(email1,email2,'Pendent')
+    else:
+        print 'Aquest correus no existeigen'
+
 
 def check_friend_request(email):
     """
@@ -178,6 +189,7 @@ def check_friend_request(email):
     if len(all_row) > 0:
         for row in all_row:	
             print ('{0}' .format(all_row[i][0]))
+            #Si el tiu no saps llegir es repeteix
             while (saps_llegir==False):
                 ans = raw_input('Vols acceptar aquesta soliciut? (s/n)')
                 # Lo que hi ha aqui sota es pot optimitzar crec
@@ -242,7 +254,9 @@ def writeImage(data):
 #send_friend_request('moni_33_33@gmail.com','enriclenard@gmail.com')
 #send_friend_request('sergicarol35@gmail.com','enriclenard@gmail.com')
 #send_friend_request('sergicarol35@gmail.com','moni_33_33@gmail.com')
-#check_friend_request('moni_33_33@gmail.com')
+#send_friend_request('moni_33_33@gmail.com','sergicarol35@gmail.com')
+#send_friend_request('moni_3dsdffad_33@gmail.com','serfsafdsfd5@gmail.com')
+#check_friend_request('sergicarol35@gmail.com')
 #show_all_amistats()
 #select_email('Sergi','Carol Bosch')
 #show_friends_from('Sergi','Carol Bosch')
