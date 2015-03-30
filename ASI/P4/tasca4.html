@@ -13,8 +13,14 @@ xmlhttp.onreadystatechange=function()
 {
 if (xmlhttp.readyState==4 /*&& xmlhttp.status==200*/)
 {
-objecte_div.innerHTML=xmlhttp.responseText;
-objecte_div.style.color="red";
+if (xmlhttp.responseText==0)
+{
+objecte_div.style.color="blue";
+}
+if (xmlhttp.responseText==1)
+{
+objecte_div.style.color="green";
+}
 }
 }
 xmlhttp.open("GET","entrada.txt",true);
