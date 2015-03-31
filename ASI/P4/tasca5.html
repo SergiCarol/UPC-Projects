@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<link rel="stylesheet"type="text/css"href="estil.css">
 <TITLE>Formulari amb HTML5</TITLE>
 <script>
 function check(input) {
@@ -14,9 +15,12 @@ input.setCustomValidity("");
 </script>
 </head>
 <body>
+ <h1><p>SOL&middot LICITUD D'AMISTAT</p></h1>
+  <br>
 <form id="FORMULARI" action="" method="">
+<h3>
 <br>
-<label>Nom de usuari: </label>
+<label>Nom d'usuari: </label>
 <br>
 <input name="Nom d’usuari" id="nom_usuari" type="text" pattern="[A-Za-z].{1,14}" title="No pot tenir caracters NO valids o mes de 15 caracters valids" required="required"/>
 <br>
@@ -24,7 +28,7 @@ input.setCustomValidity("");
 <br>
 <input name="password" id="password" type="password" pattern="[A-Za-z0-9].{6,}" title="6 o mes caracters" required="required"/>
 <br>
-<label>Confirmacio de password: </label>
+<label>Confirmaci&oacute de password: </label>
 <br>
 <input name="Conf_pass" id="con_pass" type="password" required="required" oninput="check(con_pass)"/>
 <br>
@@ -47,6 +51,7 @@ input.setCustomValidity("");
 <br>
 <input type="submit" value="Enviar" id="boto_enviar"/>
 <input type="reset" value="Esborrar" id="boto_reset"/>
+</h3>
 </form>
 </body>
 </html>
