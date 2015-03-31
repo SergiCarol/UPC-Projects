@@ -53,7 +53,8 @@ def insert_values_amistats(email1,email2,estat):
     db = sqlite3.connect('xarxa_social.db')
     cursor = db.cursor()
     try:
-        cursor.execute(''' INSERT INTO amistats (email1,email2,estat) VALUES(?,?,?) ''',(email1,email2,estat))
+        cursor.execute(''' INSERT OR REPLACE INTO amistats (email1,email2,estat) VALUES (?,?,?) ''',(email1,email2,estat,))
+        #cursor.execute(''' INSERT INTO amistats (email1,email2,estat) VALUES(?,?,?) ''',(email1,email2,estat))
         print "S'ha inserit l'usuari correctament"
         db.commit()
     except sqlite3.IntegrityError:
@@ -149,7 +150,7 @@ def show_friends_from(nom,cognom):
     cursor.execute(''' SELECT nom,cognom FROM usuaris WHERE email IN (SELECT email2 FROM amistats WHERE email1 IN (SELECT email FROM usuaris WHERE nom = ? AND cognom = ?) AND estat = 'Acceptada') OR email IN (SELECT email1 FROM amistats WHERE email2 IN (SELECT email FROM usuaris WHERE nom = ? AND cognom = ?) AND estat = 'Acceptada')''',(nom,cognom,nom,cognom,)) 
     all_row = cursor.fetchall()
     for row in all_row:
-        print ('{0} : {1} '.format(row[0],row[1]))
+        print ('{0} {1} '.format(row[0],row[1]))
     db.commit()
     db.close()
 
@@ -166,6 +167,8 @@ def send_friend_request(email1,email2):
     b = cursor.fetchone()
     cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email2,))
     a = cursor.fetchone()
+    db.commit()
+    db.close()
     if b or a != None:
         insert_values_amistats(email1,email2,'Pendent')
     else:
@@ -185,7 +188,9 @@ def check_friend_request(email):
     cursor = db.cursor()		
     cursor.execute(''' SELECT email1 FROM amistats WHERE email2 = ? AND estat = 'Pendent' ''',(email,))
     all_row = cursor.fetchall()
-    # Comprovem si hi han soliciutds pendents
+    db.commit()
+    db.close()
+    # Comprovem si hi han soliciutds pendents    
     if len(all_row) > 0:
         for row in all_row:	
             print ('{0}' .format(all_row[i][0]))
@@ -194,10 +199,12 @@ def check_friend_request(email):
                 ans = raw_input('Vols acceptar aquesta soliciut? (s/n)')
                 # Lo que hi ha aqui sota es pot optimitzar crec
                 if ans == 's':
-                    cursor.execute(''' UPDATE amistats SET estat = 'Acceptada' WHERE email1 = ? AND email2 = ? ''',(all_row[i][0],email,))
+                    #cursor.execute(''' UPDATE amistats SET estat = 'Acceptada' WHERE email1 = ? AND email2 = ? ''',(all_row[i][0],email,))
+                    insert_values_amistats(all_row[i][0],email,'Acceptada')
                     saps_llegir = True
                 elif ans == 'n':
-                    cursor.execute(''' UPDATE amistats SET estat = 'Rebutjada' WHERE email1 = ? AND email2 = ? ''',(all_row[i][0],email,))
+                    #cursor.execute(''' UPDATE amistats SET estat = 'Rebutjada' WHERE email1 = ? AND email2 = ? ''',(all_row[i][0],email,))
+                    insert_values_amistats(all_row[i][0],email,'Rebutjada')
                     saps_llegir = True
                 else:
                     print 'Tens que escriure s o n'
@@ -206,8 +213,35 @@ def check_friend_request(email):
     else:
         print 'No tens solicituds pendents'
 
+def block_friend(email1,email2):
+    db = sqlite3.connect('xarxa_social.db')
+    cursor = db.cursor()
+    cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email1,))
+    b = cursor.fetchone()
+    cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email2,))
+    a = cursor.fetchone()
     db.commit()
     db.close()
+    if b or a != None:
+        insert_values_amistats(email1,email2,'Rebutjada')
+    else:
+        print 'Aquest correus no existeigen'
+
+
+def unblock_friend(email1,email2):
+    db = sqlite3.connect('xarxa_social.db')
+    cursor = db.cursor()
+    cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email1,))
+    b = cursor.fetchone()
+    cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email2,))
+    a = cursor.fetchone()
+    db.commit()
+    db.close()
+    if b or a != None:
+        insert_values_amistats(email1,email2,'Acceptada')
+    else:
+        print 'Aquest correus no existeigen'
+    
 
 def readImage(path):
     """
@@ -257,7 +291,11 @@ def writeImage(data):
 #send_friend_request('moni_33_33@gmail.com','sergicarol35@gmail.com')
 #send_friend_request('moni_3dsdffad_33@gmail.com','serfsafdsfd5@gmail.com')
 #check_friend_request('sergicarol35@gmail.com')
+#send_friend_request('sergicarol35@gmail.com','moni_33_33@gmail.com')
 #show_all_amistats()
 #select_email('Sergi','Carol Bosch')
 #show_friends_from('Sergi','Carol Bosch')
 #show_friends_from('Enric','Lenard Uro')
+#block_friend('enriclenard@gmail.com','sergicarol35@gmail.com')
+#unblock_friend('enriclenard@gmail.com','sergicarol35@gmail.com')
+#show_all_amistats()
