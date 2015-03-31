@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<TITLE>Formulari amb HTML5</TITLE>
+<script>
+function check(input) {
+if (input.value != document.getElementById("password").value) {
+input.setCustomValidity("La contrasenya ha de ser la mateixa!");
+}
+else{
+input.setCustomValidity("");
+}
+}
+</script>
+</head>
+<body>
+<form id="FORMULARI" action="" method="">
+<br>
+<label>Nom de usuari: </label>
+<br>
+<input name="Nom d’usuari" id="nom_usuari" type="text" pattern="[A-Za-z].{1,14}" title="No pot tenir caracters NO valids o mes de 15 caracters valids" required="required"/>
+<br>
+<label>Password: </label>
+<br>
+<input name="password" id="password" type="password" pattern="[A-Za-z0-9].{6,}" title="6 o mes caracters" required="required"/>
+<br>
+<label>Confirmacio de password: </label>
+<br>
+<input name="Conf_pass" id="con_pass" type="password" required="required" oninput="check(con_pass)"/>
+<br>
+<label>Correu electr&ograve;nic: </label>
+<br>
+<input name="correu" id="correu" type="email" required="required"/>
+<br>
+<label>Sexe: </label>
+<br>
+<input name="sexe" id="sexe" list="sex" type="text"/>
+<datalist id="sex">
+<option value="Home">
+<option value="Dona">
+</datalist>
+<br>
+<label>Comentaris: </label>
+<br>
+<input name="comentari" id="comentari" pattern="[A-Za-z0-9].{0,140}"  title="No accepta mes de 140 caracters" type="text"/>
+<br>
+<br>
+<input type="submit" value="Enviar" id="boto_enviar"/>
+<input type="reset" value="Esborrar" id="boto_reset"/>
+</form>
+</body>
+</html>
