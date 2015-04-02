@@ -7,23 +7,16 @@ def create_db():
     Crea dues bases de dades, una gestiona els usuaris i una altre gestiona les amistats entre aquets usuaris
     """
     #Nomes te que se cridada un cop
-    try:
-        db = sqlite3.connect('xarxa_social.db')
-        cursor = db.cursor()
-        cursor.execute(''' CREATE TABLE IF NOT EXISTS usuaris (email TEXT PRIMARY KEY, nom TEXT, cognom TEXT, poblacio TEXT, dataNaixement DATA, imatge BLOB, pwd TEXT)''')
-        db.commit()
-        cursor.execute(''' CREATE TABLE IF NOT EXISTS amistats (email1 TEXT, email2 TEXT, estat TEXT, PRIMARY KEY (email1,email2))''')
-        db.commit()
-        
-    except EXCEPTION as e:
-        print "La base de dades ja existeix"
-        db.rollback()
-        raise e
-    finally:
-        db.close()
+    db = sqlite3.connect('xarxa_social.db')
+    cursor = db.cursor()
+    cursor.execute(''' CREATE TABLE IF NOT EXISTS usuaris (email TEXT PRIMARY KEY, nom TEXT, cognom TEXT, poblacio TEXT, dataNaixement DATA, imatge BLOB, pwd TEXT)''')
+    db.commit()
+    cursor.execute(''' CREATE TABLE IF NOT EXISTS amistats (email1 TEXT, email2 TEXT, estat TEXT, PRIMARY KEY (email1,email2))''')
+    db.commit()
+    db.close()
 
 
-def insert_values_usuaris(email,nom,cognom,poblacio,dataNaixement,path):
+def insert_values_usuaris(email,nom,cognom,poblacio,dataNaixement,path,pwd):
     """ 
     Insereix valors a la base de dades dels usuaris, com per exemple el email,nom,congom,poblacio
     data de Naixement i una foto de la qual se li te que ficar el path. A més a més demana 
@@ -32,8 +25,6 @@ def insert_values_usuaris(email,nom,cognom,poblacio,dataNaixement,path):
     
     db = sqlite3.connect('xarxa_social.db')
     cursor = db.cursor()
-    #COsa que he trobat perque no fasi echo del password
-    pwd = getpass.getpass()
     #Els try son perque no peti si li afageixes un email que aj existeix (peta pero diu que no es pot inserir)
     try:
         cursor.execute(''' INSERT INTO usuaris (email,nom,cognom,poblacio,DataNaixement,imatge,pwd) VALUES(?,?,?,?,?,?,?) ''', (email,nom,cognom,poblacio,dataNaixement,sqlite3.Binary(readImage(path)),pwd))
@@ -53,7 +44,7 @@ def insert_values_amistats(email1,email2,estat):
     db = sqlite3.connect('xarxa_social.db')
     cursor = db.cursor()
     try:
-        cursor.execute(''' INSERT OR REPLACE INTO amistats (email1,email2,estat) VALUES (?,?,?) ''',(email1,email2,estat,))
+        cursor.execute(''' INSERT INTO amistats (email1,email2,estat) VALUES (?,?,?) ''',(email1,email2,estat,))
         #cursor.execute(''' INSERT INTO amistats (email1,email2,estat) VALUES(?,?,?) ''',(email1,email2,estat))
         print "S'ha inserit l'usuari correctament"
         db.commit()
@@ -169,10 +160,11 @@ def send_friend_request(email1,email2):
     a = cursor.fetchone()
     db.commit()
     db.close()
-    if b or a != None:
+    if a != None and b != None:
         insert_values_amistats(email1,email2,'Pendent')
+        insert_values_amistats(email2,email1,'Pendent')
     else:
-        print 'Aquest correus no existeigen'
+        print 'Un de aquest correus no existeig'
 
 
 def check_friend_request(email):
@@ -188,8 +180,7 @@ def check_friend_request(email):
     cursor = db.cursor()		
     cursor.execute(''' SELECT email1 FROM amistats WHERE email2 = ? AND estat = 'Pendent' ''',(email,))
     all_row = cursor.fetchall()
-    db.commit()
-    db.close()
+
     # Comprovem si hi han soliciutds pendents    
     if len(all_row) > 0:
         for row in all_row:	
@@ -199,12 +190,12 @@ def check_friend_request(email):
                 ans = raw_input('Vols acceptar aquesta soliciut? (s/n)')
                 # Lo que hi ha aqui sota es pot optimitzar crec
                 if ans == 's':
-                    #cursor.execute(''' UPDATE amistats SET estat = 'Acceptada' WHERE email1 = ? AND email2 = ? ''',(all_row[i][0],email,))
-                    insert_values_amistats(all_row[i][0],email,'Acceptada')
+                    cursor.execute(''' UPDATE amistats SET estat = 'Acceptada' WHERE email1 = ? AND email2 = ? ''',(all_row[i][0],email,))
+                    
                     saps_llegir = True
                 elif ans == 'n':
-                    #cursor.execute(''' UPDATE amistats SET estat = 'Rebutjada' WHERE email1 = ? AND email2 = ? ''',(all_row[i][0],email,))
-                    insert_values_amistats(all_row[i][0],email,'Rebutjada')
+                    cursor.execute(''' UPDATE amistats SET estat = 'Rebutjada' WHERE email1 = ? AND email2 = ? ''',(all_row[i][0],email,))
+                    
                     saps_llegir = True
                 else:
                     print 'Tens que escriure s o n'
@@ -212,6 +203,8 @@ def check_friend_request(email):
             saps_llegir=False
     else:
         print 'No tens solicituds pendents'
+    db.commit()
+    db.close()
 
 def block_friend(email1,email2):
     db = sqlite3.connect('xarxa_social.db')
@@ -220,12 +213,14 @@ def block_friend(email1,email2):
     b = cursor.fetchone()
     cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email2,))
     a = cursor.fetchone()
-    db.commit()
-    db.close()
-    if b or a != None:
-        insert_values_amistats(email1,email2,'Rebutjada')
+    if  a != None and b != None:
+        #insert_values_amistats(email1,email2,'Rebutjada')
+        cursor.execute(''' UPDATE amistats SET estat = 'Rebutjada' WHERE email1 = ? AND email2 = ? ''',(email1,email2,))
     else:
         print 'Aquest correus no existeigen'
+    
+    db.commit()
+    db.close()
 
 
 def unblock_friend(email1,email2):
@@ -235,12 +230,12 @@ def unblock_friend(email1,email2):
     b = cursor.fetchone()
     cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email2,))
     a = cursor.fetchone()
-    db.commit()
-    db.close()
-    if b or a != None:
-        insert_values_amistats(email1,email2,'Acceptada')
+    if  a != None and b != None:
+        cursor.execute(''' UPDATE amistats SET estat = 'Acceptada' WHERE email1 = ? AND email2 = ? ''',(email1,email2,))
     else:
         print 'Aquest correus no existeigen'
+    db.commit()
+    db.close()
     
 
 def readImage(path):
@@ -254,7 +249,7 @@ def readImage(path):
         return img
     except IOError, e:
         print "Error %d: %s" % (e.args[0],e.args[1])
-        sys.exit(1)
+        #sys.exit(1)
     finally:        
         if fin:
             fin.close()
