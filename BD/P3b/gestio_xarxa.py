@@ -236,7 +236,9 @@ def unblock_friend(email1,email2):
         print 'Aquest correus no existeigen'
     db.commit()
     db.close()
-    
+
+
+
 
 def readImage(path):
     """
