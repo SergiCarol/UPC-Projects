@@ -1,0 +1,15 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <link rel="stylesheet"type="text/css"href="estil.css">
+  <title>Fotografies</title>
+</head>
+<body>
+ <h1><p>FOTOGRAFIES</p></h1>
+ <br>
+ <h2><p><b>ESQUIADA 13:</b></p></h2>
+  <img src="/home/enric/Imatges/Esquiada/20140207_150949.jpg" alt="Paissatge" width="700" height="400">
+  <img src="/home/enric/Imatges/Esquiada/FILE0082.JPG" alt="Grup1" width="700" height="400">
+  <img src="/home/enric/Imatges/Esquiada/FILE0105.JPG" alt="Grup2" width="700" height="400">
+</body>
+</html>

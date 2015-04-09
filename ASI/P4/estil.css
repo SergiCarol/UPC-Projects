@@ -1,7 +1,94 @@
-h1{color:green; font-family:arial; font-size:20pt; TEXT-ALIGN:center}
-h2{color:orangered; font-family:arial; font-size:12pt}
-h3{color:black; font-family:arial; font-size:12pt}
-h4{color:blue; font-family:arial; font-size:12pt}
-td{border: 2px solid black; margin: 0; padding: 0}
+h1{
+    color:blak; 
+    font-family: 'Monofett', cursive; 
+    font-size:80; 
+    text-align:center;
+    vertical-align:middle;
+}
+
+h2{
+    color:orangered;
+    font-family: 'Open Sans', sans-serif;
+    font-size:12pt
+}
+
+h3{
+    color:black;
+    font-family: 'Open Sans', sans-serif;
+    font-size:12pt;
+    text-align:right;
+}
+
+h4{
+    color:blue;
+    font-family: 'Open Sans', sans-serif;
+    font-size:12pt
+}
+
+h5{
+    color:black;
+    font-family: 'Open Sans', sans-serif;
+    font-size:30pt;
+}
+
+table, th, td {
+    border: 0;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px;
+}
+
+th:hover {
+    background-color: #E0ECF8;
+}
+"""td{
+    border: 2px solid black;
+    margin: 0;
+    padding: 0;
+}
+
 td img{width: 100%}
 table {margin:0 auto}
+"""
+
+#rodo{
+    border-radius: 50px;
+   
+} 
+
+#top{
+    width: 100%;
+    padding: 1px;
+    background: #2E64FE;
+}
+
+#grup{
+    padding: 200px;
+}
+
+.foto{
+    border-radius: 100px;
+    width: 150px;
+    height: 150px;
+    float: left;
+}
+
+.fotos{
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+    float: right;
+}
+
+.foto3{
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    float: right;
+}
+
+.intro{
+    color:green;
+}
