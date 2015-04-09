@@ -39,15 +39,15 @@ input.setCustomValidity("");
 <br>
 <label>Sexe: </label>
 <br>
-<input name="sexe" id="sexe" list="sex" type="text"/>
-<datalist id="sex">
-<option value="Home">
-<option value="Dona">
-</datalist>
+<select name="sexe">
+<option value="Nothing">---
+<option value="Home">Home
+<option value="Dona">Dona
+</select>
 <br>
 <label>Comentaris: </label>
 <br>
-<input name="comentari" id="comentari" pattern="[A-Za-z0-9].{0,140}"  title="No accepta mes de 140 caracters" type="text"/>
+<textarea name="comentari" id="comentari" rows="6" cols="40" type="text"></textarea>
 <br>
 <br>
 <input type="submit" value="Enviar" id="boto_enviar"/>
