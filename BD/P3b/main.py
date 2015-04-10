@@ -40,16 +40,20 @@ def mostrar_amics(nom,cognom):
     show_friends_from(str(nom),str(cognom))
 
 def enviar_peticio_amistat(email1,email2):
-    send_friend_request(str(email1),str(email2))
+    pwd = getpass.getpass()
+    send_friend_request(str(email1),str(email2),pwd)
 
 def comprovar_peticions_amistat(email):
-    check_friend_request(str(email))
+    pwd = getpass.getpass()
+    check_friend_request(str(email),pwd)
 
 def bloquejar_amistat(email1,email2):
-    block_friend(str(email1),str(email2))
+    pwd = getpass.getpass()
+    block_friend(str(email1),str(email2),pwd)
 
 def desbloquejar_amistat(email1,email2):
-    unblock_friend(str(email1),str(email2))
+    pwd = getpass.getpass()
+    unblock_friend(str(email1),str(email2),pwd)
 
 def debug_show_pass(nom,cognom):
     show_password(str(nom),str(cognom))
@@ -127,7 +131,7 @@ if __name__=="__main__":
     I.afegeix_ordre("mostrar_usuaris",mostrar_usuaris)
     I.afegeix_ordre("mostrar_amistats",mostrar_amistats)
     I.afegeix_ordre("info_usuari",info_usuari)
-    I.afegeix_ordre("mostar_amics",mostrar_amics)
+    I.afegeix_ordre("mostrar_amics",mostrar_amics)
     I.afegeix_ordre("Friend_request",enviar_peticio_amistat)
     I.afegeix_ordre("Check_requests",comprovar_peticions_amistat)
     I.afegeix_ordre("Block_friend",bloquejar_amistat)

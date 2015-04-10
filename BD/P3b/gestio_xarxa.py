@@ -145,7 +145,7 @@ def show_friends_from(nom,cognom):
     db.commit()
     db.close()
 
-def send_friend_request(email1,email2):
+def send_friend_request(email1,email2,pwd):
     """
     Envia una peticio de amistat de l'usuari amb email1 a l'usuari amb email2
     """
@@ -154,20 +154,23 @@ def send_friend_request(email1,email2):
     #COMPROVAR QUE EL MAIL EXISTEIXI A USUARIS
     db = sqlite3.connect('xarxa_social.db')
     cursor = db.cursor()
-    cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email1,))
-    b = cursor.fetchone()
-    cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email2,))
-    a = cursor.fetchone()
-    db.commit()
-    db.close()
-    if a != None and b != None:
-        insert_values_amistats(email1,email2,'Pendent')
-        insert_values_amistats(email2,email1,'Pendent')
+    cursor.execute(''' SELECT pwd FROM usuaris WHERE email=?''',(email1,))
+    c=cursor.fetchone()
+    if c[0]==pwd:
+        cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email1,))
+        b = cursor.fetchone()
+        cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email2,))
+        a = cursor.fetchone()
+        db.commit()
+        db.close()
+        if a != None and b != None:
+            insert_values_amistats(email1,email2,'Pendent')
+        else:
+            print 'Un de aquest correus no existeix'
     else:
-        print 'Un de aquest correus no existeig'
+        print 'La contrasenya no coinsideix'
 
-
-def check_friend_request(email):
+def check_friend_request(email,pwd):
     """
     Comprova si hi ha alguna peticio d'amistat per resoldre i 
     en cas de que n'hi hagi, les resol
@@ -177,63 +180,75 @@ def check_friend_request(email):
     saps_llegir=False
 
     db = sqlite3.connect('xarxa_social.db')
-    cursor = db.cursor()		
-    cursor.execute(''' SELECT email1 FROM amistats WHERE email2 = ? AND estat = 'Pendent' ''',(email,))
-    all_row = cursor.fetchall()
+    cursor = db.cursor()
+    cursor.execute(''' SELECT pwd FROM usuaris WHERE email=?''',(email,))
+    c=cursor.fetchone()
+    if c[0]==pwd:
+        cursor.execute(''' SELECT email1 FROM amistats WHERE email2 = ? AND estat = 'Pendent' ''',(email,))
+        all_row = cursor.fetchall()
 
-    # Comprovem si hi han soliciutds pendents    
-    if len(all_row) > 0:
-        for row in all_row:	
-            print ('{0}' .format(all_row[i][0]))
-            #Si el tiu no saps llegir es repeteix
-            while (saps_llegir==False):
-                ans = raw_input('Vols acceptar aquesta soliciut? (s/n)')
-                # Lo que hi ha aqui sota es pot optimitzar crec
-                if ans == 's':
-                    cursor.execute(''' UPDATE amistats SET estat = 'Acceptada' WHERE email1 = ? AND email2 = ? ''',(all_row[i][0],email,))
-                    
-                    saps_llegir = True
-                elif ans == 'n':
-                    cursor.execute(''' UPDATE amistats SET estat = 'Rebutjada' WHERE email1 = ? AND email2 = ? ''',(all_row[i][0],email,))
-                    
-                    saps_llegir = True
-                else:
-                    print 'Tens que escriure s o n'
-            i+=1
-            saps_llegir=False
+        # Comprovem si hi han soliciutds pendents    
+        if len(all_row) > 0:
+            for row in all_row:	
+                print ('{0}' .format(all_row[i][0]))
+                #Si el tiu no saps llegir es repeteix
+                while (saps_llegir==False):
+                    ans = raw_input('Vols acceptar aquesta soliciut? (s/n)')
+                    # Lo que hi ha aqui sota es pot optimitzar crec
+                    if ans == 's':
+                        cursor.execute(''' UPDATE amistats SET estat = 'Acceptada' WHERE email1 = ? AND email2 = ? ''',(all_row[i][0],email,))
+                        saps_llegir = True
+                    elif ans == 'n':
+                        cursor.execute(''' UPDATE amistats SET estat = 'Rebutjada' WHERE email1 = ? AND email2 = ? ''',(all_row[i][0],email,))
+                        saps_llegir = True
+                    else:
+                        print 'Tens que escriure s o n'
+                i+=1
+                saps_llegir=False
+        else:
+            print 'No tens solicituds pendents'
     else:
-        print 'No tens solicituds pendents'
+        print 'La contrasenya no coinsideix'
     db.commit()
     db.close()
 
-def block_friend(email1,email2):
+def block_friend(email1,email2,pwd):
     db = sqlite3.connect('xarxa_social.db')
     cursor = db.cursor()
-    cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email1,))
-    b = cursor.fetchone()
-    cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email2,))
-    a = cursor.fetchone()
-    if  a != None and b != None:
-        #insert_values_amistats(email1,email2,'Rebutjada')
-        cursor.execute(''' UPDATE amistats SET estat = 'Rebutjada' WHERE email1 = ? AND email2 = ? ''',(email1,email2,))
+    cursor.execute(''' SELECT pwd FROM usuaris WHERE email=?''',(email1,))
+    c=cursor.fetchone()
+    if c[0]==pwd:
+        cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email1,))
+        b = cursor.fetchone()
+        cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email2,))
+        a = cursor.fetchone()
+        if  a != None and b != None:
+            #insert_values_amistats(email1,email2,'Rebutjada')
+            cursor.execute(''' UPDATE amistats SET estat = 'Rebutjada' WHERE email1 = ? AND email2 = ? ''',(email1,email2,))
+        else:
+            print 'Aquest correus no existeigen'
     else:
-        print 'Aquest correus no existeigen'
-    
+        print 'La contrasenya no coinsideix'
     db.commit()
     db.close()
 
 
-def unblock_friend(email1,email2):
+def unblock_friend(email1,email2,pwd):
     db = sqlite3.connect('xarxa_social.db')
     cursor = db.cursor()
-    cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email1,))
-    b = cursor.fetchone()
-    cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email2,))
-    a = cursor.fetchone()
-    if  a != None and b != None:
-        cursor.execute(''' UPDATE amistats SET estat = 'Acceptada' WHERE email1 = ? AND email2 = ? ''',(email1,email2,))
+    cursor.execute(''' SELECT pwd FROM usuaris WHERE email=?''',(email1,))
+    c=cursor.fetchone()
+    if c[0]==pwd:
+        cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email1,))
+        b = cursor.fetchone()
+        cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email2,))
+        a = cursor.fetchone()
+        if  a != None and b != None:
+            cursor.execute(''' UPDATE amistats SET estat = 'Acceptada' WHERE email1 = ? AND email2 = ? ''',(email1,email2,))
+        else:
+            print 'Aquest correus no existeigen'
     else:
-        print 'Aquest correus no existeigen'
+        print 'La contrasenya no coinsideix'
     db.commit()
     db.close()
 
