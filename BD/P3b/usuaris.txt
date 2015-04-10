@@ -1,0 +1,6 @@
+sergicarol35@gmail.com,Sergi,Carol,Manresa,1994
+moni_33_33@gmail.com,Monica,Carol,Manresa,1992
+enriclenard@gmail.com,Enric,Lenard,Manresa,1994
+bertacapdevila@gmail.com,Berta,Capdevila,Navarcles,1994
+kiwi@gmail.com,Kiwi,Carol,Manresa,2008
+sadf@gmail.com,lol,hots,Manresa,2008,enric.jpg
