@@ -66,20 +66,47 @@ class Interpret(object):
                 b = self._dcom[a[0]]
                
 		if len(a) == 1:
-                    b()
+                    try:
+                        b()
+                    except TypeError:
+                        print "Parametres incorrectes"
+
 		if len(a) == 2:
-                    b(a[1])
+                    try:
+                        b(a[1])
+                    except TypeError:
+                        print "Parametres incorrectes"
+
 		elif len(a) == 3:
-                    b(a[1],a[2])
+                    try:
+                        b(a[1],a[2])
+                    except TypeError:
+                        print "Parametres incorrectes"
+
 		elif len(a) == 4:
-                    b(a[1],a[2],a[3])
+                    try:
+                        b(a[1],a[2],a[3])
+                    except TypeError:
+                        print "Parametres incorrectes"
+
 		elif len(a) == 5:
-                    b(a[1],a[2],a[3],a[4])
+                    try:
+                        b(a[1],a[2],a[3],a[4])
+                    except TypeError:
+                        print "Parametres incorrectes"
+
                 elif len(a) == 6:
-                    b(a[1],a[2],a[3],a[4],a[5])
+                    try:
+                        b(a[1],a[2],a[3],a[4],a[5])
+                    except TypeError:
+                        print "Parametres incorrectes"
+
 		elif len(a) == 7:
-                    b(a[1],a[2],a[3],a[4],a[5],a[6])
-	                
+                    try:
+                        b(a[1],a[2],a[3],a[4],a[5],a[6])
+                    except TypeError:
+                        print "Parametres incorrectes"
+
             a =raw_input(self._prompt)
             a = a.split()
             if a == []:
