@@ -1,0 +1,184 @@
+\documentclass[11p]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{graphicx}
+\title{\huge\textbf{ Memòria pràctica 4:\\ Servei Web}}
+\author{Sergi Carol\ i Enric Lenard }
+\begin{document}
+\inputencoding{utf8}
+\maketitle
+
+\section*{Introducciò}
+
+En aquesta pràctica realitzarem un servidor web per tal de que poguem mostrar els arxius .html creats a la pràctica anterior. Per tant utilitzarem eines de python, com el SimpleHTTPServer, i el servidor web \textbf{apache}.\\
+A més a més configurarem el servei apache per tal de utilitzar alias, redireccionts o noms virtuals.
+
+\section{Configuració de l'ordinador per entrar a la xarxa virtual}
+
+En el nostre cas hem escollit configurar el nostre ordinador per tal de que agafi com a DNS secundari el DNS creat a la pràctica 2 de les maquines virtuals. Per tan desde l'ordinador host podem entrar al navegador adreçes com g2.asi.itic.cat i el DNS secundari les pot resoldre.
+
+\centerline{\includegraphics[scale=0.35]{../../../Imatges/zkldxc.jpg}}
+
+\section{Servidor de Web simple amb Python}
+
+A continuació utilitzarem eines del llenguatje Python per tal de crear un servidor web. Python permet crear servidors web senzills utilitzant la comanda:\\
+\textbf{python -m SimpleHTTPServer }\\
+Un cop executem la comanda tindrem creat un servidor web senzill que podem accedir atraves del port 8000.\\
+\centerline{\includegraphics[scale=0.30]{../../../Imatges/captura1}} 
+Podem veure com la url es \textbf{web.g2.asi.itic.cat:8000} aixì com la pagina web correctament.\\
+\section{Configuració del servei del sistema}
+\subsection{Creació dels arxius de configuració}
+A continuació configurarem el servidor apache per tal de que ens mostri el servidor web.\\
+És important saber que el servidor apache, per defecte, nomes mostra fitxers que estiguin situats a la carpeta \textbf{/var/www/html}. Per tant copiarem els arxius de la pràctica anterior en aquest directori. És importan saber que apache obrira per defecte l'arxiu anomenat index.html \\
+Hi ha una altre cosa que ens tenim que assegurar. Apache al instalar-se crea un nou usuari anomentat www-data, aquest usuari es l'encarregat de llegir els fitxers .html per tal de donar-los als visitans de la pàgina.Si aquest usuari no te permissios de lectura en una carpeta en la qual hi ha localitzats els fitxers que volem mostrar el servidor no podra mostrar-los.\\
+Un cop copiats els arxius al directori /var/www/html podem engegar el servidor apache utilitzant \textbf{service apache2 start} i ja tindrem el nostre servidor web funcionant. Per comprovar-ho podem entrar a \textbf{web.g2.asi.itic.cat}:\\\\
+\centerline{\includegraphics[scale=0.3]{../../../Imatges/captura2}} \\\\
+A més a més podem navegar per els diferents arxius, i fins i tot obrir arxius pdf.\\
+\centerline{\includegraphics[scale=0.3]{../../../Imatges/captura3}}\\\\
+En el cas de entrar en un directori i no especificar un arxiu tindrem el següent:\\
+\centerline{\includegraphics[scale=0.4]{../../../Imatges/captura4}}\\\\
+Podem veure com ja dissposem de un servidor web funcional, però també el volem configurar al nostre gust. La configuració per defecte de apache es troba en el fitxer \textbf{default.conf} . Nosltres volem crear la nostre porpia configuració per tan creem un nou fitxer de configuració a \textbf{/etc/apache2/sites-aviable/}, en aquest directori creearem el fitxer practweb.conf on configurarem el nostre servidor.\\
+La primera cosa que podem fer en el nostre arxiu de configuració es afegir l'adreça de correu del adminsitrador de la pàgina.\\
+\begin{lstlisting}
+<VirtualHost *:80>
+	ServerAdmin mail@g2.asi.itic.cat
+</VirtualHost>
+\end{lstlisting}
+És important recordar que cal desactivar la configuració default i activar la nostre, per tan realitzem les següent comandes:
+\textbf{a2dissite default}\\
+\textbf{a2ensite practweb}\\
+Finalment fem un service apache2 reload per recarregar la configuració.\\
+
+\subsection{Registre,Fitxers,URL i permissos}
+A continuacó afegirem un següit de parametres al nostre arxiu de configuració com per exemple localització dels logs, directori base del servidor.
+\begin{lstlisting}
+<VirtualHost *:80>
+	ServerAdmin mail@g2.asi.itic.cat
+	DocumentRoot /var/www/html     #En aquest cas deixem el mateix que per 
+					#default.Podriem canviar-lo a un altre 
+					#com /www/server1
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+    	LogLevel warn
+    	CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+\end{lstlisting}
+
+\subsection{Àlies}
+Els àlies ens permeten agafar arxius de una carpeta en qualsevol directori de forma senzilla. Per exemple podriem introduir web.g2.asi.itic.cat/docshtml/ i mostrar els arxius que hi han a un altre directori. Aixó també es té que configurar al arxiu practweb.conf.
+\begin{lstlisting}
+<VirtualHost *:80>
+	ServerAdmin mail@g2.asi.itic.cat
+	DocumentRoot /var/www/html     
+	
+	Alias /docshtml/ /var/www/doc/	#Podem veure com al esciure 
+					#/docshtml/ anirem a buscar 
+					#els arxius a la carpeta /var/www/doc/
+	
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+    	LogLevel warn
+    	CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+\end{lstlisting}
+\centerline{\includegraphics[scale=0.4]{../../../Imatges/captura5} }
+
+\subsection{Redirecció}
+La redirecció ens permet enviar a una altre pàgina web desde la nostre porpia pàgina web. En aquest cas redirecionarem web.g2.asi.itic.cat/docspy a http://web.g2.asi.itic.cat:8000 , osigui, el servidor python que hem creat anteriorment. En aquest cas però simplement mostrarem els arxius que hi han allà, no la pàgina web en si (per mostrar-la nomes caldria canviar el nom de un arxiu).\\\\
+\begin{lstlisting}
+<VirtualHost *:80>
+	ServerAdmin mail@g2.asi.itic.cat
+	DocumentRoot /var/www/html     
+	Alias /docshtml/ /var/www/doc/	
+	
+	Redirect /docspy http://web.g2.asi.itic.cat:8000  #Veiem com la redireccio ens enviara al servidor python	
+	
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+    	LogLevel warn
+    	CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+\end{lstlisting}
+
+\subsection{Reverse Proxy}
+El reverse proxy és una exstensió que permet , com la redirecció, mostrar continguts que no són de la nostre pàgina web. Però a diferencia de la redirecció la url no es veu afectada. En el cas de la redirecció la url canvia a la url redireccionada, el proxy simplement mostra el contingut de la url.\\
+Al tractar-se de una extensió tenim que primer activar-la. per fer-ho fem la següent comanda:
+\begin{lstlisting}
+ a2enmod proxy_http proxy_connect
+\end{lstlisting}
+Com amb la redirecció, tenim que activar el proxy al nostre arxiu de configuració:\\
+\begin{lstlisting}
+<VirtualHost *:80>
+	ServerAdmin mail@g2.asi.itic.cat
+	DocumentRoot /var/www/html     
+	Alias /docshtml/ /var/www/doc/	
+	Redirect /docspy http://web.g2.asi.itic.cat:8000 
+	
+	ProxyPass /docsprox/ http://web.g2.asi.itic.cat:8000
+    	ProxyPassReverse /docsprox/ http://web.g2.asi.itic.cat:8000
+	
+	
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+    	LogLevel warn
+    	CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+\end{lstlisting}
+Un exemple del seu funcionament:\\\\
+\centerline{\includegraphics[scale=0.4]{../../../Imatges/captura6.jpg} }
+Podem veure com estan al directori del servidor python encara que la url diu que estem a web.g2.asi.itic.cat
+
+\subsection{Servidor per noms virtuals}
+Finalment crearem servidors per noms virtuals. Els servidors per noms virtuals permeten filtrar les peticions que es reben, per exemple, podriem donar un contingut diferent a persones que anessin al domini exemple.com o exemple.org així com mostrar el mateix per exemple.com que per www.exemple.com.\\
+En el nostre cas voldrem donar el mateix servei que web.g2.asi.itic.cat a g2.asi.itic.cat i www.g2.asi.itic.cat. Peró voldrem que form.g2.asi.itic.cat mostri directament el formulari HTML5. Per fer-ho tindrem que modificar l'arxiu de configuració de la següent manera:
+\begin{lstlisting}
+
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+        DocumentRoot /var/www/html
+        DirectoryIndex tasca5.html    #Volem que s'obri aquest fitxer
+
+        ServerAdmin mail@g2.asi.itic.cat
+        ServerName form.g2.asi.itic.cat	#Nom del servidor
+
+        ProxyPass /docsprox/ http://web.g2.asi.itic.cat:8000
+        ProxyPassReverse "/docsprox/" "http://web.g2.asi.itic.cat:8000"
+
+        Alias /docshtml/ /var/www/doc/
+
+        Redirect /docspy http://web.g2.asi.itic.cat:8000
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        LogLevel warn
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+
+<VirtualHost *:80>
+        ServerAdmin mail@g2.asi.itic.cat
+        ServerName web.g2.asi.itic.cat
+        ServerAlias www.g2.asi.itic.cat g2.asi.itic.cat
+        DocumentRoot /var/www/html
+
+        ProxyPass /docsprox/ http://web.g2.asi.itic.cat:8000
+        ProxyPassReverse "/docsprox/" "http://web.g2.asi.itic.cat:8000"
+        Alias /docshtml/ /var/www/doc/
+        Redirect /docspy http://web.g2.asi.itic.cat:8000
+
+        ErrorLog ${APACHE_LOG_DIR}/error.log
+        LogLevel warn
+        CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+
+\end{lstlisting}
+
+Podem veure com hem introduit alguns conceptes nous. ServerName indica quin es el nom del servidor principal que volem filtrar. ServerAlias indica que per aquests noms de domini també s'aplicara la mateixa configuració que ServerName. Finalment DirectoryIndex indica quin arxiu s'obrira al entrar en la carpeta , per defecte és index.html.\\
+També és important modificar el servidor DNS per tal de que indiqui que www.g2.asi.itic.cat, g2.asi.itic.cat i form.g2.asi.itic.cat són CNAMES de web.g2.asi.itic.cat i per tan tenen l'adreça 172.20.2.12 (en el nostre cas).\\
+A continuació els exemples mencionants anteriorment.\\
+\newpage
+\textbf{g2.asi.itic.cat}\\\\
+\centerline{\includegraphics[scale=0.3]{../../../Imatges/captura7.jpg} }\\\\
+\textbf{www.g2.asi.itic.cat}\\\\
+\centerline{\includegraphics[scale=0.3]{../../../Imatges/captura8.jpg} }\\\\
+\newpage
+\textbf{form.g2.asi.itic.cat}\\\\
+\centerline{\includegraphics[scale=0.3]{../../../Imatges/captura9.jpg} }
+
+\end{document}
