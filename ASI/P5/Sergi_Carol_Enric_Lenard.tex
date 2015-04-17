@@ -111,8 +111,8 @@ Com amb la redirecció, tenim que activar el proxy al nostre arxiu de configurac
 	Alias /docshtml/ /var/www/doc/	
 	Redirect /docspy http://web.g2.asi.itic.cat:8000 
 	
-	ProxyPass /docsprox/ http://web.g2.asi.itic.cat:8000
-    	ProxyPassReverse /docsprox/ http://web.g2.asi.itic.cat:8000
+	ProxyPass /docsprox/ http://web.g2.asi.itic.cat:8000/
+    	ProxyPassReverse /docsprox/ http://web.g2.asi.itic.cat:8000/
 	
 	
 	ErrorLog ${APACHE_LOG_DIR}/error.log
@@ -138,8 +138,8 @@ NameVirtualHost *:80
         ServerAdmin mail@g2.asi.itic.cat
         ServerName form.g2.asi.itic.cat	#Nom del servidor
 
-        ProxyPass /docsprox/ http://web.g2.asi.itic.cat:8000
-        ProxyPassReverse "/docsprox/" "http://web.g2.asi.itic.cat:8000"
+        ProxyPass /docsprox/ http://web.g2.asi.itic.cat:8000/
+        ProxyPassReverse /docsprox/ http://web.g2.asi.itic.cat:8000/
 
         Alias /docshtml/ /var/www/doc/
 
@@ -157,8 +157,8 @@ NameVirtualHost *:80
         ServerAlias www.g2.asi.itic.cat g2.asi.itic.cat
         DocumentRoot /var/www/html
 
-        ProxyPass /docsprox/ http://web.g2.asi.itic.cat:8000
-        ProxyPassReverse "/docsprox/" "http://web.g2.asi.itic.cat:8000"
+        ProxyPass /docsprox/ http://web.g2.asi.itic.cat:8000/
+        ProxyPassReverse /docsprox/ http://web.g2.asi.itic.cat:8000/
         Alias /docshtml/ /var/www/doc/
         Redirect /docspy http://web.g2.asi.itic.cat:8000
 
