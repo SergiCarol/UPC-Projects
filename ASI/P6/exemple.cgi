@@ -2,18 +2,25 @@
 # -*- encoding:utf-8 -*-
 
 import cgi
+import cgitb
 import send
 
+cgitb.enable()
 form = cgi.FieldStorage()
 
-f = open("/home/shared-stuff/data.txt",'r+')
+f = open("/home/shared-stuff/data.txt",'w')
 f.write("Usuari: " + form["Nom d’usuari"].value)
 f.write("\n")
 f.write("Contrasenya: " + form["password"].value)
 f.write("\n")
 f.write("Correu: " + form["correu"].value)
 f.write("\n")
-f.write("Comentari: " + form["comentari"].value)
+try:
+	a = form["comentari"].value
+except:
+	a = " "
+	
+f.write("Comentari: " + a)
 f.close()
 
 send.enviar()
