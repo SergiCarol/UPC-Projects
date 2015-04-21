@@ -39,6 +39,7 @@ print '<meta charset="utf-8"/>'
 print '<title> Proba exemple </title>'
 print '</head>'
 print '<body>'
+print '<a href="redirect.html"><img class="foto3" src="inici.png" alt="Inici" title="Inici"></a>'
 print '<p>Hola això és una proba</p>'
 print '<b>Password:</b>' + form["password"].value + "<br>"
 print '<b>Correu: </b>' + form["correu"].value + "<br>"
