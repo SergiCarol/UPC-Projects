@@ -4,7 +4,8 @@ import os
 def enviar():
 	mail='mail -s "Formulari" mail1@g2.asi.itic.cat < /home/shared-stuff/data.txt'	
 	subprocess.Popen(mail,shell=True)
-
+	#subprocess.Popen("rm /home/shared-stuff/data.txt",shell=True)
+	
 
 def envoriment_var():
         navegador = os.environ["HTTP_USER_AGENT"]
