@@ -51,6 +51,7 @@ print  #Final dels headers
 print '<html>'
 print '<head>'
 print '<meta charset="utf-8"/>'
+print '<meta http-equiv="refresh" content="5;url=http://form.g2.asi.itic.cat/" />'
 print '<title> Gràcies </title>'
 print '</head>'
 print '<body>'
@@ -59,7 +60,7 @@ print '<p>Has completat el formulari correctament</p>'
 #print '<b>Password:</b>' + form["password"].value + "<br>"
 print '<b>Correu: </b>' + m + "<br>"
 print '<b>Nom: </b>' + usr + "<br>"
-if comentari!="":
+if a!="":
        print '<b>Comentari: </b>' + a + "<br>"
 print '<i> Despres de 5 seg. tornara a la pàgina dinici </i>'
 print '</body>'
