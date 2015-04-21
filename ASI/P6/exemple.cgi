@@ -56,6 +56,7 @@ print '<title> Resposta formulari </title>'
 print '</head>'
 print '<body>'
 print '<a href="redirect.html"><img class="foto3" src="/var/www/html/inici.png" alt="Inici" title="Inici"></a>'
+print '<h>DADES</h>'
 print '<p>Has completat el formulari correctament</p>'
 #print '<b>Password:</b>' + form["password"].value + "<br>"
 print '<b>Correu: </b>' + m + "<br>"
