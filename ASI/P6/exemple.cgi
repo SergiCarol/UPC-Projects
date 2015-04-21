@@ -54,12 +54,14 @@ print '<meta charset="utf-8"/>'
 print '<title> Gràcies </title>'
 print '</head>'
 print '<body>'
-print '<a href="redirect.html"><img class="/var/www/html/foto3" src="inici.png" alt="Inici" title="Inici"></a>'
+print '<a href="redirect.html"><img class="foto3" src="/var/www/html/inici.png" alt="Inici" title="Inici"></a>'
 print '<p>Has completat el formulari correctament</p>'
 #print '<b>Password:</b>' + form["password"].value + "<br>"
 print '<b>Correu: </b>' + m + "<br>"
 print '<b>Nom: </b>' + usr + "<br>"
-print '<p> Si vol tornar a la pàgina inicial clica a Inici </p>'
+if comentari!="":
+       print '<b>Comentari: </b>' + a + "<br>"
+print '<i> Despres de 5 seg. tornara a la pàgina dinici </i>'
 print '</body>'
 print '</html>'
 
