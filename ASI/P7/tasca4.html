@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link href='http://fonts.googleapis.com/css?family=Monofett' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet"type="text/css"href="estil.css">
+    <TITLE>Programa Javascript</TITLE>
+    <script>
+      function loadXMLDoc()
+      {
+      var xmlhttp;
+      var objecte_div;
+      objecte_div=document.getElementById("myDiv");
+      xmlhttp=new XMLHttpRequest();
+      xmlhttp.onreadystatechange=function()
+      {
+      if (xmlhttp.readyState==4 /*&& xmlhttp.status==200*/)
+      {
+      if (xmlhttp.responseText==0)
+      {
+      objecte_div.style.color="blue";
+      }
+      if (xmlhttp.responseText==1)
+      {
+      objecte_div.style.color="green";
+      }
+      }
+      }
+      xmlhttp.open("GET","entrada.txt",true);
+      xmlhttp.send();
+      }
+    </script>
+  </head>
+  <body>
+    <a href="index.html"><img class="foto3" src="inici.png" alt="Inici" title="Inici"></a>
+    <div id="top1">
+      <h1>PROGRAMA</h1>
+    </div>
+    <br>
+    <div id="myDiv" style="color:blue"> Hola!!!!!! </div>
+    <script>
+      <!--Cada 3 segons, crida la funcio loadXMLDoc()-->
+      setInterval("loadXMLDoc()",3000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <link href='http://fonts.googleapis.com/css?family=Monofett' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet"type="text/css"href="estil.css">
+    <TITLE>Formulari amb HTML5</TITLE>
+    <script>
+      function check(input) {
+      if (input.value != document.getElementById("password").value) {
+      input.setCustomValidity("La contrasenya ha de ser la mateixa!");
+      }
+      else{
+      input.setCustomValidity("");
+      }
+      }
+    </script>
+  </head>
+  <body>
+    <a href="index.html"><img class="foto3" src="inici.png" alt="Grup1" title="Inici"></a>
+    <div id="top1">
+      <h1>SOL&middot LICITUD D'AMISTAT</h1>
+    </div>
+    
+    <form id="FORMULARI" action="/cgi-bin/exemple.cgi" method="post">
+      <h4>
+	<br>
+	<label>Nom d'usuari: </label>
+	<br>
+	<input name="Nom d’usuari" id="nom_usuari" type="text" pattern="[A-Za-z].{1,14}" title="No pot tenir caracters NO valids o mes de 15 caracters valids" required="required"/>
+	<br>
+	<label>Password: </label>
+	<br>
+	<input name="password" id="password" type="password" pattern="[A-Za-z0-9].{6,}" title="6 o mes caracters" required="required"/>
+	<br>
+	<label>Confirmaci&oacute de password: </label>
+	<br>
+	<input name="Conf_pass" id="con_pass" type="password" required="required" oninput="check(con_pass)"/>
+	<br>
+	<label>Correu electr&ograve;nic: </label>
+	<br>
+	<input name="correu" id="correu" type="email" required="required"/>
+	<br>
+	<label>Sexe: </label>
+	<br>
+	<select name="sexe">
+	  <option value="Nothing">---
+	  <option value="Home">Home
+	  <option value="Dona">Dona
+	</select>
+	<br>
+	<label>Comentaris: </label>
+	<br>
+	<textarea name="comentari" id="comentari" rows="6" cols="40" type="text"></textarea>
+	<br>
+	<br>
+	<input type="submit" value="Enviar" id="boto_enviar"/>
+	<input type="reset" value="Esborrar" id="boto_reset"/>
+      </h4>
+    </form>
+  </body>
+</html>
