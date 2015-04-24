@@ -45,7 +45,6 @@ def insert_values_amistats(email1,email2,estat):
     cursor = db.cursor()
     try:
         cursor.execute(''' INSERT INTO amistats (email1,email2,estat) VALUES (?,?,?) ''',(email1,email2,estat,))
-        #cursor.execute(''' INSERT INTO amistats (email1,email2,estat) VALUES(?,?,?) ''',(email1,email2,estat))
         print "S'ha inserit l'usuari correctament"
         db.commit()
     except sqlite3.IntegrityError:
@@ -65,12 +64,6 @@ def show_all_usuaris():
     all_row = cursor.fetchall()
     for row in all_row:
         print ('{0} : {1} : {2} : {3} :  {4}'.format(row[0],row[1],row[2],row[3],row[4]))
-    """    
-    cursor.execute("SELECT imatge FROM usuaris LIMIT 1")
-    data = cursor.fetchone()[0]
-    writeImage(data)
-    """
-    #Lo de sobre esta tret perque crec que nomes en mostra una , ho podria arreglar, pero fa falta? 10 ususaris = 10 fotos
     db.commit()
     db.close()
 
@@ -109,7 +102,6 @@ def show_password(nom,cognom):
     """
     Mostra la contrasenya de un usuari especific
     """
-    #Demanar password o algu??? nose
 
     db = sqlite3.connect('xarxa_social.db')
     cursor = db.cursor()
@@ -149,9 +141,6 @@ def send_friend_request(email1,email2,pwd):
     """
     Envia una peticio de amistat de l'usuari amb email1 a l'usuari amb email2
     """
-    # Fa falta o es fa directament desde el main????
-    #Trobo tonto cridar nomes una funcio....
-    #COMPROVAR QUE EL MAIL EXISTEIXI A USUARIS
     db = sqlite3.connect('xarxa_social.db')
     cursor = db.cursor()
     cursor.execute(''' SELECT pwd FROM usuaris WHERE email=?''',(email1,))
@@ -194,7 +183,6 @@ def check_friend_request(email,pwd):
                 #Si el tiu no saps llegir es repeteix
                 while (saps_llegir==False):
                     ans = raw_input('Vols acceptar aquesta soliciut? (s/n)')
-                    # Lo que hi ha aqui sota es pot optimitzar crec
                     if ans == 's':
                         cursor.execute(''' UPDATE amistats SET estat = 'Acceptada' WHERE email1 = ? AND email2 = ? ''',(all_row[i][0],email,))
                         saps_llegir = True
@@ -223,7 +211,6 @@ def block_friend(email1,email2,pwd):
         cursor.execute(''' SELECT nom FROM usuaris WHERE email = ? ''',(email2,))
         a = cursor.fetchone()
         if  a != None and b != None:
-            #insert_values_amistats(email1,email2,'Rebutjada')
             cursor.execute(''' UPDATE amistats SET estat = 'Rebutjada' WHERE email1 = ? AND email2 = ? ''',(email1,email2,))
         else:
             print 'Aquest correus no existeigen'
