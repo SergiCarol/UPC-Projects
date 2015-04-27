@@ -4,12 +4,7 @@
     <link href='http://fonts.googleapis.com/css?family=Monofett' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet"type="text/css"href="estil.css">
-    <title>Led OFF</title>
-    <script>
-    function myFunction() {
-    document.getElementById("demo").innerHTML = "Hello World";
-    }
-    </script>
+    <title>Led OFF</title>   
   </head>
   <body>
     <a href="index.html"><img class="foto3" src="inici.png" alt="Inici" title="Inici"></a>
@@ -19,12 +14,13 @@
     <br>
     <table>
       <tr>
-	<td colspan="2"><img src="ledon.png" alt="ledon" width="100" height="100" align="center"><br></td>
+	<td colspan="2"><img src="ledoff.png" alt="ledoff" width="100" height="100" align="center"><br></td>
       </tr>
       <tr>
-	<td><button onclick="myFunction()">Click me</button>
+	<td><a href="led_on.html"><button onclick="myFunction()">ON</button></a>
 	</td>
-	<td><input type="reset" value="OFF" id="boto_off" align="right"/></td>
+	<td><a href="led_off.html"><button onclick="myfunction()">OFF</button></a>
+	</td>
       </tr>
     </table>
   </body>
