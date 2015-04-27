@@ -26,8 +26,13 @@ class LEDHTTPRequestHandler(base.BaseHTTPRequestHandler):
                         self._head_error_404()
 
         def _Led_ON(self):
-                """
-                Enric et tocara fer el HTML a tu
+                print """
+                <!DOCTYPE html>
+                <html lang="ca">
+                <head>
+                <meta http-equiv="refresh" content="0"; url=/led_on.html"/>
+                </head>
+                </html>
                 """
                 
                 self._head_html()
@@ -45,8 +50,13 @@ class LEDHTTPRequestHandler(base.BaseHTTPRequestHandler):
 
         def _Led_OFF(self):
 
-                """
-                Misma cosa
+                print """
+                <!DOCTYPE html>
+                <html lang="ca">
+                <head>
+                <meta http-equiv="refresh" content="0"; url=/led_off.html"/>
+                </head>
+                </html>
                 """
 
                 self._head_html()
