@@ -3,6 +3,7 @@
 import SimpleHTTPServer as server
 import BaseHTTPServer as base
 import led
+import serial
 
 class LEDHTTPRequestHandler(base.BaseHTTPRequestHandler):
         
@@ -20,14 +21,18 @@ class LEDHTTPRequestHandler(base.BaseHTTPRequestHandler):
                 print 'URL: {0} al servidor {1}'.format(path,host)
                 if path == '/led':
                         self._LED_ESTAT()
-                        #self._Led_ON()
-                #elif path == '/led_off':
-                        #self._Led_OFF()
+                
+                elif path == '/led_off/':
+                        self._Led_OFF()
+                        
+                elif path == '/led_on/':
+                        self._Led_ON()
+                
                 else:
                         self._head_error_404()
         
         def _LED_ESTAT(self):
-                if led.estat(18) == True:
+                if led.estat(ser) == '1':
                         self._Led_ON()
                 else:
                         self._Led_OFF()
@@ -38,12 +43,12 @@ class LEDHTTPRequestHandler(base.BaseHTTPRequestHandler):
 		resposta ="""
                 <html>
                 <head>
-                <meta http-equiv="refresh" content="0; url=http://pi.g2.asi.itic.cat:808/led_on.html">
+                <meta http-equiv="refresh" content="0; url=http://g2.asi.itic.cat/led_on.html">
                 </head>
                 </html>
                 """
                 self.wfile.write(resposta)
-                led.on()
+                led.on(ser)
 
         def _Led_OFF(self):
 
@@ -51,17 +56,15 @@ class LEDHTTPRequestHandler(base.BaseHTTPRequestHandler):
 		resposta =  """
                 <html>
                 <head>
-                <meta http-equiv="refresh" content="0; url=http://pi.g2.asi.itic.cat:808/led_off.html">
+                <meta http-equiv="refresh" content="0; url=http://g2.asi.itic.cat/led_off.html">
                 </head>
                 </html>
                 """
                 self.wfile.write(resposta)
-                led.off()
+                led.off(ser)
 
-
-
-led.setup(18)
-PORT = 8000
+ser=serial.Serial('/dev/ttyACM0',9600)
+PORT = 8080
 Handler = LEDHTTPRequestHandler
 httpd = base.HTTPServer(("",PORT),Handler)
 print "Serving at port: " + str(PORT)
