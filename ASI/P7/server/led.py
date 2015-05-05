@@ -1,5 +1,5 @@
 #-*- encoding: utf-8 -*-
-
+"""
 import  RPi.GPIO as GPIO
 
 def setup(pin):
@@ -14,4 +14,19 @@ def off(pin):
     
 def estat(pin):
     return GPIO.input(18)
-    
+"""
+
+import serial
+
+
+def on(serial):
+	serial.write("O")
+
+def off(serial):
+	serial.write("F")
+
+def estat(serial):
+	serial.write("C")
+	a=serial.read()
+        print a
+	return a
