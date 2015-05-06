@@ -30,4 +30,12 @@ SELECT dept.dept_no, dept.dnom, max(emp.salari) FROM dept LEFT JOIN emp ON dept.
 
 SELECT e1.dept_no, e1.emp_no, e1.cognom, e1.salari FROM emp e1 WHERE e1.salari >= (SELECT (avg(e2.salari) FROM emp e2 WHERE e2.dept_no = e1.dept_no);
 
+-- 9:
+
+SELECT e1.emp_no, e1.cognom FROM emp e1, emp e2 WHERE e1.ofici=e2.ofici AND e2.cognom="ALONSO";
+
+-- 10:
+
+
+
 
