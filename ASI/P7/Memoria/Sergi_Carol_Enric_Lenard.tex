@@ -1,0 +1,144 @@
+\documentclass[11p]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{graphicx}
+\title{\huge\textbf{ Memòria pràctica 7:\\ Disseny web del control remot d'un led}}
+\author{Sergi Carol\ i Enric Lenard }
+\begin{document}
+\inputencoding{utf8}
+\maketitle
+
+\section*{Introducció}
+
+L'obecjtiu d'aquesta pràctica és aconseguir controlar un led , en el nostre cas el de un arduino, atraves de una interficie web. Aquesat web en permet saber l'estat del led, encenderl i apagar-lo. La forma de fer aquesta pràctica serà la següent: 
+\newline
+Disposarem de dos servidors, un el servidor apache que ja hem utilitzat anteriorment, i un servidor python que serà l'encarregat de gestionar l'arduino i enviar respostes al servidor apache. El servidor apache enviara \textbf{\textit{•on load}} una petició GET al servidor python demanant per l'estat del led, a més a més fara aquesta peticiò cada 3 segons. Per la seva banda, el servidor python informarà al servidor apache del estat del led quant rebi una consulta i encendra i apagarà el led també depenen del servidor apache
+
+
+\section{Configuració del servidor apache}
+
+La configuració del servidor apache es senzilla. Afegirem tres proxys al arxiu \textbf{practweb.conf} per tal de que poguem redirigir, i per tan per una petició, al servidor python per tal de poguer realitzar tres operacions, \textbf{consultar}, \textbf{encendre} i \textbf{apagar} el led.
+\newline
+\begin{lstlisting}
+ProxyPass /led http://mare.g2.asi.itic.cat:8080/led_ask/
+ProxyPassReverse /led http://mare.g2.asi.itic.cat:8080/led_ask/
+
+ProxyPass /led_on http://mare.g2.asi.itic.cat:8080/led_on/
+ProxyPassReverse /led_on http://mare.g2.asi.itic.cat:8080/led_on/
+
+ProxyPass /led_off http://mare.g2.asi.itic.cat:8080/led_off/
+ProxyPassReverse /led_off http://mare.g2.asi.itic.cat:8080/led_off/
+\end{lstlisting}
+
+Podem veure els tres proxys mencionats anteriorment.
+\newline
+
+A més a més hem creat un nou arxiu .html anomenat \textbf{led.html} que s'encarrega de gestionar l'estat del led dintre el servidor apache. Per exemple s'encarrega de demanar al servidor python el estat del led i dir si vol encendre o apagar el led. Per fer-ho hem creat 4 funcions amb javascript que s'encarreguen de enviar peticions al servidor python i canviar una imatge en funcio de la resposta del servidor python. Basicament el seu funcionament és el següent:
+\newline
+\begin{lstlisting}
+<div id="myDiv">
+	<img src="unknown.png" id="img" alt="ledon" width="100" 
+	height="100" align="center"><br></td>
+</div>
+\end{lstlisting}
+Aqui podem veure la imatge que indica si el led esta ences o apagat, com podem veure la source de la imatge es desconeguda en un principi. És important veure que l'identificador de la imatge es \textit{img}.
+\newline
+\begin{lstlisting}
+window.onload = function load()
+      {
+      var xmlhttp;
+      var objecte_div;
+      objecte_div=document.getElementById("img");
+\end{lstlisting}
+Un cop ja en el entorn de javascrip creem una funcio, en aquest cas una que s'executa al carregar la pagina, que busca un element dintre el document html amb l'identificador \textit{img}
+\newline
+\begin{lstlisting}
+xmlhttp.open("GET","/led",true);
+xmlhttp.send();
+\end{lstlisting}
+A continuació enviem una peticiò \textbf{GET} a la url \textbf{/led} això en portara a \textbf{g2.asi.itic.cat/led} , que com hem vist abans, es una url de un proxy que porta a \textbf{mare.g2.asi.itic.cat:8080/led\textunderscore ask/} la qual demana el estat del led.
+\newline
+\begin{lstlisting}
+if (xmlhttp.responseText=="Off")
+      {
+      objecte_div.src = "ledoff.png";
+      console.log("Off")
+      }
+if (xmlhttp.responseText=="On")
+      {
+      console.log("On")
+      objecte_div.src="ledon.png";
+      }
+\end{lstlisting}
+Finalment comprobem la resposta que en dona el servidor python. Podem veure com podem comparar la resposta del servidor gràcies a \textbf{xmlhttp.responseText}. En el cas de que la resposta sigui \textit{Off} canviarem la \textit{sources} de la imatge que apunta a objecte\textunderscore div per \textbf{\textit{ledoff.png}}, en el cas contrari la canviarem per \textbf{\textit{ledon.png}}.
+\newline
+D'aquesta forma podem demanar l'estat del led al carregar la pàgina. Encara hi han tres funcions més, una que demana cada 3 segons l'estat, una altre que al apretar el boto de encendre envia una peticio per encendre el led, i una altre que apaga el led.
+\newline
+Per tal de poguer cridar funcions al apretar el led ho hem fet amb la següent funció:
+\newline
+\begin{lstlisting}
+<button onclick="on()">ON</button>
+\end{lstlisting}
+En aquest cas aquest boto executa la funcio \textbf{on()} que envia una petició per encendre el led. Per últim per tal de poguer executar un script cada 3 segons fem:
+\newline
+\begin{lstlisting}
+setInterval("loadXMLDoc()",3000);
+\end{lstlisting}
+
+\section{Configuració servidor python}
+\subsection{Creació del servidor python}
+En aquest apartat parlarem de la creació del servidor python. La forma de fer-lo ha sigut següint el tutorial de l'enunciat de la pràctica, amb una calsse.
+\newline
+Existeixen 4 possibles paths en el servidor, 5 si contem que els altres donaran error 404. Els paths que s'utilitzaran seran \textbf{/led\textunderscore ask/}, que demanarà l'estat del led, \textbf{/led\textunderscore on/} que encendra el led i finalment \textbf{/led\textunderscore off/} que apagarà el led. Tots aquests paths al final envien una resposta al servidor d'on han rebut la petició, en el cas de /led\textunderscore on/ i /led\textunderscore off/ restornen \textbf{On} i \textbf{Off} respectivament, mentre que /led\textunderscore ask/ retorna On o Off depenent del estat led. Com a exemple podem veure \textbf{/led\textunderscore ask/}:
+\newline
+\begin{lstlisting}
+def _LED_ASK(self):
+         if led.estat(ser) == '1':
+                resposta="On"
+         else:
+                resposta = "Off"
+         self._head_html()
+         self.wfile.write(resposta)
+\end{lstlisting}
+La funció led.estat(ser) demana al arduino l'estat, però aixó en parlarem més endevant. Podem veure com depenen de lo que retorna l'arduino enviem On o Off.
+
+\subsubsection{Controlador del Arduino}
+Finalment pararem sobre el scrip que controla el Arduino. Per tal de realitzar aquest control s'han creat dos codis, un encarregat de controlar l'arduino desde dintre, un codi .c, i un scrip de python que parla pel port serie cap al arduino per tal de enviar-li ordres.
+\newline
+Primer parlarem sobre el scrip python. El scrip és senzill, primer de tot obrim el port serie mitjançant \textbf{ser=serial.Serial('/dev/ttyACM0',9600)}, un cop el tenim obert podem enviar comandes atraves d'aquest amb les funcions \textbf{on} , \textbf{off} i \textbf{estat}, a continuació les funcions mencionades.
+\newline
+\begin{lstlisting}
+import serial
+def on(serial):
+	serial.write("O")
+
+def off(serial):
+	serial.write("F")
+
+def estat(serial):
+	serial.write("C")
+	a=serial.read()
+	return a
+
+\end{lstlisting}
+
+Per últim tenim el codi C encarregat de controlar l'arduino desde dintre. El codi es senzill, el microcontrolador entra en un bucle esperant rebre algun caracter desde el port serie i quant el rep comprova quin caracter és i depenent del que sigui relitza una acciò o un altre.
+\newline
+\begin{lstlisting}
+void lectura(void){
+	uint8_t a;
+	bool s;
+	if (serial_can_read()){
+		a=serial_get();
+		if (a == 'O') pin_w(led,true);
+		else if (a == 'F') pin_w(led,false);
+		else if (a == 'C') {
+			s = pin_r(led);
+			if (s == true) serial_put('1');
+			else if (s == false) serial_put('0');
+			pin_w(led,s);
+		}
+	}
+}
+\end{lstlisting}
+\end{document}
