@@ -11,11 +11,11 @@ except:
 def promp_me(msg) :
     #sys.stdout.write('<You> ')
     #sys.stdout.flush()
-    print "<You>: " + msg
+    #print "<You>: " + msg
 def promp_him(msg):
     #sys.stdout.write('\t\t<Him> ')
     #sys.stdout.flush()
-    print "<Him>: " + msg
+    print "\t\t\t<Him>: " + msg
 def client():
     
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -39,7 +39,7 @@ def client():
             else :
                 msg = sys.stdin.readline()
                 s.send(msg)
-                promp_me(msg)
+#                promp_me(msg)
 
 def servidor():
     
@@ -67,7 +67,7 @@ def servidor():
             else :
                 msg = sys.stdin.readline()
                 s.sendto(msg,addr)
-                promp_me(msg)
+ #               promp_me(msg)
 
 
 
