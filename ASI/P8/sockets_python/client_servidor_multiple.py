@@ -8,7 +8,7 @@ try:
 except:
     PORT = ''
 
-def promp_met() :
+def promp_me() :
     sys.stdout.write('<You> ')
     sys.stdout.flush()
 
