@@ -32,8 +32,8 @@ def client():
                     print '\nDisconnected from chat server'
                     sys.exit()
                 else :
-                    sys.stdout.write(data)
-                    promp_him(msg)
+                    #sys.stdout.write(data)
+                    promp_him(data)
              
             #user entered a message
             else :
@@ -60,8 +60,8 @@ def servidor():
                     sys.exit()
                 else :
                     #print data
-                   # sys.stdout.write(data)
-                    promp_him(msg)
+                    # sys.stdout.write(data)
+                    promp_him(data)
              
             #user entered a message
             else :
