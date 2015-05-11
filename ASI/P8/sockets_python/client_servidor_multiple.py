@@ -18,7 +18,7 @@ def promp_him():
 
 def client():
     
-    s = socket.socket(socket.oAF_INET, socket.SOCK_DGRAM)
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect((HOST, int(PORT)))
     s.settimeout(2)
     comment = raw_input("Escriu el que vols enviar: ")
@@ -36,13 +36,13 @@ def client():
                 else :
                     #print data
                     sys.stdout.write(data)
-                    prompt_him()
+                    promp_him()
              
             #user entered a message
             else :
                 msg = sys.stdin.readline()
                 s.send(msg)
-                prompt_me()
+                promp_me()
 
 def servidor():
     print "soc el servidor"
@@ -66,13 +66,13 @@ def servidor():
                 else :
                     #print data
                     sys.stdout.write(data)
-                    prompt_him()
+                    promp_him()
              
             #user entered a message
             else :
                 msg = sys.stdin.readline()
                 s.send(msg)
-                prompt_me()
+                promp_me()
 
 
 
