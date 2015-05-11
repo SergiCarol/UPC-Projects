@@ -72,7 +72,7 @@ def servidor():
             else :
                 print addr
                 msg = sys.stdin.readline()
-                s.sendto(msg,int(addr))
+                s.sendto(msg,addr)
                 promp_me()
 
 
