@@ -8,11 +8,13 @@ try:
 except:
     PORT = ''
 
-def promp_me(msg) :
-    print "\t\t<You>: " + msg
+def promp_me() :
+    sys.stdout.write('<You> ')
+    sys.stdout.flush()
 
-def promp_him(msg):
-    print "<Him>: " + msg
+def promp_him():
+    sys.stdout.write('\t\t<Him> ')
+    sys.stdout.flush()
 
 def client():
     
@@ -30,15 +32,16 @@ def client():
                     print '\nDisconnected from chat server'
                     sys.exit()
                 else :
-                    #print data
-                    #sys.stdout.write(data)
-                    promp_him(data)
+                    print "\t\t<You>: "
+                    sys.stdout.write(data)
+                    #promp_him()
              
             #user entered a message
             else :
+                print "<Him>: "
                 msg = sys.stdin.readline()
                 s.send(msg)
-                promp_me(msg)
+                #promp_me()
 
 def servidor():
     
