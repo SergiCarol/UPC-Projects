@@ -1,7 +1,10 @@
 import socket
 import sys
 HOST = sys.argv[1]    # The remote host
-PORT = sys.argv[2] 
+try:
+    PORT = int(sys.argv[2])
+except:
+    PORT = ''
 
 def client():
     
@@ -24,8 +27,11 @@ def client():
         
 
 def servidor():
+    print "soc el servidor"
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.bind((HOST, PORT))
+    print HOST
+    print PORT
+    s.bind((HOST, int(PORT)))
     #s.listen(1)
     #conn= s.accept()
 
@@ -44,6 +50,7 @@ def servidor():
 if __name__ == "__main__":
     if PORT == '':
         PORT = HOST
+        HOST = ''
         servidor()
     elif HOST != '' and PORT != '':
         client()
