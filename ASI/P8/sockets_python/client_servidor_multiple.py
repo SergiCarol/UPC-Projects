@@ -9,7 +9,7 @@ except:
     PORT = ''
 
 def promp_me() :
-    sys.stdout.write('<You> ')
+    sys.stdout.write('\t\t<You> ')
     sys.stdout.flush()
 
 def promp_him():
@@ -21,8 +21,6 @@ def client():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect((HOST, int(PORT)))
     s.settimeout(2)
-    comment = raw_input("Escriu el que vols enviar: ")
-    s.send(comment)
     while True:
         socket_list = [sys.stdin, s]
         read_sockets, write_sockets, error_sockets = select.select(socket_list , [], [])
@@ -45,10 +43,8 @@ def client():
                 promp_me()
 
 def servidor():
-    print "soc el servidor"
+    
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    print HOST
-    print PORT
     s.bind((HOST, int(PORT)))
     #s.listen(1)
     #conn= s.accept()
@@ -70,7 +66,6 @@ def servidor():
              
             #user entered a message
             else :
-                print addr
                 msg = sys.stdin.readline()
                 s.sendto(msg,addr)
                 promp_me()
