@@ -71,7 +71,7 @@ def servidor():
             #user entered a message
             else :
                 msg = sys.stdin.readline()
-                s.send(msg)
+                s.send(msg,addr)
                 promp_me()
 
 
