@@ -20,7 +20,7 @@ def client():
     
     s = socket.socket(socket.oAF_INET, socket.SOCK_DGRAM)
     s.connect((HOST, int(PORT)))
-    
+    s.settimeout(2)
     comment = raw_input("Escriu el que vols enviar: ")
     s.send(comment)
     while True:
@@ -52,7 +52,7 @@ def servidor():
     s.bind((HOST, int(PORT)))
     #s.listen(1)
     #conn= s.accept()
-
+    s.settimeout(2)
     while True:
         socket_list = [sys.stdin, s]
         read_sockets, write_sockets, error_sockets = select.select(socket_list , [], [])
@@ -77,7 +77,7 @@ def servidor():
 
 
 if __name__ == "__main__":
-    s.settimeout(2)
+
     if PORT == '':
         PORT = HOST
         HOST = ''
