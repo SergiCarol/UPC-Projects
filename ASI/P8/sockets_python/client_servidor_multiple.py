@@ -11,7 +11,7 @@ except:
 def promp_me(msg) :
     #sys.stdout.write('<You> ')
     #sys.stdout.flush()
-    #print "<You>: " + msg
+    print "<You>: " + msg
 def promp_him(msg):
     #sys.stdout.write('\t\t<Him> ')
     #sys.stdout.flush()
