@@ -8,13 +8,11 @@ try:
 except:
     PORT = ''
 
-def promp_me() :
-    sys.stdout.write('<You> ')
-    sys.stdout.flush()
+def promp_me(msg) :
+    print "\t\t<You>: " + msg
 
-def promp_him():
-    sys.stdout.write('\t\t<Him> ')
-    sys.stdout.flush()
+def promp_him(msg):
+    print "<Him>: " + msg
 
 def client():
     
@@ -33,14 +31,14 @@ def client():
                     sys.exit()
                 else :
                     #print data
-                    sys.stdout.write(data)
-                    promp_him()
+                    #sys.stdout.write(data)
+                    promp_him(data)
              
             #user entered a message
             else :
                 msg = sys.stdin.readline()
                 s.send(msg)
-                promp_me()
+                promp_me(msg)
 
 def servidor():
     
