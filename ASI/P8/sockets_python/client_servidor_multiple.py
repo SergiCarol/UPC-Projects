@@ -9,11 +9,11 @@ except:
     PORT = ''
 
 def promp_me() :
-    sys.stdout.write('\t\t<You> ')
+    sys.stdout.write('<You> ')
     sys.stdout.flush()
 
 def promp_him():
-    sys.stdout.write('<Him> ')
+    sys.stdout.write('\t\t<Him> ')
     sys.stdout.flush()
 
 def client():
