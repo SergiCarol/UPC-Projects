@@ -38,11 +38,11 @@ int client(char *argv[]){
     
     n = write(sockfd,buffer,strlen(buffer));
 
-	if (strcmp("exit\n",buffer) == 0) {
-    	printf("%s\n","Tencant Conexio");
-    	n = write(sockfd,"Closing",8);
-  		close(sockfd);
-  		return 0; 
+    if (strcmp("exit\n",buffer) == 0) {
+      printf("%s\n","Tencant Conexio");
+      n = write(sockfd,"Closing",8);
+      close(sockfd);
+      return 0; 
     }    
     if (n < 0) error("ERROR writing to socket");
     bzero(buffer,256);
@@ -83,7 +83,7 @@ int server(char *argv[]){
     bzero(buffer,256);
     n = read(newsockfd,buffer,255);
 
-    if (strcmp("exit",buffer) >= 0) {
+    if (strcmp("exit\n",buffer) == 0) {
     	printf("%s\n","Tencant Conexio");
   		close(newsockfd);
   		close(sockfd);
