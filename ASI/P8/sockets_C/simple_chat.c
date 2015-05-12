@@ -10,11 +10,32 @@
 //static char PORT;
 //static char *HOST;
 
+
 void error(const char *msg){
   perror(msg);
   exit(0);
 }
 
+int dostuff (int sock){
+   int n;
+   char buffer[256];
+      
+   bzero(buffer,256);
+   n = read(sock,buffer,255);
+   if (strcmp("exit\n",buffer) == 0) {
+     printf("%s\n","Tencant Conexio");
+     close(sock);
+     error("Conexio tencada"); 
+   }
+   if (n < 0) error("ERROR reading from socket");
+   printf("Here is the message: %s\n",buffer);
+   printf("Please enter the message: ");
+   bzero(buffer,256);
+   fgets(buffer,255,stdin);
+   
+   n = write(sock,buffer,strlen(buffer));
+
+}
 int client(char *argv[]){
   int sockfd, portno, n;
   struct sockaddr_in serv_addr;
@@ -49,6 +70,7 @@ int client(char *argv[]){
     n = read(sockfd,buffer,255);
     if (n < 0) error("ERROR reading from socket");
     printf("%s\n",buffer);
+    
   }
   close(sockfd);
   return 0;
@@ -75,30 +97,39 @@ int server(char *argv[]){
   
   listen(sockfd,5);
   clilen = sizeof(cli_addr);
-    newsockfd = accept(sockfd, 
-		       (struct sockaddr *) &cli_addr, 
-		       &clilen);
-    while(true){
-    if (newsockfd < 0) error("ERROR on accept");
-    bzero(buffer,256);
+  newsockfd = accept(sockfd,(struct sockaddr *) &cli_addr, &clilen);
+  if (newsockfd < 0) error("ERROR on accept");
+  while(true){
+    
+    dostuff(newsockfd);
+    /*bzero(buffer,256);
     n = read(newsockfd,buffer,255);
-
+    
     if (strcmp("exit\n",buffer) == 0) {
-    	printf("%s\n","Tencant Conexio");
-  		close(newsockfd);
-  		close(sockfd);
-  		return 0; 
+      printf("%s\n","Tencant Conexio");
+      close(newsockfd);
+      close(sockfd);
+      return 0; 
     }
     if (n < 0) error("ERROR reading from socket");
     printf("Here is the message: %s\n",buffer);
-    n = write(newsockfd,"I got your message",18);
-    if (n < 0) error("ERROR writing to socket");
+    
+    printf("Please enter the message: ");
+    bzero(buffer,256);
+    fgets(buffer,255,stdin);
+    
+    n = write(sockfd,buffer,strlen(buffer));
+
+    //n = write(newsockfd,"I got your message",18);
+    if (n < 0) error("ERROR writing to socket");*/
   }
   printf("%s\n","out");
   close(newsockfd);
   close(sockfd);
   return 0; 
 }
+
+
 
 int main (int argc, char *argv[]){
 
