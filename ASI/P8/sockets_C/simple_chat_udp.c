@@ -22,7 +22,7 @@ int dostuff (int sock){
   char buffer[256];
   bzero(buffer,256);
   n = recvfrom(sock, buffer, 256, 0, (struct sockaddr *) &si_other, &slen);
-  while (n<0) n = recvfrom(s, buffer, 256, 0, (struct sockaddr *) &si_other, &slen);
+  //while (n<0) n = recvfrom(sock, buffer, 256, 0, (struct sockaddr *) &si_other, &slen);
   //printf("Received packet from %d:%d\n", inet_ntoa(si_other.sin_addr), ntohs(si_other.sin_port));
   printf("Data: %s" , buffer);
 
