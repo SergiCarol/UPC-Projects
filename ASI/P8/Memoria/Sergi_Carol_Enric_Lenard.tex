@@ -1,0 +1,170 @@
+\documentclass[11p]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{graphicx}
+\title{\huge\textbf{ Memòria pràctica 7:\\ Disseny web del control remot d'un led}}
+\author{Sergi Carol\ i Enric Lenard }
+\begin{document}
+\inputencoding{utf8}
+\maketitle
+
+
+\section{Netcat}
+\subsection{Tasca 2}
+
+Per tal de realitzar aquesta tasca primer em mirat la documentació de la eina \textbf{netcat}. Hem vist tot el seguit de opcions i hem observat que el que ens interesa fer és, en la màquina servidora, executar l'ordre netcat amb la flag \textbf{-l} i a continuacio el port. Per tan la comanda seria la següent: \textbf{netcat -l 10000}. Mentre  que a la maquina client voldrem especificar a quin servidor ens voldrem conectar, en el nostre cas el servidor es troba a la IP 172.20.2.11, per tan tindrem: \textbf{netcat 172.20.2.11 10000}.
+\newline
+Un cop executades aquestes dues comandes ja tenim les sockets enllaçades mitjançant el protocol TCP, i per tan ja podem enviar missatges.
+\newline
+\centerline{\includegraphics[scale=0.4]{../../../../Imatges/TCP_netcat.jpg}} 
+\newline
+\newline
+Seria dificil executar comandes a un servidor, però no impòssible, ja que existeixen tecniques de Remote shell o Backdoor. La primera és necessari que el servidor permeti la execuccio de comandes afegint més opcions a la comanda netcat, com per exemple la opcio -e que permitria fer \textbf{netcat -l 10000 -e /bin/bash} que permetria que les comandes escrites pel client fossin executades a la maquina del servidor. Amb la nostre versio de netcat aixó no és possible, pero el manual sugereix utilitzar la següent comanda: \textbf{rm -f /tmp/f; mkfifo /tmp/f} i a continuació \textbf{cat /tmp/f | /bin/sh -i 2$>$ \& 1 | nc -l 127.0.0.1 1234 $>$ /tmp/f}. Tot i així no es recomana fer servir aquestes opcions ja que deixen el sistema molt desprotegit.
+
+
+\subsection{Tasca 3}
+
+Ordre pel servidor \textbf{nc -l -u 10000} pel client \textbf{nc -u 172.20.2.11 10000}. Un cop executades aquestes comandes ja podem conectar-nos via UDP.
+
+\centerline{\includegraphics[scale=0.4]{../../../../Imatges/UDP_netcat.jpg} }
+
+\subsection{Tasca 4}
+
+En el cas de que el servidor sigui \textbf{TCP} el servidor nomes permetra una connexió, ja que només existeix un process per antendre la connexió. En canvi, en el cas de \textbf{UDP} el servidor pot rebre els dos clients, ja que no és orientat a connexió i per tan allibera la connexió un cop el missatge s'ha entregat.
+
+\subsection{Tasca 5}
+
+En el cas de \textbf{netcat} existeix un bug a l'aplicacció que no permet que es connectin dos clients a la vegada, encara que el servei sigui UDP, ja que en el cas de TCP no ho permet per lo que hem mencionat anteriorment, pero amb UDP que si que tindria no deixa. 
+
+
+\section{Sockets amb Python}
+\subsection{Tasca 6}
+
+Hem comprovat els exemples proposats i el seu funcionament. Podem veure com tan el client com el servidor , un cop enviat el missatge tenquen les seves connexion. 
+\subsection{Tasca 7}
+
+A continuació farem la comprovacio de python amb netcat.
+\newline
+\centerline{\includegraphics[scale=0.4]{../../../../Imatges/Netcat_Python.jpg}}
+
+Veiem com el client envie un missatge al servidor netcat, el client python es queda obert fins que rep un missatge de confirmació del servidor, que en aquest cas tenim que escriure manualment.
+
+\subsection{Tasca 8}
+
+Per tal de passar de \textbf{TCP} a \textbf{UDP} tenim que canviar un parell de coses. Primer de tot tenim que canviar el tipus de socket, que passara de \textbf{SOCK\textunderscore STREAM} a \textbf{SOCK\textunderscore DGRAM}. Per tan tindrem la següent comanda:
+\newline
+\begin{lstlisting}
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+\end{lstlisting}
+
+A més a més ja que hem passat a un servei no orientat a connexió tenim que treure les següents linies al servidor:
+\begin{lstlisting}
+s.listen(1)
+conn= s.accept()
+\end{lstlisting}
+Ja que amb udp no tenim que estar esperant connexions, ni tampoc les tenim que acceptar ja que no esta orientat a connexió.Finalment una forma amigable de gestionar les rebudes de missatges es utilitzant la funció \textbf{recvfrom} que ens retorna el missatge rebut i a més a més la IP del emissor.
+\newline
+En el cas del client la única cosa que tenim que modificar és la socket de la forma que hem mencionat anteriorment.
+
+\subsection{Tasca 9}
+
+Cal tenir en compte que en aquest apartat el sistema es queda bloquejat mentre existeix un raw\textunderscore input, per tan els missatges es reben tard. Aixó queda millorat en tasques posteriors. L'arxiu utilitzat es \textit{client\textunderscore udp.py} i \textit{servidor\textunderscore udp.py}
+\centerline{\includegraphics[scale=0.35]{../../../../Imatges/python_2_clients_cutre.jpg}}
+\newline
+Podem veure com els dos clients poden enviar missatges al servidor, i el servidor pot responde missatges al últim client que ha enviat un missatge.
+
+\subsection{Tasca 12}
+
+En aquesta última tasca hem ajuntat les tasques 10 i 11, ja que les dues acaben ajuntades amb el mateix codi. Tot i així l'arxiu \textbf{client\textunderscore servidor\textunderscore udp.py} conte el codi realitzat en la tasca 10 i 11. 
+\newline
+En aquest cas hem creat u codi amb protocol UDP, per tan, que permet multiples connexions, a més a més gràcies a la eina \textbf{select} hem pogut solucionar el problema mencionat anteriorment que produia que el sistema es quedes encallat a la funció ra\textunderscore input.
+\newline
+La funcio select ens permet estar pendent de varis \textit{events}, com per exemple rebre un missatge atraves de una socket o que s'escrigui per el stdin. La forma de utilitzar aquesta funció en el nostre cas és al següent:
+\begin{lstlisting}
+socket_list = [sys.stdin, s]
+read_sockets, write_sockets, error_sockets = select.select(socket_list , [], [])
+for sock in read_sockets:
+    #incoming message from remote server
+    if sock == s:
+       data, addr = sock.recvfrom(1024)
+       if not data :
+          print '\nDisconnected from chat server'
+          sys.exit()
+       else :
+           promp_him(data)
+         
+    #user entered a message
+    else :
+       msg = sys.stdin.readline()
+       s.send(msg)
+\end{lstlisting}
+En el primera linia creem una llista de dos elements, el primer es tracta del \textbf{stdin}, osigui, el \textit{standar input}. El segon element es la socket en si.
+\newline
+La funcio select permet retorna tres coses. Si hi ha hagut una lectura, una escriptura o un missatge de error. A continuaxio del select iterem cada element que retorna la funcio select de lectura, en el cas de que l'element retornat sigui el socket voldra dir que hem rebut un missatge atraves del socket i per tan tenim que tractar-lo. En el cas de que no sigui el socket voldra dir que ha sigut un stdin, i per tan que tenim que enviar un missatge.
+\newline
+D'aquesta forma hem solucionat el problema del raw\textunderscore input. Com que el nostre servidor només accepta connexions UDP no es necessari que creem processos per cada missatge rebut.
+\newline
+\centerline{\includegraphics[scale=0.35]{../../../../Imatges/Python_dos_clients.jpg}} 
+Un exemple del seu funcionament.
+\newpage
+\section{Sockets amb C}
+
+\subsection{Tasca 13}
+
+Un cop obtinguts els exemples hem procedit a comprovar el seu funcionament, tenim que tenir en compte que aquest codis estan fets per TCP.
+\newline
+De C a C:
+\newline
+\includegraphics[scale=0.4]{../../../../Imatges/C_a_C.jpg} 
+\newline
+De netcat a C:
+\newline
+\includegraphics[scale=0.4]{../../../../Imatges/netcat_C.jpg}
+\newline
+De Python a C:
+\newline
+\includegraphics[scale=0.4]{../../../../Imatges/Python_a_C.jpg} 
+\newpage
+\subsection{Tasca 14}
+
+En aquesta tasca hem ajuntat les dues aplicacions anteriors per tal de tenir una aplicaccio de xat en un sol fitxer, a més a més hem realitzat algunes modificaccions, com per exemple el programa ja no s'acaba un cop s'ha rebut el missatge, sino que el tan el servidor com el client es queden oberts, a més a més el servidor ara pot escriure missatges cap el client també.
+\newline
+De client TCP C a servidor TCP C
+\newline
+\newline
+\centerline{\includegraphics[scale=0.4]{../../../../Imatges/C_tcp.jpg} }
+\newline
+\newline
+De client C a servidor netcat
+\newline
+\newline
+\centerline{\includegraphics[scale=0.4]{../../../../Imatges/Client_c_server_netcat_tcp.jpg} }
+\newline
+De servidor C a client python
+\newline
+\newline
+\centerline{\includegraphics[scale=0.4]{../../../../Imatges/server_c_client_py_tcp.jpg}} 
+\newline
+\newpage
+\subsection{Opcional: Servidor-Client en UDP}
+
+A més hem modificat el codi anterior de forma que es puguin realitzar conexcions del tipus \textbf{UDP}. Per fer-ho hem hagut de modificar el servidor i el client de forma semblant a com ho hem fet amb el servidor python.
+\newline
+\newline
+De servidor C a client C UDP
+\newline
+\newline
+\centerline{\includegraphics[scale=0.4]{../../../../Imatges/C_C_udp.jpg} }
+\newline
+\newline
+De client C a python UDP
+\newline
+\newline
+\centerline{\includegraphics[scale=0.4]{../../../../Imatges/client_c_udp_python_server.jpg}  }
+\newline
+De servidor C a client netcat UDP
+\newline
+\newline
+\centerline{\includegraphics[scale=0.4]{../../../../Imatges/server_udp_c_netcat.jpg} }
+
+\end{document}
