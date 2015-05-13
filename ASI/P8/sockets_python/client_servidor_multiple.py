@@ -18,7 +18,7 @@ def promp_him(msg):
     print "\t\t\t<Him>: " + msg
 def client():
     
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect((HOST, int(PORT)))
     s.settimeout(2)
     while True:
