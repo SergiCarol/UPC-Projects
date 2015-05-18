@@ -144,3 +144,10 @@ i (C,B). Comproveu que el trigger únicament funciona quan és
 preferit (B) no el (A)
 
 */
+CREATE TRIGGER PREF AFTER UPDATE OF ID2 ON preferencies
+FOR EACH ROW
+WHEN (ID2=NEW.ID2 AND ID1=OLD.ID2) IN (SELECT * FROM amistats) 
+BEGIN
+DELETE FROM amistats WHERE (OLD.ID1=ID1 AND OLD.ID2=ID2);
+DELETE FROM amistats WHERE (OLD.ID1=ID2 AND OLD.ID2=ID1);
+END;
