@@ -62,6 +62,12 @@ insert into preferencies values(1025, 1101);
 tal que automàticament quan s'insereixi un usuari, 
 aquest sigui amicPotencial de tot alumne del seu mateix grau
 */
+CREATE TABLE amicsPotencials(ID1 INT, ID2 INT);
+CREATE TRIGGER add_contact AFTER INSERT ON usuaris  
+BEGIN  
+    UPDATE amicsPotencials SET d = DATETIME('NOW') WHERE grau = new.grau;  
+END;  
+
 
 /*
 2. Escriure un o més triggers per gestionar el grau dels 
@@ -89,6 +95,12 @@ simetria en amics. Específicament, si s'elimina (A,B) de amistats, aleshores
 també cal eliminar (B,A). Si s'insereix (A,B), també cal 
 inserir (B,A). No cal mantenir modificacions.
 */
+
+CREATE TRIGGER INSEREIX AFTER INSERT ON AMISTATS
+FOR EACH ROW
+BEGIN
+INSERT INTO amistats VALUES (NEW.ID2, NEW.ID1)
+END;
 
 /*
 4. Escriure un trigger que automàticament esborri estudiants quan 
