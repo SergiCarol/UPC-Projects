@@ -62,15 +62,13 @@ insert into preferencies values(1025, 1101);
 tal que automàticament quan s'insereixi un usuari, 
 aquest sigui amicPotencial de tot alumne del seu mateix grau
 */
---create table amicPotencial(ID1 int, ID2 int);
-pragma recursive_triggers = on;
 
 create trigger potencial 
 	after insert on usuaris
 	for each row
-	--when (select count(*) from usuaris) < 15 --(select count(*) from usuaris where (grau = New.grau))) 
+	--when (select count(*) from usuaris) < 4 --(select count(*) from usuaris where (grau = New.grau))) 
 	begin 
-		insert into amicPotencial values (New.ID,(select ID FROM usuaris WHERE grau = New.grau));
+		insert into amicPotencial SELECT New.ID ,ID FROM usuaris WHERE New.grau = grau;
 	end;
 insert into usuaris values (12345,'manasdf',10);
 /*
@@ -144,11 +142,5 @@ per C, i B i C són amics, aleshores B i C no poden ser amics.
 Per tant cal eliminar la relació d'amistat en els 2 sentits (B,C) 
 i (C,B). Comproveu que el trigger únicament funciona quan és 
 preferit (B) no el (A)
+
 */
-CREATE TRIGGER PREF AFTER UPDATE OF ID2 ON preferencies
-FOR EACH ROW
-WHEN ((ID1=NEW.ID2 AND ID2=OLD.ID2) OR (ID2=NEW.ID2 AND ID1=OLD.ID2)) IN (SELECT * FROM amistats) 
-BEGIN
-DELETE FROM amistats WHERE (OLD.ID1=ID1 AND OLD.ID2=ID2);
-DELETE FROM amistats WHERE (OLD.ID1=ID2 AND OLD.ID2=ID1);
-END;
