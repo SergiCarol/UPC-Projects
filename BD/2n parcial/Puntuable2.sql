@@ -73,24 +73,22 @@ inserit té un valor null a grau, cal canviar-lo per 9.
 create trigger R2
 	after insert on usuaris
 	for each row
-	when (select grau from usuaris) < 9 
 	begin 
-		insert into usuaris values (New.ID,New.nom,NULL);
+		update usuaris SET grau = NULL where (New.grau < 9 OR New.grau > 12);
 	end;
 
 create trigger R2_2
 	after insert on usuaris 
 	for each row
-	when (select grau from usuaris) = null
 	begin
-		insert into usuaris values (New.ID, New.nom,9)
-
+		update usuaris SET grau = 9 WHERE New.grau IS NULL;
+	end;
 /* 
 3. Escriure un o més triggers que mantinguin la relació de 
 simetria en amics. Específicament, si s'elimina (A,B) de amistats, aleshores
 també cal eliminar (B,A). Si s'insereix (A,B), també cal 
 inserir (B,A). No cal mantenir modificacions.
-/*
+*/
 
 /*
 4. Escriure un trigger que automàticament esborri estudiants quan 
