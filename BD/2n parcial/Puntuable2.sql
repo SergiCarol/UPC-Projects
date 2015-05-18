@@ -68,10 +68,11 @@ pragma recursive_triggers = on;
 create trigger potencial 
 	after insert on usuaris
 	for each row
-	when (select count(*) from usuaris where grau = New.Grau) < 10 
+	--when (select count(*) from usuaris) < 15 --(select count(*) from usuaris where (grau = New.grau))) 
 	begin 
 		insert into amicPotencial values (New.ID,(select ID FROM usuaris WHERE grau = New.grau));
 	end;
+insert into usuaris values (12345,'manasdf',10);
 /*
 2. Escriure un o més triggers per gestionar el grau dels 
 nous usuaris. Si el registre inserit és inferior a 9 o major a 12, 
