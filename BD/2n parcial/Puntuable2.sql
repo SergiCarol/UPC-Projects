@@ -1,7 +1,8 @@
 drop table if exists usuaris;
 drop table if exists amistats;
 drop table if exists preferencies;
-
+drop table if exists amicPotencial;
+create table amicPotencial(ID1 int, ID2 int);
 create table usuaris(ID int, nom text, grau int);
 create table amistats(ID1 int, ID2 int);
 create table preferencies(ID1 int, ID2 int);
@@ -61,13 +62,16 @@ insert into preferencies values(1025, 1101);
 tal que automàticament quan s'insereixi un usuari, 
 aquest sigui amicPotencial de tot alumne del seu mateix grau
 */
-/*CREATE TABLE amicsPotencials(ID1 INT, ID2 INT);
-CREATE TRIGGER add_contact AFTER INSERT ON usuaris  
-BEGIN  
-    UPDATE amicsPotencials SET d = DATETIME('NOW') WHERE grau = new.grau;  
-END;  
+--create table amicPotencial(ID1 int, ID2 int);
+pragma recursive_triggers = on;
 
-
+create trigger potencial 
+	after insert on usuaris
+	for each row
+	when (select count(*) from usuaris where grau = New.Grau) < 10 
+	begin 
+		insert into amicPotencial values (New.ID,(select ID FROM usuaris WHERE grau = New.grau));
+	end;
 /*
 2. Escriure un o més triggers per gestionar el grau dels 
 nous usuaris. Si el registre inserit és inferior a 9 o major a 12, 
@@ -112,10 +116,25 @@ END;
 aquests es graduin, és a dir, quan el grau superi el valor 12
 */
 
+create trigger R3
+	after update of grau on usuaris
+	for each row
+	when (New.grau > 12)
+	begin 
+		delete from usuaris where Old.ID = ID;
+	end;
+
 /*
 5. Escriure un trigger tal que quan un usuari incrementi un grau, 
 també ho facin els seus amics.
 */
+
+create trigger increment 
+	after update of grau on usuaris
+	for each row 
+	begin
+		update usuaris SET grau = grau+1 WHERE ID IN (SELECT ID2 FROM amistats WHERE ID1 = New.ID);
+	end;
 
 /*
 6. Escriure un trigger que forci el següent comportament: 
