@@ -44,7 +44,6 @@ insert into amistats values (1316, 1934);
 insert into amistats values (1934, 1304);
 insert into amistats values (1304, 1661);
 insert into amistats values (1661, 1025);
-insert into amistats select ID2, ID1 from amistats; 
 
 insert into preferencies values(1689, 1709);
 insert into preferencies values(1709, 1689);
@@ -62,7 +61,7 @@ insert into preferencies values(1025, 1101);
 tal que automàticament quan s'insereixi un usuari, 
 aquest sigui amicPotencial de tot alumne del seu mateix grau
 */
-CREATE TABLE amicsPotencials(ID1 INT, ID2 INT);
+/*CREATE TABLE amicsPotencials(ID1 INT, ID2 INT);
 CREATE TRIGGER add_contact AFTER INSERT ON usuaris  
 BEGIN  
     UPDATE amicsPotencials SET d = DATETIME('NOW') WHERE grau = new.grau;  
@@ -95,11 +94,17 @@ simetria en amics. Específicament, si s'elimina (A,B) de amistats, aleshores
 també cal eliminar (B,A). Si s'insereix (A,B), també cal 
 inserir (B,A). No cal mantenir modificacions.
 */
+CREATE TRIGGER BORRAR AFTER DELETE ON AMISTATS
+FOR EACH ROW
+BEGIN
+DELETE FROM amistats WHERE (OLD.ID1=ID2 AND OLD.ID2=ID1);
+END;
+
 
 CREATE TRIGGER INSEREIX AFTER INSERT ON AMISTATS
 FOR EACH ROW
 BEGIN
-INSERT INTO amistats VALUES (NEW.ID2, NEW.ID1)
+INSERT INTO amistats VALUES (NEW.ID2, NEW.ID1);
 END;
 
 /*
