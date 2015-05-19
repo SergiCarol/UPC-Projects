@@ -142,12 +142,12 @@ per C, i B i C són amics, aleshores B i C no poden ser amics.
 Per tant cal eliminar la relació d'amistat en els 2 sentits (B,C) 
 i (C,B). Comproveu que el trigger únicament funciona quan és 
 preferit (B) no el (A)
-
 */
+--DELETE (B=OLD.ID2,C=ID2)
 CREATE TRIGGER PREF AFTER UPDATE OF ID2 ON preferencies
 FOR EACH ROW
-WHEN (ID2=NEW.ID2 AND ID1=OLD.ID2) IN (SELECT * FROM amistats) 
+WHEN EXISTS (SELECT * FROM amistats WHERE (ID2=NEW.ID2 AND ID1=OLD.ID2)) 
 BEGIN
-DELETE FROM amistats WHERE (OLD.ID1=ID1 AND OLD.ID2=ID2);
-DELETE FROM amistats WHERE (OLD.ID1=ID2 AND OLD.ID2=ID1);
+DELETE FROM amistats WHERE (ID1=OLD.ID2 AND ID2=ID2);
+DELETE FROM amistats WHERE (ID2=ID2 AND OLD.ID1=ID2);
 END;
