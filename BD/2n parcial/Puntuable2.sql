@@ -1,3 +1,5 @@
+--SERGI CAROL BOSCH & ENRIC LENARD URÓ
+
 drop table if exists usuaris;
 drop table if exists amistats;
 drop table if exists preferencies;
