@@ -20,6 +20,7 @@ def insert_values(nom,numero):
         return 1
     finally:
         db.close()
+        return 0
 
 def modificar_values(nom,numero_old,numero_new):
     db = sqlite3.connect('contacte.db')
@@ -70,6 +71,7 @@ def show_number(nom):
     db.commit()
     db.close()
     return tlf
+
 def all_contacts():
     db = sqlite3.connect('contacte.db')
     cursor = db.cursor()
@@ -106,6 +108,7 @@ if __name__=="__main__":
     print 'Dani:'
     for i in telf:
         print i[0] 
+    # Funcio all contatcs, com agafar valors
     contacts = all_contacts()
     for row in contacts:
         print row[0], row[1]
