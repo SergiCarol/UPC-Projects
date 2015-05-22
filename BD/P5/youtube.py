@@ -11,7 +11,16 @@ def agregar():
         msg["text"]="Afegit contacte %s" %entradaNom.get()
         entradaNom.set("")
         entradaTel.set("")
-        
+
+#Funcio modificar valor.
+def modifica(t,i):
+    if t!="":
+        llista.set(i,column="Telefons",value=t)
+        item=llista.item(i)
+        msg["text"]="Contacte %s modificat" %item['values'][0]
+        ventana_edit.destroy()
+    else:
+        msg["text"]="Afegeixi un telefon nou"   
 #Funcio eliminar de la llista.
 def elimina():
     msg["text"]=""
@@ -23,15 +32,29 @@ def elimina():
 
 #Funcio que modifica un contacte.
 def edita():
-    ventana_edit=Tk()
-    Label(ventana_edit, text="Name:",fg="blue").grid(row=0, sticky=W)
-    Label(ventana_edit, text="Telèfon antic:",fg="blue").grid(row=1, sticky=W)
-    Label(ventana_edit, text="Nou telèfon:",fg="blue").grid(row=2, sticky=W)
-    Entry(ventana_edit).grid(row=0, column=1, sticky=E)
-    Entry(ventana_edit).grid(row=1, column=1, sticky=E)
-    Entry(ventana_edit).grid(row=2, column=1, sticky=E)
-    Button(ventana_edit, text="Modificar contacte",fg="blue").grid(row=3, column=1, sticky=E)
-
+    global ventana_edit
+    iid=llista.focus()
+    item=llista.item(iid)
+    if iid!="":
+        ventana_edit=Tk()
+        Label(ventana_edit, text="Name:",fg="blue").grid(row=0, sticky=W)
+        Label(ventana_edit, text="Telèfon antic:",fg="blue").grid(row=1, sticky=W)
+        Label(ventana_edit, text="Nou telèfon:",fg="blue").grid(row=2, sticky=W)
+        nom=Entry(ventana_edit)
+        nom.insert(0,item["values"][0])
+        nom.config(state='readonly')
+        nom.grid(row=0, column=1, sticky=E)
+        tel=Entry(ventana_edit)
+        tel.insert(0,item["values"][1])
+        tel.config(state='readonly')
+        tel.grid(row=1, column=1, sticky=E)
+        nouTel=StringVar()
+        nou=Entry(ventana_edit,textvariable=nouTel)
+        nou.grid(row=2, column=1, sticky=E)
+        Button(ventana_edit, text="Modificar contacte",fg="blue",comman=lambda:modifica(nou.get(),iid)).grid(row=3, column=1, sticky=E)
+        
+    else:
+        msg["text"]="Seleccioni un contacte"
 #---INTERFICIE---
 ventana=Tk()
 ventana.geometry("525x405+0+0")
