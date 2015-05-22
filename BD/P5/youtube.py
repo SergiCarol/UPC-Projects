@@ -5,7 +5,7 @@ import ttk
 #---FUNCIONS---
 #Funcio agrega a la llista.
 def agregar():
-    msg["text"]=""
+   # msg["text"]=""
     if entradaNom.get()!='' and entradaTel.get()!='':
         llista.insert('','end',values=(entradaNom.get(),entradaTel.get()))
         msg["text"]="Afegit contacte %s" %entradaNom.get()
@@ -23,7 +23,7 @@ def modifica(t,i):
         msg["text"]="Afegeixi un telefon nou"   
 #Funcio eliminar de la llista.
 def elimina():
-    msg["text"]=""
+    #msg["text"]=""
     iid=llista.focus()
     item=llista.item(iid)
     msg["text"]="Contacte %s eliminat" %item['values'][0]
