@@ -19,6 +19,7 @@ def elimina():
     item=llista.item(iid)
     msg["text"]="Contacte %s eliminat" %item['values'][0]
     llista.delete(iid)
+    #gestio.delete_value(selecccionat)
 
 #Funcio que modifica un contacte.
 def edita():
