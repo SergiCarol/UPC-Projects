@@ -14,7 +14,7 @@ def insert_values(nom,numero):
         db.commit()
     except sqlite3.IntegrityError:
         #print Aqui ficar un print de error si hi ha un ususari repetit
-        print "Error al modificar l'usuari"
+        print "Error al inserir l'usuari"
         db.rollback()
         db.close()
         return 1
@@ -39,16 +39,16 @@ def modificar_values(nom,numero_old,numero_new):
         db.close()
         return 0
 
-def delete_value(nom):
+def delete_value(nom,numero):
     db = sqlite3.connect('contacte.db')
     cursor = db.cursor()
     try:
-        cursor.execute(''' DELETE from contacte WHERE nom = ?''',(nom,))
+        cursor.execute(''' DELETE from contacte WHERE nom = ? AND fix = ?''',(nom,numero,))
         print "S'ha eliminat l'usuari correctament"
         db.commit()
     except :
         #print Aqui ficar un print de error si hi ha un ususari repetit
-        print "Error al modificar l'usuari"
+        print "Error al eliminar l'usuari"
         db.rollback()
         db.close()
         return 1
@@ -101,4 +101,11 @@ if __name__=="__main__":
     print 'Dani:'
     for i in telf:
         print i[0]    
-    print all_contacts()
+    delete_value('Dani',609391233)
+    telf = show_number('Dani')
+    print 'Dani:'
+    for i in telf:
+        print i[0] 
+    contacts = all_contacts()
+    for row in contacts:
+        print row[0], row[1]
