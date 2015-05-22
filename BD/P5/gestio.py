@@ -70,7 +70,14 @@ def show_number(nom):
     db.commit()
     db.close()
     return tlf
-
+def all_contacts():
+    db = sqlite3.connect('contacte.db')
+    cursor = db.cursor()
+    cursor.execute(''' SELECT * FROM contacte ''')
+    llistat = cursor.fetchall()
+    db.commit()
+    db.close()
+    return llistat
 #-----------------------------------
 #           PROVES AQUI
 #-----------------------------------
@@ -94,3 +101,4 @@ if __name__=="__main__":
     print 'Dani:'
     for i in telf:
         print i[0]    
+    print all_contacts()
