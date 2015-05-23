@@ -1,0 +1,25 @@
+Exportar:
+	Exportem la nostre clau publica 
+	
+	gpg --output public_key.gpg --export 9D66900
+
+
+Encryptat:
+	Importem la clau publica de la persona a qui volem enviar el missatge
+
+	gpg --import pubg4.gpg   
+	
+	Encriptem el missatge del document "proba"	
+	
+	gpg --encrypt --recipient danivaro35@gmail.com proba
+
+Desencriptat:
+	Descenriptem el missatge miss.txt.gpg encriptat amb la nostre clau publica
+	
+	gpg --output missatge_dani.txt -d miss.txt.gpg 
+
+Signar missatge:
+
+	gpg -u 204115D8 --output provag2.gpg --sign proba
+
+	Per mirar-ho , el pots desancriptar amb la companda de desencriptar normal
