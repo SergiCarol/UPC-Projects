@@ -72,6 +72,15 @@ def show_number(nom):
     db.close()
     return tlf
 
+def ordena():
+    db = sqlite3.connect('contacte.db')
+    cursor = db.cursor()
+    cursor.execute(''' SELECT * FROM contacte ORDER BY nom ''')
+    llistat = cursor.fetchall()
+    db.commit()
+    db.close()
+    return llistat
+
 def all_contacts():
     db = sqlite3.connect('contacte.db')
     cursor = db.cursor()
