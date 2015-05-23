@@ -2,12 +2,21 @@
 from sqlite3 import*
 from Tkinter import*
 import ttk
+import gestio
 #---FUNCIONS---
+#Funcio actualitza taula.
+def actualitza():
+    iids=llista.get_children()
+    for i in iids:
+        llista.delete(i)
+    l=gestio.all_contacts()
+    for row in l:
+        llista.insert('','end',values=(row[0],row[1]))
 #Funcio agrega a la llista.
 def agregar():
-   # msg["text"]=""
     if entradaNom.get()!='' and entradaTel.get()!='':
-        llista.insert('','end',values=(entradaNom.get(),entradaTel.get()))
+        gestio.insert_values(entradaNom.get(),entradaTel.get())
+        actualitza()
         msg["text"]="Afegit contacte %s" %entradaNom.get()
         entradaNom.set("")
         entradaTel.set("")
@@ -23,7 +32,6 @@ def modifica(t,i):
         msg["text"]="Afegeixi un telefon nou"   
 #Funcio eliminar de la llista.
 def elimina():
-    #msg["text"]=""
     iid=llista.focus()
     item=llista.item(iid)
     msg["text"]="Contacte %s eliminat" %item['values'][0]
@@ -103,6 +111,8 @@ btnEditar=Button(ventana,text="Modificar Seleccionat",fg="blue",command=edita).p
 #Boto SORTIR
 btnSalir=Button(ventana,text="Sortir",fg="blue",command=ventana.quit).place(x=464,y=375)
 
+#Omplim la llista
+actualitza()
 
 #Loop per arrencar.
 ventana.mainloop()

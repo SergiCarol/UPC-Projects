@@ -85,30 +85,8 @@ def all_contacts():
 #-----------------------------------
 
 if __name__=="__main__":
-    insert_values('Dani',123456789)
-    all_row = show_number('Dani')
-    # Com mirar el return de show_number
-    #-----------------------------
-    #for i in all_row:
-    #    print i[0]
-    #-----------------------------
-    insert_values('Sergi',123456789)
-    modificar_values('Sergi',123456789,609391233)
-    print 'Sergi'
-    telf = show_number('Sergi')
-    for i in telf:
-        print i[0]
-    modificar_values('Dani',123456789,609391233)
-    telf = show_number('Dani')
-    print 'Dani:'
-    for i in telf:
-        print i[0]    
-    delete_value('Dani',609391233)
-    telf = show_number('Dani')
-    print 'Dani:'
-    for i in telf:
-        print i[0] 
-    # Funcio all contatcs, com agafar valors
+     # Funcio all contatcs, com agafar valors
     contacts = all_contacts()
     for row in contacts:
         print row[0], row[1]
+    insert_values('qwer',123456789)
