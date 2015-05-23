@@ -12,31 +12,66 @@ def actualitza():
     l=gestio.all_contacts()
     for row in l:
         llista.insert('','end',values=(row[0],row[1]))
+
+#Funcio ordena la llista.
+def ordena():
+    iids=llista.get_children()
+    for i in iids:
+        llista.delete(i)
+    l=gestio.ordena()
+    for row in l:
+        llista.insert('','end',values=(row[0],row[1]))
+
+#Funcio de busqueda.
+def busca():
+    b=entradaBus.get()
+    iids=llista.get_children()
+    for i in iids:
+        item=llista.item(i)
+        nom= item['values'][0]
+        tel= item['values'][1]
+        if nom==b or str(tel)==b:
+            llista.selection_add(i)
+            msg["text"]="S'ha trobat el contacte"
+            break
+    else:
+        msg["text"]="Aquest contacte no existeix"
 #Funcio agrega a la llista.
 def agregar():
     if entradaNom.get()!='' and entradaTel.get()!='':
         gestio.insert_values(entradaNom.get(),entradaTel.get())
-        actualitza()
+        ordena()
         msg["text"]="Afegit contacte %s" %entradaNom.get()
         entradaNom.set("")
         entradaTel.set("")
+    else:
+        msg["text"]="Afegeixi un contacte nou"
 
 #Funcio modificar valor.
 def modifica(t,i):
     if t!="":
-        llista.set(i,column="Telefons",value=t)
         item=llista.item(i)
-        msg["text"]="Contacte %s modificat" %item['values'][0]
+        nom= item['values'][0]
+        tel= item['values'][1]
+        gestio.modificar_values(nom,tel,t)
+        ordena()
+        msg["text"]="Contacte %s modificat" %nom
         ventana_edit.destroy()
     else:
         msg["text"]="Afegeixi un telefon nou"   
+
 #Funcio eliminar de la llista.
 def elimina():
     iid=llista.focus()
-    item=llista.item(iid)
-    msg["text"]="Contacte %s eliminat" %item['values'][0]
-    llista.delete(iid)
-    #gestio.delete_value(selecccionat)
+    if iid!="":
+        item=llista.item(iid)
+        nom= item['values'][0]
+        tel= item['values'][1]
+        gestio.delete_value(nom,tel)
+        ordena()
+        msg["text"]="Contacte %s eliminat" %nom
+    else:
+        msg["text"]="Seleccioni un contacte"
 
 #Funcio que modifica un contacte.
 def edita():
@@ -83,27 +118,21 @@ llista.place(x=40,y=255)
 #Creem el missatge
 msg=Label(ventana,text='',fg='red')
 msg.place(x=230,y=230)
-#Creacio de una llista
-#lstMaterias=Listbox(ventana,width=50,height=6)
-#lstMaterias.insert(0,"Programacion Basica")
-#lstMaterias.insert(1,"Programacion de Objetos")
-#lstMaterias.insert(2,"Ojetos uytre")
-#lstMaterias.insert(3,"Erfer Ojetos uytre")
-#Eliminar element llista
-#lstMaterias.delete(2)
-#lstMaterias.place(x=40,y=270)
 #Quadre d'entrada de text
 recuadre=LabelFrame(ventana,text="Nou Registre",fg="blue",width=225,height=105).place(x=230,y=70)
 lblNom=Label(ventana,text="Nom:",fg="blue").place(x=235,y=90)
 lblTel=Label(ventana,text="Telèfon:",fg="blue").place(x=235,y=115)
+#lblBus=Label(ventana,text="Buscar:",fg="blue").place(x=0,y=226)
 entradaNom=StringVar()
 entradaTel=StringVar()
+entradaBus=StringVar()
 txtNom=Entry(ventana,textvariable=entradaNom,width=19).place(x=285,y=90)
 txtTel=Entry(ventana,textvariable=entradaTel,width=19).place(x=285,y=115)
+txtBus=Entry(ventana,textvariable=entradaBus,width=19).place(x=69,y=230)
 #Boto AGREGAR
 btnAgregar=Button(ventana,text="Afegeix Contacte",fg="blue",width=10,command=agregar).place(x=335,y=140)
 #Boto MOSTRAR
-btnMostrar=Button(ventana,text="Mostrar Contactes",fg="blue").place(x=0,y=226)
+btnMostrar=Button(ventana,text="Buscar",fg="blue",comman=busca).place(x=0,y=226)
 #Boto ELIMINAR
 btnEliminar=Button(ventana,text="Eliminar Seleccionat",fg="blue",command=elimina).place(x=0,y=375)
 #Boto EDITAR
@@ -112,7 +141,7 @@ btnEditar=Button(ventana,text="Modificar Seleccionat",fg="blue",command=edita).p
 btnSalir=Button(ventana,text="Sortir",fg="blue",command=ventana.quit).place(x=464,y=375)
 
 #Omplim la llista
-actualitza()
+ordena()
 
 #Loop per arrencar.
 ventana.mainloop()
