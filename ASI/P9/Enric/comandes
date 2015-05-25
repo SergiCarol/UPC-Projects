@@ -24,3 +24,7 @@ Per signar un missatge utilitzem la nostre clau de signatura.
 Si volem obtenir el valor d'un missatge signat pel Torres, cal importar la clau publica i despres realitzar una desencriptacio.
    	gpg --import Torres.pub
    	gpg -d m_signat.gpg
+
+INFORMACIO:
+Obtenim les claus publiques i signades de tots els usuaris que hem importat.
+	gpg -k
