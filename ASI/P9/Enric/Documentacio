@@ -1,0 +1,12 @@
+gpg: /home/enric/.gnupg/trustdb.gpg: s'ha creat la base de dades de confiança
+gpg: key 24727ACC marked as ultimately trusted
+s'han creat i signat les claus pública i secreta.
+
+gpg: s'està comprovant la base de dades de confiança
+gpg: 3 marginal(s) needed, 1 complete(s) needed, PGP trust model
+gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
+pub   2048R/24727ACC 2015-05-24
+      Key fingerprint = C49C FCB9 79E5 0DD1 F3B3  B7A7 0D3A A420 2472 7ACC
+uid                  Enric Lenard Uro (Alerta) <lenardenric@gmail.com>
+sub   2048R/B0E8E85A 2015-05-24
+

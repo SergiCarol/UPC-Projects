@@ -1,0 +1,26 @@
+CLAUS:
+Publica=>24727ACC
+Signar=>B0E8E85A
+
+EXTRACCIO:
+Exportem la nostre clau publica.
+	gpg --export -a "Enric Lenard" > Enric_Lenard_Public.pub
+	
+DESENCRIPTACIO:
+Per tal d'obtenir el missatges m_enric.gpg
+	gpg -d m_enric.gpg 
+
+ENCRIPTACIO:
+Importem la clau publica del reseptor Jordi Torres.
+	gpg --import Torres.pub
+	
+Encriptem el missatge m_torres.txt amb la seva clau publica obtenint m_torres.gpg.
+	gpg --output m_torres.gpg --encrypt --recipient jorditorres89@gmail.com m_torres.txt
+
+SIGNATURA:
+Per signar un missatge utilitzem la nostre clau de signatura.
+    	gpg -u B0E8E85A --output signat.gpg --sign signat
+
+Si volem obtenir el valor d'un missatge signat pel Torres, cal importar la clau publica i despres realitzar una desencriptacio.
+   	gpg --import Torres.pub
+   	gpg -d m_signat.gpg
