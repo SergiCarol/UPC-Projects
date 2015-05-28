@@ -3,6 +3,7 @@ from sqlite3 import*
 from Tkinter import*
 import ttk
 import gestio
+
 #---FUNCIONS---
 #Funcio actualitza taula.
 def actualitza():
@@ -24,6 +25,7 @@ def ordena():
 
 #Funcio de busqueda.
 def busca():
+    ordena()
     b=entradaBus.get()
     iids=llista.get_children()
     for i in iids:
@@ -31,7 +33,10 @@ def busca():
         nom= item['values'][0]
         tel= item['values'][1]
         if nom==b or str(tel)==b:
-            llista.selection_add(i)
+            for x in iids:
+                llista.delete(x)
+            llista.insert('','end',values=(nom,tel))
+            #llista.selection_add(i)
             msg["text"]="S'ha trobat el contacte"
             break
     else:
@@ -128,11 +133,13 @@ entradaTel=StringVar()
 entradaBus=StringVar()
 txtNom=Entry(ventana,textvariable=entradaNom,width=19).place(x=285,y=90)
 txtTel=Entry(ventana,textvariable=entradaTel,width=19).place(x=285,y=115)
-txtBus=Entry(ventana,textvariable=entradaBus,width=19).place(x=69,y=230)
+txtBus=Entry(ventana,textvariable=entradaBus,width=17).place(x=300,y=202)
 #Boto AGREGAR
 btnAgregar=Button(ventana,text="Afegeix Contacte",fg="blue",width=10,command=agregar).place(x=335,y=140)
-#Boto MOSTRAR
-btnMostrar=Button(ventana,text="Buscar",fg="blue",comman=busca).place(x=0,y=226)
+#Boto MOSTRA
+btnMostrar=Button(ventana,text="Mostrar",fg="blue",comman=ordena).place(x=0,y=226)
+#Boto BUSCAR
+btnBuscar=Button(ventana,text="Buscar",fg="blue",comman=busca).place(x=230,y=198)
 #Boto ELIMINAR
 btnEliminar=Button(ventana,text="Eliminar Seleccionat",fg="blue",command=elimina).place(x=0,y=375)
 #Boto EDITAR
