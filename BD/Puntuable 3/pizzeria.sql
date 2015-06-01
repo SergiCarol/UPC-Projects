@@ -1,3 +1,4 @@
+-- SERGI CAROL BOSCH I ENRIC LENARD URO
 create table productes(
 	idProducte char(9),
 	nom char(20),
@@ -77,3 +78,27 @@ INSERT INTO liniesComandes VALUES (1004, "Pid3", 1);
 INSERT INTO liniesComandes VALUES (1003, "Pid7", 2);
 INSERT INTO liniesComandes VALUES (1003, "Pid0", 2);
 INSERT INTO liniesComandes VALUES (1004, "Pid7", 2);
+
+
+--Exercici 1
+
+SELECT count( distinct domicilis.carrer) FROM domicilis,comandes GROUP BY domicilis.carrer HAVING import < 10 AND comandes.numTelf = domicilis.numero;
+
+-- Exercici 2
+/*
+b.1)
+QLC sense repeticions
+
+b.2)
+QP*QD*QC*QLC amb repeticions
+
+b.3)
+QLC amb repeticions
+
+b.4)
+QC sense repeticions
+*/
+
+--Exercici 3
+
+SELECT sum(productes.preu) FROM productes,regals WHERE productes.idProducte = regals.idProdRegalat AND regals.idProdComprat = (SELECT idProducte FROM productes WHERE (nom='Napolitana' AND mida='gran'));

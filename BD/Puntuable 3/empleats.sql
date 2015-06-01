@@ -30,23 +30,23 @@ INSERT INTO empleat VALUES ("id6","Nerea",5500);
 
 
 --2.a)Només es pot modificar el sou si el numero d'empleats és més gran que 200
-
+-- Les probes d'aquest trigger han sigut realitzades amb un limit de 2 i no de 200
 CREATE TRIGGER R1
 BEFORE UPDATE ON empleat
 FOR EACH ROW
-WHEN (SELECT count(*) FROM empleat )<2
+WHEN (SELECT count(*) FROM empleat )<200
 BEGIN
 	SELECT raise(ignore);
 end;
 
---2.b) Despres de actulitzar el sou, el sou com aminim té que ser de 100€
+--2.b) Despres de actulitzar el sou, el sou com a minim té que ser de 100€
 
 CREATE TRIGGER R2
 AFTER UPDATE ON empleat
 FOR EACH ROW
 WHEN (SELECT New.sou FROM empleat) < 100
 BEGIN
-	UPDATE empleat SET sou = 110;
+	UPDATE empleat SET sou = 100;
 end;
 
 --2.c)Enregistrar el nombre de tuples esborrades i l'instant en que s'esborren a la taula
