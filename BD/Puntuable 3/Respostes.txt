@@ -1,0 +1,2 @@
+SELECT count(domicilis.carrer) FROM domicilis,comandes WHERE import < 10 AND comandes.numTelf = domicilis.numero AND instantServida IS NOT NULL;
+
