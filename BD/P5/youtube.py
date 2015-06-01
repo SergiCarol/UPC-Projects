@@ -43,7 +43,7 @@ def busca():
         msg["text"]="Aquest contacte no existeix"
 #Funcio agrega a la llista.
 def agregar():
-    if entradaNom.get()!='' and entradaTel.get()!='':
+    if entradaNom.get()!='' and entradaTel.get()!='' and entradaTel.get().isdigit()==True and  entradaNom.get().isdigit()==False:
         gestio.insert_values(entradaNom.get(),entradaTel.get())
         ordena()
         msg["text"]="Afegit contacte %s" %entradaNom.get()
@@ -54,7 +54,7 @@ def agregar():
 
 #Funcio modificar valor.
 def modifica(t,i):
-    if t!="":
+    if t!="" and t.isdigit()==True:
         item=llista.item(i)
         nom= item['values'][0]
         tel= item['values'][1]
