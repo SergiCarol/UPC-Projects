@@ -13,3 +13,6 @@ QLC amb repeticions
 
 b.4)
 QC
+
+c)
+SELECT sum(productes.preu) FROM productes,regals WHERE productes.idProducte = regals.idProdRegalat AND regals.idProdComprat = "Pid7";
