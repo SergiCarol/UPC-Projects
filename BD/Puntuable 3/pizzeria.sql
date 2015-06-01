@@ -54,12 +54,12 @@ INSERT INTO regals VALUES ("Pid7", "Pid0");
 INSERT INTO regals VALUES ("Pid2", "Pid1");
 INSERT INTO regals VALUES ("Pid3", "Pid1");
 
-INSERT INTO domicilis VALUES (938725879, "Angel", 16, 1, 2);
-INSERT INTO domicilis VALUES (938725878, "Carrio", 17, 1, 2);
-INSERT INTO domicilis VALUES (938725877, "Numancia", 18, 1, 2);
-INSERT INTO domicilis VALUES (938725876, "Diagonal", 19, 1, 2);
-INSERT INTO domicilis VALUES (938725875, "Alvenez", 20, 1, 2);
-INSERT INTO domicilis VALUES (938725874, "Complex", 21, 1, 2);
+INSERT INTO domicilis VALUES (938725479, "Angel", 16, 1, 2);
+INSERT INTO domicilis VALUES (938725478, "Carrio", 17, 1, 2);
+INSERT INTO domicilis VALUES (938725477, "Numancia", 18, 1, 2);
+INSERT INTO domicilis VALUES (938725476, "Diagonal", 19, 1, 2);
+INSERT INTO domicilis VALUES (938725475, "Alvenez", 20, 1, 2);
+INSERT INTO domicilis VALUES (938725474, "Complex", 21, 1, 2);
 
 INSERT INTO comandes VALUES (1000, 1, 2, 938725479, 20);
 INSERT INTO comandes VALUES (1001, 2, 3, 938725478, 10);
