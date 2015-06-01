@@ -75,5 +75,5 @@ INSERT INTO liniesComandes VALUES (1002, "Pid2", 10);
 INSERT INTO liniesComandes VALUES (1003, "Pid2", 50);
 INSERT INTO liniesComandes VALUES (1004, "Pid3", 1);
 INSERT INTO liniesComandes VALUES (1003, "Pid7", 2);
---INSERT INTO liniesComandes VALUES (1003, "Pid0", 2);
+INSERT INTO liniesComandes VALUES (1003, "Pid0", 2);
 INSERT INTO liniesComandes VALUES (1004, "Pid7", 2);
