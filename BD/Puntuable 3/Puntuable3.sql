@@ -1,3 +1,4 @@
+-- SERGI CAROL I ENRIC LENARD
 create table productes
 (idProducte char(9),
 nom char (20),
