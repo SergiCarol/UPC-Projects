@@ -1,6 +1,6 @@
 EXERCICI 1:
 a)
-SELECT count(domicilis.carrer) FROM domicilis,comandes WHERE import < 10 AND comandes.numTelf = domicilis.numero AND instantServida IS NOT NULL;
+SELECT count( distinct domicilis.carrer) FROM domicilis,comandes GROUP BY domicilis.carrer HAVING import < 10 AND comandes.numTelf = domicilis.numero;
 
 b.1)
 QLC
@@ -17,3 +17,6 @@ b.4)
 1
 3
 2
+
+c)
+SELECT sum(productes.preu) FROM productes,regals WHERE productes.idProducte = regals.idProdRegalat AND regals.idProdComprat = "Pid7";
