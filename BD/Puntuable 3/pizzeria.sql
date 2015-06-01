@@ -41,38 +41,38 @@ create table regals(
        foreign key (idProdComprat) references productes,
        foreign key (idProdRegalat) references productes);
 
-INSERT INTO productes VALUES ("id0", "Tomaquet0", "Mitjana",7);
-INSERT INTO productes VALUES ("id1", "Tomaquet1", "Mitjana",8);
-INSERT INTO productes VALUES ("id2", "Tomaquet2", "Mitjana",9);
-INSERT INTO productes VALUES ("id3", "Tomaquet3", "Mitjana",6);
-INSERT INTO productes VALUES ("id4", "Tomaquet4", "Mitjana",7);
-INSERT INTO productes VALUES ("id5", "Tomaquet5", "Mitjana",8);
-INSERT INTO productes VALUES ("id6", "Tomaquet6", "Mitjana",9);
-INSERT INTO productes VALUES ("id7", "napolitana", "gran",15);
+INSERT INTO productes VALUES ("Pid0", "4Formatges", "Petita",7);
+INSERT INTO productes VALUES ("Pid1", "BBQ", "Mitjana",8);
+INSERT INTO productes VALUES ("Pid2", "Tropical", "Mitjana",9);
+INSERT INTO productes VALUES ("Pid3", "Motzarela", "Mitjana",6);
+INSERT INTO productes VALUES ("Pid4", "Calzone", "Mitjana",7);
+INSERT INTO productes VALUES ("Pid5", "Peperoni", "Mitjana",8);
+INSERT INTO productes VALUES ("Pid6", "Pollastre", "Mitjana",9);
+INSERT INTO productes VALUES ("Pid7", "Napolitana", "gran",15);
 
-INSERT INTO regals VALUES ("id7", "id0");
-INSERT INTO regals VALUES ("id2", "id1");
-INSERT INTO regals VALUES ("id3", "id1");
+INSERT INTO regals VALUES ("Pid7", "Pid0");
+INSERT INTO regals VALUES ("Pid2", "Pid1");
+INSERT INTO regals VALUES ("Pid3", "Pid1");
 
-INSERT INTO domicilis VALUES (938773066, "Domenech0", 16, 1, 2);
-INSERT INTO domicilis VALUES (938774066, "Domenech1", 17, 1, 2);
-INSERT INTO domicilis VALUES (938775066, "Domenech2", 18, 1, 2);
-INSERT INTO domicilis VALUES (938776066, "Domenech3", 19, 1, 2);
-INSERT INTO domicilis VALUES (938777066, "Domenech4", 20, 1, 2);
-INSERT INTO domicilis VALUES (938778066, "Domenech5", 21, 1, 2);
+INSERT INTO domicilis VALUES (938725879, "Angel", 16, 1, 2);
+INSERT INTO domicilis VALUES (938725878, "Carrio", 17, 1, 2);
+INSERT INTO domicilis VALUES (938725877, "Numancia", 18, 1, 2);
+INSERT INTO domicilis VALUES (938725876, "Diagonal", 19, 1, 2);
+INSERT INTO domicilis VALUES (938725875, "Alvenez", 20, 1, 2);
+INSERT INTO domicilis VALUES (938725874, "Complex", 21, 1, 2);
 
-INSERT INTO comandes VALUES (1000, 1, 2, 938773066, 20);
-INSERT INTO comandes VALUES (1001, 2, 3, 938775066, 10);
-INSERT INTO comandes VALUES (1002, 3, 4, 938774066, 2);
-INSERT INTO comandes VALUES (1003, 4, 5, 938773066, 5);
-INSERT INTO comandes VALUES (1004, 5, 6, 938775066, 8);
+INSERT INTO comandes VALUES (1000, 1, 2, 938725479, 20);
+INSERT INTO comandes VALUES (1001, 2, 3, 938725478, 10);
+INSERT INTO comandes VALUES (1002, 3, 4, 938725477, 2);
+INSERT INTO comandes VALUES (1003, 4, 5, 938725476, 5);
+INSERT INTO comandes VALUES (1004, 5, 6, 938725475, 8);
 
 /*producte demanat en una comanda*/
-INSERT INTO liniesComandes VALUES (1000, "id7", 100);
-INSERT INTO liniesComandes VALUES (1001, "id1", 20);
-INSERT INTO liniesComandes VALUES (1002, "id2", 10);
-INSERT INTO liniesComandes VALUES (1003, "id2", 50);
-INSERT INTO liniesComandes VALUES (1004, "id3", 1);
-INSERT INTO liniesComandes VALUES (1003, "id7", 2);
-INSERT INTO liniesComandes VALUES (1003, "id0", 2);
-INSERT INTO liniesComandes VALUES (1004, "id7", 2);
+INSERT INTO liniesComandes VALUES (1000, "Pid7", 100);
+INSERT INTO liniesComandes VALUES (1001, "Pid1", 20);
+INSERT INTO liniesComandes VALUES (1002, "Pid2", 10);
+INSERT INTO liniesComandes VALUES (1003, "Pid2", 50);
+INSERT INTO liniesComandes VALUES (1004, "Pid3", 1);
+INSERT INTO liniesComandes VALUES (1003, "Pid7", 2);
+INSERT INTO liniesComandes VALUES (1003, "Pid0", 2);
+INSERT INTO liniesComandes VALUES (1004, "Pid7", 2);
