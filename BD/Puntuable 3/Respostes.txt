@@ -15,4 +15,4 @@ b.4)
 QC
 
 c)
-SELECT sum(productes.preu) FROM productes,regals WHERE productes.idProducte = regals.idProdRegalat AND regals.idProdComprat = "Pid7";
+SELECT sum(productes.preu) FROM productes,regals WHERE productes.idProducte = regals.idProdRegalat AND regals.idProdComprat = (SELECT idProducte FROM productes WHERE (nom='Napolitana' AND mida='gran'));
