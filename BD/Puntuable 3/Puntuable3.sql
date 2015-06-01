@@ -21,7 +21,7 @@ instantServida integer check(instantServida>0),
 numTelf char(9),
 import integer check(import>0),
 primary key (numComanda),
-foreing key (numTelf) references domicilis,
+foreign key (numTelf) references domicilis,
 check(instantServida>instantFeta));
 
 create table liniesComandes
@@ -29,5 +29,8 @@ create table liniesComandes
 idProducte char(9),
 quantitat integer check(quantitat>0),
 primary key(numComanda,idProducte),
-foreing key (numComanda) references comandes,
-foreing key (idProducte) reference productes);
+foreign key (numComanda) references comandes,
+foreign key (idProducte) references productes);
+
+--EXERCICI 1:
+SELECT d.carrer FROM domicilis d, liniesComandes l, productes p
