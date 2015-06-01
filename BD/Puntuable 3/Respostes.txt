@@ -3,20 +3,13 @@ a)
 SELECT count( distinct domicilis.carrer) FROM domicilis,comandes GROUP BY domicilis.carrer HAVING import < 10 AND comandes.numTelf = domicilis.numero;
 
 b.1)
-QLC
+QLC sense repeticions
 
 b.2)
-QP*QD*QC*QLC
+QP*QD*QC*QLC amb repeticions
 
 b.3)
-QLC
+QLC amb repeticions
 
 b.4)
-1
-1
-1
-3
-2
-
-c)
-SELECT sum(productes.preu) FROM productes,regals WHERE productes.idProducte = regals.idProdRegalat AND regals.idProdComprat = "Pid7";
+QC
