@@ -1,0 +1,235 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/simulation/modelsim
+Ebancregistres
+Z1 w1398615168
+Z2 DPx4 ieee 15 std_logic_arith 0 22 4`Y?g_lkdn;7UL9IiJck01
+Z3 DPx4 ieee 18 std_logic_unsigned 0 22 RYmj;=TK`k=k>D@Cz`zoB3
+Z4 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z5 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z6 d/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/simulation/modelsim
+Z7 8/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/BancRegistres.vhd
+Z8 F/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/BancRegistres.vhd
+l0
+L6
+VZo<IYF_Qd2^0Z]7=EA38a2
+Z9 OV;C;10.1d;51
+31
+Z10 !s108 1398676099.679358
+Z11 !s90 -reportprogress|300|-93|-work|work|/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/BancRegistres.vhd|
+Z12 !s107 /home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/BancRegistres.vhd|
+Z13 o-93 -work work -O0
+Z14 tExplicit 1
+!s100 SRhofM9_R`=Hg_;EYN91M0
+!i10b 1
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 13 bancregistres 0 22 Zo<IYF_Qd2^0Z]7=EA38a2
+l56
+L20
+VDNb6<W3Qel<F=B4fWA2LY2
+R9
+31
+R10
+R11
+R12
+R13
+R14
+!s100 XzghG8_8?^f_J5Od^hDA^2
+!i10b 1
+Ebancregistres_vhd_tst
+Z15 w1398676083
+R4
+R5
+R6
+Z16 8/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/simulation/modelsim/BancRegistres.vht
+Z17 F/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/simulation/modelsim/BancRegistres.vht
+l0
+L30
+V?UIm_B[g2zf@7Od9<WXFf0
+!s100 fQ9_`9zn7C2]L_OEB]2ng0
+R9
+31
+!i10b 1
+Z18 !s108 1398676100.001605
+Z19 !s90 -reportprogress|300|-93|-work|work|/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/simulation/modelsim/BancRegistres.vht|
+Z20 !s107 /home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/simulation/modelsim/BancRegistres.vht|
+R13
+R14
+Abancregistres_arch
+R4
+R5
+DEx4 work 21 bancregistres_vhd_tst 0 22 ?UIm_B[g2zf@7Od9<WXFf0
+l61
+L32
+VKGn_Ve1Z>YK8aLeOEG`XG0
+!s100 _766HhU`2hT>CId7TkH9m1
+R9
+31
+!i10b 1
+R18
+R19
+R20
+R13
+R14
+Edescodificador5
+Z21 w1398604913
+R2
+R3
+R4
+R5
+R6
+Z22 8/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/Descodificador5.vhd
+Z23 F/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/Descodificador5.vhd
+l0
+L5
+VQ=0k850iN_FCkOHiMVnn@0
+R9
+31
+Z24 !s108 1398676099.889327
+Z25 !s90 -reportprogress|300|-93|-work|work|/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/Descodificador5.vhd|
+Z26 !s107 /home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/Descodificador5.vhd|
+R13
+R14
+!s100 1JKh[>hX?2eHjbTnh9TD^3
+!i10b 1
+Adesc
+R2
+R3
+R4
+R5
+DEx4 work 15 descodificador5 0 22 Q=0k850iN_FCkOHiMVnn@0
+l13
+L11
+ViWB^fPmOjlb2bMTIe7?=A1
+R9
+31
+R24
+R25
+R26
+R13
+R14
+!s100 L0Q3RZ1hIRi>kKdgk8=j91
+!i10b 1
+Eregistre
+Z27 w1398601518
+R2
+R3
+R4
+R5
+R6
+Z28 8/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/Registre.vhd
+Z29 F/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/Registre.vhd
+l0
+L5
+VYb`DI@KX;ibAJ`2kUeoUF3
+R9
+31
+Z30 !s108 1398676099.820464
+Z31 !s90 -reportprogress|300|-93|-work|work|/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/Registre.vhd|
+Z32 !s107 /home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/Registre.vhd|
+R13
+R14
+!s100 ?Q9cJ;0B=CkJGIPN_^eY_3
+!i10b 1
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 8 registre 0 22 Yb`DI@KX;ibAJ`2kUeoUF3
+l16
+L13
+VZL1ZF8N6H0bLH<@`5jUH40
+R9
+31
+R30
+R31
+R32
+R13
+R14
+!s100 7D5fYE8CVfPAW299bS0PO3
+!i10b 1
+Eregistrezero
+Z33 w1398601087
+R2
+R3
+R4
+R5
+R6
+Z34 8/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/RegistreZero.vhd
+Z35 F/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/RegistreZero.vhd
+l0
+L5
+VH]58d:L]T`ngJhJ6381zK3
+R9
+31
+Z36 !s108 1398676099.740826
+Z37 !s90 -reportprogress|300|-93|-work|work|/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/RegistreZero.vhd|
+Z38 !s107 /home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/RegistreZero.vhd|
+R13
+R14
+!s100 GGH2]10YJ4_NV]azY0`bg3
+!i10b 1
+Azero
+R2
+R3
+R4
+R5
+DEx4 work 12 registrezero 0 22 H]58d:L]T`ngJhJ6381zK3
+l15
+L14
+V_0Lf9<Y^ac[K;JR8j[Q`n1
+R9
+31
+R36
+R37
+R38
+R13
+R14
+!s100 XdUkL;hJeSA0az?i2ekS92
+!i10b 1
+Eregsortida3estats
+Z39 w1398605322
+R2
+R3
+R4
+R5
+R6
+Z40 8/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/RegSortida3Estats.vhd
+Z41 F/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/RegSortida3Estats.vhd
+l0
+L5
+V2_Y`D`0_RbhhnMeLP`N6M1
+R9
+31
+Z42 !s108 1398676099.956721
+Z43 !s90 -reportprogress|300|-93|-work|work|/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/RegSortida3Estats.vhd|
+Z44 !s107 /home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/RegSortida3Estats.vhd|
+R13
+R14
+!s100 ]>X;g=z7e1mU<AF[VRNS[2
+!i10b 1
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 17 regsortida3estats 0 22 2_Y`D`0_RbhhnMeLP`N6M1
+l30
+L17
+V3c^BAJE69zJ9X?`Y=GIB82
+R9
+31
+R42
+R43
+R44
+R13
+R14
+!s100 Y]naER9_]Kcdm77@5BUke2
+!i10b 1

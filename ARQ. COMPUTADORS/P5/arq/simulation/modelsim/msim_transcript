@@ -1,0 +1,2241 @@
+# Reading C:/altera/13.1/modelsim_ase/tcl/vsim/pref.tcl 
+# ERROR: No extended dataflow license exists
+# do Microprocessador_run_msim_rtl_vhdl.do 
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Copying C:\altera\13.1\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied C:\altera\13.1\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RegistreZero.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity RegistreZero
+# -- Compiling architecture Zero of RegistreZero
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/ComptadorPrograma.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity ComptadorPrograma
+# -- Compiling architecture PC_Arch of ComptadorPrograma
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/UnitatDeControl.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity UnitatDeControl
+# -- Compiling architecture Behavioral of UnitatDeControl
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RegSortida3Estats.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity RegSortida3Estats
+# -- Compiling architecture Behavioral of RegSortida3Estats
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RegistreMDR.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity RegistreMDR
+# -- Compiling architecture Behavioral of RegistreMDR
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RegistreMAR.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity RegistreMAR
+# -- Compiling architecture Behavioral of RegistreMAR
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Registre.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity Registre
+# -- Compiling architecture Behavioral of Registre
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Programes.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling package Programes
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/PCSUP.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity PCSUP
+# -- Compiling architecture Behavioral of PCSUP
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Mux4a1_5Bits.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity Mux4a1_5Bits
+# -- Compiling architecture Behavioral of Mux4a1_5Bits
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Microprocessador.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity Microprocessador
+# -- Compiling architecture Estructural of Microprocessador
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Latch32Bits.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity Latch32Bits
+# -- Compiling architecture Behavioral of Latch32Bits
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/ExtensioDeSigne.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity ExtensioDeSigne
+# -- Compiling architecture Behavioral of ExtensioDeSigne
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/EnllacBus.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity EnllacBus
+# -- Compiling architecture Behavioral of EnllacBus
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/DespExtSign15a0.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity DespExtSign15a0
+# -- Compiling architecture Behavioral of DespExtSign15a0
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Desp25a0.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity Desp25a0
+# -- Compiling architecture Behavioral of Desp25a0
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Descodificador5.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity Descodificador5
+# -- Compiling architecture desc of Descodificador5
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/BancRegistres.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity BancRegistres
+# -- Compiling architecture Behavioral of BancRegistres
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/ALU32.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity ALU32
+# -- Compiling architecture ALU of ALU32
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Acumulador.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity Acumulador
+# -- Compiling architecture Behavioral of Acumulador
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RAMSin.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Loading package Programes
+# -- Compiling entity RAMSin
+# -- Compiling architecture RAMSin of RAMSin
+# 
+# vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/simulation/modelsim/Microprocessador.vht}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity Microprocessador_vhd_tst
+# -- Compiling architecture Microprocessador_arch of Microprocessador_vhd_tst
+# 
+# vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cycloneiv_hssi -L cycloneiv_pcie_hip -L cycloneiv -L rtl_work -L work -voptargs="+acc"  Microprocessador_vhd_tst
+# vsim -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cycloneiv_hssi -L cycloneiv_pcie_hip -L cycloneiv -L rtl_work -L work -voptargs=\"+acc\" -t 1ps Microprocessador_vhd_tst 
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.microprocessador_vhd_tst(microprocessador_arch)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.microprocessador(estructural)
+# Loading work.unitatdecontrol(behavioral)
+# Loading work.latch32bits(behavioral)
+# Loading work.mux4a1_5bits(behavioral)
+# Loading work.bancregistres(behavioral)
+# Loading work.descodificador5(desc)
+# Loading work.registrezero(zero)
+# Loading work.regsortida3estats(behavioral)
+# Loading work.registre(behavioral)
+# Loading work.pcsup(behavioral)
+# Loading work.comptadorprograma(pc_arch)
+# Loading work.desp25a0(behavioral)
+# Loading work.despextsign15a0(behavioral)
+# Loading work.extensiodesigne(behavioral)
+# Loading work.alu32(alu)
+# Loading work.acumulador(behavioral)
+# Loading work.registremar(behavioral)
+# Loading ieee.numeric_std(body)
+# Loading work.programes
+# Loading work.ramsin(ramsin)
+# Loading work.registremdr(behavioral)
+# Loading work.enllacbus(behavioral)
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /microprocessador_vhd_tst/i1/mx
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /microprocessador_vhd_tst/i1/mx
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /microprocessador_vhd_tst/i1/mx
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 2  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 500 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 600 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1100 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 1300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1500 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1600 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 1800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2 us  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2 us  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2100 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 2200 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 2400 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2600 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2600 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2600 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2600 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2700 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 2900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3200 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 3300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 3500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3700 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3800 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 4 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4200 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4200 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4200 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4200 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4300 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4300 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 4500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4800 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4800 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 5 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5200 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5200 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5200 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5300 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 5500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5700 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5800 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5800 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5900 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6050 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 6100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6400 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 6700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6900 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7 us  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 7200 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7400 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7400 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7400 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7400 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7500 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7500 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 7700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8 us  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 8200 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8400 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8400 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8400 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8500 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 8700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8900 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9100 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9250 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 9300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9600 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 9900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10100 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10200 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 10400 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10600 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10600 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10600 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10600 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10700 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10700 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 10900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11200 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11200 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 11400 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11600 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11600 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11600 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11700 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 11900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12100 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12200 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12200 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12200 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12300 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12450 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 12500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12800 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 13100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13300 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13400 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 13600 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13800 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13800 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13900 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13900 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 14100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14400 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14400 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 14600 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14800 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14800 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14800 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14900 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 15100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15300 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15400 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15400 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15400 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15500 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15650 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 15700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16500 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16600 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17 us  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17 us  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17100 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17100 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 17300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17600 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17600 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 17800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18 us  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18 us  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18100 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 18300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18500 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 18600 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 18700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 19 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 19200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 19300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 19300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+add wave  \
+sim:/microprocessador_vhd_tst/i1/l_sor1 \
+sim:/microprocessador_vhd_tst/i1/l_sor2 \
+sim:/microprocessador_vhd_tst/i1/e_reg \
+sim:/microprocessador_vhd_tst/i1/l_mem \
+sim:/microprocessador_vhd_tst/i1/e_mem \
+sim:/microprocessador_vhd_tst/i1/e_mar \
+sim:/microprocessador_vhd_tst/i1/l_mdr \
+sim:/microprocessador_vhd_tst/i1/e_mdr \
+sim:/microprocessador_vhd_tst/i1/e_ir \
+sim:/microprocessador_vhd_tst/i1/l_pc \
+sim:/microprocessador_vhd_tst/i1/e_pc \
+sim:/microprocessador_vhd_tst/i1/pc_sup \
+sim:/microprocessador_vhd_tst/i1/inc_pc \
+sim:/microprocessador_vhd_tst/i1/l_desp1 \
+sim:/microprocessador_vhd_tst/i1/l_desp2 \
+sim:/microprocessador_vhd_tst/i1/l_extsign \
+sim:/microprocessador_vhd_tst/i1/l_acc \
+sim:/microprocessador_vhd_tst/i1/e_acc \
+sim:/microprocessador_vhd_tst/i1/Tancar \
+sim:/microprocessador_vhd_tst/i1/z \
+sim:/microprocessador_vhd_tst/i1/c \
+sim:/microprocessador_vhd_tst/i1/mux_dest \
+sim:/microprocessador_vhd_tst/i1/op_alu \
+sim:/microprocessador_vhd_tst/i1/rdest \
+sim:/microprocessador_vhd_tst/i1/Instruccio \
+sim:/microprocessador_vhd_tst/i1/DB3 \
+sim:/microprocessador_vhd_tst/i1/DB2 \
+sim:/microprocessador_vhd_tst/i1/DB1 \
+sim:/microprocessador_vhd_tst/i1/Alu_op1 \
+sim:/microprocessador_vhd_tst/i1/Sortida_Extensio \
+sim:/microprocessador_vhd_tst/i1/Adresa_RAM \
+sim:/microprocessador_vhd_tst/i1/Resultat_ALU \
+sim:/microprocessador_vhd_tst/i1/Dades_RAM \
+sim:/microprocessador_vhd_tst/i1/Dades_Out_Ram
+add wave  \
+sim:/microprocessador_vhd_tst/i1/uc/co \
+sim:/microprocessador_vhd_tst/i1/uc/func \
+sim:/microprocessador_vhd_tst/i1/uc/Estat
+add wave  \
+sim:/microprocessador_vhd_tst/i1/breg/reg12/SortidReg
+# Break key hit 
+# Simulation stop requested.
+# Simulation Breakpoint: Simulation stop requested.
+# MACRO ./Microprocessador_run_msim_rtl_vhdl.do PAUSED at line 37
+restart -f
+# Error: Acs eeao
+#        Unable to replace existing ini file (modelsim.ini).  File can not be renamed.
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /microprocessador_vhd_tst/i1/mx
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /microprocessador_vhd_tst/i1/mx
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /microprocessador_vhd_tst/i1/mx
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 2  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 500 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 600 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1100 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 1300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1500 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1600 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 1800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2 us  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2 us  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2100 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 2200 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 2400 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2600 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2600 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2600 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2600 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2700 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 2900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3200 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 3300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 3500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3700 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3800 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 4 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4200 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4200 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4200 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4200 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4300 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4300 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 4500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4800 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4800 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 5 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5200 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5200 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5200 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5300 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 5500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5700 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5800 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5800 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5900 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6050 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 6100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6400 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 6700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6900 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7 us  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 7200 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7400 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7400 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7400 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7400 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7500 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7500 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 7700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8 us  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 8200 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8400 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8400 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8400 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8500 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 8700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8900 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9100 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9250 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 9300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9600 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 9900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10100 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10200 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 10400 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10600 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10600 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10600 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10600 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10700 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10700 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 10900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11200 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11200 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 11400 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11600 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11600 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11600 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11700 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 11900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12100 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12200 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12200 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12200 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12300 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12450 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 12500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12800 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 13100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13300 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13400 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 13600 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13800 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13800 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13900 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13900 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 14100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14400 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14400 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 14600 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14800 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14800 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14800 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14900 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 15100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15300 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15400 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15400 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15400 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15500 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15650 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 15700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16500 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16600 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17 us  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17 us  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17100 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17100 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 17300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17600 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17600 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 17800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18 us  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18 us  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18100 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 18300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18500 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 18600 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 18700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 19 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 19200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 19300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 19300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+add wave  \
+sim:/microprocessador_vhd_tst/i1/pc/ContingutPC \
+sim:/microprocessador_vhd_tst/i1/pc/LecturaPC
+restart -f
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /microprocessador_vhd_tst/i1/mx
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /microprocessador_vhd_tst/i1/mx
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /microprocessador_vhd_tst/i1/mx
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 1  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 2  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 500 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 600 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1100 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 1300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1500 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1600 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 1800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 1800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2 us  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2 us  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2100 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 2200 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 2400 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2600 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2600 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2600 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2600 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2700 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 2900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 2900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3200 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 3300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 3500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3700 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3800 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 3900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 4 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4200 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4200 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4200 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4200 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4300 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4300 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 4500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4800 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4800 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 4900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 5 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5200 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5200 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5200 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5300 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 5500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5700 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5800 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5800 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5900 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 5900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6050 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 6100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6400 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 6700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 6900 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7 us  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 7200 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7400 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7400 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7400 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7400 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7500 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7500 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 7700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 7900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8 us  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 8200 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8400 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8400 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8400 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8500 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 8700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 8900 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9100 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9250 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 9300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9600 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 9900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 9900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10100 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10200 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 10400 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10600 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10600 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10600 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10600 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10700 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10700 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 10900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 10900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11200 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11200 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 11400 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11600 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11600 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11600 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11700 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 11900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 11900 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12100 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12100 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12200 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12200 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12200 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12300 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12450 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 12500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12700 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 12800 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 13100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13300 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13400 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13400 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 13600 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13800 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13800 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13900 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 13900 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 14100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14400 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14400 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 14600 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14800 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14800 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14800 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 14900 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15 us  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 15100 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15100 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15300 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15300 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15400 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15400 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15400 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15500 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15500 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15650 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 15700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 15900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16500 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16600 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 16800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 16800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17 us  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17 us  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17 us  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17100 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17100 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 17300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17600 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17600 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 17800 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 17800 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18 us  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18 us  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18100 ns  Iteration: 7  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 18300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18500 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18500 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18500 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 18600 ns  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18600 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 18700 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18700 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18900 ns  Iteration: 3  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 18900 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 19 us  Iteration: 5  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 19200 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 19300 ns  Iteration: 4  Instance: /microprocessador_vhd_tst/i1/mr
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 19300 ns  Iteration: 6  Instance: /microprocessador_vhd_tst/i1/alu

@@ -1,0 +1,67 @@
+# do Banc_Registres_run_msim_gate_vhdl.do 
+# if {[file exists gate_work]} {
+# 	vdel -lib gate_work -all
+# }
+# vlib gate_work
+# vmap work gate_work
+# Copying /home/enric/altera/13.1/modelsim_ase/linuxaloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied /home/enric/altera/13.1/modelsim_ase/linuxaloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vcom -93 -work work {Banc_Registres_6_1200mv_85c_slow.vho}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package VITAL_Timing
+# -- Loading package VITAL_Primitives
+# -- Loading package dffeas_pack
+# -- Loading package altera_primitives_components
+# -- Loading package cycloneiv_atom_pack
+# -- Loading package cycloneiv_components
+# -- Compiling entity BancRegistres
+# -- Compiling architecture structure of BancRegistres
+# 
+# vcom -93 -work work {/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/simulation/modelsim/BancRegistres.vht}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity BancRegistres_vhd_tst
+# -- Compiling architecture BancRegistres_arch of BancRegistres_vhd_tst
+# 
+# vsim -t 1ps +transport_int_delays +transport_path_delays -sdftyp /i1=Banc_Registres_6_1200mv_85c_vhd_slow.sdo -L altera_mf -L altera -L lpm -L sgate -L cycloneiv_hssi -L cycloneiv_pcie_hip -L cycloneiv -L gate_work -L work -voptargs="+acc"  BancRegistres_vhd_tst
+# vsim +transport_int_delays +transport_path_delays -L altera_mf -L altera -L lpm -L sgate -L cycloneiv_hssi -L cycloneiv_pcie_hip -L cycloneiv -L gate_work -L work -voptargs=\"+acc\" -sdftyp /i1=Banc_Registres_6_1200mv_85c_vhd_slow.sdo -t 1ps BancRegistres_vhd_tst 
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.bancregistres_vhd_tst(bancregistres_arch)
+# Loading ieee.vital_timing(body)
+# Loading ieee.vital_primitives(body)
+# Loading altera.dffeas_pack
+# Loading altera.altera_primitives_components
+# Loading cycloneiv.cycloneiv_atom_pack(body)
+# Loading cycloneiv.cycloneiv_components
+# Loading work.bancregistres(structure)
+# Loading ieee.std_logic_arith(body)
+# Loading cycloneiv.cycloneiv_io_obuf(arch)
+# Loading cycloneiv.cycloneiv_io_ibuf(arch)
+# Loading cycloneiv.cycloneiv_lcell_comb(vital_lcell_comb)
+# Loading cycloneiv.cycloneiv_clkctrl(vital_clkctrl)
+# Loading cycloneiv.cycloneiv_ena_reg(behave)
+# Loading altera.dffeas(vital_dffeas)
+# Loading instances from Banc_Registres_6_1200mv_85c_vhd_slow.sdo
+# Loading timing data from Banc_Registres_6_1200mv_85c_vhd_slow.sdo
+# ** Warning: Design size of 4 instances exceeds ModelSim ALTERA recommended capacity.
+# This may because you are loading cell libraries which are not recommended with
+# the ModelSim Altera version. Expect performance to be adversely affected.
+# ** Note: (vsim-3587) SDF Backannotation Successfully Completed.
+#    Time: 0 ps  Iteration: 0  Instance: /bancregistres_vhd_tst File: /home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/simulation/modelsim/BancRegistres.vht
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
