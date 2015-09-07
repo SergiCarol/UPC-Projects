@@ -1,0 +1,79 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\Sergi\Dropbox\Q4\ARQ. COMPUTADORS\P4\simulation\modelsim
+Esimbol_uc_vhd_tst
+Z1 w1399833331
+Z2 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z3 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z4 dC:\Users\Sergi\Dropbox\Q4\ARQ. COMPUTADORS\P4\simulation\modelsim
+Z5 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P4/simulation/modelsim/simbol_UC.vht
+Z6 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P4/simulation/modelsim/simbol_UC.vht
+l0
+L30
+VB5bjcJVjf6><=V@CP>DeE1
+!s100 MU54B01HfeOjG11BN]9Gf1
+Z7 OV;C;10.1d;51
+31
+!i10b 1
+Z8 !s108 1399841404.137000
+Z9 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P4/simulation/modelsim/simbol_UC.vht|
+Z10 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P4/simulation/modelsim/simbol_UC.vht|
+Z11 o-93 -work work -O0
+Z12 tExplicit 1
+Asimbol_uc_arch
+R2
+R3
+DEx4 work 17 simbol_uc_vhd_tst 0 22 B5bjcJVjf6><=V@CP>DeE1
+l95
+L32
+Ve]i95dMEgngbkE=J^h1Db1
+!s100 S?LCfATSFC54:G_8NDo5?2
+R7
+31
+!i10b 1
+R8
+R9
+R10
+R11
+R12
+Eunitatdecontrol
+Z13 w1399841265
+Z14 DPx4 ieee 15 std_logic_arith 0 22 4`Y?g_lkdn;7UL9IiJck01
+Z15 DPx4 ieee 18 std_logic_unsigned 0 22 RYmj;=TK`k=k>D@Cz`zoB3
+R2
+R3
+R4
+Z16 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P4/UnitatDeControl.vhd
+Z17 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P4/UnitatDeControl.vhd
+l0
+L6
+VAaTA>[KI4E0FJ]?`;DX>53
+R7
+31
+Z18 !s108 1399841403.847000
+Z19 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P4/UnitatDeControl.vhd|
+Z20 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P4/UnitatDeControl.vhd|
+R11
+R12
+!s100 hGJ@93UA^b=^g2[nT<HX41
+!i10b 1
+Abehavioral
+R14
+R15
+R2
+R3
+DEx4 work 15 unitatdecontrol 0 22 AaTA>[KI4E0FJ]?`;DX>53
+l46
+L40
+Vm3HX4HUKe[3hH664nd]GT1
+R7
+31
+R18
+R19
+R20
+R11
+R12
+!s100 djX1MjSj:=@OOTL<b1CQk2
+!i10b 1

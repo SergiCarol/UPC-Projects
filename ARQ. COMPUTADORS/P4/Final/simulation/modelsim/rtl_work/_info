@@ -1,0 +1,79 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\Sergi\Dropbox\Q4\ARQ. COMPUTADORS\P4\Final\simulation\modelsim
+Eunitatdecontrol
+Z1 w1399889131
+Z2 DPx4 ieee 15 std_logic_arith 0 22 4`Y?g_lkdn;7UL9IiJck01
+Z3 DPx4 ieee 18 std_logic_unsigned 0 22 RYmj;=TK`k=k>D@Cz`zoB3
+Z4 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z5 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z6 dC:\Users\Sergi\Dropbox\Q4\ARQ. COMPUTADORS\P4\Final\simulation\modelsim
+Z7 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P4/Final/UnitatDeControl.vhd
+Z8 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P4/Final/UnitatDeControl.vhd
+l0
+L6
+VBQVSH=DRMY1]CY^jVeP;82
+Z9 OV;C;10.1d;51
+31
+Z10 !s108 1399910293.313000
+Z11 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P4/Final/UnitatDeControl.vhd|
+Z12 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P4/Final/UnitatDeControl.vhd|
+Z13 o-93 -work work -O0
+Z14 tExplicit 1
+!s100 zEo=;^h??17Vgf0TeS6Xc3
+!i10b 1
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 15 unitatdecontrol 0 22 BQVSH=DRMY1]CY^jVeP;82
+l45
+L39
+VOPhgVnR8?k2?YQANKUJd00
+R9
+31
+R10
+R11
+R12
+R13
+R14
+!s100 E=fNCMZ7Ie3OkNV=KW1`73
+!i10b 1
+Eunitatdecontrol_vhd_tst
+Z15 w1399896812
+R4
+R5
+R6
+Z16 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P4/Final/simulation/modelsim/UnitatDeControl.vht
+Z17 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P4/Final/simulation/modelsim/UnitatDeControl.vht
+l0
+L30
+V<b_7Obo5VTcMD5PE>BVoo0
+!s100 _=jk@`lZm9Ydd@]^A>MiE3
+R9
+31
+!i10b 1
+Z18 !s108 1399910294.123000
+Z19 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P4/Final/simulation/modelsim/UnitatDeControl.vht|
+Z20 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P4/Final/simulation/modelsim/UnitatDeControl.vht|
+R13
+R14
+Aunitatdecontrol_arch
+R4
+R5
+DEx4 work 23 unitatdecontrol_vhd_tst 0 22 <b_7Obo5VTcMD5PE>BVoo0
+l93
+L32
+V`NaR?A@YcLoiY>:LocBbg1
+!s100 ^:hbj0QHBEkKI5TdQR4kR3
+R9
+31
+!i10b 1
+R18
+R19
+R20
+R13
+R14

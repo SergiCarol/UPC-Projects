@@ -1,0 +1,37 @@
+transcript on
+if {[file exists rtl_work]} {
+	vdel -lib rtl_work -all
+}
+vlib rtl_work
+vmap work rtl_work
+
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/RegistreZero.vhd}
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/ComptadorPrograma.vhd}
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/UnitatDeControl.vhd}
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/RegSortida3Estats.vhd}
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/RegistreMDR.vhd}
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/RegistreMAR.vhd}
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/Registre.vhd}
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/Programes.vhd}
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/PCSUP.vhd}
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/Mux4a1_5Bits.vhd}
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/Microprocessador.vhd}
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/Latch32Bits.vhd}
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/ExtensioDeSigne.vhd}
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/EnllacBus.vhd}
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/DespExtSign15a0.vhd}
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/Desp25a0.vhd}
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/Descodificador5.vhd}
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/BancRegistres.vhd}
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/ALU32.vhd}
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/Acumulador.vhd}
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/RAMSin.vhd}
+
+vcom -93 -work work {C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/simulation/modelsim/Microprocessador.vht}
+
+vsim -t 1ps -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L cycloneiv_hssi -L cycloneiv_pcie_hip -L cycloneiv -L rtl_work -L work -voptargs="+acc"  Microprocessador_vhd_tst
+
+add wave *
+view structure
+view signals
+run -all

@@ -1,0 +1,15 @@
+entity ALU32 is 
+port ( ControlALU: in STD_LOGIC_VECTOR (2 downto 0); 
+ Op1, Op2: in STD_LOGIC_VECTOR (31 downto 0); 
+ Res: out STD_LOGIC_VECTOR (31 downto 0); 
+ Z, C: out STD_LOGIC); 
+end ALU32 
+
+
+
+
+
+
+signal result_int :STD_LOGIC_VECTOR (31 downto 0);
+
+when "0000" => result_int <= op1 and op2

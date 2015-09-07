@@ -1,0 +1,222 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity Microprocessador is
+	Port ( 
+		Reset : in STD_LOGIC;
+		CLK : in  STD_LOGIC;
+	);
+end Microprocessador;
+
+architecture Estructural of Microprocessador is
+
+	component UnitatDeControl is
+		Port (
+			Reset : in STD_LOGIC;
+			clk : in  STD_LOGIC;
+			co : in  STD_LOGIC_VECTOR (5 downto 0);
+			func : in  STD_LOGIC_VECTOR (5 downto 0);
+			z : in  STD_LOGIC;
+			c : in  STD_LOGIC;
+			l_sor1 : out  STD_LOGIC;
+			l_sor2 : out  STD_LOGIC;
+			e_reg : out  STD_LOGIC;
+			mux_dest : out  STD_LOGIC_VECTOR (1 downto 0);
+			l_mem : out  STD_LOGIC;
+			e_mem : out  STD_LOGIC;
+			e_mar : out  STD_LOGIC;
+			l_mdr : out  STD_LOGIC;
+			e_mdr : out  STD_LOGIC;
+			e_ir : out  STD_LOGIC;
+			l_pc : out  STD_LOGIC;
+			e_pc : out  STD_LOGIC;
+			pc_sup : out  STD_LOGIC;
+			inc_pc : out  STD_LOGIC;
+			l_desp1 : out  STD_LOGIC;
+			l_desp2 : out  STD_LOGIC;
+			l_extsign : out  STD_LOGIC;
+			l_acc : out  STD_LOGIC;
+			e_acc : out  STD_LOGIC;
+			Tancar : out  STD_LOGIC;
+			op_alu : out  STD_LOGIC_VECTOR (2 downto 0)
+		);
+	end component;
+
+
+	component ALU32 is
+		Port (
+			Op1 : in  STD_LOGIC_VECTOR (31 downto 0);
+			Op2 : in  STD_LOGIC_VECTOR (31 downto 0);
+			Operacio : in  STD_LOGIC_VECTOR (2 downto 0);
+			Result : out  STD_LOGIC_VECTOR (31 downto 0);
+			Z,C : out  STD_LOGIC 
+		);
+	end component;
+
+	component BancRegistres is
+		Port (
+			Reset : in STD_LOGIC; 
+			clk : in STD_LOGIC; 
+			esc : in STD_LOGIC; 
+			rdest : in STD_LOGIC_VECTOR (4 downto 0); 
+			dades : in STD_LOGIC_VECTOR (31 downto 0); 
+			l_sor1 : in STD_LOGIC; 
+			rf1 : in STD_LOGIC_VECTOR (4 downto 0); 
+			l_sor2 : in STD_LOGIC; 
+			rf2 : in STD_LOGIC_VECTOR (4 downto 0); 
+			sor1 : out STD_LOGIC_VECTOR (31 downto 0); 
+			sor2 : out STD_LOGIC_VECTOR (31 downto 0) );	 
+	end component;
+
+	component PCSUP is
+		Port ( 
+			pc_sup : in std_logic;
+			Entrada : in  STD_LOGIC_VECTOR (31 downto 0);
+			Sortida : out  STD_LOGIC_VECTOR (31 downto 0) 
+		);
+	end component;
+
+	component ComptadorDePrograma is
+		Port (
+			Reset : in STD_LOGIC;
+			clk: in STD_LOGIC; 
+			Inc_PC : in STD_LOGIC; 
+			L_PC : in STD_LOGIC; 
+			E_PC: in STD_LOGIC; 
+			Din: in STD_LOGIC_VECTOR (31 downto 0); 
+			Dout: out STD_LOGIC_VECTOR (31 downto 0) 
+		);
+	end component;
+
+	component Desp25a0 is
+		Port (
+			l_desp2 : in std_logic;
+			Entrada : in STD_LOGIC_VECTOR (25 downto 0);
+			SortidaBus : out STD_LOGIC_VECTOR (31 downto 0) 
+		);
+	end component;
+
+	component DespExtSign15a0 is
+		Port (
+			l_desp1 : in STD_LOGIC;
+			Entrada : in STD_LOGIC_VECTOR (31 downto 0);
+			SortidaBus : out STD_LOGIC_VECTOR (31 downto 0) 
+		);
+	end component;
+
+	component ExtensioDeSigne is
+		Port (
+			l_extsign: in STD_LOGIC;
+			DadaEntrada : in  STD_LOGIC_VECTOR (15 downto 0);
+			DadaSortida1 : out  STD_LOGIC_VECTOR (31 downto 0);
+			DadaSortida2 : out STD_LOGIC_VECTOR (31 downto 0) 
+		);
+	end component;
+
+	component RAMSin is
+		Port (
+			clk : in STD_LOGIC;
+			Escr : in STD_LOGIC;
+			Lect : in STD_LOGIC;
+			Adress : in STD_LOGIC_VECTOR (5 downto 0);
+			DadesE : in  STD_LOGIC_VECTOR (31 downto 0);
+			DadesS : out  STD_LOGIC_VECTOR (31 downto 0) 
+		);
+	end component;
+
+	component Mux4a1_5Bits is
+		Port (
+			Sel : in  STD_LOGIC_VECTOR (1 downto 0);
+			E0 : in  STD_LOGIC_VECTOR (4 downto 0);
+			E1 : in  STD_LOGIC_VECTOR (4 downto 0);
+			E2 : in  STD_LOGIC_VECTOR (4 downto 0);
+			E3 : in  STD_LOGIC_VECTOR (4 downto 0);
+			S : out  STD_LOGIC_VECTOR (4 downto 0) 
+		);
+	end component;
+
+	component Acumulador is
+		Port (
+			clk : in STD_LOGIC;
+			l_acc : in  STD_LOGIC;
+			e_acc : in STD_LOGIC;
+			DadaEntrada : in  STD_LOGIC_VECTOR (31 downto 0);
+			DadaSortida : out  STD_LOGIC_VECTOR (31 downto 0) 
+		);
+	end component;
+
+	component Latch32Bits is
+		Port (
+			clk: in STD_LOGIC;
+			E : in  STD_LOGIC;
+			reset : in STD_LOGIC;
+			Din : in  STD_LOGIC_VECTOR (31 downto 0);
+			Dout : out  STD_LOGIC_VECTOR (31 downto 0) 
+		);
+	end component;
+
+	component RegistreMDR is
+		Port (
+			clk : in STD_LOGIC;
+			reset : in STD_LOGIC;
+			e_mdr : in  STD_LOGIC;
+			l_mdr : in  STD_LOGIC;
+			l_mem : in STD_LOGIC;
+			DadesBus2 : in  STD_LOGIC_VECTOR (31 downto 0);
+			DadesMemS : out  STD_LOGIC_VECTOR (31 downto 0);
+			DadesMemE : in  STD_LOGIC_VECTOR (31 downto 0);
+			DadesBus3 : out STD_LOGIC_VECTOR (31 downto 0) 
+		);
+	end component;
+
+	component EnllacBus is
+		Port (
+			Tancar : in  STD_LOGIC;
+			DadesBus3 : in STD_LOGIC_VECTOR (31 downto 0);
+			DadesBus1 : out STD_LOGIC_VECTOR (31 downto 0) 
+		);
+	end component;
+	
+
+	component MemAdres is
+		Port (
+			Pas : in  STD_LOGIC;
+			DadesEnt : in STD_LOGIC_VECTOR (31 downto 0);
+			DadesSor : out STD_LOGIC_VECTOR (31 downto 0) 
+		);
+	end component;
+	
+	constant CONST31 : std_logic_vector(4 downto 0) := "01111";
+
+	signal 
+   
+begin
+
+	-- Unitat de Control --
+  uc: UnitatDeControl port map ( .... );
+  -- Registre d'Instruccio --
+  ir: Latch32Bits port map ( .... );
+
+  mx: Mux4a1_5Bits port map ( .... ); 
+
+  -- Banc de Registres --
+  breg: BancRegistres port map ( .... );
+  
+  pcs: PCSUP port map (  );
+  pc: ComptadorDePrograma port map ( .... );
+  d1: Desp25a0 port map ( .... ); 
+  d2: DespExtSign15a0 port map ( .... );
+  exts: ExtensioDeSigne port map ( .... );
+  alu: ALU32 port map ( .... ); 
+  acc: Acumulador port map ( .... );
+
+  ma: MemAdres port map ( .... ); 
+
+  mr: RAMSin port map ( .... ); 
+  
+  mdr: RegistreMDR port map ( .... ); 
+  enl:  EnllacBus port map ( .... );
+	
+end Estructural;

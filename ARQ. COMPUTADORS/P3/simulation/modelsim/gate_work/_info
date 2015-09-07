@@ -1,0 +1,87 @@
+m255
+K3
+13
+cModel Technology
+Z0 d/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/simulation/modelsim
+Ebancregistres
+Z1 w1398675717
+Z2 DPx9 cycloneiv 19 cycloneiv_atom_pack 0 22 4<Pz:n^;SZVoCfc9P95Qf3
+Z3 DPx9 cycloneiv 20 cycloneiv_components 0 22 HYeScVTJ<BN2T1NTEcFXV3
+Z4 DPx4 ieee 16 vital_primitives 0 22 9W@YP9_VCb?_GCJ8e:;YQ0
+Z5 DPx6 altera 11 dffeas_pack 0 22 oY7WPe2I:Taj0>HV`A`AH0
+Z6 DPx4 ieee 12 vital_timing 0 22 7h8zz2S4HVg:a;2TBMI[j1
+Z7 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z8 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z9 DPx6 altera 28 altera_primitives_components 0 22 H[E=U;zSVlD;ca@gnkzIO0
+Z10 d/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/simulation/modelsim
+Z11 8Banc_Registres_6_1200mv_85c_slow.vho
+Z12 FBanc_Registres_6_1200mv_85c_slow.vho
+l0
+L36
+VThA0>hcRV49WK7C=c:6`40
+Z13 OV;C;10.1d;51
+31
+Z14 !s108 1398676183.980241
+Z15 !s90 -reportprogress|300|-93|-work|work|Banc_Registres_6_1200mv_85c_slow.vho|
+Z16 !s107 Banc_Registres_6_1200mv_85c_slow.vho|
+Z17 o-93 -work work -O0
+Z18 tExplicit 1
+!s100 E;]Hd=eIGkY50D2gzMT=90
+!i10b 1
+Astructure
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+R9
+DEx4 work 13 bancregistres 0 22 ThA0>hcRV49WK7C=c:6`40
+l1901
+L171
+V7z`F:M3o=PIK7C6?L;I5K0
+R13
+31
+R14
+R15
+R16
+R17
+R18
+!s100 iLbA<j>U1c[j<XbnWh0@11
+!i10b 1
+Ebancregistres_vhd_tst
+Z19 w1398676083
+R7
+R8
+R10
+Z20 8/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/simulation/modelsim/BancRegistres.vht
+Z21 F/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/simulation/modelsim/BancRegistres.vht
+l0
+L30
+V?UIm_B[g2zf@7Od9<WXFf0
+!s100 fQ9_`9zn7C2]L_OEB]2ng0
+R13
+31
+!i10b 1
+Z22 !s108 1398676185.026237
+Z23 !s90 -reportprogress|300|-93|-work|work|/home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/simulation/modelsim/BancRegistres.vht|
+Z24 !s107 /home/enric/Dropbox/CURS 2/Q. 4/ARQ. COMPUTADORS/P3/simulation/modelsim/BancRegistres.vht|
+R17
+R18
+Abancregistres_arch
+R7
+R8
+DEx4 work 21 bancregistres_vhd_tst 0 22 ?UIm_B[g2zf@7Od9<WXFf0
+l61
+L32
+VKGn_Ve1Z>YK8aLeOEG`XG0
+!s100 _766HhU`2hT>CId7TkH9m1
+R13
+31
+!i10b 1
+R22
+R23
+R24
+R17
+R18

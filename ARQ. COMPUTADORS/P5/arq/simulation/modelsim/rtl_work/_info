@@ -1,0 +1,845 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\Sergi\Dropbox\Q4\ARQ. COMPUTADORS\P5\arq\simulation\modelsim
+Eacumulador
+Z1 w1367646222
+Z2 DPx4 ieee 18 std_logic_unsigned 0 22 RYmj;=TK`k=k>D@Cz`zoB3
+Z3 DPx4 ieee 15 std_logic_arith 0 22 4`Y?g_lkdn;7UL9IiJck01
+Z4 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z5 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z6 dC:\Users\Sergi\Dropbox\Q4\ARQ. COMPUTADORS\P5\arq\simulation\modelsim
+Z7 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Acumulador.vhd
+Z8 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Acumulador.vhd
+l0
+L6
+V>FWA>l9g@RX:YaHZI@?ao2
+Z9 OV;C;10.1d;51
+31
+Z10 !s108 1400785820.486000
+Z11 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Acumulador.vhd|
+Z12 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Acumulador.vhd|
+Z13 o-93 -work work -O0
+Z14 tExplicit 1
+!s100 JaQPm63aBG[Pz:J:A6=k71
+!i10b 1
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 10 acumulador 0 22 >FWA>l9g@RX:YaHZI@?ao2
+l28
+L15
+V^nlWFT@f>9fg7[he8Q;LY1
+R9
+31
+R10
+R11
+R12
+R13
+R14
+!s100 6_RZAAB2kD6HcU;<?nFTd1
+!i10b 1
+Ealu32
+Z15 w1400607500
+R3
+R2
+R4
+R5
+R6
+Z16 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/ALU32.vhd
+Z17 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/ALU32.vhd
+l0
+L7
+V@SRRAkg<7ULV7KfLTB[mO0
+R9
+31
+Z18 !s108 1400785820.041000
+Z19 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/ALU32.vhd|
+Z20 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/ALU32.vhd|
+R13
+R14
+!s100 XOSZUVKfU:[N<eBbeVQ_C0
+!i10b 1
+Aalu
+R3
+R2
+R4
+R5
+DEx4 work 5 alu32 0 22 @SRRAkg<7ULV7KfLTB[mO0
+l19
+L15
+V>UfLN=L<8lmA2kICX<l:_2
+R9
+31
+R18
+R19
+R20
+R13
+R14
+!s100 AlNINlTUBjI9QiGRcg`XL1
+!i10b 1
+Ebancregistres
+Z21 w1398615168
+R3
+R2
+R4
+R5
+R6
+Z22 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/BancRegistres.vhd
+Z23 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/BancRegistres.vhd
+l0
+L6
+VZo<IYF_Qd2^0Z]7=EA38a2
+R9
+31
+Z24 !s108 1400785819.622000
+Z25 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/BancRegistres.vhd|
+Z26 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/BancRegistres.vhd|
+R13
+R14
+!s100 SRhofM9_R`=Hg_;EYN91M0
+!i10b 1
+Abehavioral
+R3
+R2
+R4
+R5
+DEx4 work 13 bancregistres 0 22 Zo<IYF_Qd2^0Z]7=EA38a2
+l56
+L20
+VDNb6<W3Qel<F=B4fWA2LY2
+R9
+31
+R24
+R25
+R26
+R13
+R14
+!s100 XzghG8_8?^f_J5Od^hDA^2
+!i10b 1
+Ecomptadorprograma
+Z27 w1400687428
+R2
+R3
+R4
+R5
+R6
+Z28 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/ComptadorPrograma.vhd
+Z29 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/ComptadorPrograma.vhd
+l0
+L6
+VGRid_imAPfgh@1a`m`7N`3
+R9
+31
+Z30 !s108 1400785812.545000
+Z31 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/ComptadorPrograma.vhd|
+Z32 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/ComptadorPrograma.vhd|
+R13
+R14
+!s100 UGQ^Ya=?2SSF0z]oZW0On0
+!i10b 1
+Apc_arch
+R2
+R3
+R4
+R5
+DEx4 work 17 comptadorprograma 0 22 GRid_imAPfgh@1a`m`7N`3
+l20
+L16
+VG:fVbOnLczndHDboJi;Qj3
+R9
+31
+R30
+R31
+R32
+R13
+R14
+!s100 SS2:h8d1k?VRiHDM64^z>3
+!i10b 1
+Edescodificador5
+Z33 w1398604914
+R3
+R2
+R4
+R5
+R6
+Z34 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Descodificador5.vhd
+Z35 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Descodificador5.vhd
+l0
+L5
+VQ=0k850iN_FCkOHiMVnn@0
+R9
+31
+Z36 !s108 1400785818.928000
+Z37 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Descodificador5.vhd|
+Z38 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Descodificador5.vhd|
+R13
+R14
+!s100 1JKh[>hX?2eHjbTnh9TD^3
+!i10b 1
+Adesc
+R3
+R2
+R4
+R5
+DEx4 work 15 descodificador5 0 22 Q=0k850iN_FCkOHiMVnn@0
+l13
+L11
+ViWB^fPmOjlb2bMTIe7?=A1
+R9
+31
+R36
+R37
+R38
+R13
+R14
+!s100 L0Q3RZ1hIRi>kKdgk8=j91
+!i10b 1
+Edesp25a0
+Z39 w1367646988
+R2
+R3
+R4
+R5
+R6
+Z40 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Desp25a0.vhd
+Z41 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Desp25a0.vhd
+l0
+L6
+VW@BnoIN>CX?6[7ET;1@?I0
+R9
+31
+Z42 !s108 1400785818.480000
+Z43 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Desp25a0.vhd|
+Z44 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Desp25a0.vhd|
+R13
+R14
+!s100 28d9f@lK=GDnBJlUi5mQn1
+!i10b 1
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 8 desp25a0 0 22 W@BnoIN>CX?6[7ET;1@?I0
+l16
+L14
+VOYcPP>>[gHC`Ob>?MM@`I0
+R9
+31
+R42
+R43
+R44
+R13
+R14
+!s100 TC8N8ZXBeIna1[aWN;ie31
+!i10b 1
+Edespextsign15a0
+Z45 w1367647048
+R2
+R3
+R4
+R5
+R6
+Z46 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/DespExtSign15a0.vhd
+Z47 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/DespExtSign15a0.vhd
+l0
+L6
+Vm:EKU98fD@bKH9ZUZQ0c=0
+R9
+31
+Z48 !s108 1400785817.964000
+Z49 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/DespExtSign15a0.vhd|
+Z50 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/DespExtSign15a0.vhd|
+R13
+R14
+!s100 ]aXfWllKH]Z=odZ]eiACO2
+!i10b 1
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 15 despextsign15a0 0 22 m:EKU98fD@bKH9ZUZQ0c=0
+l18
+L14
+VeR`SJiVgQfL9=CMGnG?l]3
+R9
+31
+R48
+R49
+R50
+R13
+R14
+!s100 dcJYD]ZXnXY8PFjK]oDN@3
+!i10b 1
+Eenllacbus
+Z51 w1367647080
+R2
+R3
+R4
+R5
+R6
+Z52 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/EnllacBus.vhd
+Z53 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/EnllacBus.vhd
+l0
+L6
+VOTMghUUYGRH3cFG]6jfl[0
+R9
+31
+Z54 !s108 1400785817.671000
+Z55 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/EnllacBus.vhd|
+Z56 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/EnllacBus.vhd|
+R13
+R14
+!s100 U=DBaAb`PTlIMMObW]24z3
+!i10b 1
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 9 enllacbus 0 22 OTMghUUYGRH3cFG]6jfl[0
+l16
+L14
+VPT?^A8=JG:[bgIJjlONbj2
+R9
+31
+R54
+R55
+R56
+R13
+R14
+!s100 oGd^8akVE>074Q4[5Y2V@3
+!i10b 1
+Eextensiodesigne
+Z57 w1367647290
+R2
+R3
+R4
+R5
+R6
+Z58 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/ExtensioDeSigne.vhd
+Z59 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/ExtensioDeSigne.vhd
+l0
+L6
+V7929dC6@FIG>f76_1RAjI1
+R9
+31
+Z60 !s108 1400785817.354000
+Z61 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/ExtensioDeSigne.vhd|
+Z62 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/ExtensioDeSigne.vhd|
+R13
+R14
+!s100 f?^<PT`l1TEDAzao?W3141
+!i10b 1
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 15 extensiodesigne 0 22 7929dC6@FIG>f76_1RAjI1
+l19
+L15
+VP_jPBiQGUO2[[Wnn`?2_D2
+R9
+31
+R60
+R61
+R62
+R13
+R14
+!s100 K[L6f;PoNM1Y:fXjI7;Qh0
+!i10b 1
+Elatch32bits
+Z63 w1400601878
+R2
+R3
+R4
+R5
+R6
+Z64 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Latch32Bits.vhd
+Z65 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Latch32Bits.vhd
+l0
+L6
+V@@Xh^Zh`PJ01c96ASW=cJ2
+R9
+31
+Z66 !s108 1400785816.928000
+Z67 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Latch32Bits.vhd|
+Z68 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Latch32Bits.vhd|
+R13
+R14
+!s100 fieMi6E3JAQI^J1QPU0>d2
+!i10b 1
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 11 latch32bits 0 22 @@Xh^Zh`PJ01c96ASW=cJ2
+l18
+L16
+VJGA;Ckl>1NMXf]O?2I2T=1
+R9
+31
+R66
+R67
+R68
+R13
+R14
+!s100 [CA:N?`C9oAX?E3ebRfDW3
+!i10b 1
+Emicroprocessador
+Z69 w1400687294
+R2
+R3
+R4
+R5
+R6
+Z70 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Microprocessador.vhd
+Z71 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Microprocessador.vhd
+l0
+L6
+V2DZ8RF30johZb^YbNA^:90
+R9
+31
+Z72 !s108 1400785816.474000
+Z73 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Microprocessador.vhd|
+Z74 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Microprocessador.vhd|
+R13
+R14
+!s100 8nZ3N1gb^>;lI_5hZ>3901
+!i10b 1
+Aestructural
+R2
+R3
+R4
+R5
+DEx4 work 16 microprocessador 0 22 2DZ8RF30johZb^YbNA^:90
+l199
+L13
+V7NVVi:mYi1ZBF>IeohHk51
+R9
+31
+R72
+R73
+R74
+R13
+R14
+!s100 38iRdJ?W07`eHR>C0[beO1
+!i10b 1
+Emicroprocessador_vhd_tst
+Z75 w1400677572
+R4
+R5
+R6
+Z76 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/simulation/modelsim/Microprocessador.vht
+Z77 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/simulation/modelsim/Microprocessador.vht
+l0
+L30
+V^4DOa^XC0HQ>;iBH0N>382
+!s100 2KmjdT8iGR>9nTV?:d=5J2
+R9
+31
+!i10b 1
+Z78 !s108 1400785821.675000
+Z79 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/simulation/modelsim/Microprocessador.vht|
+Z80 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/simulation/modelsim/Microprocessador.vht|
+R13
+R14
+Amicroprocessador_arch
+R4
+R5
+DEx4 work 24 microprocessador_vhd_tst 0 22 ^4DOa^XC0HQ>;iBH0N>382
+l43
+L32
+VC1glchaWF2f0nSFB<Y4Al2
+!s100 3RN]No`97E1mfbiY:f];n2
+R9
+31
+!i10b 1
+R78
+R79
+R80
+R13
+R14
+Emux4a1_5bits
+Z81 w1399303762
+R2
+R3
+R4
+R5
+R6
+Z82 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Mux4a1_5Bits.vhd
+Z83 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Mux4a1_5Bits.vhd
+l0
+L6
+V?8W4;4TET]CGGmHzb^z0a0
+R9
+31
+Z84 !s108 1400785815.973000
+Z85 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Mux4a1_5Bits.vhd|
+Z86 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Mux4a1_5Bits.vhd|
+R13
+R14
+!s100 h>4_:EPJ?l[koa?9GQ3ic2
+!i10b 1
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 12 mux4a1_5bits 0 22 ?8W4;4TET]CGGmHzb^z0a0
+l19
+L17
+VjmXld0eZIdS8azzk8Dj8l0
+R9
+31
+R84
+R85
+R86
+R13
+R14
+!s100 Mh9B^bJI;NWBgn3OGKD`f1
+!i10b 1
+Epcsup
+Z87 w1367648746
+R2
+R3
+R4
+R5
+R6
+Z88 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/PCSUP.vhd
+Z89 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/PCSUP.vhd
+l0
+L7
+Vg1GfY`Q:Vh_k=2VQca[T[3
+R9
+31
+Z90 !s108 1400785815.672000
+Z91 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/PCSUP.vhd|
+Z92 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/PCSUP.vhd|
+R13
+R14
+!s100 O[HQZf[V@mkeFU2R>a5l[3
+!i10b 1
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 5 pcsup 0 22 g1GfY`Q:Vh_k=2VQca[T[3
+l17
+L15
+VHcm=b7if?ABPj690E0BbL3
+R9
+31
+R90
+R91
+R92
+R13
+R14
+!s100 [6of_C8b2TZaaG[B`eGo43
+!i10b 1
+Pprogrames
+R2
+R3
+R4
+R5
+w1367572556
+R6
+8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Programes.vhd
+FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Programes.vhd
+l0
+L8
+V:Pbk=fjIFBTRj:;ABDd1i3
+R9
+31
+R13
+R14
+!s100 ]8B4@gR:eAKS8<Z?aZmf>3
+!i10b 1
+!s108 1400785815.336000
+!s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Programes.vhd|
+!s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Programes.vhd|
+Eramsin
+Z93 w1367647728
+R2
+R3
+Z94 DPx4 work 9 programes 0 22 :Pbk=fjIFBTRj:;ABDd1i3
+Z95 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
+R4
+R5
+R6
+Z96 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RAMSin.vhd
+Z97 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RAMSin.vhd
+l0
+L7
+VfK`A1VZVO1K5j8l8i1]U[1
+R9
+31
+Z98 !s108 1400785820.973000
+Z99 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RAMSin.vhd|
+Z100 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RAMSin.vhd|
+R13
+R14
+!s100 lZ;mmnNJ^V2_F=3_S3h4Q2
+!i10b 1
+Aramsin
+R2
+R3
+R94
+R95
+R4
+R5
+DEx4 work 6 ramsin 0 22 fK`A1VZVO1K5j8l8i1]U[1
+l22
+L18
+VW2MM[fJDoC2oXz=F[_:lg1
+R9
+31
+R98
+R99
+R100
+R13
+R14
+!s100 MZ3K_To;XkHz_mATa=7@Q3
+!i10b 1
+Eregistre
+Z101 w1398601518
+R3
+R2
+R4
+R5
+R6
+Z102 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Registre.vhd
+Z103 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Registre.vhd
+l0
+L5
+VYb`DI@KX;ibAJ`2kUeoUF3
+R9
+31
+Z104 !s108 1400785814.858000
+Z105 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Registre.vhd|
+Z106 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/Registre.vhd|
+R13
+R14
+!s100 ?Q9cJ;0B=CkJGIPN_^eY_3
+!i10b 1
+Abehavioral
+R3
+R2
+R4
+R5
+DEx4 work 8 registre 0 22 Yb`DI@KX;ibAJ`2kUeoUF3
+l16
+L13
+VZL1ZF8N6H0bLH<@`5jUH40
+R9
+31
+R104
+R105
+R106
+R13
+R14
+!s100 7D5fYE8CVfPAW299bS0PO3
+!i10b 1
+Eregistremar
+Z107 w1399293080
+R2
+R3
+R4
+R5
+R6
+Z108 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RegistreMAR.vhd
+Z109 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RegistreMAR.vhd
+l0
+L6
+VZ6PA3oGeAkY?@LRDY[8O81
+R9
+31
+Z110 !s108 1400785814.522000
+Z111 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RegistreMAR.vhd|
+Z112 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RegistreMAR.vhd|
+R13
+R14
+!s100 N7IMEKGOMFbE8BBBk7Pg:1
+!i10b 1
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 11 registremar 0 22 Z6PA3oGeAkY?@LRDY[8O81
+l16
+L14
+VQ06n@iEOZHG?^SzZm^3[I0
+R9
+31
+R110
+R111
+R112
+R13
+R14
+!s100 h8SLE2hXS<O3I1[7S]m:f3
+!i10b 1
+Eregistremdr
+Z113 w1367647570
+R2
+R3
+R4
+R5
+R6
+Z114 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RegistreMDR.vhd
+Z115 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RegistreMDR.vhd
+l0
+L7
+Vb0WDj41609E`2CoBTmEX[2
+R9
+31
+Z116 !s108 1400785813.819000
+Z117 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RegistreMDR.vhd|
+Z118 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RegistreMDR.vhd|
+R13
+R14
+!s100 [BokmRUlR:G>JS0Jll>f23
+!i10b 1
+Abehavioral
+R2
+R3
+R4
+R5
+DEx4 work 11 registremdr 0 22 b0WDj41609E`2CoBTmEX[2
+l35
+L21
+VMNH;KR;La<8>KLW5e>J^@2
+R9
+31
+R116
+R117
+R118
+R13
+R14
+!s100 LU2c^_SUGUKVSJ6Ojz1L12
+!i10b 1
+Eregistrezero
+Z119 w1398601088
+R3
+R2
+R4
+R5
+R6
+Z120 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RegistreZero.vhd
+Z121 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RegistreZero.vhd
+l0
+L5
+VH]58d:L]T`ngJhJ6381zK3
+R9
+31
+Z122 !s108 1400785811.264000
+Z123 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RegistreZero.vhd|
+Z124 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RegistreZero.vhd|
+R13
+R14
+!s100 GGH2]10YJ4_NV]azY0`bg3
+!i10b 1
+Azero
+R3
+R2
+R4
+R5
+DEx4 work 12 registrezero 0 22 H]58d:L]T`ngJhJ6381zK3
+l15
+L14
+V_0Lf9<Y^ac[K;JR8j[Q`n1
+R9
+31
+R122
+R123
+R124
+R13
+R14
+!s100 XdUkL;hJeSA0az?i2ekS92
+!i10b 1
+Eregsortida3estats
+Z125 w1398605322
+R3
+R2
+R4
+R5
+R6
+Z126 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RegSortida3Estats.vhd
+Z127 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RegSortida3Estats.vhd
+l0
+L5
+V2_Y`D`0_RbhhnMeLP`N6M1
+R9
+31
+Z128 !s108 1400785813.279000
+Z129 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RegSortida3Estats.vhd|
+Z130 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/RegSortida3Estats.vhd|
+R13
+R14
+!s100 ]>X;g=z7e1mU<AF[VRNS[2
+!i10b 1
+Abehavioral
+R3
+R2
+R4
+R5
+DEx4 work 17 regsortida3estats 0 22 2_Y`D`0_RbhhnMeLP`N6M1
+l30
+L17
+V3c^BAJE69zJ9X?`Y=GIB82
+R9
+31
+R128
+R129
+R130
+R13
+R14
+!s100 Y]naER9_]Kcdm77@5BUke2
+!i10b 1
+Eunitatdecontrol
+Z131 w1400767474
+R3
+R2
+R4
+R5
+R6
+Z132 8C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/UnitatDeControl.vhd
+Z133 FC:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/UnitatDeControl.vhd
+l0
+L6
+VAaTA>[KI4E0FJ]?`;DX>53
+R9
+31
+Z134 !s108 1400785812.925000
+Z135 !s90 -reportprogress|300|-93|-work|work|C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/UnitatDeControl.vhd|
+Z136 !s107 C:/Users/Sergi/Dropbox/Q4/ARQ. COMPUTADORS/P5/arq/UnitatDeControl.vhd|
+R13
+R14
+!s100 hGJ@93UA^b=^g2[nT<HX41
+!i10b 1
+Abehavioral
+R3
+R2
+R4
+R5
+DEx4 work 15 unitatdecontrol 0 22 AaTA>[KI4E0FJ]?`;DX>53
+l46
+L40
+V^j[W9FkIARg3X>gECU@002
+R9
+31
+R134
+R135
+R136
+R13
+R14
+!s100 n4Ah>2l6nGjQX8Y24]9C92
+!i10b 1
